@@ -8,6 +8,25 @@
   },
   "simulation": {
     "day_length_seconds": 600
+  },
+  "entities": {
+    "villager": {
+      "move_speed": 50.0,
+      "max_health": 100,
+      "sight_range": 10,
+      "default_skills": {"logging": 0.1, "farming": 0.1},
+      "chop_speed": 5.0
+    },
+    "tree_oak": {
+      "hp": 20,
+      "growth_days": 5,
+      "drops": {"log": [3, 5], "sapling": [0, 2]}
+    },
+    "tools": {
+      "axe_stone": {
+        "durability": 50,
+        "efficiency": 1.0
+      }
+    }
   }
 }
-

@@ -13,7 +13,13 @@ class TimeManager:
         self.elapsed_time = 0.0 # Game world time (scaled)
         self.real_time_elapsed = 0.0 # Real application time
         
-        self.frame_count = 0
+        # Game World Calendar
+        self.day = 0
+        self.time_of_day = 6.0 # Start at 6 AM
+        self.day_length_seconds = 60.0 # 1 real minute = 1 game day (default)
+        
+        self.frame_count = 0 # Frames in the current second (for FPS calc)
+        self.total_ticks = 0 # Total ticks since start
         self.last_fps_time = self.last_time
         self.fps = 0.0
 
@@ -30,11 +36,23 @@ class TimeManager:
         if not self.is_paused:
             self.delta_time = raw_dt * self.time_scale
             self.elapsed_time += self.delta_time
+            
+            # Update Calendar
+            # delta_time is in seconds. 
+            # Game hours per second = 24 / day_length_seconds
+            hours_passed = (self.delta_time / self.day_length_seconds) * 24.0
+            self.time_of_day += hours_passed
+            
+            if self.time_of_day >= 24.0:
+                self.time_of_day -= 24.0
+                self.day += 1
         else:
             self.delta_time = 0.0
             
         # Calculate FPS
         self.frame_count += 1
+        self.total_ticks += 1
+        
         if current_time - self.last_fps_time >= 1.0:
             self.fps = self.frame_count / (current_time - self.last_fps_time)
             self.frame_count = 0
@@ -51,4 +69,3 @@ class TimeManager:
 
     def get_delta_time(self) -> float:
         return self.delta_time
-
