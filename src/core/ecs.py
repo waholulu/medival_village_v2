@@ -41,6 +41,10 @@ class EntityManager:
                 if entity in store:
                     del store[entity]
 
+    def has_entity(self, entity: int) -> bool:
+        """Checks if an entity exists."""
+        return entity in self._entities
+
     def add_component(self, entity: int, component: Component):
         """Adds a component to an entity."""
         comp_type = type(component)
@@ -79,7 +83,8 @@ class EntityManager:
 
         primary_store = self._components.get(primary_type, {})
         
-        for entity, primary_comp in primary_store.items():
+        # Create a copy to allow modification during iteration
+        for entity, primary_comp in list(primary_store.items()):
             components = [primary_comp]
             has_all = True
             for ot in other_types:
@@ -93,5 +98,3 @@ class EntityManager:
                 # We need to return components in the order requested, not sorted order
                 # Re-fetch based on original order is safest/clearest
                 yield tuple([entity] + [self._components[t][entity] for t in comp_types])
-
-

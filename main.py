@@ -8,11 +8,14 @@ from src.core.ecs import EntityManager
 from src.core.time_manager import TimeManager
 from src.core.input_manager import InputManager
 from src.core.config_manager import ConfigManager
-from src.world.grid import Grid, TERRAIN_WATER, TERRAIN_STONE
+from src.world.grid import Grid, TERRAIN_WATER, TERRAIN_STONE, ZONE_STOCKPILE
+from src.world.zone_manager import ZoneManager
 from src.systems.render_system import RenderSystem
 from src.systems.ui_system import UISystem
 from src.systems.action_system import ActionSystem
-from src.components.data_components import PositionComponent, MovementComponent, ActionComponent, ResourceComponent
+from src.systems.job_system import JobSystem, Job
+from src.systems.ai_system import AISystem
+from src.components.data_components import PositionComponent, MovementComponent, ActionComponent, ResourceComponent, InventoryComponent
 from src.components.skill_component import SkillComponent
 from src.components.tags import IsWalkable, IsTree, IsSelectable, IsPlayer
 from src.utils.logger import Logger, LogCategory
@@ -54,8 +57,13 @@ def main():
     grid.set_terrain(7, 5, TERRAIN_WATER)
     grid.set_terrain(2, 2, TERRAIN_STONE)
     
-    # Action System (Common)
+    # New Phase 3 Managers
+    zone_manager = ZoneManager(grid)
+    job_system = JobSystem()
+    
+    # Systems
     action_system = ActionSystem(entity_manager, grid, config_manager)
+    ai_system = AISystem(entity_manager, job_system, grid, zone_manager)
 
     # 3. Graphics Setup (Conditional)
     screen = None
@@ -83,15 +91,16 @@ def main():
         Logger.info("Running in Headless Mode")
 
     # 4. Spawn Test Entities (Common)
-    # The Golem
-    golem = entity_manager.create_entity()
-    entity_manager.add_component(golem, PositionComponent(10, 10))
-    entity_manager.add_component(golem, MovementComponent(speed=config_manager.get("entities.villager.move_speed", 5.0)))
-    entity_manager.add_component(golem, ActionComponent())
-    entity_manager.add_component(golem, SkillComponent(skills=config_manager.get("entities.villager.default_skills", {})))
-    entity_manager.add_component(golem, IsPlayer())
-    entity_manager.add_component(golem, IsSelectable())
-    entity_manager.add_component(golem, IsWalkable())
+    # The Villager (previously Golem)
+    villager = entity_manager.create_entity()
+    entity_manager.add_component(villager, PositionComponent(10, 10))
+    entity_manager.add_component(villager, MovementComponent(speed=config_manager.get("entities.villager.move_speed", 5.0)))
+    entity_manager.add_component(villager, ActionComponent())
+    entity_manager.add_component(villager, SkillComponent(skills=config_manager.get("entities.villager.default_skills", {"logging": 0.1})))
+    entity_manager.add_component(villager, InventoryComponent(capacity=10)) # Add Inventory
+    entity_manager.add_component(villager, IsPlayer())
+    entity_manager.add_component(villager, IsSelectable())
+    entity_manager.add_component(villager, IsWalkable())
     
     # A Tree
     tree = entity_manager.create_entity()
@@ -104,6 +113,22 @@ def main():
     entity_manager.add_component(tree, IsTree())
     entity_manager.add_component(tree, IsSelectable())
     
+    # Setup Phase 3 Test Scenario
+    # 1. Mark Stockpile
+    stockpile_pos = (20, 10)
+    zone_manager.mark_zone(stockpile_pos[0], stockpile_pos[1], ZONE_STOCKPILE)
+    Logger.info(f"Marked Stockpile at {stockpile_pos}")
+    
+    # 2. Create Chop Job
+    chop_job = Job(
+        job_type="chop",
+        target_pos=(15, 10),
+        target_entity_id=tree,
+        required_skill="logging"
+    )
+    job_system.add_job(chop_job)
+    Logger.info(f"Added Chop Job for Tree {tree}")
+    
     Logger.info("Core systems initialized")
     Logger.info("Game Loop Started")
 
@@ -111,20 +136,6 @@ def main():
     running = True
     clock = pygame.time.Clock()
     
-    # Headless Test Setup
-    if args.headless:
-        # Auto-Test: Move Golem to (20, 20)
-        target_x, target_y = 20, 20
-        Logger.gameplay(f"Headless Test: Commanding Golem {golem} to move to ({target_x}, {target_y})")
-        
-        action_comp = entity_manager.get_component(golem, ActionComponent)
-        move_comp = entity_manager.get_component(golem, MovementComponent)
-        
-        if action_comp and move_comp:
-            action_comp.current_action = "move"
-            move_comp.target = (target_x, target_y)
-            move_comp.path = [] # Force recalc
-
     while running:
         dt = time_manager.get_delta_time()
         
@@ -146,8 +157,7 @@ def main():
             # Handle Time Scale
             if input_manager.time_scale_request is not None:
                 time_manager.set_time_scale(input_manager.time_scale_request)
-                Logger.info(f"Time scale set to {input_manager.time_scale_request}")
-
+                
             # Handle Camera Movement
             move_vec = input_manager.get_camera_movement()
             if move_vec[0] != 0 or move_vec[1] != 0:
@@ -159,41 +169,8 @@ def main():
             zoom_change = input_manager.get_zoom_change()
             if zoom_change != 0:
                 render_system.adjust_zoom(zoom_change)
-                
-            # Handle Commands from Input
-            if input_manager.last_command:
-                cmd = input_manager.last_command
-                if cmd['type'] == 'INTERACT_OR_MOVE':
-                     wx, wy = cmd['world_pos']
-                     tx = int(wx / pixels_per_unit)
-                     ty = int(wy / pixels_per_unit)
-                     
-                     if render_system.selected_entity_id is not None:
-                         actor = render_system.selected_entity_id
-                         action_comp = entity_manager.get_component(actor, ActionComponent)
-                         move_comp = entity_manager.get_component(actor, MovementComponent)
-                         
-                         if action_comp and move_comp:
-                             target_id = None
-                             for e, pos in entity_manager.get_entities_with(PositionComponent):
-                                 if pos.x == tx and pos.y == ty and e != actor:
-                                     target_id = e
-                                     break
-                             
-                             if target_id is not None and entity_manager.has_component(target_id, IsTree):
-                                 Logger.gameplay(f"Command: Chop tree {target_id}")
-                                 action_comp.current_action = "chop"
-                                 action_comp.target_entity_id = target_id
-                                 move_comp.target = (tx, ty)
-                                 move_comp.path = [] 
-                             else:
-                                 Logger.gameplay(f"Command: Move to {tx}, {ty}")
-                                 action_comp.current_action = "move"
-                                 action_comp.target_entity_id = None
-                                 move_comp.target = (tx, ty)
-                                 move_comp.path = [] 
-
-            # Handle Selection
+            
+            # Debug Selection
             if input_manager.is_left_click_just_pressed():
                 if not ui_manager.get_hovering_any_element():
                     mx, my = input_manager.get_mouse_pos()
@@ -208,28 +185,29 @@ def main():
                     
                     render_system.selected_entity_id = selected_id
                     
-                    terrain_id = grid.get_terrain(*tile_pos)
-                    walkable = grid.is_walkable(*tile_pos)
-                    info = f"Tile: {tile_pos}\nTerrain ID: {terrain_id}\nWalkable: {walkable}"
+                    # Info string
+                    zone = grid.get_zone(*tile_pos)
+                    zone_str = "None"
+                    if zone == ZONE_STOCKPILE: zone_str = "Stockpile"
+                    
+                    info = f"Tile: {tile_pos}\nZone: {zone_str}"
                     if selected_id is not None:
                         info += f"\nEntity: {selected_id}"
-                        res = entity_manager.get_component(selected_id, ResourceComponent)
-                        if res:
-                            info += f"\nHP: {res.health}/{res.max_health}"
+                        inv = entity_manager.get_component(selected_id, InventoryComponent)
+                        if inv: info += f"\nInv: {inv.items}"
+                        
                         act = entity_manager.get_component(selected_id, ActionComponent)
-                        if act:
-                            info += f"\nAction: {act.current_action}"
-                        skills = entity_manager.get_component(selected_id, SkillComponent)
-                        if skills:
-                            info += f"\nSkills: {skills.skills}"
-                    
+                        if act: info += f"\nAction: {act.current_action}"
+                        
                     ui_system.update_inspector(info)
-                    Logger.gameplay(f"Selected tile {tile_pos}, Entity: {selected_id}")
 
             time_manager.update()
-            action_system.update(dt)
-            render_system.update(dt)
             
+            # Update Logic Systems
+            ai_system.update(dt)
+            action_system.update(dt)
+            
+            render_system.update(dt)
             ui_system.update_god_panel(
                 fps=time_manager.fps,
                 world_time_str=f"Day {time_manager.day} {int(time_manager.time_of_day):02d}:00",
@@ -241,30 +219,42 @@ def main():
             pygame.display.flip()
         else:
             # --- Headless Loop ---
-            # 1. Event Pump (Required for Pygame internals even without display)
             pygame.event.pump()
             
-            # 2. Update Logic
             time_manager.update()
+            ai_system.update(dt)
             action_system.update(dt)
             
-            # 3. Logging (Every 60 ticks ~ 1 second)
-            # We use frame_count (which is essentially ticks since start)
-            # If we want strictly every second, we can check time, but frame_count is easier for determinstic-ish behavior
+            # Logging (Every ~1 second)
             if time_manager.frame_count % 60 == 0:
-                # Get Golem Position
-                golem_pos = entity_manager.get_component(golem, PositionComponent)
-                Logger.info(f"[Headless] Tick: {time_manager.frame_count} | FPS: {time_manager.fps:.2f} | Golem Pos: ({golem_pos.x}, {golem_pos.y})")
+                v_pos = entity_manager.get_component(villager, PositionComponent)
+                v_act = entity_manager.get_component(villager, ActionComponent)
+                v_inv = entity_manager.get_component(villager, InventoryComponent)
                 
-                # Check if reached destination (approx check if exact match might be missed due to float, but grid is int)
-                if golem_pos.x == 20 and golem_pos.y == 20:
-                     Logger.gameplay("Test SUCCESS: Golem reached (20, 20)")
-                     # For this test run, we can exit shortly after success, or let it run to 600
-                     
-            # Exit condition for test (e.g. after 10 seconds)
-            if time_manager.real_time_elapsed > 10.0:
-                Logger.info(f"Headless test run complete ({time_manager.real_time_elapsed:.2f}s). Exiting.")
-                running = False
+                log_msg = f"[Headless] Tick: {time_manager.frame_count} | Villager: ({v_pos.x}, {v_pos.y}) | Act: {v_act.current_action} | Inv: {v_inv.items}"
+                Logger.info(log_msg)
+                
+                # Check Success Condition
+                # 1. Tree gone? (ResourceComponent gone or Entity destroyed)
+                # 2. Log in stockpile? (Or log entity on stockpile position)
+                
+                # Check items on stockpile
+                from src.components.data_components import ItemComponent
+                found_log_on_stockpile = False
+                for e, item, pos in entity_manager.get_entities_with(ItemComponent, PositionComponent):
+                    if pos.x == stockpile_pos[0] and pos.y == stockpile_pos[1] and item.item_type == "log":
+                        found_log_on_stockpile = True
+                        break
+                
+                if found_log_on_stockpile:
+                    Logger.gameplay("TEST SUCCESS: Log hauled to stockpile!")
+                    # We can exit or wait a bit
+                    if time_manager.real_time_elapsed > 15.0:
+                        break
+
+            # Exit condition for test (timeout)
+            if time_manager.real_time_elapsed > 30.0:
+                Logger.info("Headless test timeout.")
                 break
                 
         clock.tick(tick_rate)

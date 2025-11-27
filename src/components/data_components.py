@@ -23,7 +23,24 @@ class ResourceComponent(Component):
 
 @dataclass(slots=True)
 class ActionComponent(Component):
-    current_action: str = "idle"  # "idle", "move", "chop"
+    current_action: str = "idle"  # "idle", "move", "chop", "pickup", "drop"
     target_entity_id: Optional[int] = None
     target_pos: Optional[Tuple[int, int]] = None
+
+@dataclass(slots=True)
+class InventoryComponent(Component):
+    items: dict = field(default_factory=dict)  # {"log": 5}
+    capacity: int = 10
+
+@dataclass(slots=True)
+class ItemComponent(Component):
+    item_type: str # "log"
+    amount: int = 1
+
+@dataclass(slots=True)
+class JobComponent(Component):
+    job_id: str
+    job_type: str
+    target_pos: Optional[Tuple[int, int]] = None
+    target_entity_id: Optional[int] = None
 

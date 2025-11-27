@@ -1,7 +1,7 @@
 from typing import Optional, Tuple
 import math
 from src.core.ecs import System, EntityManager
-from src.components.data_components import ActionComponent, MovementComponent, PositionComponent, ResourceComponent
+from src.components.data_components import ActionComponent, MovementComponent, PositionComponent, ResourceComponent, InventoryComponent, ItemComponent
 from src.components.skill_component import SkillComponent
 from src.core.config_manager import ConfigManager
 from src.world.grid import Grid
@@ -25,6 +25,12 @@ class ActionSystem(System):
             
             elif action_comp.current_action == "chop":
                 self._handle_chop(entity, action_comp, dt)
+                
+            elif action_comp.current_action == "pickup":
+                self._handle_pickup(entity, action_comp)
+                
+            elif action_comp.current_action == "drop":
+                self._handle_drop(entity, action_comp)
 
     def _handle_move(self, entity: int, action_comp: ActionComponent, dt: float):
         move_comp = self.entity_manager.get_component(entity, MovementComponent)
@@ -100,13 +106,8 @@ class ActionSystem(System):
         if dist > 1:
             # Too far, move closer
             # We temporarily switch to move logic or handle movement here.
-            # Let's set a movement target.
             move_comp = self.entity_manager.get_component(entity, MovementComponent)
             if move_comp:
-                # Find a neighbor of target
-                # Ideally find closest walkable neighbor
-                # Simplified: Set target to target_pos, pathfinding will stop at neighbor if target is occupied/unwalkable?
-                # Or we search neighbors.
                 neighbors = [
                     (target_pos.x+1, target_pos.y), (target_pos.x-1, target_pos.y),
                     (target_pos.x, target_pos.y+1), (target_pos.x, target_pos.y-1)
@@ -122,9 +123,6 @@ class ActionSystem(System):
                 best_n = min(valid_neighbors, key=lambda n: abs(n[0]-my_pos.x) + abs(n[1]-my_pos.y))
                 
                 move_comp.target = best_n
-                # We delegate to _handle_move by keeping action as "chop" but processing move?
-                # Or better: Switch state to "move", and queue "chop" for later?
-                # For simplicity, let's just call _handle_move logic here if we have a path/target
                 
                 if not move_comp.path and move_comp.target:
                      # Calculate path
@@ -146,8 +144,6 @@ class ActionSystem(System):
             skill_comp = self.entity_manager.get_component(entity, SkillComponent)
             multiplier = 1.0
             if skill_comp:
-                # Proficiency increases speed. E.g. 0.1 -> +10% speed? 
-                # Or let's say multiplier = 1 + skill
                 multiplier = 1.0 + skill_comp.skills.get("logging", 0.0)
             
             chop_speed = base_speed * multiplier
@@ -156,12 +152,15 @@ class ActionSystem(System):
             
             if target_res.health <= 0:
                 Logger.log(LogCategory.GAMEPLAY, f"Entity {entity} chopped tree {target_id}!")
-                # Chance to increase skill? Not in Phase 2 strictly required but good to have.
-                # We'll skip skill learning logic for now as it's not explicitly asked in "check phase 0-2" fix, 
-                # but "Learning" is mentioned in README 3.1. 
-                # The plan didn't explicitly ask for learning logic, just skill system implementation.
-                # I'll leave it out to keep changes focused, or add a simple increment. 
-                # Let's add a simple increment if skill exists.
+                
+                # Spawn logs
+                drops = target_res.drops.get("log", [1, 1])
+                # Simplified: always spawn 1 log entity for now, or match drops logic
+                # We spawn an Item entity
+                log_entity = self.entity_manager.create_entity()
+                self.entity_manager.add_component(log_entity, PositionComponent(x=target_pos.x, y=target_pos.y))
+                self.entity_manager.add_component(log_entity, ItemComponent(item_type="log", amount=1))
+                
                 if skill_comp:
                     current_skill = skill_comp.skills.get("logging", 0.0)
                     if current_skill < 1.0:
@@ -170,3 +169,47 @@ class ActionSystem(System):
                 self.entity_manager.destroy_entity(target_id)
                 action_comp.current_action = "idle"
                 action_comp.target_entity_id = None
+
+    def _handle_pickup(self, entity: int, action_comp: ActionComponent):
+        target_id = action_comp.target_entity_id
+        item_comp = self.entity_manager.get_component(target_id, ItemComponent)
+        
+        if not item_comp:
+            action_comp.current_action = "idle"
+            return
+            
+        inv_comp = self.entity_manager.get_component(entity, InventoryComponent)
+        if inv_comp:
+            # Add to inventory
+            current_amount = inv_comp.items.get(item_comp.item_type, 0)
+            inv_comp.items[item_comp.item_type] = current_amount + item_comp.amount
+            
+            Logger.log(LogCategory.GAMEPLAY, f"Entity {entity} picked up {item_comp.amount} {item_comp.item_type}")
+            
+            self.entity_manager.destroy_entity(target_id)
+            
+        action_comp.current_action = "idle"
+        action_comp.target_entity_id = None
+
+    def _handle_drop(self, entity: int, action_comp: ActionComponent):
+        inv_comp = self.entity_manager.get_component(entity, InventoryComponent)
+        pos_comp = self.entity_manager.get_component(entity, PositionComponent)
+        
+        if not inv_comp or not pos_comp:
+            action_comp.current_action = "idle"
+            return
+
+        # Drop everything? Or what is specified?
+        # For now, drop the first thing in inventory as a simple test
+        if inv_comp.items:
+            item_type, amount = list(inv_comp.items.items())[0]
+            if amount > 0:
+                # Create item entity
+                item_entity = self.entity_manager.create_entity()
+                self.entity_manager.add_component(item_entity, PositionComponent(x=pos_comp.x, y=pos_comp.y))
+                self.entity_manager.add_component(item_entity, ItemComponent(item_type=item_type, amount=amount))
+                
+                del inv_comp.items[item_type]
+                Logger.log(LogCategory.GAMEPLAY, f"Entity {entity} dropped {amount} {item_type}")
+                
+        action_comp.current_action = "idle"
