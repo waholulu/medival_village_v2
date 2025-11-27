@@ -16,6 +16,10 @@ class InputManager:
         self.time_scale_request: Optional[float] = None
         
         self.last_command = None # {'type': str, ...}
+        
+        # Zone placement mode
+        self.zone_placement_mode: Optional[int] = None  # None, or zone_type ID
+        self.zone_placement_pos: Optional[Tuple[int, int]] = None  # Tile position to place zone
 
         # Key mappings
         self.key_map = {
@@ -59,6 +63,38 @@ class InputManager:
                     self.time_scale_request = 2.0
                 elif event.key == pygame.K_3:
                     self.time_scale_request = 5.0
+                # Zone placement shortcuts
+                elif event.key == pygame.K_s:
+                    # Toggle stockpile placement mode
+                    from src.world.grid import ZONE_STOCKPILE, ZONE_NONE
+                    if self.zone_placement_mode == ZONE_STOCKPILE:
+                        self.zone_placement_mode = None
+                        Logger.log(LogCategory.INPUT, "Zone placement: OFF")
+                    else:
+                        self.zone_placement_mode = ZONE_STOCKPILE
+                        Logger.log(LogCategory.INPUT, "Zone placement: STOCKPILE (Right-click to place)")
+                elif event.key == pygame.K_f:
+                    # Toggle farm placement mode
+                    from src.world.grid import ZONE_FARM, ZONE_NONE
+                    if self.zone_placement_mode == ZONE_FARM:
+                        self.zone_placement_mode = None
+                        Logger.log(LogCategory.INPUT, "Zone placement: OFF")
+                    else:
+                        self.zone_placement_mode = ZONE_FARM
+                        Logger.log(LogCategory.INPUT, "Zone placement: FARM (Right-click to place)")
+                elif event.key == pygame.K_r:
+                    # Toggle residential placement mode
+                    from src.world.grid import ZONE_RESIDENTIAL, ZONE_NONE
+                    if self.zone_placement_mode == ZONE_RESIDENTIAL:
+                        self.zone_placement_mode = None
+                        Logger.log(LogCategory.INPUT, "Zone placement: OFF")
+                    else:
+                        self.zone_placement_mode = ZONE_RESIDENTIAL
+                        Logger.log(LogCategory.INPUT, "Zone placement: RESIDENTIAL (Right-click to place)")
+                elif event.key == pygame.K_x:
+                    # Cancel zone placement mode
+                    self.zone_placement_mode = None
+                    Logger.log(LogCategory.INPUT, "Zone placement: OFF")
             
             elif event.type == pygame.MOUSEWHEEL:
                 self.zoom_change = event.y # +1 or -1 typically
@@ -79,7 +115,14 @@ class InputManager:
                 elif event.button == 3: # Right Click
                      if screen_to_world_callback:
                          wx, wy = screen_to_world_callback(event.pos[0], event.pos[1])
-                         self.last_command = {'type': 'INTERACT_OR_MOVE', 'world_pos': (wx, wy)}
+                         # If in zone placement mode, set zone instead of move command
+                         if self.zone_placement_mode is not None:
+                             # Convert world pos to tile pos (assuming pixels_per_unit)
+                             # We'll pass world pos and let main.py handle conversion
+                             self.zone_placement_pos = (wx, wy)
+                             self.last_command = {'type': 'SET_ZONE', 'world_pos': (wx, wy), 'zone_type': self.zone_placement_mode}
+                         else:
+                             self.last_command = {'type': 'INTERACT_OR_MOVE', 'world_pos': (wx, wy)}
                     
         # Continuous Key State for smooth movement
         keys = pygame.key.get_pressed()
@@ -100,3 +143,7 @@ class InputManager:
 
     def is_left_click_just_pressed(self) -> bool:
         return pygame.mouse.get_pressed()[0]
+    
+    def get_zone_placement_mode(self) -> Optional[int]:
+        """Returns current zone placement mode, or None if disabled."""
+        return self.zone_placement_mode

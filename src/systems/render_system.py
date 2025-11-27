@@ -3,7 +3,7 @@ import math
 from src.core.ecs import System, EntityManager
 from src.components.data_components import PositionComponent, MovementComponent
 from src.components.tags import IsTree, IsPlayer
-from src.world.grid import Grid, TERRAIN_GRASS, TERRAIN_DIRT, TERRAIN_WATER, TERRAIN_STONE
+from src.world.grid import Grid, TERRAIN_GRASS, TERRAIN_DIRT, TERRAIN_WATER, TERRAIN_STONE, ZONE_STOCKPILE, ZONE_FARM, ZONE_RESIDENTIAL, ZONE_NONE
 from src.utils.logger import Logger, LogCategory
 
 # Color definitions
@@ -19,11 +19,18 @@ COLOR_ENTITY_PLAYER = (0, 0, 255)
 COLOR_ENTITY_TREE = (0, 100, 0)
 COLOR_ENTITY_DEFAULT = (255, 0, 0)
 
+# Zone colors (semi-transparent overlays) - RGB only, alpha handled separately
+COLOR_ZONE_STOCKPILE = (255, 200, 0)  # Orange-yellow
+COLOR_ZONE_FARM = (0, 200, 0)  # Green
+COLOR_ZONE_RESIDENTIAL = (200, 0, 200)  # Magenta
+ZONE_ALPHA = 128  # Transparency level
+
 class RenderSystem(System):
-    def __init__(self, screen: pygame.Surface, grid: Grid, entity_manager: EntityManager, config: dict):
+    def __init__(self, screen: pygame.Surface, grid: Grid, entity_manager: EntityManager, config: dict, zone_manager=None):
         self.screen = screen
         self.grid = grid
         self.entity_manager = entity_manager
+        self.zone_manager = zone_manager
         self.base_pixels_per_unit = config.get("global", {}).get("pixels_per_unit", 32)
         
         # Camera Settings
@@ -36,12 +43,22 @@ class RenderSystem(System):
         self.selected_tile = None # (x, y)
         self.selected_entity_id = None
         
+        # Zone visibility
+        self.show_zones = True  # Toggle zone overlay
+        
         # Pre-calculate colors for faster lookup
         self.terrain_colors = {
             TERRAIN_GRASS: COLOR_GRASS,
             TERRAIN_DIRT: COLOR_DIRT,
             TERRAIN_WATER: COLOR_WATER,
             TERRAIN_STONE: COLOR_STONE
+        }
+        
+        # Zone colors mapping
+        self.zone_colors = {
+            ZONE_STOCKPILE: COLOR_ZONE_STOCKPILE,
+            ZONE_FARM: COLOR_ZONE_FARM,
+            ZONE_RESIDENTIAL: COLOR_ZONE_RESIDENTIAL
         }
         
         Logger.info("RenderSystem initialized")
@@ -121,6 +138,17 @@ class RenderSystem(System):
                 color = self.terrain_colors.get(terrain_id, COLOR_UNKNOWN)
                 
                 pygame.draw.rect(self.screen, color, rect)
+                
+                # Draw zone overlay if enabled
+                if self.show_zones and self.zone_manager:
+                    zone_id = self.grid.get_zone(x, y)
+                    if zone_id != ZONE_NONE and zone_id in self.zone_colors:
+                        zone_color = self.zone_colors[zone_id]
+                        # Create a surface for transparency
+                        zone_surface = pygame.Surface((size, size), pygame.SRCALPHA)
+                        zone_surface.fill((*zone_color, ZONE_ALPHA))
+                        self.screen.blit(zone_surface, (screen_x, screen_y))
+                
                 # Only draw grid lines if zoom is high enough, otherwise it looks messy
                 if self.zoom_level > 0.6:
                     pygame.draw.rect(self.screen, COLOR_GRID_LINE, rect, 1)

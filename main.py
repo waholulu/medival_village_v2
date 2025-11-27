@@ -8,7 +8,7 @@ from src.core.ecs import EntityManager
 from src.core.time_manager import TimeManager
 from src.core.input_manager import InputManager
 from src.core.config_manager import ConfigManager
-from src.world.grid import Grid, TERRAIN_WATER, TERRAIN_STONE, ZONE_STOCKPILE
+from src.world.grid import Grid, TERRAIN_WATER, TERRAIN_STONE, ZONE_STOCKPILE, ZONE_FARM, ZONE_RESIDENTIAL, ZONE_NONE
 from src.world.zone_manager import ZoneManager
 from src.systems.render_system import RenderSystem
 from src.systems.ui_system import UISystem
@@ -83,7 +83,7 @@ def main():
         ui_manager = pygame_gui.UIManager((screen_width, screen_height))
         input_manager = InputManager(ui_manager)
         
-        render_system = RenderSystem(screen, grid, entity_manager, config_manager.config)
+        render_system = RenderSystem(screen, grid, entity_manager, config_manager.config, zone_manager)
         ui_system = UISystem(screen, ui_manager)
         
         Logger.info("Graphical systems initialized")
@@ -118,6 +118,24 @@ def main():
     stockpile_pos = (20, 10)
     zone_manager.mark_zone(stockpile_pos[0], stockpile_pos[1], ZONE_STOCKPILE)
     Logger.info(f"Marked Stockpile at {stockpile_pos}")
+    
+    # Test zone setting (for both headless and graphical modes)
+    # Set additional zones for testing
+    zone_manager.mark_zone(25, 10, ZONE_FARM)
+    zone_manager.mark_zone(30, 10, ZONE_RESIDENTIAL)
+    Logger.info(f"Test: Set Farm zone at (25, 10)")
+    Logger.info(f"Test: Set Residential zone at (30, 10)")
+    
+    # Verify zones are set correctly
+    assert grid.get_zone(stockpile_pos[0], stockpile_pos[1]) == ZONE_STOCKPILE, "Stockpile zone not set correctly"
+    assert grid.get_zone(25, 10) == ZONE_FARM, "Farm zone not set correctly"
+    assert grid.get_zone(30, 10) == ZONE_RESIDENTIAL, "Residential zone not set correctly"
+    Logger.info("Test: All zones verified successfully")
+    
+    # Test zone query
+    nearest_stockpile = zone_manager.get_nearest_zone_tile((15, 10), ZONE_STOCKPILE)
+    assert nearest_stockpile == stockpile_pos, f"Nearest stockpile query failed: got {nearest_stockpile}, expected {stockpile_pos}"
+    Logger.info(f"Test: Nearest stockpile query works: {nearest_stockpile}")
     
     # 2. Create Chop Job
     chop_job = Job(
@@ -170,6 +188,52 @@ def main():
             if zoom_change != 0:
                 render_system.adjust_zoom(zoom_change)
             
+            # Handle Commands from Input
+            if input_manager.last_command:
+                cmd = input_manager.last_command
+                if cmd['type'] == 'SET_ZONE':
+                    # Place zone at clicked position
+                    wx, wy = cmd['world_pos']
+                    tx = int(wx / pixels_per_unit)
+                    ty = int(wy / pixels_per_unit)
+                    zone_type = cmd['zone_type']
+                    
+                    zone_manager.mark_zone(tx, ty, zone_type)
+                    zone_name = "Stockpile" if zone_type == ZONE_STOCKPILE else \
+                               "Farm" if zone_type == ZONE_FARM else \
+                               "Residential" if zone_type == ZONE_RESIDENTIAL else "Unknown"
+                    Logger.gameplay(f"Placed {zone_name} zone at ({tx}, {ty})")
+                    
+                elif cmd['type'] == 'INTERACT_OR_MOVE':
+                     wx, wy = cmd['world_pos']
+                     tx = int(wx / pixels_per_unit)
+                     ty = int(wy / pixels_per_unit)
+                     
+                     if render_system.selected_entity_id is not None:
+                         actor = render_system.selected_entity_id
+                         action_comp = entity_manager.get_component(actor, ActionComponent)
+                         move_comp = entity_manager.get_component(actor, MovementComponent)
+                         
+                         if action_comp and move_comp:
+                             target_id = None
+                             for e, pos in entity_manager.get_entities_with(PositionComponent):
+                                 if pos.x == tx and pos.y == ty and e != actor:
+                                     target_id = e
+                                     break
+                             
+                             if target_id is not None and entity_manager.has_component(target_id, IsTree):
+                                 Logger.gameplay(f"Command: Chop tree {target_id}")
+                                 action_comp.current_action = "chop"
+                                 action_comp.target_entity_id = target_id
+                                 move_comp.target = (tx, ty)
+                                 move_comp.path = [] 
+                             else:
+                                 Logger.gameplay(f"Command: Move to {tx}, {ty}")
+                                 action_comp.current_action = "move"
+                                 action_comp.target_entity_id = None
+                                 move_comp.target = (tx, ty)
+                                 move_comp.path = []
+            
             # Debug Selection
             if input_manager.is_left_click_just_pressed():
                 if not ui_manager.get_hovering_any_element():
@@ -189,8 +253,17 @@ def main():
                     zone = grid.get_zone(*tile_pos)
                     zone_str = "None"
                     if zone == ZONE_STOCKPILE: zone_str = "Stockpile"
+                    elif zone == ZONE_FARM: zone_str = "Farm"
+                    elif zone == ZONE_RESIDENTIAL: zone_str = "Residential"
                     
-                    info = f"Tile: {tile_pos}\nZone: {zone_str}"
+                    # Show zone placement mode
+                    zone_mode = input_manager.get_zone_placement_mode()
+                    mode_str = ""
+                    if zone_mode == ZONE_STOCKPILE: mode_str = "\n[Mode: Stockpile Placement - Right-click to place]"
+                    elif zone_mode == ZONE_FARM: mode_str = "\n[Mode: Farm Placement - Right-click to place]"
+                    elif zone_mode == ZONE_RESIDENTIAL: mode_str = "\n[Mode: Residential Placement - Right-click to place]"
+                    
+                    info = f"Tile: {tile_pos}\nZone: {zone_str}{mode_str}"
                     if selected_id is not None:
                         info += f"\nEntity: {selected_id}"
                         inv = entity_manager.get_component(selected_id, InventoryComponent)
@@ -212,7 +285,8 @@ def main():
                 fps=time_manager.fps,
                 world_time_str=f"Day {time_manager.day} {int(time_manager.time_of_day):02d}:00",
                 cam_pos=render_system.camera_pos,
-                zoom=render_system.zoom_level
+                zoom=render_system.zoom_level,
+                zone_mode=input_manager.get_zone_placement_mode()
             )
             ui_system.update(dt)
             
@@ -245,6 +319,29 @@ def main():
                     if pos.x == stockpile_pos[0] and pos.y == stockpile_pos[1] and item.item_type == "log":
                         found_log_on_stockpile = True
                         break
+                
+                # Test zone queries during runtime (every 5 seconds)
+                if time_manager.frame_count % 300 == 0:
+                    # Verify zones still exist
+                    stockpile_zone = grid.get_zone(stockpile_pos[0], stockpile_pos[1])
+                    farm_zone = grid.get_zone(25, 10)
+                    residential_zone = grid.get_zone(30, 10)
+                    
+                    Logger.info(f"[Zone Test] Stockpile at {stockpile_pos}: {stockpile_zone} (expected {ZONE_STOCKPILE})")
+                    Logger.info(f"[Zone Test] Farm at (25, 10): {farm_zone} (expected {ZONE_FARM})")
+                    Logger.info(f"[Zone Test] Residential at (30, 10): {residential_zone} (expected {ZONE_RESIDENTIAL})")
+                    
+                    # Test zone removal and re-adding
+                    if time_manager.frame_count == 300:  # Only once
+                        Logger.info("[Zone Test] Testing zone removal...")
+                        zone_manager.mark_zone(25, 10, ZONE_NONE)
+                        assert grid.get_zone(25, 10) == ZONE_NONE, "Zone removal failed"
+                        Logger.info("[Zone Test] Zone removal successful")
+                        
+                        # Re-add farm zone
+                        zone_manager.mark_zone(25, 10, ZONE_FARM)
+                        assert grid.get_zone(25, 10) == ZONE_FARM, "Zone re-addition failed"
+                        Logger.info("[Zone Test] Zone re-addition successful")
                 
                 if found_log_on_stockpile:
                     Logger.gameplay("TEST SUCCESS: Log hauled to stockpile!")
