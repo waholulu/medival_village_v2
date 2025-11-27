@@ -1,7 +1,7 @@
 from typing import Optional, Tuple
 import math
 from src.core.ecs import System, EntityManager
-from src.components.data_components import ActionComponent, MovementComponent, PositionComponent, ResourceComponent, InventoryComponent, ItemComponent, DurabilityComponent, HungerComponent, MoodComponent, TirednessComponent, SleepStateComponent, CropComponent
+from src.components.data_components import ActionComponent, MovementComponent, PositionComponent, ResourceComponent, InventoryComponent, ItemComponent, DurabilityComponent, HungerComponent, MoodComponent, TirednessComponent, SleepStateComponent, CropComponent, ColdComponent, TrapComponent, FireComponent
 from src.components.skill_component import SkillComponent
 from src.core.config_manager import ConfigManager
 from src.world.grid import Grid
@@ -13,6 +13,7 @@ class ActionSystem(System):
         self.entity_manager = entity_manager
         self.grid = grid
         self.config_manager = config_manager
+        self._fishing_progress = {}  # Track fishing progress per entity
 
     def update(self, dt: float):
         # Process entities with ActionComponent
@@ -43,6 +44,18 @@ class ActionSystem(System):
             
             elif action_comp.current_action == "harvest":
                 self._handle_harvest(entity, action_comp)
+            
+            elif action_comp.current_action == "trap":
+                self._handle_trap(entity, action_comp, dt)
+            
+            elif action_comp.current_action == "fish":
+                self._handle_fish(entity, action_comp, dt)
+            
+            elif action_comp.current_action == "create_fire":
+                self._handle_create_fire(entity, action_comp)
+            
+            elif action_comp.current_action == "tend_fire":
+                self._handle_tend_fire(entity, action_comp)
 
     def _handle_move(self, entity: int, action_comp: ActionComponent, dt: float):
         move_comp = self.entity_manager.get_component(entity, MovementComponent)
@@ -448,3 +461,282 @@ class ActionSystem(System):
         
         action_comp.current_action = "idle"
         action_comp.target_entity_id = None
+    
+    def _handle_trap(self, entity: int, action_comp: ActionComponent, dt: float):
+        """Handle trap action - check trap or place new trap."""
+        from src.core.time_manager import TimeManager
+        import random
+        
+        pos_comp = self.entity_manager.get_component(entity, PositionComponent)
+        inv_comp = self.entity_manager.get_component(entity, InventoryComponent)
+        skill_comp = self.entity_manager.get_component(entity, SkillComponent)
+        
+        if not pos_comp:
+            action_comp.current_action = "idle"
+            return
+        
+        # Check if we're placing a trap or checking an existing one
+        if action_comp.target_entity_id:
+            # Checking existing trap
+            trap_entity = action_comp.target_entity_id
+            trap_comp = self.entity_manager.get_component(trap_entity, TrapComponent)
+            trap_pos = self.entity_manager.get_component(trap_entity, PositionComponent)
+            
+            if not trap_comp or not trap_pos:
+                action_comp.current_action = "idle"
+                return
+            
+            # Check distance
+            dist = abs(pos_comp.x - trap_pos.x) + abs(pos_comp.y - trap_pos.y)
+            if dist > 1:
+                action_comp.current_action = "idle"
+                return
+            
+            # Check if enough time has passed since last check
+            # For now, we'll allow checking traps immediately (simplified)
+            # In a full system, we'd track last_check_time properly
+            
+            # Calculate catch probability
+            base_prob = self.config_manager.get("entities.trapping.trap_catch_probability_base", 0.15)
+            skill_bonus = 0.0
+            if skill_comp:
+                trapping_skill = skill_comp.skills.get("trapping", 0.0)
+                skill_multiplier = self.config_manager.get("entities.trapping.trap_catch_probability_per_skill", 0.5)
+                skill_bonus = trapping_skill * skill_multiplier
+            
+            catch_prob = base_prob * (1.0 + skill_bonus)
+            
+            # Try to catch
+            if random.random() < catch_prob:
+                # Success! Generate meat
+                meat_entity = self.entity_manager.create_entity()
+                self.entity_manager.add_component(meat_entity, PositionComponent(x=trap_pos.x, y=trap_pos.y))
+                self.entity_manager.add_component(meat_entity, ItemComponent(
+                    item_type="meat",
+                    amount=1,
+                    food_value=self.config_manager.get("entities.items.meat.food_value", 40.0)
+                ))
+                Logger.log(LogCategory.GAMEPLAY, f"Entity {entity} caught meat in trap at ({trap_pos.x}, {trap_pos.y})")
+                
+                # Reduce trap durability
+                trap_comp.durability -= 1.0
+                if trap_comp.durability <= 0:
+                    # Trap broken
+                    self.entity_manager.destroy_entity(trap_entity)
+                    Logger.log(LogCategory.GAMEPLAY, f"Trap at ({trap_pos.x}, {trap_pos.y}) broke!")
+                else:
+                    trap_comp.last_check_time = 0.0  # Reset check time
+                
+                # Increase skill
+                if skill_comp:
+                    current_skill = skill_comp.skills.get("trapping", 0.0)
+                    if current_skill < 1.0:
+                        skill_comp.skills["trapping"] = min(1.0, current_skill + 0.01)
+            else:
+                # No catch, but still reduce durability slightly
+                trap_comp.durability -= 0.1
+                if trap_comp.durability <= 0:
+                    self.entity_manager.destroy_entity(trap_entity)
+                    Logger.log(LogCategory.GAMEPLAY, f"Trap at ({trap_pos.x}, {trap_pos.y}) broke!")
+                trap_comp.last_check_time = 0.0
+        
+        else:
+            # Placing new trap
+            # Check if we have logs
+            if not inv_comp or inv_comp.items.get("log", 0) < 2:
+                action_comp.current_action = "idle"
+                return
+            
+            # Check if there's already a trap here
+            for trap_entity, trap_comp, trap_pos in self.entity_manager.get_entities_with(TrapComponent, PositionComponent):
+                if trap_pos.x == pos_comp.x and trap_pos.y == pos_comp.y:
+                    action_comp.current_action = "idle"
+                    return
+            
+            # Place trap
+            inv_comp.items["log"] -= 2
+            if inv_comp.items["log"] <= 0:
+                del inv_comp.items["log"]
+            
+            trap_entity = self.entity_manager.create_entity()
+            self.entity_manager.add_component(trap_entity, PositionComponent(x=pos_comp.x, y=pos_comp.y))
+            trap_config = self.config_manager.get("entities.trapping", {})
+            self.entity_manager.add_component(trap_entity, TrapComponent(
+                trap_type="basic_trap",
+                durability=trap_config.get("trap_durability", 10.0),
+                max_durability=trap_config.get("trap_durability", 10.0),
+                catch_probability=trap_config.get("trap_catch_probability_base", 0.15)
+            ))
+            
+            Logger.log(LogCategory.GAMEPLAY, f"Entity {entity} placed trap at ({pos_comp.x}, {pos_comp.y})")
+        
+        action_comp.current_action = "idle"
+        action_comp.target_entity_id = None
+    
+    def _handle_fish(self, entity: int, action_comp: ActionComponent, dt: float):
+        """Handle fishing action - fish at water location."""
+        from src.world.grid import TERRAIN_WATER
+        import random
+        
+        pos_comp = self.entity_manager.get_component(entity, PositionComponent)
+        skill_comp = self.entity_manager.get_component(entity, SkillComponent)
+        
+        if not pos_comp:
+            action_comp.current_action = "idle"
+            return
+        
+        # Check if we're at water
+        if self.grid.get_terrain(pos_comp.x, pos_comp.y) != TERRAIN_WATER:
+            # Check adjacent tiles
+            neighbors = [
+                (pos_comp.x+1, pos_comp.y), (pos_comp.x-1, pos_comp.y),
+                (pos_comp.x, pos_comp.y+1), (pos_comp.x, pos_comp.y-1)
+            ]
+            has_water = False
+            for nx, ny in neighbors:
+                if 0 <= nx < self.grid.width and 0 <= ny < self.grid.height:
+                    if self.grid.get_terrain(nx, ny) == TERRAIN_WATER:
+                        has_water = True
+                        break
+            
+            if not has_water:
+                action_comp.current_action = "idle"
+                return
+        
+        # Check if we have a fishing progress tracker (simplified: use action_comp.target_pos as progress)
+        # For now, we'll use a simple time-based approach
+        fishing_time = self.config_manager.get("entities.fishing.fishing_time_per_attempt_seconds", 30.0)
+        day_length = self.config_manager.get("simulation.day_length_seconds", 10.0)
+        fishing_time_game = fishing_time / day_length  # Convert to game time
+        
+        # Use target_pos to track if we've started fishing
+        if action_comp.target_pos is None:
+            # Start fishing
+            action_comp.target_pos = (pos_comp.x, pos_comp.y)  # Mark that we started
+            self._fishing_progress[entity] = 0.0
+            return
+        
+        # Accumulate time
+        if entity not in self._fishing_progress:
+            self._fishing_progress[entity] = 0.0
+        
+        self._fishing_progress[entity] += dt
+        
+        if self._fishing_progress[entity] >= fishing_time_game:
+            # Time to try catching
+            base_prob = self.config_manager.get("entities.fishing.fishing_catch_probability_base", 0.2)
+            skill_bonus = 0.0
+            if skill_comp:
+                fishing_skill = skill_comp.skills.get("fishing", 0.0)
+                skill_multiplier = self.config_manager.get("entities.fishing.fishing_catch_probability_per_skill", 0.5)
+                skill_bonus = fishing_skill * skill_multiplier
+            
+            # Check if it's a good time to fish
+            time_bonus = 0.0
+            # We'd need time_manager here, simplified for now
+            best_hours = self.config_manager.get("entities.fishing.fishing_best_hours", [5.0, 7.0, 18.0, 20.0])
+            best_hours_bonus = self.config_manager.get("entities.fishing.fishing_best_hours_bonus", 0.3)
+            # For now, assume random time bonus
+            
+            catch_prob = base_prob * (1.0 + skill_bonus + time_bonus)
+            
+            if random.random() < catch_prob:
+                # Success! Generate fish
+                fish_entity = self.entity_manager.create_entity()
+                self.entity_manager.add_component(fish_entity, PositionComponent(x=pos_comp.x, y=pos_comp.y))
+                self.entity_manager.add_component(fish_entity, ItemComponent(
+                    item_type="fish",
+                    amount=1,
+                    food_value=self.config_manager.get("entities.items.fish.food_value", 35.0)
+                ))
+                Logger.log(LogCategory.GAMEPLAY, f"Entity {entity} caught fish at ({pos_comp.x}, {pos_comp.y})")
+                
+                # Increase skill
+                if skill_comp:
+                    current_skill = skill_comp.skills.get("fishing", 0.0)
+                    if current_skill < 1.0:
+                        skill_comp.skills["fishing"] = min(1.0, current_skill + 0.01)
+            
+            # Reset progress
+            if entity in self._fishing_progress:
+                del self._fishing_progress[entity]
+            action_comp.current_action = "idle"
+            action_comp.target_pos = None
+    
+    def _handle_create_fire(self, entity: int, action_comp: ActionComponent):
+        """Handle create fire action - create fire entity at location."""
+        from src.world.grid import ZONE_RESIDENTIAL
+        
+        pos_comp = self.entity_manager.get_component(entity, PositionComponent)
+        inv_comp = self.entity_manager.get_component(entity, InventoryComponent)
+        
+        if not pos_comp:
+            action_comp.current_action = "idle"
+            return
+        
+        # Check if we have logs
+        fire_cost = self.config_manager.get("entities.fire.fire_creation_cost_logs", 3)
+        if not inv_comp or inv_comp.items.get("log", 0) < fire_cost:
+            action_comp.current_action = "idle"
+            return
+        
+        # Check if there's already a fire here
+        for fire_entity, fire_comp, fire_pos in self.entity_manager.get_entities_with(FireComponent, PositionComponent):
+            if fire_pos.x == pos_comp.x and fire_pos.y == pos_comp.y:
+                action_comp.current_action = "idle"
+                return
+        
+        # Create fire
+        inv_comp.items["log"] -= fire_cost
+        if inv_comp.items["log"] <= 0:
+            del inv_comp.items["log"]
+        
+        fire_config = self.config_manager.get("entities.fire", {})
+        fire_entity = self.entity_manager.create_entity()
+        self.entity_manager.add_component(fire_entity, PositionComponent(x=pos_comp.x, y=pos_comp.y))
+        self.entity_manager.add_component(fire_entity, FireComponent(
+            fuel_remaining=fire_cost * 10.0,  # Initial fuel
+            warmth_radius=fire_config.get("fire_warmth_radius", 5),
+            fuel_consumption_per_hour=fire_config.get("fire_fuel_consumption_per_hour", 1.0)
+        ))
+        
+        Logger.log(LogCategory.GAMEPLAY, f"Entity {entity} created fire at ({pos_comp.x}, {pos_comp.y})")
+        
+        action_comp.current_action = "idle"
+    
+    def _handle_tend_fire(self, entity: int, action_comp: ActionComponent):
+        """Handle tend fire action - add fuel to fire."""
+        pos_comp = self.entity_manager.get_component(entity, PositionComponent)
+        inv_comp = self.entity_manager.get_component(entity, InventoryComponent)
+        
+        if not pos_comp or not inv_comp:
+            action_comp.current_action = "idle"
+            return
+        
+        # Find fire at this location
+        fire_entity = None
+        fire_comp = None
+        for fe, fc, fp in self.entity_manager.get_entities_with(FireComponent, PositionComponent):
+            if fp.x == pos_comp.x and fp.y == pos_comp.y:
+                fire_entity = fe
+                fire_comp = fc
+                break
+        
+        if not fire_comp:
+            action_comp.current_action = "idle"
+            return
+        
+        # Check if we have logs
+        if inv_comp.items.get("log", 0) < 1:
+            action_comp.current_action = "idle"
+            return
+        
+        # Add fuel
+        inv_comp.items["log"] -= 1
+        if inv_comp.items["log"] <= 0:
+            del inv_comp.items["log"]
+        
+        fire_comp.fuel_remaining += 10.0  # Add fuel
+        Logger.log(LogCategory.GAMEPLAY, f"Entity {entity} added fuel to fire at ({pos_comp.x}, {pos_comp.y})")
+        
+        action_comp.current_action = "idle"

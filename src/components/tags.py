@@ -17,3 +17,7 @@ class IsSelectable(Component):
 class IsPlayer(Component):
     pass
 
+@dataclass(slots=True)
+class IsVillager(Component):
+    pass
+

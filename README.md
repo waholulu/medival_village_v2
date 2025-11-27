@@ -1,11 +1,12 @@
-# Project Medieval: Society - 技术设计与开发计划书 (v3.7)
+# Project Medieval: Society - 技术设计与开发计划书 (v3.8)
 
-**版本**: 3.7 (Phase 3 完成版)
+**版本**: 3.8 (Phase 4.5 规划版)
 **核心理念**: 涌现式叙事 / 逻辑驱动 / 可观测性优先 (Observability First)
 **主要变更**: 
 - ✅ Phase 3 已完成：区域系统、任务系统、AI自主运行、物品搬运
 - ✅ 区域可视化与设置模式指示器
 - ✅ 技能系统与自动任务分发
+- ✅ Phase 4.5 已完成：可持续生存系统 (陷阱、钓鱼、寒冷机制、多源食物获取)
 
 ---
 
@@ -227,11 +228,11 @@ medival_village_v2/
 
 **Tick 与游戏时间换算 (基于以下配置)**:
 *   `tick_rate = 60`: 每秒 60 个 Tick
-*   `day_length_seconds = 600`: 1 游戏天 = 600 秒 (10 分钟)
+*   `day_length_seconds = 10`: 1 游戏天 = 10 秒
 *   **换算结果**:
-    *   1 游戏小时 = 600/24 = 25 秒 = 1500 Ticks
-    *   1 游戏天 = 600 秒 = 36000 Ticks
-    *   1 游戏分钟 = 25/60 ≈ 0.417 秒 = 25 Ticks
+    *   1 游戏小时 = 10/24 ≈ 0.417 秒 = 25 Ticks
+    *   1 游戏天 = 10 秒 = 600 Ticks
+    *   1 游戏分钟 = 0.417/60 ≈ 0.007 秒 = 0.417 Ticks
 
 ```json
 {
@@ -240,7 +241,7 @@ medival_village_v2/
     "pixels_per_unit": 32
   },
   "simulation": {
-    "day_length_seconds": 600,
+    "day_length_seconds": 10,
     "season_length_days": 90,
     "starting_season": "spring"
   },
@@ -263,7 +264,8 @@ medival_village_v2/
         "tree_growth_multiplier": 1.0,
         "temperature": 25.0,
         "work_efficiency": 0.9,
-        "midday_rest_hours": [12.0, 14.0]
+        "midday_rest_hours": [12.0, 14.0],
+        "cold_gain_multiplier": 0.5
       },
       "autumn": {
         "crop_growth_multiplier": 1.1,
@@ -276,7 +278,9 @@ medival_village_v2/
         "tree_growth_multiplier": 0.0,
         "temperature": 0.0,
         "work_efficiency": 0.85,
-        "food_consumption_multiplier": 1.2
+        "food_consumption_multiplier": 1.2,
+        "cold_gain_multiplier": 1.5,
+        "cold_damage_probability_multiplier": 1.3
       }
     }
   },
@@ -285,13 +289,17 @@ medival_village_v2/
       "move_speed": 50.0,
       "max_health": 100,
       "sight_range": 10,
-      "default_skills": {"logging": 0.1, "farming": 0.1},
+      "default_skills": {"logging": 0.1, "farming": 0.1, "trapping": 0.1, "fishing": 0.1},
       "chop_speed": 5.0,
       "needs": {
         "hunger_per_hour": 2.0,
         "tiredness_per_hour_working": 5.0,
         "tiredness_per_hour_resting": -10.0,
-        "sleep_hours_per_day": 8.0
+        "sleep_hours_per_day": 8.0,
+        "cold_gain_per_hour_day": 1.0,
+        "cold_gain_per_hour_night": 5.0,
+        "cold_damage_probability_base": 0.1,
+        "cold_damage_amount": 2.0
       },
       "daily_schedule": {
         "wake_up": 6.0,
@@ -314,6 +322,36 @@ medival_village_v2/
         "durability": 50,
         "efficiency": 1.0
       }
+    },
+    "trapping": {
+      "trap_catch_probability_base": 0.15,
+      "trap_catch_probability_per_skill": 0.5,
+      "trap_durability": 10,
+      "trap_check_interval_hours": 6.0,
+      "trap_placement_cost_logs": 2
+    },
+    "fishing": {
+      "fishing_catch_probability_base": 0.2,
+      "fishing_catch_probability_per_skill": 0.5,
+      "fishing_time_per_attempt_seconds": 30.0,
+      "fishing_best_hours": [5.0, 7.0, 18.0, 20.0],
+      "fishing_best_hours_bonus": 0.3
+    },
+    "fire": {
+      "fire_fuel_consumption_per_hour": 1.0,
+      "fire_warmth_radius": 5,
+      "fire_creation_cost_logs": 3,
+      "fire_cold_reduction_per_hour": 10.0
+    }
+  },
+  "items": {
+    "meat": {
+      "food_value": 40,
+      "item_type": "food"
+    },
+    "fish": {
+      "food_value": 35,
+      "item_type": "food"
     }
   }
 }
@@ -403,6 +441,104 @@ medival_village_v2/
         *   `State.SLEEPING` -> `State.WAKING` -> `State.EATING` -> `State.WORKING` -> `State.SOCIALIZING` -> `State.SLEEPING`
         *   状态转换基于时间、需求阈值、环境条件
 
+### Phase 4.5: 可持续生存系统 (Sustainable Survival) ✅ [已完成]
+*   **核心理念**: 建立村民自给自足的可持续生存系统，提供多种食物获取途径，形成完整的生存循环。
+*   **任务**: **多源食物获取系统 (Multi-Source Food Acquisition)**。
+    *   **种植系统 (Farming)**: ✅ 已有基础，需扩展
+        *   支持多种作物 (小麦、蔬菜、水果)
+        *   季节适应性: 不同作物适合不同季节
+        *   技能: `farming` (已有)
+    *   **陷阱系统 (Trapping)**: ✅ 已实现
+        *   **陷阱实体**: 村民可在地图特定位置放置陷阱 (`TrapEntity`)
+        *   **捕获机制**: 每游戏小时有一定概率捕获猎物 (概率受技能影响)
+        *   **捕获物**: 生成 `meat` 物品实体
+        *   **技能**: `trapping` (新增技能类型)
+        *   **技能影响**: 熟练度影响捕获概率和陷阱耐久度
+        *   **维护**: 陷阱需要定期检查/维护，否则效率下降
+        *   **配置**: `trap_catch_probability_base`, `trap_catch_probability_per_skill`, `trap_durability`
+    *   **钓鱼系统 (Fishing)**: ✅ 已实现
+        *   **钓鱼点**: 地图上标记水域区域 (`ZONE_FISHING` 或自动检测水域)
+        *   **钓鱼动作**: 村民移动到钓鱼点 -> 执行钓鱼动作 (消耗时间) -> 一定概率捕获鱼
+        *   **捕获物**: 生成 `fish` 物品实体
+        *   **技能**: `fishing` (新增技能类型)
+        *   **技能影响**: 熟练度影响捕获概率和钓鱼速度
+        *   **时间影响**: 某些时段 (黎明/黄昏) 捕获概率更高
+        *   **季节影响**: 不同季节鱼类丰富度不同
+        *   **配置**: `fishing_catch_probability_base`, `fishing_catch_probability_per_skill`, `fishing_time_per_attempt`
+*   **任务**: **食物获取优先级系统 (Food Acquisition Priority System)**。
+    *   **优先级计算**: 基于技能熟练度、资源可用性、季节适应性、效率评估
+    *   **优先级规则**:
+        *   **紧急情况** (Hunger > 80): 优先选择最快可获得的食物来源
+        *   **正常情况**: 按效率评估选择
+            *   效率 = `(预期产出 / 时间成本) * 技能加成 * 季节加成`
+        *   **长期规划**: 考虑可持续性 (种植需要时间但稳定, 陷阱/钓鱼需要维护但即时)
+    *   **动态调整**: 根据当前库存、季节、技能水平动态调整优先级
+    *   **示例优先级** (默认):
+        1. 已有食物 (库存/Stockpile) - 最高优先级
+        2. 陷阱检查 (如果已放置且技能高) - 快速检查
+        3. 钓鱼 (如果技能高且水域近) - 中等时间成本
+        4. 种植收获 (如果作物成熟) - 稳定来源
+        5. 种植维护 (播种/浇水) - 长期投资
+*   **任务**: **寒冷机制 (Cold System)** ✅ 已实现
+    *   **ColdComponent**: 寒冷度 (0-100), 影响村民健康
+        *   寒冷度随时间增长 (夜晚/冬季更快)
+        *   靠近火源时降低
+        *   在住宅区域 (有火源) 时降低更快
+    *   **火源系统 (Fire System)**:
+        *   **火堆实体**: 村民可消耗 `log` 物品创建火堆 (`FireEntity`)
+        *   **火堆位置**: 通常在住宅区域或营地
+        *   **燃料消耗**: 火堆需要持续消耗 `log` 维持 (每游戏小时消耗一定数量)
+        *   **火堆范围**: 火堆周围一定范围内提供温暖 (降低寒冷度)
+        *   **夜晚机制**: 
+            *   夜晚 (20:00-06:00) 寒冷度增长加速
+            *   如果村民不在火源范围内，每游戏小时有一定概率受到寒冷伤害 (扣血)
+            *   伤害概率和伤害量受当前寒冷度和季节影响 (冬季更严重)
+        *   **季节影响**:
+            *   冬季: 寒冷度增长 +50%, 伤害概率 +30%
+            *   夏季: 寒冷度增长 -50% (几乎不需要火源)
+            *   春季/秋季: 正常寒冷度增长
+    *   **AI行为**:
+        *   夜晚来临前: 检查是否有火源 -> 如果没有，创建火堆 (消耗log)
+        *   夜晚中: 优先待在火源附近 (降低寒冷度)
+        *   火堆燃料不足: 自动添加燃料 (从Stockpile取log)
+    *   **配置**: `cold_gain_per_hour_night`, `cold_gain_per_hour_day`, `cold_damage_probability`, `fire_fuel_consumption_per_hour`, `fire_warmth_radius`
+*   **任务**: **技能系统扩展 (Skill System Extension)**。
+    *   **新增技能类型**:
+        *   `trapping`: 陷阱技能 (影响捕获概率、陷阱耐久度)
+        *   `fishing`: 钓鱼技能 (影响捕获概率、钓鱼速度)
+        *   `farming`: 已有，需确保与新增系统集成
+    *   **技能学习机制**:
+        *   成功捕获猎物: `trapping` +0.01-0.02 (根据难度)
+        *   成功钓鱼: `fishing` +0.01-0.02
+        *   成功收获作物: `farming` +0.01 (已有)
+    *   **技能影响**:
+        *   `trapping`: 捕获概率 = `base_probability * (1 + skill_level * 0.5)`
+        *   `fishing`: 捕获概率 = `base_probability * (1 + skill_level * 0.5)`, 钓鱼时间 = `base_time * (1 - skill_level * 0.3)`
+*   **任务**: **任务系统扩展 (Job System Extension)**。
+    *   **新增任务类型**:
+        *   `trap`: 放置/检查陷阱
+        *   `fish`: 钓鱼
+        *   `tend_fire`: 维护火堆 (添加燃料)
+    *   **任务生成逻辑**:
+        *   自动生成 `trap` 任务 (如果村民技能高且食物库存低)
+        *   自动生成 `fish` 任务 (如果附近有水域且食物库存低)
+        *   自动生成 `tend_fire` 任务 (夜晚时如果火堆燃料不足)
+    *   **任务优先级**: 与食物获取优先级系统集成
+*   **任务**: **物品系统扩展 (Item System Extension)**。
+    *   **新增物品类型**:
+        *   `meat`: 肉类食物 (来自陷阱)
+        *   `fish`: 鱼类食物 (来自钓鱼)
+        *   扩展 `food_wheat` 等已有食物类型
+    *   **食物价值**: 不同食物提供不同饥饿度恢复 (可在 `balance.json` 配置)
+*   **任务**: **区域系统扩展 (Zone System Extension)**。
+    *   **可选**: 新增 `ZONE_FISHING` 区域类型 (玩家可标记钓鱼区域)
+    *   **或**: 自动检测水域 (基于地形数据)
+*   **关键产出**: 
+    *   村民能够通过多种途径获取食物 (种植/陷阱/钓鱼)
+    *   村民会根据技能和情况智能选择最优食物获取策略
+    *   村民能够自主管理火源，避免夜晚寒冷伤害
+    *   形成可持续的生存循环: 砍树 -> 生火 -> 获取食物 -> 维持生存
+
 ### Phase 5: 建筑与社会 (The Builder & Social)
 *   **任务**: 实现建筑系统 (蓝图 -> 搬运材料 -> 建造)。
 *   **任务**: 社交系统 (记忆交换, 聊天气泡)。
@@ -487,6 +623,14 @@ medival_village_v2/
 - [x] 渲染系统扩展 (季节色调, 日夜光照)
 - [x] UI系统扩展 (显示季节/日夜, 需求值)
 
-### ⏳ 进行中 / 计划中
+### ✅ Phase 4.5 已完成
+- [x] Phase 4.5: 可持续生存系统
+  - [x] 陷阱系统 (放置陷阱, 捕获猎物, 技能熟练度)
+  - [x] 钓鱼系统 (钓鱼点, 捕获鱼类, 技能熟练度)
+  - [x] 食物获取优先级系统 (动态选择最优策略)
+  - [x] 寒冷机制 (寒冷度, 火源系统, 夜晚伤害)
+  - [x] 技能系统扩展 (trapping, fishing)
+  - [x] 任务系统扩展 (trap, fish, tend_fire任务)
+  - [x] 物品系统扩展 (meat, fish物品)
 - [ ] Phase 5: 建筑系统, 社交系统
 - [ ] Phase 6: 生命周期, 家庭系统

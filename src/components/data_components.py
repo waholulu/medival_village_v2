@@ -79,3 +79,21 @@ class RoutineComponent(Component):
     current_state: str = "WORKING"  # "SLEEPING", "WAKING", "EATING", "WORKING", "SOCIALIZING"
     next_scheduled_activity: Optional[str] = None
 
+@dataclass(slots=True)
+class ColdComponent(Component):
+    cold: float = 0.0  # 0-100, increases over time (faster at night/winter), decreases near fire
+
+@dataclass(slots=True)
+class TrapComponent(Component):
+    trap_type: str = "basic_trap"  # Type of trap
+    durability: float = 10.0  # Trap durability (decreases with use)
+    max_durability: float = 10.0
+    last_check_time: float = 0.0  # Game time when last checked
+    catch_probability: float = 0.15  # Base catch probability
+
+@dataclass(slots=True)
+class FireComponent(Component):
+    fuel_remaining: float = 0.0  # Amount of fuel (logs) remaining
+    warmth_radius: int = 5  # Radius of warmth effect
+    fuel_consumption_per_hour: float = 1.0  # Fuel consumed per game hour
+

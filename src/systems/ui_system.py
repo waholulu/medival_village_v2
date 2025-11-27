@@ -72,6 +72,32 @@ class UISystem(System):
             container=self.god_panel
         )
         
+        # --- Legend Panel (Right Side, Middle) ---
+        legend_width = 250
+        legend_height = 350
+        legend_y = 240  # Below god panel with some spacing
+        self.legend_panel = UIPanel(
+            relative_rect=pygame.Rect((screen_width - legend_width - 10, legend_y), (legend_width, legend_height)),
+            manager=self.manager,
+            object_id=ObjectID(class_id='@legend_panel', object_id='#legend_panel')
+        )
+        
+        UILabel(
+            relative_rect=pygame.Rect((10, 10), (200, 20)),
+            text="LEGEND",
+            manager=self.manager,
+            container=self.legend_panel
+        )
+        
+        # Create legend content with color swatches and labels
+        self.legend_content = UITextBox(
+            relative_rect=pygame.Rect((10, 35), (220, 300)),
+            html_text="",
+            manager=self.manager,
+            container=self.legend_panel
+        )
+        self._update_legend_content()
+        
         # --- Inspector Panel (Bottom Right) ---
         inspector_height = 200
         self.inspector_panel = UIPanel(
@@ -127,6 +153,40 @@ class UISystem(System):
             day_night_display = day_night_state.capitalize()
             self.day_night_label.set_text(f"Time: {day_night_display}")
         
+    def _update_legend_content(self):
+        """Update legend content with color explanations."""
+        # Get color definitions from render system
+        from src.systems.render_system import (
+            COLOR_GRASS, COLOR_DIRT, COLOR_WATER, COLOR_STONE,
+            COLOR_ENTITY_PLAYER, COLOR_ENTITY_TREE, COLOR_ENTITY_DEFAULT,
+            COLOR_ZONE_STOCKPILE, COLOR_ZONE_FARM, COLOR_ZONE_RESIDENTIAL,
+            COLOR_SELECTION, COLOR_PATH
+        )
+        
+        # Helper function to convert RGB to hex for HTML
+        def rgb_to_hex(rgb):
+            return f"#{rgb[0]:02x}{rgb[1]:02x}{rgb[2]:02x}"
+        
+        # Build HTML content
+        html_content = "<b>TERRAIN:</b><br>"
+        html_content += f'<font color="{rgb_to_hex(COLOR_GRASS)}">■</font> Grass<br>'
+        html_content += f'<font color="{rgb_to_hex(COLOR_DIRT)}">■</font> Dirt<br>'
+        html_content += f'<font color="{rgb_to_hex(COLOR_WATER)}">■</font> Water<br>'
+        html_content += f'<font color="{rgb_to_hex(COLOR_STONE)}">■</font> Stone<br>'
+        html_content += "<br><b>ZONES:</b><br>"
+        html_content += f'<font color="{rgb_to_hex(COLOR_ZONE_STOCKPILE)}">■</font> Stockpile<br>'
+        html_content += f'<font color="{rgb_to_hex(COLOR_ZONE_FARM)}">■</font> Farm<br>'
+        html_content += f'<font color="{rgb_to_hex(COLOR_ZONE_RESIDENTIAL)}">■</font> Residential<br>'
+        html_content += "<br><b>ENTITIES:</b><br>"
+        html_content += f'<font color="{rgb_to_hex(COLOR_ENTITY_PLAYER)}">■</font> Villager<br>'
+        html_content += f'<font color="{rgb_to_hex(COLOR_ENTITY_TREE)}">■</font> Tree<br>'
+        html_content += f'<font color="{rgb_to_hex(COLOR_ENTITY_DEFAULT)}">■</font> Item/Crop<br>'
+        html_content += "<br><b>UI:</b><br>"
+        html_content += f'<font color="{rgb_to_hex(COLOR_SELECTION)}">■</font> Selection<br>'
+        html_content += f'<font color="{rgb_to_hex(COLOR_PATH)}">■</font> Path<br>'
+        
+        self.legend_content.set_text(html_content)
+    
     def update_inspector(self, tile_info: str):
         self.inspector_content.set_text(tile_info)
 

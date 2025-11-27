@@ -2,7 +2,7 @@ import pygame
 import math
 from src.core.ecs import System, EntityManager
 from src.components.data_components import PositionComponent, MovementComponent
-from src.components.tags import IsTree, IsPlayer
+from src.components.tags import IsTree, IsPlayer, IsVillager
 from src.world.grid import Grid, TERRAIN_GRASS, TERRAIN_DIRT, TERRAIN_WATER, TERRAIN_STONE, ZONE_STOCKPILE, ZONE_FARM, ZONE_RESIDENTIAL, ZONE_NONE
 from src.utils.logger import Logger, LogCategory
 
@@ -164,7 +164,7 @@ class RenderSystem(System):
 
              # Determine Color based on Tags
              color = COLOR_ENTITY_DEFAULT
-             if self.entity_manager.has_component(entity, IsPlayer):
+             if self.entity_manager.has_component(entity, IsPlayer) or self.entity_manager.has_component(entity, IsVillager):
                  color = COLOR_ENTITY_PLAYER
              elif self.entity_manager.has_component(entity, IsTree):
                  color = COLOR_ENTITY_TREE
@@ -265,23 +265,55 @@ class RenderSystem(System):
             return
         
         day_night_state = self.time_manager.get_day_night_state()
+        hour = self.time_manager.time_of_day
         
         # Create lighting mask based on time of day
+        # Note: pygame alpha is 0-255, but we'll use a brightness multiplier approach
+        # Instead of dark overlay, we'll use a brightness factor (0.0 = dark, 1.0 = bright)
+        
         if day_night_state == "night":
-            # Dark overlay for night
+            # Dark overlay for night - use multiply blend with dark color
             overlay = pygame.Surface(self.screen.get_size(), pygame.SRCALPHA)
-            overlay.fill((0, 0, 0, 150))  # Dark with alpha
+            # Use a dark gray instead of pure black, with alpha for transparency
+            overlay.fill((50, 50, 80, 180))  # Dark blue-gray with high alpha
             self.screen.blit(overlay, (0, 0), special_flags=pygame.BLEND_MULT)
         elif day_night_state == "dawn":
-            # Gradual transition - lighter than night
-            overlay = pygame.Surface(self.screen.get_size(), pygame.SRCALPHA)
-            overlay.fill((0, 0, 0, 80))  # Lighter dark
-            self.screen.blit(overlay, (0, 0), special_flags=pygame.BLEND_MULT)
+            # Gradual transition from night to day (5:00-7:00)
+            # At 5:00: still dark (like night), at 7:00: bright (like day)
+            # Progress: 0.0 at 5:00, 1.0 at 7:00
+            progress = (hour - 5.0) / 2.0  # 0.0 to 1.0
+            progress = max(0.0, min(1.0, progress))
+            
+            # Interpolate brightness: dark at 5:00 -> bright at 7:00
+            # Use inverse: darkness decreases as progress increases
+            # At progress=0 (5:00): alpha=150 (dark), at progress=1 (7:00): alpha=0 (bright)
+            # Make it fade faster - only apply significant darkening early in dawn
+            alpha = int(150 * (1.0 - progress) * (1.0 - progress))  # Quadratic fade for faster brightening
+            
+            # For dawn, use a warmer color (orange/yellow tint) instead of pure dark
+            # Only apply if alpha is significant enough
+            if alpha > 30:  # Only apply if still somewhat dark (threshold increased)
+                overlay = pygame.Surface(self.screen.get_size(), pygame.SRCALPHA)
+                # Warmer color for dawn: orange-yellow tint, but lighter
+                # Use lighter base color so it doesn't darken too much
+                overlay.fill((120, 100, 80, alpha))  # Lighter warm color
+                self.screen.blit(overlay, (0, 0), special_flags=pygame.BLEND_MULT)
+            # If alpha <= 30, it's bright enough, no overlay needed (dawn is bright)
         elif day_night_state == "dusk":
-            # Gradual transition - darker than day
-            overlay = pygame.Surface(self.screen.get_size(), pygame.SRCALPHA)
-            overlay.fill((0, 0, 0, 100))  # Medium dark
-            self.screen.blit(overlay, (0, 0), special_flags=pygame.BLEND_MULT)
+            # Gradual transition from day to night (19:00-21:00)
+            # At 19:00: still bright (like day), at 21:00: dark (like night)
+            # Progress: 0.0 at 19:00, 1.0 at 21:00
+            progress = (hour - 19.0) / 2.0  # 0.0 to 1.0
+            progress = max(0.0, min(1.0, progress))
+            
+            # Interpolate darkness: 0 (day) -> 180 (night)
+            alpha = int(180 * progress)
+            
+            if alpha > 0:
+                overlay = pygame.Surface(self.screen.get_size(), pygame.SRCALPHA)
+                # Warmer color for dusk too
+                overlay.fill((60, 40, 50, alpha))  # Warm dark with increasing alpha
+                self.screen.blit(overlay, (0, 0), special_flags=pygame.BLEND_MULT)
         # Day: no overlay (normal brightness)
 
 

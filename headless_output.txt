@@ -1,0 +1,347 @@
+pygame-ce 2.5.6 (SDL 2.32.10, Python 3.10.6)
+[17:28:25][Tick:0][SYSTEM] Config loaded successfully
+[17:28:25][Tick:0][SYSTEM] ConfigManager watching: config/balance.json
+[17:28:25][Tick:0][SYSTEM] Generated map: 80x60 tiles
+[17:28:25][Tick:0][SYSTEM] Running in Headless Mode
+[17:28:25][Tick:0][SYSTEM] Created Stockpile zone at 38-42, 28-32
+[17:28:25][Tick:0][SYSTEM] Created Farm zone at 36-44, 38-44
+[17:28:25][Tick:0][SYSTEM] Created Residential zone at 38-43, 22-27
+[17:28:25][Tick:0][SYSTEM] Created Villager 1 at (38, 30) with skills: {'logging': 0.6, 'farming': 0.2}
+[17:28:25][Tick:0][SYSTEM] Created Villager 2 at (42, 30) with skills: {'logging': 0.2, 'farming': 0.6}
+[17:28:25][Tick:0][SYSTEM] Created Villager 3 at (40, 28) with skills: {'logging': 0.1, 'farming': 0.1, 'trapping': 0.1, 'fishing': 0.1}
+[17:28:25][Tick:0][SYSTEM] Created 45 trees in forest area
+[17:28:25][Tick:0][SYSTEM] Created 3 food items and 3 seed items
+[17:28:25][Tick:0][SYSTEM] Created 2 growing crops in farm zone
+[17:28:25][Tick:0][SYSTEM] === Initial Map Setup Complete ===
+[17:28:25][Tick:0][SYSTEM] Map Size: 80x60
+[17:28:25][Tick:0][SYSTEM] Villagers: 3
+[17:28:25][Tick:0][SYSTEM] Trees: 45
+[17:28:25][Tick:0][SYSTEM] Zones: Stockpile, Farm, Residential
+[17:28:25][Tick:0][SYSTEM] Core systems initialized
+[17:28:25][Tick:0][SYSTEM] Game Loop Started
+[17:28:25][Tick:1][AI] Entity 0 took job chop
+[17:28:25][Tick:1][AI] Entity 1 took job chop
+[17:28:25][Tick:1][AI] Entity 2 took job chop
+[17:28:25][Tick:10][AI] Created Haul job for food_wheat at 40,32
+[17:28:25][Tick:10][AI] Created Haul job for seed_wheat at 37,39
+[17:28:25][Tick:10][AI] Created Haul job for seed_wheat at 38,39
+[17:28:25][Tick:10][AI] Created Haul job for seed_wheat at 39,39
+[17:28:25][Tick:10][AI] Created Chop job for tree at 18,5
+[17:28:25][Tick:10][AI] Created Chop job for tree at 18,8
+[17:28:25][Tick:10][AI] Created Chop job for tree at 18,11
+[17:28:25][Tick:10][AI] Created Chop job for tree at 18,14
+[17:28:25][Tick:10][AI] Created Chop job for tree at 18,17
+[17:28:25][Tick:10][AI] Created Chop job for tree at 21,5
+[17:28:25][Tick:10][AI] Created Chop job for tree at 21,8
+[17:28:25][Tick:10][AI] Created Chop job for tree at 21,11
+[17:28:25][Tick:10][AI] Created Chop job for tree at 21,14
+[17:28:25][Tick:10][AI] Created Chop job for tree at 21,17
+[17:28:25][Tick:10][AI] Created Chop job for tree at 24,5
+[17:28:25][Tick:10][AI] Created Chop job for tree at 24,8
+[17:28:25][Tick:10][AI] Created Chop job for tree at 24,11
+[17:28:25][Tick:10][AI] Created Chop job for tree at 24,14
+[17:28:25][Tick:10][AI] Created Chop job for tree at 24,17
+[17:28:25][Tick:10][AI] Created Chop job for tree at 27,5
+[17:28:25][Tick:10][AI] Created Chop job for tree at 27,8
+[17:28:25][Tick:10][AI] Created Chop job for tree at 27,11
+[17:28:25][Tick:10][AI] Created Chop job for tree at 27,14
+[17:28:25][Tick:10][AI] Created Chop job for tree at 27,17
+[17:28:25][Tick:10][AI] Created Chop job for tree at 30,5
+[17:28:25][Tick:10][AI] Created Chop job for tree at 30,8
+[17:28:25][Tick:10][AI] Created Chop job for tree at 30,11
+[17:28:25][Tick:10][AI] Created Chop job for tree at 30,14
+[17:28:25][Tick:10][AI] Created Chop job for tree at 30,17
+[17:28:25][Tick:10][AI] Created Chop job for tree at 33,5
+[17:28:25][Tick:10][AI] Created Chop job for tree at 33,8
+[17:28:25][Tick:10][AI] Created Chop job for tree at 33,11
+[17:28:25][Tick:10][AI] Created Chop job for tree at 33,14
+[17:28:25][Tick:10][AI] Created Chop job for tree at 33,17
+[17:28:25][Tick:10][AI] Created Chop job for tree at 36,5
+[17:28:25][Tick:10][AI] Created Chop job for tree at 36,8
+[17:28:25][Tick:10][AI] Created Chop job for tree at 36,11
+[17:28:25][Tick:10][AI] Created Chop job for tree at 36,14
+[17:28:25][Tick:10][AI] Created Chop job for tree at 36,17
+[17:28:25][Tick:10][AI] Created Chop job for tree at 39,5
+[17:28:25][Tick:10][AI] Created Chop job for tree at 39,8
+[17:28:25][Tick:10][AI] Created Chop job for tree at 39,11
+[17:28:25][Tick:10][AI] Created Chop job for tree at 39,14
+[17:28:25][Tick:10][AI] Created Chop job for tree at 39,17
+[17:28:26][Tick:60][SYSTEM] [Headless] Game Time: Day 0 08:21 | Season: spring | Tick: 60
+[17:28:26][Tick:60][SYSTEM] [Villager 1] Pos:(25,14) | Hunger:34.6 Tired:26.5 Mood:66.2 Cold:11.2 | Job:chop | Routine:WORKING | Act:move | Inv:{} | Skills:logging:0.60,farming:0.20
+[17:28:26][Tick:60][SYSTEM] [Villager 2] Pos:(25,18) | Hunger:39.6 Tired:29.5 Mood:71.2 Cold:13.2 | Job:chop | Routine:WORKING | Act:move | Inv:{} | Skills:logging:0.20,farming:0.60
+[17:28:26][Tick:60][SYSTEM] [Villager 3] Pos:(22,17) | Hunger:44.6 Tired:32.5 Mood:76.2 Cold:15.2 | Job:chop | Routine:WORKING | Act:move | Inv:{} | Skills:logging:0.10,farming:0.10,trapping:0.10,fishing:0.10
+[17:28:26][Tick:60][SYSTEM] [JobSystem] Available jobs: 46 | Types: ['haul', 'haul', 'haul', 'haul', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop']
+[17:28:26][Tick:60][SYSTEM] [Stockpile] Items: {'food_wheat': 4}
+[17:28:26][Tick:60][SYSTEM] [Resources] Trees remaining: 45
+[17:28:26][Tick:60][SYSTEM] [Farming] Crops: 2 total, 0 ripe
+[17:28:26][Tick:62][SYSTEM] [Headless] Game Time: Day 0 08:25 | Season: spring | Tick: 62
+[17:28:26][Tick:62][SYSTEM] [Villager 1] Pos:(24,14) | Hunger:34.8 Tired:26.9 Mood:66.2 Cold:11.2 | Job:chop | Routine:WORKING | Act:move | Inv:{} | Skills:logging:0.60,farming:0.20
+[17:28:26][Tick:62][SYSTEM] [Villager 2] Pos:(25,17) | Hunger:39.8 Tired:29.9 Mood:71.2 Cold:13.2 | Job:chop | Routine:WORKING | Act:move | Inv:{} | Skills:logging:0.20,farming:0.60
+[17:28:26][Tick:62][SYSTEM] [Villager 3] Pos:(21,17) | Hunger:44.8 Tired:32.9 Mood:76.2 Cold:15.2 | Job:chop | Routine:WORKING | Act:move | Inv:{} | Skills:logging:0.10,farming:0.10,trapping:0.10,fishing:0.10
+[17:28:26][Tick:62][SYSTEM] [JobSystem] Available jobs: 46 | Types: ['haul', 'haul', 'haul', 'haul', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop']
+[17:28:26][Tick:62][SYSTEM] [Stockpile] Items: {'food_wheat': 4}
+[17:28:26][Tick:62][SYSTEM] [Resources] Trees remaining: 45
+[17:28:26][Tick:62][SYSTEM] [Farming] Crops: 2 total, 0 ripe
+[17:28:27][Tick:122][SYSTEM] [Headless] Game Time: Day 0 10:49 | Season: spring | Tick: 122
+[17:28:27][Tick:122][SYSTEM] [Villager 1] Pos:(16,5) | Hunger:39.6 Tired:38.7 Mood:67.4 Cold:12.4 | Job:chop | Routine:WORKING | Act:chop | Inv:{} | Skills:logging:0.60,farming:0.20
+[17:28:27][Tick:122][SYSTEM] [Villager 2] Pos:(16,8) | Hunger:44.6 Tired:41.7 Mood:72.4 Cold:14.4 | Job:chop | Routine:WORKING | Act:chop | Inv:{} | Skills:logging:0.20,farming:0.60
+[17:28:27][Tick:122][SYSTEM] [Villager 3] Pos:(16,11) | Hunger:49.6 Tired:44.7 Mood:77.4 Cold:16.4 | Job:chop | Routine:WORKING | Act:chop | Inv:{} | Skills:logging:0.10,farming:0.10,trapping:0.10,fishing:0.10
+[17:28:27][Tick:122][SYSTEM] [JobSystem] Available jobs: 46 | Types: ['haul', 'haul', 'haul', 'haul', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop']
+[17:28:27][Tick:122][SYSTEM] [Stockpile] Items: {'food_wheat': 4}
+[17:28:27][Tick:122][SYSTEM] [Resources] Trees remaining: 45
+[17:28:27][Tick:122][SYSTEM] [Farming] Crops: 2 total, 0 ripe
+[17:28:27][Tick:123][SYSTEM] [Headless] Game Time: Day 0 10:51 | Season: spring | Tick: 123
+[17:28:27][Tick:123][SYSTEM] [Villager 1] Pos:(16,5) | Hunger:39.6 Tired:38.9 Mood:67.4 Cold:12.4 | Job:chop | Routine:WORKING | Act:chop | Inv:{} | Skills:logging:0.60,farming:0.20
+[17:28:27][Tick:123][SYSTEM] [Villager 2] Pos:(16,8) | Hunger:44.6 Tired:41.9 Mood:72.4 Cold:14.4 | Job:chop | Routine:WORKING | Act:chop | Inv:{} | Skills:logging:0.20,farming:0.60
+[17:28:27][Tick:123][SYSTEM] [Villager 3] Pos:(16,11) | Hunger:49.6 Tired:44.9 Mood:77.4 Cold:16.4 | Job:chop | Routine:WORKING | Act:chop | Inv:{} | Skills:logging:0.10,farming:0.10,trapping:0.10,fishing:0.10
+[17:28:27][Tick:123][SYSTEM] [JobSystem] Available jobs: 46 | Types: ['haul', 'haul', 'haul', 'haul', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop']
+[17:28:27][Tick:123][SYSTEM] [Stockpile] Items: {'food_wheat': 4}
+[17:28:27][Tick:123][SYSTEM] [Resources] Trees remaining: 45
+[17:28:27][Tick:123][SYSTEM] [Farming] Crops: 2 total, 0 ripe
+[17:28:28][Tick:183][SYSTEM] [Headless] Game Time: Day 0 13:16 | Season: spring | Tick: 183
+[17:28:28][Tick:183][SYSTEM] [Villager 1] Pos:(16,5) | Hunger:44.5 Tired:50.9 Mood:68.6 Cold:13.6 | Job:chop | Routine:WORKING | Act:chop | Inv:{} | Skills:logging:0.60,farming:0.20
+[17:28:28][Tick:183][SYSTEM] [Villager 2] Pos:(16,8) | Hunger:49.5 Tired:53.9 Mood:73.6 Cold:15.6 | Job:chop | Routine:WORKING | Act:chop | Inv:{} | Skills:logging:0.20,farming:0.60
+[17:28:28][Tick:183][SYSTEM] [Villager 3] Pos:(16,11) | Hunger:54.5 Tired:56.9 Mood:78.6 Cold:17.6 | Job:chop | Routine:WORKING | Act:chop | Inv:{} | Skills:logging:0.10,farming:0.10,trapping:0.10,fishing:0.10
+[17:28:28][Tick:183][SYSTEM] [JobSystem] Available jobs: 46 | Types: ['haul', 'haul', 'haul', 'haul', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop']
+[17:28:28][Tick:183][SYSTEM] [Stockpile] Items: {'food_wheat': 4}
+[17:28:28][Tick:183][SYSTEM] [Resources] Trees remaining: 45
+[17:28:28][Tick:183][SYSTEM] [Farming] Crops: 2 total, 0 ripe
+[17:28:29][Tick:243][SYSTEM] [Headless] Game Time: Day 0 15:40 | Season: spring | Tick: 243
+[17:28:29][Tick:243][SYSTEM] [Villager 1] Pos:(16,5) | Hunger:49.3 Tired:62.9 Mood:69.8 Cold:14.8 | Job:chop | Routine:WORKING | Act:chop | Inv:{} | Skills:logging:0.60,farming:0.20
+[17:28:29][Tick:243][SYSTEM] [Villager 2] Pos:(16,8) | Hunger:54.3 Tired:65.9 Mood:74.8 Cold:16.8 | Job:chop | Routine:WORKING | Act:chop | Inv:{} | Skills:logging:0.20,farming:0.60
+[17:28:29][Tick:243][SYSTEM] [Villager 3] Pos:(16,11) | Hunger:59.3 Tired:68.9 Mood:79.8 Cold:18.8 | Job:chop | Routine:WORKING | Act:chop | Inv:{} | Skills:logging:0.10,farming:0.10,trapping:0.10,fishing:0.10
+[17:28:29][Tick:243][SYSTEM] [JobSystem] Available jobs: 46 | Types: ['haul', 'haul', 'haul', 'haul', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop']
+[17:28:29][Tick:243][SYSTEM] [Stockpile] Items: {'food_wheat': 4}
+[17:28:29][Tick:243][SYSTEM] [Resources] Trees remaining: 45
+[17:28:29][Tick:243][SYSTEM] [Farming] Crops: 2 total, 0 ripe
+[17:28:29][Tick:244][SYSTEM] [Headless] Game Time: Day 0 15:42 | Season: spring | Tick: 244
+[17:28:29][Tick:244][SYSTEM] [Villager 1] Pos:(16,5) | Hunger:49.3 Tired:63.1 Mood:69.8 Cold:14.8 | Job:chop | Routine:WORKING | Act:chop | Inv:{} | Skills:logging:0.60,farming:0.20
+[17:28:29][Tick:244][SYSTEM] [Villager 2] Pos:(16,8) | Hunger:54.3 Tired:66.1 Mood:74.8 Cold:16.8 | Job:chop | Routine:WORKING | Act:chop | Inv:{} | Skills:logging:0.20,farming:0.60
+[17:28:29][Tick:244][SYSTEM] [Villager 3] Pos:(16,11) | Hunger:59.3 Tired:69.1 Mood:79.8 Cold:18.8 | Job:chop | Routine:WORKING | Act:chop | Inv:{} | Skills:logging:0.10,farming:0.10,trapping:0.10,fishing:0.10
+[17:28:29][Tick:244][SYSTEM] [JobSystem] Available jobs: 46 | Types: ['haul', 'haul', 'haul', 'haul', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop']
+[17:28:29][Tick:244][SYSTEM] [Stockpile] Items: {'food_wheat': 4}
+[17:28:29][Tick:244][SYSTEM] [Resources] Trees remaining: 45
+[17:28:29][Tick:244][SYSTEM] [Farming] Crops: 2 total, 0 ripe
+[17:28:29][Tick:246][GAMEPLAY] Entity 0 chopped tree 3!
+[17:28:29][Tick:247][AI] Entity 0 took job haul
+[17:28:29][Tick:250][AI] Created Haul job for log at 15,5
+[17:28:30][Tick:298][GAMEPLAY] Entity 1 chopped tree 4!
+[17:28:30][Tick:299][AI] Entity 1 took job haul
+[17:28:30][Tick:300][AI] Created Haul job for log at 15,8
+[17:28:30][Tick:303][GAMEPLAY] Entity 2 chopped tree 5!
+[17:28:30][Tick:304][AI] Entity 2 took job haul
+[17:28:30][Tick:304][SYSTEM] [Headless] Game Time: Day 0 18:06 | Season: spring | Tick: 304
+[17:28:30][Tick:304][SYSTEM] [Villager 1] Pos:(28,21) | Hunger:54.1 Tired:74.7 Mood:71.0 Cold:16.0 | Job:haul | Routine:EATING | Act:move | Inv:{} | Skills:logging:0.61,farming:0.20
+[17:28:30][Tick:304][SYSTEM] [Villager 2] Pos:(16,10) | Hunger:59.1 Tired:77.7 Mood:76.0 Cold:18.0 | Job:haul | Routine:EATING | Act:move | Inv:{} | Skills:logging:0.21,farming:0.60
+[17:28:30][Tick:304][SYSTEM] [Villager 3] Pos:(16,11) | Hunger:64.1 Tired:80.9 Mood:81.0 Cold:20.0 | Job:haul | Routine:EATING | Act:idle | Inv:{} | Skills:logging:0.11,farming:0.10,trapping:0.10,fishing:0.10
+[17:28:30][Tick:304][SYSTEM] [JobSystem] Available jobs: 45 | Types: ['haul', 'haul', 'haul', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop']
+[17:28:30][Tick:304][SYSTEM] [Stockpile] Items: {'food_wheat': 4}
+[17:28:30][Tick:304][SYSTEM] [Resources] Trees remaining: 42
+[17:28:30][Tick:304][SYSTEM] [Farming] Crops: 2 total, 0 ripe
+[17:28:30][Tick:305][SYSTEM] [Headless] Game Time: Day 0 18:08 | Season: spring | Tick: 305
+[17:28:30][Tick:305][SYSTEM] [Villager 1] Pos:(29,21) | Hunger:54.2 Tired:74.9 Mood:71.1 Cold:16.1 | Job:haul | Routine:EATING | Act:move | Inv:{} | Skills:logging:0.61,farming:0.20
+[17:28:30][Tick:305][SYSTEM] [Villager 2] Pos:(16,11) | Hunger:59.2 Tired:77.9 Mood:76.1 Cold:18.1 | Job:haul | Routine:EATING | Act:move | Inv:{} | Skills:logging:0.21,farming:0.60
+[17:28:30][Tick:305][SYSTEM] [Villager 3] Pos:(16,11) | Hunger:64.2 Tired:80.9 Mood:81.1 Cold:20.1 | Job:haul | Routine:EATING | Act:move | Inv:{} | Skills:logging:0.11,farming:0.10,trapping:0.10,fishing:0.10
+[17:28:30][Tick:305][SYSTEM] [JobSystem] Available jobs: 45 | Types: ['haul', 'haul', 'haul', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop']
+[17:28:30][Tick:305][SYSTEM] [Stockpile] Items: {'food_wheat': 4}
+[17:28:30][Tick:305][SYSTEM] [Resources] Trees remaining: 42
+[17:28:30][Tick:305][SYSTEM] [Farming] Crops: 2 total, 0 ripe
+[17:28:30][Tick:310][AI] Created Haul job for log at 15,11
+[17:28:31][Tick:350][GAMEPLAY] Entity 0 picked up 2 food_wheat
+[17:28:31][Tick:353][GAMEPLAY] Entity 0 dropped 2 food_wheat
+[17:28:31][Tick:354][AI] Entity 0 took job haul
+[17:28:31][Tick:365][SYSTEM] [Headless] Game Time: Day 0 20:32 | Season: spring | Tick: 365
+[17:28:31][Tick:365][SYSTEM] [Villager 1] Pos:(40,36) | Hunger:59.0 Tired:87.0 Mood:72.3 Cold:18.1 | Job:haul | Routine:SOCIALIZING | Act:move | Inv:{} | Skills:logging:0.61,farming:0.20
+[17:28:31][Tick:365][SYSTEM] [Villager 2] Pos:(27,30) | Hunger:64.0 Tired:91.3 Mood:77.0 Cold:20.1 | Job:haul | Routine:SOCIALIZING | Act:move | Inv:{} | Skills:logging:0.21,farming:0.60
+[17:28:31][Tick:365][SYSTEM] [Villager 3] Pos:(28,29) | Hunger:69.0 Tired:94.3 Mood:81.4 Cold:22.1 | Job:haul | Routine:SOCIALIZING | Act:move | Inv:{} | Skills:logging:0.11,farming:0.10,trapping:0.10,fishing:0.10
+[17:28:31][Tick:365][SYSTEM] [JobSystem] Available jobs: 45 | Types: ['haul', 'haul', 'haul', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop']
+[17:28:31][Tick:365][SYSTEM] [Stockpile] Items: {'food_wheat': 6}
+[17:28:31][Tick:365][SYSTEM] [Resources] Trees remaining: 42
+[17:28:31][Tick:365][SYSTEM] [Farming] Crops: 2 total, 0 ripe
+[17:28:31][Tick:373][GAMEPLAY] Entity 0 picked up 3 seed_wheat
+[17:28:32][Tick:410][AI] Created Haul job for seed_wheat at 37,39
+[17:28:32][Tick:410][AI] Created Haul job for seed_wheat at 38,39
+[17:28:32][Tick:425][SYSTEM] [Headless] Game Time: Day 0 22:55 | Season: spring | Tick: 425
+[17:28:32][Tick:425][SYSTEM] [Villager 1] Pos:(39,26) | Hunger:63.8 Tired:76.1 Mood:71.5 Cold:22.9 | Job:None | Routine:SLEEPING | Act:sleep | Inv:{'seed_wheat': 3} | Skills:logging:0.61,farming:0.20
+[17:28:32][Tick:425][SYSTEM] [Villager 2] Pos:(37,28) | Hunger:68.8 Tired:100.0 Mood:74.6 Cold:24.9 | Job:None | Routine:SOCIALIZING | Act:move | Inv:{} | Skills:logging:0.21,farming:0.60
+[17:28:32][Tick:425][SYSTEM] [Villager 3] Pos:(38,29) | Hunger:73.8 Tired:100.0 Mood:79.0 Cold:26.9 | Job:None | Routine:SOCIALIZING | Act:move | Inv:{} | Skills:logging:0.11,farming:0.10,trapping:0.10,fishing:0.10
+[17:28:32][Tick:425][SYSTEM] [JobSystem] Available jobs: 47 | Types: ['haul', 'haul', 'haul', 'haul', 'haul', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop']
+[17:28:32][Tick:425][SYSTEM] [Stockpile] Items: {'food_wheat': 6}
+[17:28:32][Tick:425][SYSTEM] [Resources] Trees remaining: 42
+[17:28:32][Tick:425][SYSTEM] [Farming] Crops: 2 total, 0 ripe
+[17:28:32][Tick:426][SYSTEM] [Headless] Game Time: Day 0 22:58 | Season: spring | Tick: 426
+[17:28:32][Tick:426][SYSTEM] [Villager 1] Pos:(39,26) | Hunger:63.9 Tired:75.3 Mood:71.6 Cold:22.9 | Job:None | Routine:SLEEPING | Act:sleep | Inv:{'seed_wheat': 3} | Skills:logging:0.61,farming:0.20
+[17:28:32][Tick:426][SYSTEM] [Villager 2] Pos:(37,28) | Hunger:68.9 Tired:100.0 Mood:74.5 Cold:24.9 | Job:None | Routine:SOCIALIZING | Act:move | Inv:{} | Skills:logging:0.21,farming:0.60
+[17:28:32][Tick:426][SYSTEM] [Villager 3] Pos:(38,28) | Hunger:73.9 Tired:100.0 Mood:78.9 Cold:26.9 | Job:None | Routine:SOCIALIZING | Act:move | Inv:{} | Skills:logging:0.11,farming:0.10,trapping:0.10,fishing:0.10
+[17:28:32][Tick:426][SYSTEM] [JobSystem] Available jobs: 47 | Types: ['haul', 'haul', 'haul', 'haul', 'haul', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop']
+[17:28:32][Tick:426][SYSTEM] [Stockpile] Items: {'food_wheat': 6}
+[17:28:32][Tick:426][SYSTEM] [Resources] Trees remaining: 42
+[17:28:32][Tick:426][SYSTEM] [Farming] Crops: 2 total, 0 ripe
+[17:28:33][Tick:453][GAMEPLAY] Crop 54 (wheat) is now ripe!
+[17:28:33][Tick:453][GAMEPLAY] Crop 55 (wheat) is now ripe!
+[17:28:33][Tick:453][AI] Created Harvest job for wheat at 37,41
+[17:28:33][Tick:453][AI] Created Harvest job for wheat at 38,41
+[17:28:33][Tick:486][SYSTEM] [Headless] Game Time: Day 1 01:21 | Season: spring | Tick: 486
+[17:28:33][Tick:486][SYSTEM] [Villager 1] Pos:(39,26) | Hunger:68.6 Tired:27.4 Mood:72.8 Cold:27.7 | Job:None | Routine:SLEEPING | Act:sleep | Inv:{'seed_wheat': 3} | Skills:logging:0.61,farming:0.20
+[17:28:33][Tick:486][SYSTEM] [Villager 2] Pos:(38,26) | Hunger:73.6 Tired:56.4 Mood:74.6 Cold:29.7 | Job:None | Routine:SLEEPING | Act:sleep | Inv:{} | Skills:logging:0.21,farming:0.60
+[17:28:33][Tick:486][SYSTEM] [Villager 3] Pos:(38,26) | Hunger:78.6 Tired:55.6 Mood:79.1 Cold:31.7 | Job:None | Routine:SLEEPING | Act:sleep | Inv:{} | Skills:logging:0.11,farming:0.10,trapping:0.10,fishing:0.10
+[17:28:33][Tick:486][SYSTEM] [JobSystem] Available jobs: 49 | Types: ['harvest', 'harvest', 'haul', 'haul', 'haul', 'haul', 'haul', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop']
+[17:28:33][Tick:486][SYSTEM] [Stockpile] Items: {'food_wheat': 6}
+[17:28:33][Tick:486][SYSTEM] [Resources] Trees remaining: 42
+[17:28:33][Tick:486][SYSTEM] [Farming] Crops: 2 total, 2 ripe
+[17:28:33][Tick:487][SYSTEM] [Headless] Game Time: Day 1 01:24 | Season: spring | Tick: 487
+[17:28:33][Tick:487][SYSTEM] [Villager 1] Pos:(39,26) | Hunger:68.7 Tired:26.6 Mood:72.8 Cold:27.8 | Job:None | Routine:SLEEPING | Act:sleep | Inv:{'seed_wheat': 3} | Skills:logging:0.61,farming:0.20
+[17:28:33][Tick:487][SYSTEM] [Villager 2] Pos:(38,26) | Hunger:73.7 Tired:55.6 Mood:74.7 Cold:29.8 | Job:None | Routine:SLEEPING | Act:sleep | Inv:{} | Skills:logging:0.21,farming:0.60
+[17:28:33][Tick:487][SYSTEM] [Villager 3] Pos:(38,26) | Hunger:78.7 Tired:54.8 Mood:79.1 Cold:31.8 | Job:None | Routine:SLEEPING | Act:sleep | Inv:{} | Skills:logging:0.11,farming:0.10,trapping:0.10,fishing:0.10
+[17:28:33][Tick:487][SYSTEM] [JobSystem] Available jobs: 49 | Types: ['harvest', 'harvest', 'haul', 'haul', 'haul', 'haul', 'haul', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop']
+[17:28:33][Tick:487][SYSTEM] [Stockpile] Items: {'food_wheat': 6}
+[17:28:33][Tick:487][SYSTEM] [Resources] Trees remaining: 42
+[17:28:33][Tick:487][SYSTEM] [Farming] Crops: 2 total, 2 ripe
+[17:28:34][Tick:508][GAMEPLAY] Entity 0 woke up (tiredness: 9.8)
+[17:28:34][Tick:509][AI] Entity 0 took job harvest
+[17:28:34][Tick:515][GAMEPLAY] Entity 2 picked up 2 food_wheat
+[17:28:34][Tick:515][GAMEPLAY] Entity 2 ate food_wheat (hunger: 51.0)
+[17:28:34][Tick:516][AI] Entity 2 took job harvest
+[17:28:34][Tick:537][GAMEPLAY] Entity 2 harvested wheat at (38, 41)
+[17:28:34][Tick:538][AI] Entity 2 took job haul
+[17:28:34][Tick:540][AI] Created Haul job for food_wheat at 38,41
+[17:28:34][Tick:542][GAMEPLAY] Entity 0 harvested wheat at (37, 41)
+[17:28:34][Tick:543][AI] Entity 0 took job haul
+[17:28:34][Tick:545][GAMEPLAY] Entity 1 woke up (tiredness: 9.3)
+[17:28:34][Tick:546][AI] Entity 1 took job haul
+[17:28:34][Tick:547][SYSTEM] [Headless] Game Time: Day 1 03:48 | Season: spring | Tick: 547
+[17:28:34][Tick:547][SYSTEM] [Villager 1] Pos:(37,40) | Hunger:73.5 Tired:20.0 Mood:74.0 Cold:32.6 | Job:haul | Routine:SLEEPING | Act:move | Inv:{'seed_wheat': 3} | Skills:logging:0.61,farming:0.20
+[17:28:34][Tick:547][SYSTEM] [Villager 2] Pos:(38,26) | Hunger:78.5 Tired:9.3 Mood:75.9 Cold:34.6 | Job:haul | Routine:SLEEPING | Act:move | Inv:{} | Skills:logging:0.21,farming:0.60
+[17:28:34][Tick:547][SYSTEM] [Villager 3] Pos:(38,38) | Hunger:53.5 Tired:53.8 Mood:94.5 Cold:36.6 | Job:haul | Routine:SLEEPING | Act:move | Inv:{'food_wheat': 1} | Skills:logging:0.11,farming:0.10,trapping:0.10,fishing:0.10
+[17:28:34][Tick:547][SYSTEM] [JobSystem] Available jobs: 45 | Types: ['haul', 'haul', 'haul', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop']
+[17:28:34][Tick:547][SYSTEM] [Stockpile] Items: {'food_wheat': 4}
+[17:28:34][Tick:547][SYSTEM] [Resources] Trees remaining: 42
+[17:28:34][Tick:548][SYSTEM] [Headless] Game Time: Day 1 03:50 | Season: spring | Tick: 548
+[17:28:34][Tick:548][SYSTEM] [Villager 1] Pos:(37,40) | Hunger:73.6 Tired:20.4 Mood:74.0 Cold:32.7 | Job:haul | Routine:SLEEPING | Act:move | Inv:{'seed_wheat': 3} | Skills:logging:0.61,farming:0.20
+[17:28:34][Tick:548][SYSTEM] [Villager 2] Pos:(37,26) | Hunger:78.6 Tired:9.6 Mood:75.9 Cold:34.7 | Job:haul | Routine:SLEEPING | Act:move | Inv:{} | Skills:logging:0.21,farming:0.60
+[17:28:34][Tick:548][SYSTEM] [Villager 3] Pos:(38,37) | Hunger:53.6 Tired:54.1 Mood:94.6 Cold:36.7 | Job:haul | Routine:SLEEPING | Act:move | Inv:{'food_wheat': 1} | Skills:logging:0.11,farming:0.10,trapping:0.10,fishing:0.10
+[17:28:34][Tick:548][SYSTEM] [JobSystem] Available jobs: 45 | Types: ['haul', 'haul', 'haul', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop']
+[17:28:34][Tick:548][SYSTEM] [Stockpile] Items: {'food_wheat': 4}
+[17:28:34][Tick:548][SYSTEM] [Resources] Trees remaining: 42
+[17:28:34][Tick:550][AI] Created Haul job for food_wheat at 37,41
+[17:28:35][Tick:608][SYSTEM] [Headless] Game Time: Day 1 06:13 | Season: spring | Tick: 608
+[17:28:35][Tick:608][SYSTEM] [Villager 1] Pos:(27,20) | Hunger:78.4 Tired:37.6 Mood:75.2 Cold:37.1 | Job:haul | Routine:EATING | Act:move | Inv:{'seed_wheat': 3} | Skills:logging:0.61,farming:0.20
+[17:28:35][Tick:608][SYSTEM] [Villager 2] Pos:(18,15) | Hunger:83.4 Tired:26.9 Mood:74.5 Cold:39.1 | Job:haul | Routine:SLEEPING | Act:move | Inv:{} | Skills:logging:0.21,farming:0.60
+[17:28:35][Tick:608][SYSTEM] [Villager 3] Pos:(27,18) | Hunger:58.4 Tired:71.3 Mood:95.8 Cold:41.1 | Job:haul | Routine:EATING | Act:move | Inv:{'food_wheat': 1} | Skills:logging:0.11,farming:0.10,trapping:0.10,fishing:0.10
+[17:28:35][Tick:608][SYSTEM] [JobSystem] Available jobs: 46 | Types: ['haul', 'haul', 'haul', 'haul', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop']
+[17:28:35][Tick:608][SYSTEM] [Stockpile] Items: {'food_wheat': 4}
+[17:28:35][Tick:608][SYSTEM] [Resources] Trees remaining: 42
+[17:28:35][Tick:609][SYSTEM] [Headless] Game Time: Day 1 06:15 | Season: spring | Tick: 609
+[17:28:35][Tick:609][SYSTEM] [Villager 1] Pos:(26,20) | Hunger:78.4 Tired:37.8 Mood:75.2 Cold:37.1 | Job:haul | Routine:EATING | Act:move | Inv:{'seed_wheat': 3} | Skills:logging:0.61,farming:0.20
+[17:28:35][Tick:609][SYSTEM] [Villager 2] Pos:(18,15) | Hunger:83.4 Tired:27.1 Mood:74.5 Cold:39.1 | Job:haul | Routine:SLEEPING | Act:move | Inv:{} | Skills:logging:0.21,farming:0.60
+[17:28:35][Tick:609][SYSTEM] [Villager 3] Pos:(27,18) | Hunger:58.4 Tired:71.6 Mood:95.8 Cold:41.1 | Job:haul | Routine:EATING | Act:move | Inv:{'food_wheat': 1} | Skills:logging:0.11,farming:0.10,trapping:0.10,fishing:0.10
+[17:28:35][Tick:609][SYSTEM] [JobSystem] Available jobs: 46 | Types: ['haul', 'haul', 'haul', 'haul', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop']
+[17:28:35][Tick:609][SYSTEM] [Stockpile] Items: {'food_wheat': 4}
+[17:28:35][Tick:609][SYSTEM] [Resources] Trees remaining: 42
+[17:28:36][Tick:630][AI] Created Haul job for log at 15,11
+[17:28:36][Tick:659][GAMEPLAY] Entity 2 picked up 1 log
+[17:28:36][Tick:660][AI] Created Haul job for log at 15,8
+[17:28:36][Tick:669][SYSTEM] [Headless] Game Time: Day 1 08:39 | Season: spring | Tick: 669
+[17:28:36][Tick:669][SYSTEM] [Villager 1] Pos:(19,11) | Hunger:83.2 Tired:49.6 Mood:73.9 Cold:38.3 | Job:None | Routine:EATING | Act:move | Inv:{'seed_wheat': 3} | Skills:logging:0.61,farming:0.20
+[17:28:36][Tick:669][SYSTEM] [Villager 2] Pos:(29,20) | Hunger:88.2 Tired:38.9 Mood:72.1 Cold:40.3 | Job:None | Routine:SLEEPING | Act:move | Inv:{} | Skills:logging:0.21,farming:0.60
+[17:28:36][Tick:669][SYSTEM] [Villager 3] Pos:(17,8) | Hunger:63.2 Tired:83.1 Mood:97.0 Cold:42.3 | Job:haul | Routine:WORKING | Act:move | Inv:{'food_wheat': 1, 'log': 1} | Skills:logging:0.11,farming:0.10,trapping:0.10,fishing:0.10
+[17:28:36][Tick:669][SYSTEM] [JobSystem] Available jobs: 48 | Types: ['haul', 'haul', 'haul', 'haul', 'haul', 'haul', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop']
+[17:28:36][Tick:669][SYSTEM] [Stockpile] Items: {'food_wheat': 4}
+[17:28:36][Tick:669][SYSTEM] [Resources] Trees remaining: 42
+[17:28:36][Tick:670][SYSTEM] [Headless] Game Time: Day 1 08:42 | Season: spring | Tick: 670
+[17:28:36][Tick:670][SYSTEM] [Villager 1] Pos:(19,11) | Hunger:83.3 Tired:49.8 Mood:73.9 Cold:38.3 | Job:None | Routine:EATING | Act:move | Inv:{'seed_wheat': 3} | Skills:logging:0.61,farming:0.20
+[17:28:36][Tick:670][SYSTEM] [Villager 2] Pos:(29,21) | Hunger:88.3 Tired:39.1 Mood:72.0 Cold:40.3 | Job:None | Routine:SLEEPING | Act:move | Inv:{} | Skills:logging:0.21,farming:0.60
+[17:28:36][Tick:670][SYSTEM] [Villager 3] Pos:(17,8) | Hunger:63.3 Tired:83.3 Mood:97.0 Cold:42.3 | Job:haul | Routine:WORKING | Act:move | Inv:{'food_wheat': 1, 'log': 1} | Skills:logging:0.11,farming:0.10,trapping:0.10,fishing:0.10
+[17:28:36][Tick:670][SYSTEM] [JobSystem] Available jobs: 48 | Types: ['haul', 'haul', 'haul', 'haul', 'haul', 'haul', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop']
+[17:28:36][Tick:670][SYSTEM] [Stockpile] Items: {'food_wheat': 4}
+[17:28:36][Tick:670][SYSTEM] [Resources] Trees remaining: 42
+[17:28:37][Tick:713][GAMEPLAY] Entity 1 picked up 2 food_wheat
+[17:28:37][Tick:713][GAMEPLAY] Entity 1 ate food_wheat (hunger: 61.8)
+[17:28:37][Tick:714][AI] Entity 1 took job haul
+[17:28:37][Tick:730][SYSTEM] [Headless] Game Time: Day 1 11:06 | Season: spring | Tick: 730
+[17:28:37][Tick:730][SYSTEM] [Villager 1] Pos:(34,26) | Hunger:88.1 Tired:61.8 Mood:71.5 Cold:39.5 | Job:None | Routine:EATING | Act:move | Inv:{'seed_wheat': 3} | Skills:logging:0.61,farming:0.20
+[17:28:37][Tick:730][SYSTEM] [Villager 2] Pos:(38,37) | Hunger:63.1 Tired:50.5 Mood:85.7 Cold:41.5 | Job:haul | Routine:WORKING | Act:move | Inv:{'food_wheat': 1} | Skills:logging:0.21,farming:0.60
+[17:28:37][Tick:730][SYSTEM] [Villager 3] Pos:(32,23) | Hunger:68.1 Tired:95.4 Mood:96.6 Cold:43.5 | Job:haul | Routine:WORKING | Act:move | Inv:{'food_wheat': 1, 'log': 1} | Skills:logging:0.11,farming:0.10,trapping:0.10,fishing:0.10
+[17:28:37][Tick:730][SYSTEM] [JobSystem] Available jobs: 47 | Types: ['haul', 'haul', 'haul', 'haul', 'haul', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop']
+[17:28:37][Tick:730][SYSTEM] [Stockpile] Items: {'food_wheat': 2}
+[17:28:37][Tick:730][SYSTEM] [Resources] Trees remaining: 42
+[17:28:37][Tick:737][GAMEPLAY] Entity 1 picked up 3 seed_wheat
+[17:28:38][Tick:754][GAMEPLAY] Entity 0 picked up 2 food_wheat
+[17:28:38][Tick:754][GAMEPLAY] Entity 0 ate food_wheat (hunger: 60.1)
+[17:28:38][Tick:755][AI] Entity 0 took job haul
+[17:28:38][Tick:756][GAMEPLAY] Entity 0 dropped 3 seed_wheat
+[17:28:38][Tick:756][GAMEPLAY] Entity 1 dropped 1 food_wheat
+[17:28:38][Tick:757][GAMEPLAY] Entity 1 dropped 3 seed_wheat
+[17:28:38][Tick:758][AI] Entity 1 took job haul
+[17:28:38][Tick:779][GAMEPLAY] Entity 0 picked up 3 seed_wheat
+[17:28:38][Tick:779][GAMEPLAY] Entity 1 picked up 2 food_wheat
+[17:28:38][Tick:790][SYSTEM] [Headless] Game Time: Day 1 13:30 | Season: spring | Tick: 790
+[17:28:38][Tick:790][SYSTEM] [Villager 1] Pos:(38,34) | Hunger:62.9 Tired:72.4 Mood:86.3 Cold:40.7 | Job:haul | Routine:WORKING | Act:move | Inv:{'food_wheat': 1, 'seed_wheat': 3} | Skills:logging:0.61,farming:0.20
+[17:28:38][Tick:790][SYSTEM] [Villager 2] Pos:(38,36) | Hunger:67.9 Tired:60.9 Mood:86.9 Cold:42.7 | Job:haul | Routine:WORKING | Act:move | Inv:{'food_wheat': 2} | Skills:logging:0.21,farming:0.60
+[17:28:38][Tick:790][SYSTEM] [Villager 3] Pos:(38,26) | Hunger:72.9 Tired:72.4 Mood:95.5 Cold:44.7 | Job:None | Routine:WORKING | Act:sleep | Inv:{'food_wheat': 1, 'log': 1} | Skills:logging:0.11,farming:0.10,trapping:0.10,fishing:0.10
+[17:28:38][Tick:790][SYSTEM] [JobSystem] Available jobs: 45 | Types: ['haul', 'haul', 'haul', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop']
+[17:28:38][Tick:790][SYSTEM] [Stockpile] Items: {'seed_wheat': 6, 'food_wheat': 1}
+[17:28:38][Tick:790][SYSTEM] [Resources] Trees remaining: 42
+[17:28:38][Tick:791][SYSTEM] [Headless] Game Time: Day 1 13:32 | Season: spring | Tick: 791
+[17:28:38][Tick:791][SYSTEM] [Villager 1] Pos:(38,33) | Hunger:63.0 Tired:72.6 Mood:86.3 Cold:40.7 | Job:haul | Routine:WORKING | Act:move | Inv:{'food_wheat': 1, 'seed_wheat': 3} | Skills:logging:0.61,farming:0.20
+[17:28:38][Tick:791][SYSTEM] [Villager 2] Pos:(38,35) | Hunger:68.0 Tired:61.1 Mood:86.9 Cold:42.7 | Job:haul | Routine:WORKING | Act:move | Inv:{'food_wheat': 2} | Skills:logging:0.21,farming:0.60
+[17:28:38][Tick:791][SYSTEM] [Villager 3] Pos:(38,26) | Hunger:73.0 Tired:71.6 Mood:95.5 Cold:44.7 | Job:None | Routine:WORKING | Act:sleep | Inv:{'food_wheat': 1, 'log': 1} | Skills:logging:0.11,farming:0.10,trapping:0.10,fishing:0.10
+[17:28:38][Tick:791][SYSTEM] [JobSystem] Available jobs: 45 | Types: ['haul', 'haul', 'haul', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop']
+[17:28:38][Tick:791][SYSTEM] [Stockpile] Items: {'seed_wheat': 6, 'food_wheat': 1}
+[17:28:38][Tick:791][SYSTEM] [Resources] Trees remaining: 42
+[17:28:38][Tick:796][GAMEPLAY] Entity 0 dropped 1 food_wheat
+[17:28:38][Tick:797][GAMEPLAY] Entity 0 dropped 3 seed_wheat
+[17:28:38][Tick:798][AI] Entity 0 took job haul
+[17:28:38][Tick:800][GAMEPLAY] Entity 1 dropped 2 food_wheat
+[17:28:38][Tick:801][AI] Entity 1 took job haul
+[17:28:39][Tick:821][GAMEPLAY] Entity 0 picked up 3 food_wheat
+[17:28:39][Tick:844][GAMEPLAY] Entity 0 dropped 3 food_wheat
+[17:28:39][Tick:845][AI] Entity 0 took job haul
+[17:28:39][Tick:851][SYSTEM] [Headless] Game Time: Day 1 15:57 | Season: spring | Tick: 851
+[17:28:39][Tick:851][SYSTEM] [Villager 1] Pos:(36,30) | Hunger:67.8 Tired:82.8 Mood:87.5 Cold:41.9 | Job:haul | Routine:WORKING | Act:move | Inv:{} | Skills:logging:0.61,farming:0.20
+[17:28:39][Tick:851][SYSTEM] [Villager 2] Pos:(24,20) | Hunger:72.8 Tired:72.6 Mood:88.1 Cold:43.9 | Job:haul | Routine:WORKING | Act:move | Inv:{} | Skills:logging:0.21,farming:0.60
+[17:28:39][Tick:851][SYSTEM] [Villager 3] Pos:(38,26) | Hunger:77.8 Tired:23.5 Mood:96.7 Cold:45.9 | Job:None | Routine:WORKING | Act:sleep | Inv:{'food_wheat': 1, 'log': 1} | Skills:logging:0.11,farming:0.10,trapping:0.10,fishing:0.10
+[17:28:39][Tick:851][SYSTEM] [JobSystem] Available jobs: 42 | Types: ['chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop']
+[17:28:39][Tick:851][SYSTEM] [Stockpile] Items: {'seed_wheat': 9, 'food_wheat': 7}
+[17:28:39][Tick:851][SYSTEM] [Resources] Trees remaining: 42
+[17:28:40][Tick:868][GAMEPLAY] Entity 2 woke up (tiredness: 9.8)
+[17:28:40][Tick:869][AI] Entity 2 took job chop
+[17:28:40][Tick:888][GAMEPLAY] Entity 1 picked up 1 log
+[17:28:40][Tick:911][SYSTEM] [Headless] Game Time: Day 1 18:21 | Season: spring | Tick: 911
+[17:28:40][Tick:911][SYSTEM] [Villager 1] Pos:(21,15) | Hunger:72.6 Tired:94.8 Mood:87.2 Cold:43.1 | Job:haul | Routine:WORKING | Act:move | Inv:{} | Skills:logging:0.61,farming:0.20
+[17:28:40][Tick:911][SYSTEM] [Villager 2] Pos:(23,14) | Hunger:77.6 Tired:84.1 Mood:89.3 Cold:45.1 | Job:haul | Routine:EATING | Act:move | Inv:{'log': 1} | Skills:logging:0.21,farming:0.60
+[17:28:40][Tick:911][SYSTEM] [Villager 3] Pos:(22,21) | Hunger:82.6 Tired:18.0 Mood:95.9 Cold:47.1 | Job:chop | Routine:WORKING | Act:move | Inv:{'food_wheat': 1, 'log': 1} | Skills:logging:0.11,farming:0.10,trapping:0.10,fishing:0.10
+[17:28:40][Tick:911][SYSTEM] [JobSystem] Available jobs: 41 | Types: ['chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop']
+[17:28:40][Tick:911][SYSTEM] [Stockpile] Items: {'seed_wheat': 9, 'food_wheat': 7}
+[17:28:40][Tick:911][SYSTEM] [Resources] Trees remaining: 42
+[17:28:40][Tick:912][SYSTEM] [Headless] Game Time: Day 1 18:23 | Season: spring | Tick: 912
+[17:28:40][Tick:912][SYSTEM] [Villager 1] Pos:(21,15) | Hunger:72.7 Tired:95.0 Mood:87.1 Cold:43.2 | Job:haul | Routine:WORKING | Act:move | Inv:{} | Skills:logging:0.61,farming:0.20
+[17:28:40][Tick:912][SYSTEM] [Villager 2] Pos:(24,14) | Hunger:77.7 Tired:84.3 Mood:89.3 Cold:45.2 | Job:haul | Routine:EATING | Act:move | Inv:{'log': 1} | Skills:logging:0.21,farming:0.60
+[17:28:40][Tick:912][SYSTEM] [Villager 3] Pos:(22,21) | Hunger:82.7 Tired:18.2 Mood:95.9 Cold:47.2 | Job:chop | Routine:WORKING | Act:move | Inv:{'food_wheat': 1, 'log': 1} | Skills:logging:0.11,farming:0.10,trapping:0.10,fishing:0.10
+[17:28:40][Tick:912][SYSTEM] [JobSystem] Available jobs: 41 | Types: ['chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop']
+[17:28:40][Tick:912][SYSTEM] [Stockpile] Items: {'seed_wheat': 9, 'food_wheat': 7}
+[17:28:40][Tick:912][SYSTEM] [Resources] Trees remaining: 42
+[17:28:41][Tick:938][GAMEPLAY] Entity 2 ate food_wheat (hunger: 54.8)
+[17:28:41][Tick:939][AI] Entity 2 took job chop
+[17:28:41][Tick:940][AI] Created Haul job for log at 15,8
+[17:28:41][Tick:972][SYSTEM] [Headless] Game Time: Day 1 20:47 | Season: spring | Tick: 972
+[17:28:41][Tick:972][SYSTEM] [Villager 1] Pos:(28,12) | Hunger:77.5 Tired:100.0 Mood:84.7 Cold:45.6 | Job:None | Routine:WORKING | Act:move | Inv:{} | Skills:logging:0.61,farming:0.20
+[17:28:41][Tick:972][SYSTEM] [Villager 2] Pos:(38,30) | Hunger:82.5 Tired:98.1 Mood:88.6 Cold:47.6 | Job:None | Routine:SOCIALIZING | Act:move | Inv:{'log': 1} | Skills:logging:0.21,farming:0.60
+[17:28:41][Tick:972][SYSTEM] [Villager 3] Pos:(16,17) | Hunger:57.5 Tired:31.4 Mood:100.0 Cold:49.6 | Job:chop | Routine:SOCIALIZING | Act:chop | Inv:{'log': 1} | Skills:logging:0.11,farming:0.10,trapping:0.10,fishing:0.10
+[17:28:41][Tick:972][SYSTEM] [JobSystem] Available jobs: 41 | Types: ['haul', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop']
+[17:28:41][Tick:972][SYSTEM] [Stockpile] Items: {'seed_wheat': 9, 'food_wheat': 7}
+[17:28:41][Tick:972][SYSTEM] [Resources] Trees remaining: 42
+[17:28:41][Tick:975][GAMEPLAY] Entity 1 picked up 1 food_wheat
+[17:28:41][Tick:975][GAMEPLAY] Entity 1 ate food_wheat (hunger: 52.8)
+[17:28:42][Tick:1030][GAMEPLAY] Entity 0 picked up 1 food_wheat
+[17:28:42][Tick:1030][GAMEPLAY] Entity 0 ate food_wheat (hunger: 52.2)
+[17:28:42][Tick:1032][SYSTEM] [Headless] Game Time: Day 1 23:12 | Season: spring | Tick: 1032
+[17:28:42][Tick:1032][SYSTEM] [Villager 1] Pos:(38,30) | Hunger:52.3 Tired:100.0 Mood:97.3 Cold:50.4 | Job:None | Routine:WORKING | Act:move | Inv:{} | Skills:logging:0.61,farming:0.20
+[17:28:42][Tick:1032][SYSTEM] [Villager 2] Pos:(38,26) | Hunger:57.3 Tired:62.7 Mood:99.8 Cold:52.4 | Job:None | Routine:SLEEPING | Act:sleep | Inv:{'log': 1} | Skills:logging:0.21,farming:0.60
+[17:28:42][Tick:1032][SYSTEM] [Villager 3] Pos:(16,17) | Hunger:62.3 Tired:49.5 Mood:100.0 Cold:54.4 | Job:chop | Routine:SLEEPING | Act:chop | Inv:{'log': 1} | Skills:logging:0.11,farming:0.10,trapping:0.10,fishing:0.10
+[17:28:42][Tick:1032][SYSTEM] [JobSystem] Available jobs: 41 | Types: ['haul', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop']
+[17:28:42][Tick:1032][SYSTEM] [Stockpile] Items: {'seed_wheat': 9, 'food_wheat': 5}
+[17:28:42][Tick:1032][SYSTEM] [Resources] Trees remaining: 42
+[17:28:43][Tick:1053][SYSTEM] Headless simulation completed: 2 days elapsed
+[17:28:43][Tick:1053][SYSTEM] Final game time: Day 2 00:02
+[17:28:43][Tick:1053][SYSTEM] Game Terminated
