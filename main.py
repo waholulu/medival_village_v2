@@ -15,7 +15,10 @@ from src.systems.ui_system import UISystem
 from src.systems.action_system import ActionSystem
 from src.systems.job_system import JobSystem, Job
 from src.systems.ai_system import AISystem
-from src.components.data_components import PositionComponent, MovementComponent, ActionComponent, ResourceComponent, InventoryComponent
+from src.systems.needs_system import NeedsSystem
+from src.systems.farming_system import FarmingSystem
+from src.systems.routine_system import RoutineSystem
+from src.components.data_components import PositionComponent, MovementComponent, ActionComponent, ResourceComponent, InventoryComponent, HungerComponent, TirednessComponent, MoodComponent, RoutineComponent, ItemComponent
 from src.components.skill_component import SkillComponent
 from src.components.tags import IsWalkable, IsTree, IsSelectable, IsPlayer
 from src.utils.logger import Logger, LogCategory
@@ -37,9 +40,14 @@ def main():
     global_conf = config_manager.get("global", {})
     
     tick_rate = global_conf.get("tick_rate", 60)
+    sim_conf = config_manager.get("simulation", {})
+    day_length = sim_conf.get("day_length_seconds", 600.0)
+    season_length = sim_conf.get("season_length_days", 90)
+    starting_season = sim_conf.get("starting_season", "spring")
     
     # 2. Core Systems Setup (Common)
-    time_manager = TimeManager(tick_rate=tick_rate)
+    time_manager = TimeManager(tick_rate=tick_rate, day_length_seconds=day_length, 
+                               season_length_days=season_length, starting_season=starting_season)
     Logger.set_time_manager(time_manager)
     entity_manager = EntityManager()
     
@@ -64,6 +72,9 @@ def main():
     # Systems
     action_system = ActionSystem(entity_manager, grid, config_manager)
     ai_system = AISystem(entity_manager, job_system, grid, zone_manager)
+    needs_system = NeedsSystem(entity_manager, time_manager, config_manager)
+    farming_system = FarmingSystem(entity_manager, job_system, grid, zone_manager, time_manager, config_manager)
+    routine_system = RoutineSystem(entity_manager, time_manager, config_manager)
 
     # 3. Graphics Setup (Conditional)
     screen = None
@@ -83,7 +94,7 @@ def main():
         ui_manager = pygame_gui.UIManager((screen_width, screen_height))
         input_manager = InputManager(ui_manager)
         
-        render_system = RenderSystem(screen, grid, entity_manager, config_manager.config, zone_manager)
+        render_system = RenderSystem(screen, grid, entity_manager, config_manager.config, zone_manager, time_manager)
         ui_system = UISystem(screen, ui_manager)
         
         Logger.info("Graphical systems initialized")
@@ -98,6 +109,10 @@ def main():
     entity_manager.add_component(villager, ActionComponent())
     entity_manager.add_component(villager, SkillComponent(skills=config_manager.get("entities.villager.default_skills", {"logging": 0.1})))
     entity_manager.add_component(villager, InventoryComponent(capacity=10)) # Add Inventory
+    entity_manager.add_component(villager, HungerComponent(hunger=20.0))  # Start with some hunger
+    entity_manager.add_component(villager, TirednessComponent(tiredness=10.0))  # Start with some tiredness
+    entity_manager.add_component(villager, MoodComponent(mood=70.0))  # Start with good mood
+    entity_manager.add_component(villager, RoutineComponent())  # Daily routine
     entity_manager.add_component(villager, IsPlayer())
     entity_manager.add_component(villager, IsSelectable())
     entity_manager.add_component(villager, IsWalkable())
@@ -113,7 +128,7 @@ def main():
     entity_manager.add_component(tree, IsTree())
     entity_manager.add_component(tree, IsSelectable())
     
-    # Setup Phase 3 Test Scenario
+    # Setup Phase 4 Test Scenario
     # 1. Mark Stockpile
     stockpile_pos = (20, 10)
     zone_manager.mark_zone(stockpile_pos[0], stockpile_pos[1], ZONE_STOCKPILE)
@@ -121,10 +136,24 @@ def main():
     
     # Test zone setting (for both headless and graphical modes)
     # Set additional zones for testing
-    zone_manager.mark_zone(25, 10, ZONE_FARM)
-    zone_manager.mark_zone(30, 10, ZONE_RESIDENTIAL)
-    Logger.info(f"Test: Set Farm zone at (25, 10)")
-    Logger.info(f"Test: Set Residential zone at (30, 10)")
+    farm_pos = (25, 10)
+    residential_pos = (30, 10)
+    zone_manager.mark_zone(farm_pos[0], farm_pos[1], ZONE_FARM)
+    zone_manager.mark_zone(residential_pos[0], residential_pos[1], ZONE_RESIDENTIAL)
+    Logger.info(f"Test: Set Farm zone at {farm_pos}")
+    Logger.info(f"Test: Set Residential zone at {residential_pos}")
+    
+    # Add some test food items for survival testing
+    food_entity = entity_manager.create_entity()
+    entity_manager.add_component(food_entity, PositionComponent(x=12, y=10))
+    entity_manager.add_component(food_entity, ItemComponent(item_type="food_wheat", amount=3, food_value=30.0))
+    Logger.info("Test: Created food item at (12, 10)")
+    
+    # Add some seeds for farming
+    seed_entity = entity_manager.create_entity()
+    entity_manager.add_component(seed_entity, PositionComponent(x=14, y=10))
+    entity_manager.add_component(seed_entity, ItemComponent(item_type="seed_wheat", amount=5))
+    Logger.info("Test: Created seed item at (14, 10)")
     
     # Verify zones are set correctly
     assert grid.get_zone(stockpile_pos[0], stockpile_pos[1]) == ZONE_STOCKPILE, "Stockpile zone not set correctly"
@@ -272,21 +301,46 @@ def main():
                         act = entity_manager.get_component(selected_id, ActionComponent)
                         if act: info += f"\nAction: {act.current_action}"
                         
+                        # Show needs if villager
+                        hunger = entity_manager.get_component(selected_id, HungerComponent)
+                        tiredness = entity_manager.get_component(selected_id, TirednessComponent)
+                        mood = entity_manager.get_component(selected_id, MoodComponent)
+                        if hunger:
+                            hunger_color = "green" if hunger.hunger < 50 else "yellow" if hunger.hunger < 80 else "red"
+                            info += f"\nHunger: {hunger.hunger:.1f}/100 ({hunger_color})"
+                        if tiredness:
+                            tired_color = "green" if tiredness.tiredness < 50 else "yellow" if tiredness.tiredness < 90 else "red"
+                            info += f"\nTiredness: {tiredness.tiredness:.1f}/100 ({tired_color})"
+                        if mood:
+                            mood_color = "red" if mood.mood < 30 else "yellow" if mood.mood < 70 else "green"
+                            info += f"\nMood: {mood.mood:.1f}/100 ({mood_color})"
+                        
+                        # Show crop info if crop
+                        from src.components.data_components import CropComponent
+                        crop = entity_manager.get_component(selected_id, CropComponent)
+                        if crop:
+                            info += f"\nCrop: {crop.crop_type}\nState: {crop.state}\nProgress: {crop.growth_progress*100:.1f}%"
+                        
                     ui_system.update_inspector(info)
 
             time_manager.update()
             
             # Update Logic Systems
+            needs_system.update(dt)
+            routine_system.update(dt)
+            farming_system.update(dt)
             ai_system.update(dt)
             action_system.update(dt)
             
             render_system.update(dt)
             ui_system.update_god_panel(
                 fps=time_manager.fps,
-                world_time_str=f"Day {time_manager.day} {int(time_manager.time_of_day):02d}:00",
+                world_time_str=f"Day {time_manager.day} {int(time_manager.time_of_day):02d}:{int((time_manager.time_of_day % 1.0) * 60):02d}",
                 cam_pos=render_system.camera_pos,
                 zoom=render_system.zoom_level,
-                zone_mode=input_manager.get_zone_placement_mode()
+                zone_mode=input_manager.get_zone_placement_mode(),
+                season=time_manager.get_season(),
+                day_night_state=time_manager.get_day_night_state()
             )
             ui_system.update(dt)
             
@@ -296,6 +350,9 @@ def main():
             pygame.event.pump()
             
             time_manager.update()
+            needs_system.update(dt)
+            routine_system.update(dt)
+            farming_system.update(dt)
             ai_system.update(dt)
             action_system.update(dt)
             
@@ -313,7 +370,6 @@ def main():
                 # 2. Log in stockpile? (Or log entity on stockpile position)
                 
                 # Check items on stockpile
-                from src.components.data_components import ItemComponent
                 found_log_on_stockpile = False
                 for e, item, pos in entity_manager.get_entities_with(ItemComponent, PositionComponent):
                     if pos.x == stockpile_pos[0] and pos.y == stockpile_pos[1] and item.item_type == "log":

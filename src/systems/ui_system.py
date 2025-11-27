@@ -13,7 +13,7 @@ class UISystem(System):
         
         # --- God Panel (Top Right) ---
         panel_width = 250
-        panel_height = 170  # Increased to fit zone mode indicator
+        panel_height = 220  # Increased to fit season and day/night info
         self.god_panel = UIPanel(
             relative_rect=pygame.Rect((screen_width - panel_width - 10, 10), (panel_width, panel_height)),
             manager=self.manager,
@@ -56,6 +56,22 @@ class UISystem(System):
             container=self.god_panel
         )
         
+        # Season indicator
+        self.season_label = UILabel(
+            relative_rect=pygame.Rect((10, 135), (200, 20)),
+            text="Season: Spring",
+            manager=self.manager,
+            container=self.god_panel
+        )
+        
+        # Day/Night indicator
+        self.day_night_label = UILabel(
+            relative_rect=pygame.Rect((10, 160), (200, 20)),
+            text="Time: Day",
+            manager=self.manager,
+            container=self.god_panel
+        )
+        
         # --- Inspector Panel (Bottom Right) ---
         inspector_height = 200
         self.inspector_panel = UIPanel(
@@ -78,7 +94,8 @@ class UISystem(System):
             container=self.inspector_panel
         )
 
-    def update_god_panel(self, fps: float, world_time_str: str, cam_pos: tuple, zoom: float, zone_mode: int = None):
+    def update_god_panel(self, fps: float, world_time_str: str, cam_pos: tuple, zoom: float, 
+                         zone_mode: int = None, season: str = None, day_night_state: str = None):
         self.fps_label.set_text(f"FPS: {fps:.1f}")
         self.time_label.set_text(f"Time: {world_time_str}")
         self.cam_label.set_text(f"Cam: ({int(cam_pos[0])}, {int(cam_pos[1])})")
@@ -99,6 +116,16 @@ class UISystem(System):
                 mode_name = "UNKNOWN"
             
             self.zone_mode_label.set_text(f"Zone Mode: {mode_name} [ACTIVE]")
+        
+        # Update season indicator
+        if season:
+            season_display = season.capitalize()
+            self.season_label.set_text(f"Season: {season_display}")
+        
+        # Update day/night indicator
+        if day_night_state:
+            day_night_display = day_night_state.capitalize()
+            self.day_night_label.set_text(f"Time: {day_night_display}")
         
     def update_inspector(self, tile_info: str):
         self.inspector_content.set_text(tile_info)

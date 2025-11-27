@@ -1,6 +1,6 @@
 from typing import Optional, Tuple
 from src.core.ecs import System, EntityManager
-from src.components.data_components import ActionComponent, PositionComponent, JobComponent, InventoryComponent, ResourceComponent, ItemComponent
+from src.components.data_components import ActionComponent, PositionComponent, JobComponent, InventoryComponent, ResourceComponent, ItemComponent, HungerComponent, TirednessComponent, MovementComponent, CropComponent
 from src.components.skill_component import SkillComponent
 from src.systems.job_system import JobSystem, Job
 from src.world.grid import Grid, ZONE_STOCKPILE
@@ -18,11 +18,48 @@ class AISystem(System):
         # 0. Generate jobs from world state
         self._generate_jobs()
 
-        # 1. Handle entities with jobs
+        # 1. Check for urgent needs (hunger, tiredness) - these interrupt jobs
+        for entity, action_comp, pos_comp in self.entity_manager.get_entities_with(ActionComponent, PositionComponent):
+            hunger_comp = self.entity_manager.get_component(entity, HungerComponent)
+            tiredness_comp = self.entity_manager.get_component(entity, TirednessComponent)
+            
+            # Check urgent hunger (priority 1)
+            if hunger_comp and hunger_comp.hunger > 80.0:
+                if action_comp.current_action not in ["eat", "move"]:
+                    # Interrupt current job if any
+                    if self.entity_manager.has_component(entity, JobComponent):
+                        job_comp = self.entity_manager.get_component(entity, JobComponent)
+                        if job_comp:
+                            job = self.job_system.get_job_by_id(job_comp.job_id)
+                            if job:
+                                self.job_system.complete_job(job.id)
+                            self.entity_manager.remove_component(entity, JobComponent)
+                    
+                    # Try to find and eat food
+                    self._find_and_eat_food(entity, action_comp, pos_comp)
+                    continue
+            
+            # Check urgent tiredness (priority 2)
+            if tiredness_comp and tiredness_comp.tiredness > 90.0:
+                if action_comp.current_action not in ["sleep", "move"]:
+                    # Interrupt current job if any
+                    if self.entity_manager.has_component(entity, JobComponent):
+                        job_comp = self.entity_manager.get_component(entity, JobComponent)
+                        if job_comp:
+                            job = self.job_system.get_job_by_id(job_comp.job_id)
+                            if job:
+                                self.job_system.complete_job(job.id)
+                            self.entity_manager.remove_component(entity, JobComponent)
+                    
+                    # Try to find bed and sleep
+                    self._find_and_sleep(entity, action_comp, pos_comp)
+                    continue
+
+        # 2. Handle entities with jobs
         for entity, job_comp, action_comp, pos_comp in self.entity_manager.get_entities_with(JobComponent, ActionComponent, PositionComponent):
             self._process_job(entity, job_comp, action_comp, pos_comp)
 
-        # 2. Handle idle entities (find jobs)
+        # 3. Handle idle entities (find jobs)
         for entity, action_comp, skill_comp, pos_comp in self.entity_manager.get_entities_with(ActionComponent, SkillComponent, PositionComponent):
             # Only look for job if no job and idle
             if not self.entity_manager.has_component(entity, JobComponent) and action_comp.current_action == "idle":
@@ -98,6 +135,10 @@ class AISystem(System):
             self._handle_chop_job(entity, job, action_comp, pos_comp)
         elif job.job_type == "haul":
             self._handle_haul_job(entity, job, action_comp, pos_comp)
+        elif job.job_type == "plant":
+            self._handle_plant_job(entity, job, action_comp, pos_comp)
+        elif job.job_type == "harvest":
+            self._handle_harvest_job(entity, job, action_comp, pos_comp)
 
     def _handle_chop_job(self, entity: int, job: Job, action_comp: ActionComponent, pos_comp: PositionComponent):
         # Check if target still exists
@@ -247,4 +288,115 @@ class AISystem(System):
             # So `not has_entity` is True.
             # We complete job.
             # Perfect! It naturally completes.
+    
+    def _find_and_eat_food(self, entity: int, action_comp: ActionComponent, pos_comp: PositionComponent):
+        """Find food in inventory or on ground and eat it."""
+        inv_comp = self.entity_manager.get_component(entity, InventoryComponent)
+        
+        # First check inventory for food
+        if inv_comp:
+            for item_type, amount in inv_comp.items.items():
+                if amount > 0:
+                    # Check if it's food (we'll check config in ActionSystem)
+                    # For now, assume items with food_value > 0 are food
+                    # We'll let ActionSystem handle the actual eating
+                    action_comp.current_action = "eat"
+                    return
+        
+        # No food in inventory, look for food on ground
+        best_food_entity = None
+        min_dist = float('inf')
+        
+        for food_entity, item_comp, food_pos in self.entity_manager.get_entities_with(ItemComponent, PositionComponent):
+            # Check if it's food (simplified: check if item_type is in items config with food_value > 0)
+            # For now, we'll check common food types
+            if item_comp.item_type.startswith("food_"):
+                dist = abs(pos_comp.x - food_pos.x) + abs(pos_comp.y - food_pos.y)
+                if dist < min_dist:
+                    min_dist = dist
+                    best_food_entity = food_entity
+        
+        if best_food_entity:
+            # Move to food or pick it up
+            food_pos = self.entity_manager.get_component(best_food_entity, PositionComponent)
+            dist = abs(pos_comp.x - food_pos.x) + abs(pos_comp.y - food_pos.y)
+            
+            if dist <= 0:
+                # On the food, eat it
+                action_comp.current_action = "eat"
+                action_comp.target_entity_id = best_food_entity
+            else:
+                # Move to food
+                move_comp = self.entity_manager.get_component(entity, MovementComponent)
+                if move_comp:
+                    move_comp.target = (food_pos.x, food_pos.y)
+                    action_comp.current_action = "move"
+                    action_comp.target_entity_id = best_food_entity
+        else:
+            # No food found, stay idle (will starve)
+            Logger.log(LogCategory.AI, f"Entity {entity} is hungry but no food found!")
+    
+    def _find_and_sleep(self, entity: int, action_comp: ActionComponent, pos_comp: PositionComponent):
+        """Find residential zone and go to sleep."""
+        from src.world.grid import ZONE_RESIDENTIAL
+        
+        # Find nearest residential zone
+        sleep_pos = self.zone_manager.get_nearest_zone_tile((pos_comp.x, pos_comp.y), ZONE_RESIDENTIAL)
+        
+        if sleep_pos:
+            dist = abs(pos_comp.x - sleep_pos[0]) + abs(pos_comp.y - sleep_pos[1])
+            
+            if dist <= 0:
+                # At residential zone, sleep
+                action_comp.current_action = "sleep"
+            else:
+                # Move to residential zone
+                move_comp = self.entity_manager.get_component(entity, MovementComponent)
+                if move_comp:
+                    move_comp.target = sleep_pos
+                    action_comp.current_action = "move"
+        else:
+            # No residential zone, can't sleep
+            Logger.log(LogCategory.AI, f"Entity {entity} is tired but no residential zone found!")
+    
+    def _handle_plant_job(self, entity: int, job: Job, action_comp: ActionComponent, pos_comp: PositionComponent):
+        """Handle plant job - move to farm and plant seed."""
+        from src.world.grid import ZONE_FARM
+        
+        target_pos = job.target_pos
+        dist = abs(pos_comp.x - target_pos[0]) + abs(pos_comp.y - target_pos[1])
+        
+        if dist <= 0:
+            # At target, plant
+            action_comp.current_action = "plant"
+        else:
+            # Move to target
+            move_comp = self.entity_manager.get_component(entity, MovementComponent)
+            if move_comp:
+                move_comp.target = target_pos
+                action_comp.current_action = "move"
+    
+    def _handle_harvest_job(self, entity: int, job: Job, action_comp: ActionComponent, pos_comp: PositionComponent):
+        """Handle harvest job - move to crop and harvest it."""
+        # Check if target still exists
+        if job.target_entity_id is not None and not self.entity_manager.has_entity(job.target_entity_id):
+            # Target destroyed, job done
+            self.job_system.complete_job(job.id)
+            self.entity_manager.remove_component(entity, JobComponent)
+            action_comp.current_action = "idle"
+            return
+        
+        target_pos = job.target_pos
+        dist = abs(pos_comp.x - target_pos[0]) + abs(pos_comp.y - target_pos[1])
+        
+        if dist <= 1:
+            # Near enough, harvest
+            action_comp.current_action = "harvest"
+            action_comp.target_entity_id = job.target_entity_id
+        else:
+            # Move to target
+            move_comp = self.entity_manager.get_component(entity, MovementComponent)
+            if move_comp:
+                move_comp.target = target_pos
+                action_comp.current_action = "move"
 

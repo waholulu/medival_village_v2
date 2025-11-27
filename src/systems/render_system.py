@@ -26,11 +26,12 @@ COLOR_ZONE_RESIDENTIAL = (200, 0, 200)  # Magenta
 ZONE_ALPHA = 128  # Transparency level
 
 class RenderSystem(System):
-    def __init__(self, screen: pygame.Surface, grid: Grid, entity_manager: EntityManager, config: dict, zone_manager=None):
+    def __init__(self, screen: pygame.Surface, grid: Grid, entity_manager: EntityManager, config: dict, zone_manager=None, time_manager=None):
         self.screen = screen
         self.grid = grid
         self.entity_manager = entity_manager
         self.zone_manager = zone_manager
+        self.time_manager = time_manager
         self.base_pixels_per_unit = config.get("global", {}).get("pixels_per_unit", 32)
         
         # Camera Settings
@@ -231,5 +232,56 @@ class RenderSystem(System):
                  screen_x, screen_y = self.world_to_screen(world_x, world_y)
                  size = math.ceil(ppu)
                  pygame.draw.rect(self.screen, COLOR_SELECTION, (screen_x, screen_y, size, size), 1)
+        
+        # 6. Draw Seasonal Tint Overlay
+        if self.time_manager:
+            self._draw_seasonal_tint()
+        
+        # 7. Draw Day/Night Lighting Mask
+        if self.time_manager:
+            self._draw_day_night_lighting()
+    
+    def _draw_seasonal_tint(self):
+        """Draw seasonal color tint overlay."""
+        season = self.time_manager.get_season()
+        
+        # Create seasonal tint colors (subtle overlay)
+        season_tints = {
+            "spring": (0, 50, 0, 30),      # Green tint
+            "summer": (50, 50, 0, 20),     # Bright yellow tint
+            "autumn": (100, 80, 0, 40),    # Golden tint
+            "winter": (200, 200, 255, 60)  # Snow white/blue tint
+        }
+        
+        tint = season_tints.get(season, (0, 0, 0, 0))
+        if tint[3] > 0:  # If alpha > 0
+            overlay = pygame.Surface(self.screen.get_size(), pygame.SRCALPHA)
+            overlay.fill(tint)
+            self.screen.blit(overlay, (0, 0), special_flags=pygame.BLEND_ALPHA_SDL2)
+    
+    def _draw_day_night_lighting(self):
+        """Draw day/night lighting mask."""
+        if not self.time_manager:
+            return
+        
+        day_night_state = self.time_manager.get_day_night_state()
+        
+        # Create lighting mask based on time of day
+        if day_night_state == "night":
+            # Dark overlay for night
+            overlay = pygame.Surface(self.screen.get_size(), pygame.SRCALPHA)
+            overlay.fill((0, 0, 0, 150))  # Dark with alpha
+            self.screen.blit(overlay, (0, 0), special_flags=pygame.BLEND_MULT)
+        elif day_night_state == "dawn":
+            # Gradual transition - lighter than night
+            overlay = pygame.Surface(self.screen.get_size(), pygame.SRCALPHA)
+            overlay.fill((0, 0, 0, 80))  # Lighter dark
+            self.screen.blit(overlay, (0, 0), special_flags=pygame.BLEND_MULT)
+        elif day_night_state == "dusk":
+            # Gradual transition - darker than day
+            overlay = pygame.Surface(self.screen.get_size(), pygame.SRCALPHA)
+            overlay.fill((0, 0, 0, 100))  # Medium dark
+            self.screen.blit(overlay, (0, 0), special_flags=pygame.BLEND_MULT)
+        # Day: no overlay (normal brightness)
 
 

@@ -36,6 +36,7 @@ class InventoryComponent(Component):
 class ItemComponent(Component):
     item_type: str # "log"
     amount: int = 1
+    food_value: float = 0.0  # Amount of hunger reduction when consumed (0 = not food)
 
 @dataclass(slots=True)
 class JobComponent(Component):
@@ -43,4 +44,38 @@ class JobComponent(Component):
     job_type: str
     target_pos: Optional[Tuple[int, int]] = None
     target_entity_id: Optional[int] = None
+
+@dataclass(slots=True)
+class HungerComponent(Component):
+    hunger: float = 0.0  # 0-100, increases over time, decreases when eating
+
+@dataclass(slots=True)
+class TirednessComponent(Component):
+    tiredness: float = 0.0  # 0-100, increases when working, decreases when sleeping
+
+@dataclass(slots=True)
+class MoodComponent(Component):
+    mood: float = 50.0  # 0-100, affects work efficiency, influenced by food/rest/social
+
+@dataclass(slots=True)
+class DurabilityComponent(Component):
+    current: float
+    max: float
+
+@dataclass(slots=True)
+class CropComponent(Component):
+    crop_type: str  # e.g., "wheat"
+    growth_progress: float = 0.0  # 0.0 to 1.0
+    state: str = "seed"  # "seed", "growing", "ripe"
+    planted_time: float = 0.0  # Game time when planted
+
+@dataclass(slots=True)
+class SleepStateComponent(Component):
+    is_sleeping: bool = False
+    sleep_location: Optional[Tuple[int, int]] = None
+
+@dataclass(slots=True)
+class RoutineComponent(Component):
+    current_state: str = "WORKING"  # "SLEEPING", "WAKING", "EATING", "WORKING", "SOCIALIZING"
+    next_scheduled_activity: Optional[str] = None
 
