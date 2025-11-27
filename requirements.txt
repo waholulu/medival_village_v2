@@ -1,0 +1,4 @@
+pygame-ce>=2.4.0
+numpy>=1.26.0
+watchdog>=4.0.0
+
