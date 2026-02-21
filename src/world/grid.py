@@ -1,11 +1,10 @@
 import numpy as np
-from dataclasses import dataclass
 
 # Layer Indices
 LAYER_TERRAIN = 0
-LAYER_MOISTURE = 1
+LAYER_MOISTURE = 1      # Reserved for future use
 LAYER_MOVE_COST = 2
-LAYER_OCCUPIED_BY = 3
+LAYER_OCCUPIED_BY = 3   # Reserved for future use
 LAYER_ZONE = 4
 NUM_LAYERS = 5
 
@@ -21,11 +20,6 @@ ZONE_STOCKPILE = 1
 ZONE_FARM = 2
 ZONE_RESIDENTIAL = 3
 
-@dataclass
-class GridConfig:
-    width: int
-    height: int
-    chunk_size: int = 16
 
 class Grid:
     def __init__(self, width: int, height: int):

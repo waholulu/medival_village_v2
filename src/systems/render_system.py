@@ -62,6 +62,9 @@ class RenderSystem(System):
             ZONE_RESIDENTIAL: COLOR_ZONE_RESIDENTIAL
         }
         
+        # Pre-cached zone overlay surfaces (keyed by (zone_id, tile_size))
+        self._zone_surface_cache: dict[tuple, pygame.Surface] = {}
+        
         Logger.info("RenderSystem initialized")
 
     def move_camera(self, dx: float, dy: float):
@@ -80,7 +83,9 @@ class RenderSystem(System):
         self.zoom_level += amount * 0.1
         self.zoom_level = max(self.min_zoom, min(self.zoom_level, self.max_zoom))
         
-        # Optional: Zoom towards center of screen (math is a bit more complex, skip for now)
+        # Invalidate zone surface cache when zoom changes (tile size changes)
+        if self.zoom_level != old_zoom:
+            self._zone_surface_cache.clear()
         
     def world_to_screen(self, world_x: float, world_y: float) -> tuple[int, int]:
         screen_x = (world_x - self.camera_pos[0]) * self.zoom_level
@@ -144,10 +149,14 @@ class RenderSystem(System):
                 if self.show_zones and self.zone_manager:
                     zone_id = self.grid.get_zone(x, y)
                     if zone_id != ZONE_NONE and zone_id in self.zone_colors:
-                        zone_color = self.zone_colors[zone_id]
-                        # Create a surface for transparency
-                        zone_surface = pygame.Surface((size, size), pygame.SRCALPHA)
-                        zone_surface.fill((*zone_color, ZONE_ALPHA))
+                        # Use cached surface to avoid per-tile per-frame allocation
+                        cache_key = (zone_id, size)
+                        zone_surface = self._zone_surface_cache.get(cache_key)
+                        if zone_surface is None:
+                            zone_color = self.zone_colors[zone_id]
+                            zone_surface = pygame.Surface((size, size), pygame.SRCALPHA)
+                            zone_surface.fill((*zone_color, ZONE_ALPHA))
+                            self._zone_surface_cache[cache_key] = zone_surface
                         self.screen.blit(zone_surface, (screen_x, screen_y))
                 
                 # Only draw grid lines if zoom is high enough, otherwise it looks messy

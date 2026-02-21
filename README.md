@@ -7,6 +7,8 @@
 - ✅ 区域可视化与设置模式指示器
 - ✅ 技能系统与自动任务分发
 - ✅ Phase 4.5 已完成：可持续生存系统 (陷阱、钓鱼、寒冷机制、多源食物获取)
+- ✅ 两层诊断日志系统 (`--diagnostic`): Summary + Detail 双文件输出, 用于行为分析与调试
+- ✅ Quick-check 快速诊断模式 (`--quick`): 跑 N 秒后自动停止并输出健康报告
 
 ---
 
@@ -21,9 +23,12 @@
 ### 1.2 实际目录结构
 ```text
 medival_village_v2/
-├── main.py                 # 入口文件 (支持 --headless 模式)
+├── main.py                 # 入口文件 (支持 --headless, --diagnostic, --quick 模式)
 ├── config/                 # 配置文件
 │   └── balance.json        # 数值配置 (热重载)
+├── logs/                   # 诊断日志输出目录 (--diagnostic 模式生成)
+│   ├── villager_summary.txt # Tier 1: 粗略日志 (关键事件, ~400行/2天)
+│   └── villager_detail.txt  # Tier 2: 细节日志 (AI推理, 精确数值, ~1400行/2天)
 ├── assets/                 # 资源文件
 │   ├── sprites/
 │   └── fonts/
@@ -50,7 +55,8 @@ medival_village_v2/
 │   │   ├── zone_manager.py # 区域管理器
 │   │   └── pathfinding.py  # A* 寻路
 │   └── utils/              # 工具函数
-│       └── logger.py       # 结构化日志系统
+│       ├── logger.py       # 结构化日志系统 (控制台输出)
+│       └── diagnostic_logger.py # 两层诊断日志系统 (文件输出, 行为分析用)
 └── tests/                  # 单元测试
 ```
 
@@ -72,16 +78,16 @@ medival_village_v2/
     *   `world_time`: 游戏内时间 (Day, Hour)。
     *   **Tick 与游戏时间关系 (Tick-to-Game-Time Mapping)**:
         *   **Tick Rate**: 默认 `60 ticks/秒` (可配置 `tick_rate`)
-        *   **游戏日长度**: 默认 `60 秒 = 1 游戏天` (可配置 `day_length_seconds`)
+        *   **游戏日长度**: 默认 `120 秒 = 1 游戏天` (可配置 `day_length_seconds`)
         *   **计算公式**:
             *   `1 Tick = 1/tick_rate 秒` (例如: 1/60 ≈ 0.0167 秒)
-            *   `1 游戏小时 = day_length_seconds / 24 秒` (例如: 60/24 = 2.5 秒)
-            *   `1 游戏小时 = (day_length_seconds / 24) * tick_rate Ticks` (例如: 2.5 * 60 = 150 Ticks)
+            *   `1 游戏小时 = day_length_seconds / 24 秒` (例如: 120/24 = 5 秒)
+            *   `1 游戏小时 = (day_length_seconds / 24) * tick_rate Ticks` (例如: 5 * 60 = 300 Ticks)
         *   **默认配置示例**:
-            *   `tick_rate = 60`, `day_length_seconds = 60`:
-                *   1 游戏天 = 60 秒 = 3600 Ticks
-                *   1 游戏小时 = 2.5 秒 = 150 Ticks
-                *   1 游戏分钟 = 0.0417 秒 = 2.5 Ticks
+            *   `tick_rate = 60`, `day_length_seconds = 120`:
+                *   1 游戏天 = 120 秒 = 7200 Ticks
+                *   1 游戏小时 = 5 秒 = 300 Ticks
+                *   1 游戏分钟 = 0.083 秒 = 5 Ticks
         *   **时间推进**: 每帧 `time_of_day += (delta_time / day_length_seconds) * 24.0`
         *   **用途**: 所有基于时间的系统 (饥饿度增长、作物生长、村民作息) 都应基于游戏时间而非Tick数，确保时间缩放时行为一致
 *   **InputManager**: 将硬件输入 (Key_A, Mouse_Left) 映射为逻辑指令 (Command: "Build_Wall", "Select_Unit")。
@@ -93,6 +99,34 @@ medival_village_v2/
     *   **Event Log**: 记录主要游戏事件 ("Entity_1 chopped Tree_2", "Entity_3 starved to death")。
     *   **Format**: `[Time][Tick][Category] Message`。
     *   **Usage**: 方便追溯检查 AI 逻辑死锁或资源消失原因。
+*   **DiagnosticLogger (两层诊断日志)**: ✅
+    *   **目的**: 将村民行为与状态变化输出到文件，用于离线分析和行为调试。
+    *   **Tier 1 - Summary (粗略日志)** `logs/villager_summary.txt`:
+        *   每 2 游戏小时快照 (每村民一行紧凑状态)
+        *   关键事件: 作息切换、工作分配、进食、睡眠
+        *   危险告警: 饥饿>50、疲劳>90、心情<30、无食物可吃
+        *   每日汇总统计 (食物消耗、工作完成数、资源采集量)
+        *   ~400 行/2天 (适合一次性粘贴分享)
+    *   **Tier 2 - Detail (细节日志)** `logs/villager_detail.txt`:
+        *   每 1 游戏小时详细快照 (精确数值、背包明细、技能等级)
+        *   AI 决策推理 (为什么选这个食物来源、为什么中断工作)
+        *   精确数值变化 (`Hunger: 31.3 -> 1.3 | Mood: 65.1 -> 80.1`)
+        *   背包增减 (`Inventory: +1 food_wheat`)、技能提升 (`Skill: logging 0.60 -> 0.61`)
+        *   ~1400 行/2天 (定位具体问题时使用)
+    *   **去噪机制**: 自动变化检测 + 数字/UUID 脱敏去重 + 冷却间隔 (300 tick)，避免重复事件刷屏
+    *   **启用**: `python main.py --diagnostic` 或 `python main.py --headless --diagnostic`
+*   **Quick-Check 快速诊断 (`--quick`)**: ✅
+    *   **目的**: 一键跑几秒钟模拟，自动检测日志中的异常，快速确认系统是否正常运作。
+    *   **用法**: `python main.py --quick` (默认10秒) 或 `python main.py --quick 5` (自定义秒数)
+    *   **自动启用**: `--quick` 自动开启 `--headless` + `--diagnostic`，无需手动指定
+    *   **健康报告**: 运行结束后自动扫描日志并输出诊断报告，包含:
+        *   Python 异常检测 (Traceback/Exception)
+        *   需求危机警报统计 (Hunger/Tiredness/Mood/Cold 的 `!!` 标记)
+        *   行为活跃度检查 (Action 变化、Routine 转换、Job 事件数量)
+        *   最终状态快照 (每个村民的数值)
+        *   极端数值检测 (hunger>=80, tiredness>=95)
+        *   模拟进度验证 (snapshot 数量)
+    *   **判定结果**: `ALL CLEAR` / `OK with warnings` / `ISSUES FOUND`
 
 ### 2.3 地图与空间 (Spatial Management)
 *   **NumPy Grid**: 
@@ -132,13 +166,19 @@ medival_village_v2/
     *   **Job Execution**: ✅
         *   Chop: 移动到树 -> 砍树 -> 生成Log物品
         *   Haul: 移动到物品 -> 拾取 -> 移动到Stockpile -> 放置
-*   **Self-Preservation Loop**: ⏳ (Phase 4)
-    *   Hunger > 80? -> Find Food -> Eat.
-    *   Tired? -> Find Bed -> Sleep.
-*   **Daily Routine System**: ⏳ (Phase 4)
+*   **Self-Preservation Loop**: ✅ [已实现]
+    *   Hunger > 50? -> Find Food -> Eat (急迫需求,中断当前任务)
+    *   Hunger during chop? -> 仅hunger > 80才中断砍树 (防止远距离任务饥饿循环)
+    *   Tired > 90? -> Find Residential -> Sleep.
+    *   移动中hunger>40且距离>15? -> 放弃远距离任务
+    *   **Need Lock**: eat/sleep锁定600 tick防止需求振荡
+*   **Daily Routine System**: ✅ [已实现]
     *   **时间表驱动 (Schedule-Driven)**: 村民按照配置的时间表执行日常活动
-    *   **需求驱动 (Needs-Driven)**: 紧急需求 (饥饿/疲劳) 会打断时间表
-    *   **状态机**: `SLEEPING` -> `WAKING` -> `EATING` -> `WORKING` -> `SOCIALIZING` -> `SLEEPING`
+    *   **强制执行**: SLEEPING/EATING/SOCIALIZING时段严格遵守,不分配工作任务
+    *   **需求驱动 (Needs-Driven)**: 紧急需求 (饥饿>50/疲劳>90) 可打断时间表
+    *   **SLEEPING**: tiredness>0即送去睡觉,绝不接受job; 仅hunger>95才唤醒
+    *   **EATING**: hunger>10持续进食; 即使吃饱也不工作(休息时间)
+    *   **SOCIALIZING**: 放下物品,不接受任务
     *   **季节适应**: 根据当前季节调整作息 (冬季早睡、夏季午休)
     *   **日夜适应**: 夜晚工作效率降低，优先安排睡眠和室内活动
 *   **Player Role**: ✅ 玩家是"市长"而非"上帝"，只负责划定区域 (`Zoning`)，不直接控制村民移动。
@@ -228,11 +268,11 @@ medival_village_v2/
 
 **Tick 与游戏时间换算 (基于以下配置)**:
 *   `tick_rate = 60`: 每秒 60 个 Tick
-*   `day_length_seconds = 10`: 1 游戏天 = 10 秒
+*   `day_length_seconds = 120`: 1 游戏天 = 120 秒
 *   **换算结果**:
-    *   1 游戏小时 = 10/24 ≈ 0.417 秒 = 25 Ticks
-    *   1 游戏天 = 10 秒 = 600 Ticks
-    *   1 游戏分钟 = 0.417/60 ≈ 0.007 秒 = 0.417 Ticks
+    *   1 游戏小时 = 120/24 = 5 秒 = 300 Ticks
+    *   1 游戏天 = 120 秒 = 7200 Ticks
+    *   1 游戏分钟 = 5/60 ≈ 0.083 秒 = 5 Ticks
 
 ```json
 {
@@ -241,7 +281,7 @@ medival_village_v2/
     "pixels_per_unit": 32
   },
   "simulation": {
-    "day_length_seconds": 10,
+    "day_length_seconds": 120,
     "season_length_days": 90,
     "starting_season": "spring"
   },
@@ -264,7 +304,7 @@ medival_village_v2/
         "tree_growth_multiplier": 1.0,
         "temperature": 25.0,
         "work_efficiency": 0.9,
-        "midday_rest_hours": [12.0, 14.0],
+        "midday_rest_hours": [13.0, 15.0],
         "cold_gain_multiplier": 0.5
       },
       "autumn": {
@@ -292,14 +332,18 @@ medival_village_v2/
       "default_skills": {"logging": 0.1, "farming": 0.1, "trapping": 0.1, "fishing": 0.1},
       "chop_speed": 5.0,
       "needs": {
-        "hunger_per_hour": 2.0,
-        "tiredness_per_hour_working": 5.0,
-        "tiredness_per_hour_resting": -10.0,
-        "sleep_hours_per_day": 8.0,
-        "cold_gain_per_hour_day": 1.0,
-        "cold_gain_per_hour_night": 5.0,
-        "cold_damage_probability_base": 0.1,
-        "cold_damage_amount": 2.0
+        "hunger_per_hour": 4.0,
+        "tiredness_per_hour_working": 6.0,
+        "tiredness_per_hour_resting": -15.0,
+        "sleep_hours_per_day": 9.0,
+        "cold_gain_per_hour_day": 0.3,
+        "cold_gain_per_hour_night": 1.2,
+        "cold_damage_probability_base": 0.08,
+        "cold_damage_amount": 2.0,
+        "hunger_work_multiplier": 1.25,
+        "hunger_rest_multiplier": 0.7,
+        "tiredness_work_multiplier": 1.2,
+        "tiredness_rest_multiplier": 1.1
       },
       "daily_schedule": {
         "wake_up": 6.0,
@@ -314,7 +358,7 @@ medival_village_v2/
     },
     "tree_oak": {
       "hp": 20,
-      "growth_days": 5,
+      "growth_days": 15,
       "drops": {"log": [3, 5], "sapling": [0, 2]}
     },
     "tools": {
@@ -482,8 +526,8 @@ medival_village_v2/
 *   **任务**: **寒冷机制 (Cold System)** ✅ 已实现
     *   **ColdComponent**: 寒冷度 (0-100), 影响村民健康
         *   寒冷度随时间增长 (夜晚/冬季更快)
-        *   靠近火源时降低
-        *   在住宅区域 (有火源) 时降低更快
+        *   靠近火源时降低 (10.0/h)
+        *   在住宅区域时自动降低 (5.0/h 室内避寒,无需火源)
     *   **火源系统 (Fire System)**:
         *   **火堆实体**: 村民可消耗 `log` 物品创建火堆 (`FireEntity`)
         *   **火堆位置**: 通常在住宅区域或营地
@@ -582,6 +626,86 @@ medival_village_v2/
 *   用途: 自动化测试, 无GUI运行
 *   输出: 控制台日志, 测试结果
 
+### 7.5 诊断日志模式 (Diagnostic Logging)
+*   运行: `python main.py --diagnostic` (带GUI) 或 `python main.py --headless --diagnostic` (无GUI快速模拟)
+*   用途: 输出村民行为与状态日志到文件, 用于离线分析行为异常
+*   输出文件:
+    *   `logs/villager_summary.txt` - 粗略日志 (关键事件 + 定期快照 + 每日汇总)
+    *   `logs/villager_detail.txt` - 细节日志 (AI推理 + 精确数值变化 + 背包/技能变动)
+*   **另见**: 7.6 Quick-Check 模式 (更快速的一键诊断方式)
+*   **Summary 日志格式示例**:
+    ```
+    ──── Day 0, 08:00 (spring) SNAPSHOT ────
+    V0 | Hunger: 10 Tired: 29 Mood: 81 Cold: 11 | move  | Routine:WORKING
+    V1 | Hunger: 15 Tired: 31 Mood: 86 Cold: 13 | idle  | Routine:WORKING
+
+    [D0 12:37] V0 | Ate food_wheat (value=30)
+    [D0 13:07] V0 | Tree chopped (entity#3) -> dropped 1 log at (15,5)
+    [D0 14:12] V2 | AI: Urgent hunger=50.0, interrupting idle
+    [D0 20:26] V2 | AI: !! NO FOOD FOUND (hunger=50.0) - will starve
+
+    ════ DAY 0 SUMMARY ════
+    Food consumed: 6 | Jobs completed: 12 | Trees chopped: 1
+    Alerts: 3 hunger, 2 tiredness
+    ```
+*   **Detail 日志额外内容**:
+    ```
+    [D0 06:00] V1 | AI: Routine meal time, hunger=35.0
+    [D0 06:00] V1 | AI: Food search -> found food_wheat on stockpile at (41,31), dist=2
+    [D0 06:15] V0 | Hunger: 31.3 -> 1.3 | Mood: 65.1 -> 80.1
+    [D0 06:15] V0 | Inventory: +1 food_wheat (now: {food_wheat: 1})
+    [D0 13:06] V0 | Skill: logging 0.60 -> 0.61
+    ```
+
+### 7.6 Quick-Check 快速诊断模式
+*   **运行**:
+    ```bash
+    python main.py --quick          # 默认跑 10 秒
+    python main.py --quick 5        # 自定义跑 5 秒
+    python main.py --quick 30       # 跑 30 秒做更深入检查
+    ```
+*   **用途**: 快速验证代码修改后系统是否正常运行，无需手动检查日志
+*   **自动行为**: `--quick` 自动开启 headless + diagnostic 模式
+*   **输出示例**:
+    ```
+    ============================================================
+      QUICK-CHECK REPORT
+    ============================================================
+
+      [OK] No errors or warnings detected!
+
+      INFO:
+        - Action changes: 15 (idle/move only — normal early game)
+        - Routine transitions: 12
+        - Job events: 5
+        - Last snapshot (final state):
+        -   V0 | Hunger: 10 Tired: 29 Mood: 81 Cold: 11 | move  | Routine:WORKING
+        -   V1 | Hunger: 15 Tired: 32 Mood: 86 Cold: 13 | move  | Routine:WORKING
+        -   V2 | Hunger: 20 Tired: 35 Mood: 91 Cold: 15 | move  | Routine:WORKING
+        - Total snapshots: 2
+
+      Log sizes: summary=37 lines, detail=105 lines
+    ============================================================
+      VERDICT: ALL CLEAR
+    ============================================================
+    ```
+*   **判定级别**:
+    *   `ALL CLEAR` - 无错误无警告，系统运行正常
+    *   `OK with warnings` - 有告警但非致命 (如模拟时间太短只有1个snapshot)
+    *   `ISSUES FOUND` - 检测到问题，需检查详细日志
+*   **检查项**:
+    | 检查项 | 触发条件 | 级别 |
+    |--------|----------|------|
+    | Python 异常 | detail 日志中出现 Traceback/Exception | ERROR |
+    | 村民完全卡死 | summary + detail 均无 Action 变化 | ERROR |
+    | 无 snapshot | 模拟未实际运行 | ERROR |
+    | 结束时饥饿危急 | 最后 snapshot 中 hunger >= 80 | ERROR |
+    | 需求危机告警 | summary 中出现 `!!` 标记 | WARNING |
+    | 行为太少 | 显著 action 变化 < 3 次 | WARNING |
+    | 无 routine 转换 | 作息系统未触发 | WARNING |
+    | 结束时极度疲劳 | 最后 snapshot 中 tiredness >= 95 | WARNING |
+    | 模拟时间短 | 仅 1 个 snapshot | WARNING |
+
 ---
 
 ## 8. 风险与应对
@@ -632,5 +756,22 @@ medival_village_v2/
   - [x] 技能系统扩展 (trapping, fishing)
   - [x] 任务系统扩展 (trap, fish, tend_fire任务)
   - [x] 物品系统扩展 (meat, fish物品)
+
+### ✅ 工具系统
+- [x] 两层诊断日志系统 (DiagnosticLogger)
+  - [x] Tier 1 Summary: 粗略日志 (关键事件, 定期快照, 每日汇总, ~400行/2天)
+  - [x] Tier 2 Detail: 细节日志 (AI推理, 精确数值, 背包/技能变动, ~1400行/2天)
+  - [x] 自动变化检测 (每tick对比缓存状态, 仅记录变化)
+  - [x] 去噪机制 (数字/UUID脱敏去重, 事件冷却, idle<->move过滤)
+  - [x] AI决策点hook (ai_system.py: 饥饿/疲劳中断, 食物来源选择, 工作分配)
+  - [x] 行为结果hook (action_system.py: 砍树产出, 进食数值, 钓鱼/陷阱结果)
+  - [x] 启用方式: `--diagnostic` CLI参数
+- [x] Quick-Check 快速诊断模式
+  - [x] 一键运行: `python main.py --quick` (默认10秒) 或 `--quick N` (自定义秒数)
+  - [x] 自动开启 headless + diagnostic 模式
+  - [x] 按真实时间计时, 到时自动停止
+  - [x] 自动扫描日志输出健康报告 (异常检测, 需求告警, 行为活跃度, 最终状态)
+  - [x] 三级判定: ALL CLEAR / OK with warnings / ISSUES FOUND
+
 - [ ] Phase 5: 建筑系统, 社交系统
 - [ ] Phase 6: 生命周期, 家庭系统

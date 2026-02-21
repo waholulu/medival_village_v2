@@ -1,5 +1,5 @@
 from src.core.ecs import System, EntityManager
-from src.components.data_components import HungerComponent, TirednessComponent, MoodComponent, ActionComponent
+from src.components.data_components import HungerComponent, TirednessComponent, MoodComponent, ActionComponent, RoutineComponent
 from src.core.time_manager import TimeManager
 from src.core.config_manager import ConfigManager
 
@@ -14,6 +14,10 @@ class NeedsSystem(System):
         self.hunger_per_hour = config_manager.get("entities.villager.needs.hunger_per_hour", 2.0)
         self.tiredness_per_hour_working = config_manager.get("entities.villager.needs.tiredness_per_hour_working", 5.0)
         self.tiredness_per_hour_resting = config_manager.get("entities.villager.needs.tiredness_per_hour_resting", -10.0)
+        self.hunger_work_multiplier = config_manager.get("entities.villager.needs.hunger_work_multiplier", 1.2)
+        self.hunger_rest_multiplier = config_manager.get("entities.villager.needs.hunger_rest_multiplier", 0.8)
+        self.tiredness_work_multiplier = config_manager.get("entities.villager.needs.tiredness_work_multiplier", 1.0)
+        self.tiredness_rest_multiplier = config_manager.get("entities.villager.needs.tiredness_rest_multiplier", 1.0)
         
         # Get season config
         current_season = time_manager.get_season()
@@ -42,22 +46,49 @@ class NeedsSystem(System):
         for entity, hunger_comp, tiredness_comp, mood_comp in self.entity_manager.get_entities_with(
             HungerComponent, TirednessComponent, MoodComponent
         ):
+            routine_comp = self.entity_manager.get_component(entity, RoutineComponent)
+            schedule_state = routine_comp.current_state if routine_comp else None
+            resting_state = schedule_state in {"RESTING", "SLEEPING"}
+            working_state = schedule_state == "WORKING"
+            action_comp = self.entity_manager.get_component(entity, ActionComponent)
+            current_action = action_comp.current_action if action_comp else "idle"
+            is_sleeping = current_action == "sleep"
+            is_moving = current_action == "move"
+            is_hard_working = current_action not in ["idle", "sleep", "eat", "move"]
+
             # Update hunger (increases over time, affected by season)
-            hunger_increase = self.hunger_per_hour * hours_passed * self.food_consumption_multiplier
+            hunger_multiplier = self.food_consumption_multiplier
+            if is_hard_working or working_state:
+                hunger_multiplier *= self.hunger_work_multiplier
+            elif resting_state or is_moving:
+                hunger_multiplier *= self.hunger_rest_multiplier
+            hunger_increase = self.hunger_per_hour * hours_passed * hunger_multiplier
             hunger_comp.hunger = min(100.0, hunger_comp.hunger + hunger_increase)
             
             # Update tiredness (increases when working, decreases when resting/sleeping)
-            action_comp = self.entity_manager.get_component(entity, ActionComponent)
-            is_working = action_comp and action_comp.current_action not in ["idle", "sleep", "eat"]
-            is_sleeping = action_comp and action_comp.current_action == "sleep"
-            
+            # Only actual sleep or idle-in-rest-period grants recovery;
+            # walking during a rest period is NOT resting.
+            rest_multiplier = None
             if is_sleeping:
-                # Resting reduces tiredness
-                tiredness_change = self.tiredness_per_hour_resting * hours_passed
+                rest_multiplier = self.tiredness_rest_multiplier
+            elif resting_state and not is_hard_working and not is_moving:
+                rest_multiplier = self.tiredness_rest_multiplier * 0.5
+            
+            if rest_multiplier is not None:
+                tiredness_change = self.tiredness_per_hour_resting * hours_passed * rest_multiplier
                 tiredness_comp.tiredness = max(0.0, tiredness_comp.tiredness + tiredness_change)
-            elif is_working:
-                # Working increases tiredness (more at night)
-                tiredness_multiplier = 1.5 if is_night else 1.0
+            elif is_moving:
+                # Walking is lighter than hard labour — tiredness grows at 40% rate
+                tiredness_multiplier = self.tiredness_work_multiplier * 0.4
+                if is_night:
+                    tiredness_multiplier *= 1.5
+                tiredness_change = self.tiredness_per_hour_working * hours_passed * tiredness_multiplier
+                tiredness_comp.tiredness = min(100.0, tiredness_comp.tiredness + tiredness_change)
+            elif is_hard_working or working_state:
+                # Hard work increases tiredness (more at night)
+                tiredness_multiplier = self.tiredness_work_multiplier
+                if is_night:
+                    tiredness_multiplier *= 1.5
                 tiredness_change = self.tiredness_per_hour_working * hours_passed * tiredness_multiplier
                 tiredness_comp.tiredness = min(100.0, tiredness_comp.tiredness + tiredness_change)
             

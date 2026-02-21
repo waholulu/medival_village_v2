@@ -63,8 +63,10 @@ class InputManager:
                     self.time_scale_request = 2.0
                 elif event.key == pygame.K_3:
                     self.time_scale_request = 5.0
-                # Zone placement shortcuts
-                elif event.key == pygame.K_s:
+                elif event.key == pygame.K_4:
+                    self.time_scale_request = 10.0
+                # Zone placement shortcuts (F5/F6/F7 to avoid WASD camera conflicts)
+                elif event.key == pygame.K_F5:
                     # Toggle stockpile placement mode
                     from src.world.grid import ZONE_STOCKPILE, ZONE_NONE
                     if self.zone_placement_mode == ZONE_STOCKPILE:
@@ -73,7 +75,7 @@ class InputManager:
                     else:
                         self.zone_placement_mode = ZONE_STOCKPILE
                         Logger.log(LogCategory.INPUT, "Zone placement: STOCKPILE (Right-click to place)")
-                elif event.key == pygame.K_f:
+                elif event.key == pygame.K_F6:
                     # Toggle farm placement mode
                     from src.world.grid import ZONE_FARM, ZONE_NONE
                     if self.zone_placement_mode == ZONE_FARM:
@@ -82,7 +84,7 @@ class InputManager:
                     else:
                         self.zone_placement_mode = ZONE_FARM
                         Logger.log(LogCategory.INPUT, "Zone placement: FARM (Right-click to place)")
-                elif event.key == pygame.K_r:
+                elif event.key == pygame.K_F7:
                     # Toggle residential placement mode
                     from src.world.grid import ZONE_RESIDENTIAL, ZONE_NONE
                     if self.zone_placement_mode == ZONE_RESIDENTIAL:

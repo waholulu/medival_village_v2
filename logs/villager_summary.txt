@@ -1,0 +1,261 @@
+=== VILLAGE SUMMARY LOG ===
+Start: 2026-02-16 10:13:08 | Season: spring | Villagers: 3
+
+
+──── Day 0, 06:00 (spring) SNAPSHOT ────
+V0 | Hunger: 30 Tired: 15 Mood: 65 Cold: 10 | idle       | Routine:WORKING
+V1 | Hunger: 35 Tired: 18 Mood: 70 Cold: 12 | idle       | Routine:WORKING
+V2 | Hunger: 40 Tired: 21 Mood: 75 Cold: 14 | idle       | Routine:WORKING
+
+[D0 06:00] V0 | Routine: WORKING -> EATING
+[D0 06:00] V1 | Routine: WORKING -> EATING
+[D0 06:00] V2 | Routine: WORKING -> EATING
+[D0 06:21] V0 | Ate food_wheat (value=30)
+[D0 06:21] V1 | Ate food_wheat (value=30)
+[D0 06:22] V0 | Job: haul
+[D0 06:22] V1 | Job: plant
+[D0 06:31] V2 | Ate food_wheat (value=30)
+[D0 06:32] V2 | Job: plant
+
+──── Day 0, 08:00 (spring) SNAPSHOT ────
+V0 | Hunger:  6 Tired: 20 Mood: 81 Cold: 10 | move       | Routine:WORKING
+V1 | Hunger: 11 Tired: 24 Mood: 86 Cold: 12 | move       | Routine:WORKING
+V2 | Hunger: 16 Tired: 27 Mood: 91 Cold: 14 | move       | Routine:WORKING
+
+[D0 08:00] V0 | Routine: EATING -> WORKING
+[D0 08:00] V1 | Routine: EATING -> WORKING
+[D0 08:00] V2 | Routine: EATING -> WORKING
+
+──── Day 0, 10:00 (spring) SNAPSHOT ────
+V0 | Hunger: 16 Tired: 26 Mood: 82 Cold: 10 | move       | Routine:WORKING
+V1 | Hunger: 21 Tired: 30 Mood: 87 Cold: 12 | move       | Routine:WORKING
+V2 | Hunger: 26 Tired: 33 Mood: 92 Cold: 14 | move       | Routine:WORKING
+
+[D0 10:44] V1 | Harvested wheat -> food_wheat x2, 2 seeds
+[D0 11:34] V2 | Job: haul
+[D0 11:59] V1 | Job: haul
+[D0 12:00] V1 | Ate food_wheat (value=30)
+
+──── Day 0, 12:00 (spring) SNAPSHOT ────
+V0 | Hunger: 26 Tired: 32 Mood: 83 Cold:  9 | move       | Routine:EATING
+V1 | Hunger:  1 Tired: 36 Mood:100 Cold: 11 | idle       | Routine:EATING
+V2 | Hunger: 36 Tired: 39 Mood: 93 Cold: 13 | move       | Routine:EATING
+
+[D0 12:00] V0 | Routine: WORKING -> EATING
+[D0 12:00] V1 | Routine: WORKING -> EATING
+[D0 12:00] V2 | Routine: WORKING -> EATING
+[D0 12:25] V2 | Ate food_wheat (value=30)
+[D0 12:47] V0 | Action: idle -> chop
+[D0 13:05] V0 | Tree chopped (entity#12) -> dropped 1 log at (18,17)
+[D0 13:05] V0 | Action: chop -> idle
+[D0 13:06] V0 | Job completed: chop (tree destroyed)
+
+──── Day 0, 14:00 (spring) SNAPSHOT ────
+V0 | Hunger: 32 Tired: 39 Mood: 84 Cold:  9 | move       | Routine:WORKING
+V1 | Hunger:  6 Tired: 42 Mood:100 Cold: 11 | move       | Routine:WORKING
+V2 | Hunger: 11 Tired: 45 Mood:100 Cold: 13 | move       | Routine:WORKING
+
+[D0 14:00] V0 | Routine: EATING -> WORKING
+[D0 14:00] V1 | Routine: EATING -> WORKING
+[D0 14:00] V2 | Routine: EATING -> WORKING
+
+──── Day 0, 16:00 (spring) SNAPSHOT ────
+V0 | Hunger: 42 Tired: 45 Mood: 85 Cold:  9 | move       | Routine:WORKING
+V1 | Hunger: 16 Tired: 48 Mood:100 Cold: 11 | move       | Routine:WORKING
+V2 | Hunger: 21 Tired: 51 Mood:100 Cold: 13 | move       | Routine:WORKING
+
+[D0 17:17] V1 | Job: plant
+[D0 17:37] V0 | !! HUNGER HIGH(50-80): 50.1
+[D0 18:00] V2 | Ate food_wheat (value=30)
+
+──── Day 0, 18:00 (spring) SNAPSHOT ────
+V0 | Hunger: 52 Tired: 50 Mood: 86 Cold:  9 | move       | Routine:EATING
+V1 | Hunger: 26 Tired: 54 Mood:100 Cold: 11 | move       | Routine:EATING
+V2 | Hunger:  1 Tired: 57 Mood:100 Cold: 13 | idle       | Routine:EATING
+
+[D0 18:00] V0 | Routine: WORKING -> EATING
+[D0 18:00] V1 | Routine: WORKING -> EATING
+[D0 18:00] V2 | Routine: WORKING -> EATING
+[D0 18:01] V2 | Job: haul
+[D0 18:46] V0 | AI: Urgent hunger=54.1, interrupting idle
+[D0 18:46] V0 | Ate food_wheat (value=30)
+[D0 18:49] V0 | Job: chop
+[D0 19:00] V0 | Routine: EATING -> SOCIALIZING
+[D0 19:00] V1 | Routine: EATING -> SOCIALIZING
+[D0 19:00] V2 | Routine: EATING -> SOCIALIZING
+
+──── Day 0, 20:00 (spring) SNAPSHOT ────
+V0 | Hunger:  3 Tired: 56 Mood:100 Cold:  9 | move       | Routine:SOCIALIZING
+V1 | Hunger: 32 Tired: 59 Mood:100 Cold: 11 | idle       | Routine:SOCIALIZING
+V2 | Hunger:  7 Tired: 63 Mood:100 Cold: 13 | move       | Routine:SOCIALIZING
+
+
+──── Day 0, 22:00 (spring) SNAPSHOT ────
+V0 | Hunger:  9 Tired: 65 Mood:100 Cold:  9 | move       | Routine:SLEEPING
+V1 | Hunger: 40 Tired: 59 Mood:100 Cold: 11 | move       | Routine:SLEEPING
+V2 | Hunger: 14 Tired: 65 Mood:100 Cold: 13 | move       | Routine:SLEEPING
+
+[D0 22:00] V0 | Routine: SOCIALIZING -> SLEEPING
+[D0 22:00] V1 | Routine: SOCIALIZING -> SLEEPING
+[D0 22:00] V2 | Routine: SOCIALIZING -> SLEEPING
+
+──── Day 1, 00:00 (spring) SNAPSHOT ────
+V0 | Hunger: 15 Tired: 73 Mood:100 Cold: 10 | move       | Routine:SLEEPING
+V1 | Hunger: 46 Tired: 67 Mood:100 Cold: 12 | move       | Routine:SLEEPING
+V2 | Hunger: 20 Tired: 73 Mood:100 Cold: 14 | move       | Routine:SLEEPING
+
+
+════ DAY 0 SUMMARY ════
+Food consumed: 8 | Jobs completed: 21 | Trees chopped: 1
+Crops harvested: 4 | Fish caught: 0 | Traps caught: 0
+Resources gathered: {'food_wheat': 4, 'log': 1}
+Alerts: 1 hunger
+
+[D1 00:09] V0 | Action: idle -> sleep
+[D1 00:09] V0 | fell asleep
+[D1 00:19] V1 | Action: idle -> sleep
+[D1 00:19] V1 | fell asleep
+[D1 00:29] V2 | Action: idle -> sleep
+[D1 00:29] V2 | fell asleep
+[D1 01:30] V1 | !! HUNGER HIGH(50-80): 50.0
+
+──── Day 1, 02:00 (spring) SNAPSHOT ────
+V0 | Hunger: 20 Tired: 43 Mood:100 Cold: 11 | sleep      | Routine:SLEEPING
+V1 | Hunger: 51 Tired: 41 Mood:100 Cold: 13 | sleep      | Routine:SLEEPING
+V2 | Hunger: 26 Tired: 50 Mood:100 Cold: 15 | sleep      | Routine:SLEEPING
+
+
+──── Day 1, 04:00 (spring) SNAPSHOT ────
+V0 | Hunger: 26 Tired: 10 Mood:100 Cold: 12 | sleep      | Routine:SLEEPING
+V1 | Hunger: 57 Tired:  8 Mood:100 Cold: 14 | sleep      | Routine:SLEEPING
+V2 | Hunger: 31 Tired: 17 Mood:100 Cold: 16 | sleep      | Routine:SLEEPING
+
+[D1 04:11] V1 | Action: sleep -> idle
+[D1 04:11] V1 | woke up
+[D1 04:12] V1 | AI: Urgent hunger=57.6, interrupting idle
+[D1 04:19] V0 | Action: sleep -> idle
+[D1 04:19] V0 | woke up
+[D1 04:45] V2 | Action: sleep -> idle
+[D1 04:45] V2 | woke up
+[D1 05:12] V1 | Ate food_wheat (value=30)
+
+──── Day 1, 06:00 (spring) SNAPSHOT ────
+V0 | Hunger: 32 Tired:  0 Mood:100 Cold: 12 | move       | Routine:EATING
+V1 | Hunger:  3 Tired:  2 Mood:100 Cold: 14 | idle       | Routine:EATING
+V2 | Hunger: 37 Tired:  0 Mood:100 Cold: 16 | move       | Routine:EATING
+
+[D1 06:00] V0 | Routine: SLEEPING -> EATING
+[D1 06:00] V1 | Routine: SLEEPING -> EATING
+[D1 06:00] V2 | Routine: SLEEPING -> EATING
+[D1 06:01] V1 | Job: haul
+[D1 06:50] V0 | Ate food_wheat (value=30)
+[D1 06:51] V0 | Job: chop
+[D1 07:00] V2 | Ate food_wheat (value=30)
+[D1 07:01] V2 | Job: plant
+
+──── Day 1, 08:00 (spring) SNAPSHOT ────
+V0 | Hunger:  7 Tired:  6 Mood:100 Cold: 12 | move       | Routine:WORKING
+V1 | Hunger:  8 Tired:  8 Mood:100 Cold: 14 | move       | Routine:WORKING
+V2 | Hunger: 12 Tired:  6 Mood:100 Cold: 16 | move       | Routine:WORKING
+
+[D1 08:00] V0 | Routine: EATING -> WORKING
+[D1 08:00] V1 | Routine: EATING -> WORKING
+[D1 08:00] V2 | Routine: EATING -> WORKING
+
+──── Day 1, 10:00 (spring) SNAPSHOT ────
+V0 | Hunger: 17 Tired: 11 Mood:100 Cold: 12 | move       | Routine:WORKING
+V1 | Hunger: 18 Tired: 14 Mood:100 Cold: 14 | move       | Routine:WORKING
+V2 | Hunger: 22 Tired: 13 Mood:100 Cold: 16 | move       | Routine:WORKING
+
+[D1 11:38] V1 | Job: plant
+
+──── Day 1, 12:00 (spring) SNAPSHOT ────
+V0 | Hunger: 27 Tired: 17 Mood:100 Cold: 12 | move       | Routine:EATING
+V1 | Hunger: 28 Tired: 20 Mood:100 Cold: 14 | move       | Routine:EATING
+V2 | Hunger: 32 Tired: 19 Mood:100 Cold: 16 | move       | Routine:EATING
+
+[D1 12:00] V0 | Routine: WORKING -> EATING
+[D1 12:00] V1 | Routine: WORKING -> EATING
+[D1 12:00] V2 | Routine: WORKING -> EATING
+[D1 12:53] V0 | Action: idle -> chop
+[D1 12:58] V0 | Action: chop -> move
+[D1 13:26] V2 | Ate food_wheat (value=30)
+[D1 13:27] V2 | Job: plant
+
+──── Day 1, 14:00 (spring) SNAPSHOT ────
+V0 | Hunger: 33 Tired: 23 Mood:100 Cold: 12 | move       | Routine:WORKING
+V1 | Hunger: 34 Tired: 25 Mood:100 Cold: 14 | move       | Routine:WORKING
+V2 | Hunger:  8 Tired: 25 Mood:100 Cold: 16 | move       | Routine:WORKING
+
+[D1 14:00] V0 | Routine: EATING -> WORKING
+[D1 14:00] V1 | Routine: EATING -> WORKING
+[D1 14:00] V2 | Routine: EATING -> WORKING
+[D1 14:20] V1 | Ate food_wheat (value=30)
+[D1 15:00] V2 | Harvested wheat -> food_wheat x3, 1 seeds
+
+──── Day 1, 16:00 (spring) SNAPSHOT ────
+V0 | Hunger: 43 Tired: 29 Mood:100 Cold: 11 | move       | Routine:WORKING
+V1 | Hunger: 14 Tired: 32 Mood:100 Cold: 13 | move       | Routine:WORKING
+V2 | Hunger: 18 Tired: 31 Mood:100 Cold: 15 | move       | Routine:WORKING
+
+[D1 16:24] V1 | Harvested wheat -> food_wheat x3, 2 seeds
+[D1 16:59] V1 | Job: haul
+[D1 17:26] V0 | !! HUNGER HIGH(50-80): 50.1
+
+──── Day 1, 18:00 (spring) SNAPSHOT ────
+V0 | Hunger: 53 Tired: 35 Mood:100 Cold: 11 | move       | Routine:EATING
+V1 | Hunger: 24 Tired: 38 Mood:100 Cold: 13 | move       | Routine:EATING
+V2 | Hunger: 28 Tired: 37 Mood:100 Cold: 15 | move       | Routine:EATING
+
+[D1 18:00] V0 | Routine: WORKING -> EATING
+[D1 18:00] V1 | Routine: WORKING -> EATING
+[D1 18:00] V2 | Routine: WORKING -> EATING
+[D1 18:41] V2 | Ate food_wheat (value=30)
+[D1 18:42] V2 | Job: haul
+[D1 18:58] V0 | AI: Urgent hunger=55.6, interrupting idle
+[D1 18:58] V0 | Ate food_wheat (value=30)
+[D1 19:00] V0 | Routine: EATING -> SOCIALIZING
+[D1 19:00] V1 | Routine: EATING -> SOCIALIZING
+[D1 19:00] V2 | Routine: EATING -> SOCIALIZING
+
+──── Day 1, 20:00 (spring) SNAPSHOT ────
+V0 | Hunger:  4 Tired: 37 Mood:100 Cold: 11 | idle       | Routine:SOCIALIZING
+V1 | Hunger: 30 Tired: 42 Mood:100 Cold: 13 | idle       | Routine:SOCIALIZING
+V2 | Hunger:  4 Tired: 42 Mood:100 Cold: 15 | idle       | Routine:SOCIALIZING
+
+
+──── Day 1, 22:00 (spring) SNAPSHOT ────
+V0 | Hunger: 12 Tired: 37 Mood:100 Cold: 12 | move       | Routine:SLEEPING
+V1 | Hunger: 38 Tired: 42 Mood:100 Cold: 14 | move       | Routine:SLEEPING
+V2 | Hunger: 12 Tired: 42 Mood:100 Cold: 16 | move       | Routine:SLEEPING
+
+[D1 22:00] V0 | Routine: SOCIALIZING -> SLEEPING
+[D1 22:00] V1 | Routine: SOCIALIZING -> SLEEPING
+[D1 22:00] V2 | Routine: SOCIALIZING -> SLEEPING
+[D1 22:50] V0 | Action: idle -> sleep
+[D1 22:50] V0 | fell asleep
+[D1 22:50] V1 | Action: idle -> sleep
+[D1 22:50] V1 | fell asleep
+[D1 22:50] V2 | Action: idle -> sleep
+[D1 22:50] V2 | fell asleep
+
+──── Day 2, 00:00 (spring) SNAPSHOT ────
+V0 | Hunger: 18 Tired: 22 Mood:100 Cold: 13 | sleep      | Routine:SLEEPING
+V1 | Hunger: 44 Tired: 26 Mood:100 Cold: 15 | sleep      | Routine:SLEEPING
+V2 | Hunger: 18 Tired: 26 Mood:100 Cold: 17 | sleep      | Routine:SLEEPING
+
+
+════ DAY 1 SUMMARY ════
+Food consumed: 9 | Jobs completed: 26 | Trees chopped: 0
+Crops harvested: 6 | Fish caught: 0 | Traps caught: 0
+Resources gathered: {'food_wheat': 6}
+Alerts: 2 hunger
+
+
+════ DAY 2 SUMMARY ════
+Food consumed: 0 | Jobs completed: 0 | Trees chopped: 0
+Crops harvested: 0 | Fish caught: 0 | Traps caught: 0
+Alerts: none
+
+
+=== LOG END: 2026-02-16 10:13:08 ===

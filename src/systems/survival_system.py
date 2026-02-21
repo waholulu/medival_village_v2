@@ -2,18 +2,19 @@ from src.core.ecs import System, EntityManager
 from src.components.data_components import ColdComponent, FireComponent, PositionComponent, ActionComponent
 from src.core.time_manager import TimeManager
 from src.core.config_manager import ConfigManager
+from src.world.grid import Grid, ZONE_RESIDENTIAL
 from src.utils.logger import Logger, LogCategory
 import random
 
 class SurvivalSystem(System):
-    def __init__(self, entity_manager: EntityManager, time_manager: TimeManager, config_manager: ConfigManager, grid):
+    def __init__(self, entity_manager: EntityManager, time_manager: TimeManager, config_manager: ConfigManager, grid: Grid):
         self.entity_manager = entity_manager
         self.time_manager = time_manager
         self.config_manager = config_manager
         self.grid = grid
         
         # Get config values
-        self.day_length_seconds = config_manager.get("simulation.day_length_seconds", 10.0)
+        self.day_length_seconds = config_manager.get("simulation.day_length_seconds", 120.0)
         self.cold_gain_per_hour_day = config_manager.get("entities.villager.needs.cold_gain_per_hour_day", 1.0)
         self.cold_gain_per_hour_night = config_manager.get("entities.villager.needs.cold_gain_per_hour_night", 5.0)
         self.cold_damage_probability_base = config_manager.get("entities.villager.needs.cold_damage_probability_base", 0.1)
@@ -80,11 +81,26 @@ class SurvivalSystem(System):
                 fire_cold_reduction = self.config_manager.get("entities.fire.fire_cold_reduction_per_hour", 10.0)
                 cold_reduction = fire_cold_reduction * hours_passed
                 cold_comp.cold = max(0.0, cold_comp.cold - cold_reduction)
+            elif self.grid.get_zone(pos_comp.x, pos_comp.y) == ZONE_RESIDENTIAL:
+                # Shelter in residential zone: cold decreases at a moderate rate
+                shelter_reduction = 5.0 * hours_passed
+                cold_comp.cold = max(0.0, cold_comp.cold - shelter_reduction)
             else:
-                # Increase cold
-                cold_gain_rate = self.cold_gain_per_hour_night if is_night else self.cold_gain_per_hour_day
-                cold_gain = cold_gain_rate * hours_passed * cold_gain_multiplier
-                cold_comp.cold = min(100.0, cold_comp.cold + cold_gain)
+                if is_night:
+                    # Night: cold increases
+                    cold_gain = self.cold_gain_per_hour_night * hours_passed * cold_gain_multiplier
+                    cold_comp.cold = min(100.0, cold_comp.cold + cold_gain)
+                else:
+                    # Day: temperature-based warming can reduce cold
+                    # Warmer temperatures offset the base cold gain
+                    temperature = season_config.get("temperature", 15.0)
+                    temperature_offset = temperature * 0.04  # 15C -> 0.6, 25C -> 1.0, 0C -> 0.0
+                    effective_rate = self.cold_gain_per_hour_day - temperature_offset
+                    # effective_rate: spring(15C) = 0.3-0.6 = -0.3 (warming)
+                    #                 summer(25C) = 0.3-1.0 = -0.7 (faster warming)
+                    #                 winter(0C)  = 0.3-0.0 = 0.3  (still cold)
+                    cold_change = effective_rate * hours_passed * cold_gain_multiplier
+                    cold_comp.cold = max(0.0, min(100.0, cold_comp.cold + cold_change))
 
     def _apply_cold_damage(self, dt: float):
         """Apply cold damage to entities with high cold levels."""

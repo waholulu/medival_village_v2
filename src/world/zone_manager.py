@@ -1,5 +1,4 @@
-from typing import List, Tuple, Optional
-import numpy as np
+from typing import Tuple, Optional, Dict, Set
 from src.world.grid import Grid, ZONE_NONE
 
 class ZoneManager:

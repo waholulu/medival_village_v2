@@ -1,5 +1,5 @@
 import time
-from typing import Literal
+from typing import Literal, Optional
 
 Season = Literal["spring", "summer", "autumn", "winter"]
 DayNightState = Literal["day", "night", "dawn", "dusk"]
@@ -14,6 +14,7 @@ class TimeManager:
         self.delta_time = 0.0
         self.time_scale = 1.0
         self.is_paused = False
+        self.use_fixed_dt = False
         
         self.elapsed_time = 0.0 # Game world time (scaled)
         self.real_time_elapsed = 0.0 # Real application time
@@ -32,12 +33,14 @@ class TimeManager:
 
     def update(self):
         current_time = time.time()
-        raw_dt = current_time - self.last_time
+        
+        if self.use_fixed_dt:
+            raw_dt = self.target_dt
+        else:
+            raw_dt = current_time - self.last_time
+            raw_dt = min(raw_dt, 0.1)
+        
         self.last_time = current_time
-        
-        # Cap dt to avoid spiral of death if lag occurs (e.g. max 0.1s)
-        raw_dt = min(raw_dt, 0.1)
-        
         self.real_time_elapsed += raw_dt
         
         if not self.is_paused:
@@ -67,14 +70,17 @@ class TimeManager:
             self.frame_count = 0
             self.last_fps_time = current_time
 
-    def set_time_scale(self, scale: float):
-        self.time_scale = max(0.0, scale)
-        print(f"Time scale set to: {self.time_scale}x")
+    def set_time_scale(self, scale: float) -> None:
+        self.time_scale = max(0.0, min(scale, 10.0))
+        # Use lazy import to avoid circular dependency
+        from src.utils.logger import Logger, LogCategory
+        Logger.log(LogCategory.SYSTEM, f"Time scale set to: {self.time_scale}x")
 
-    def toggle_pause(self):
+    def toggle_pause(self) -> None:
         self.is_paused = not self.is_paused
+        from src.utils.logger import Logger, LogCategory
         state = "PAUSED" if self.is_paused else "RESUMED"
-        print(f"Game {state}")
+        Logger.log(LogCategory.SYSTEM, f"Game {state}")
 
     def get_delta_time(self) -> float:
         return self.delta_time

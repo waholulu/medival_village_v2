@@ -1,0 +1,947 @@
+=== VILLAGE DETAIL LOG ===
+Start: 2026-02-16 10:13:08 | Season: spring | Villagers: 3
+Config: day_length=24s, hunger_per_hour=4.0, tiredness_work=6.0
+
+
+════ Day 0, 06:00 (spring) (Tick 0) SNAPSHOT ════
+[V0] Pos:(38,30) | Hunger:30.00 Tired:15.00 Mood:65.00 Cold:10.00
+     Action:idle | Job:None | Routine:WORKING | Sleep:No
+     Inv: {}
+     Skills: logging:0.60, farming:0.20
+[V1] Pos:(42,30) | Hunger:35.00 Tired:18.00 Mood:70.00 Cold:12.00
+     Action:idle | Job:None | Routine:WORKING | Sleep:No
+     Inv: {}
+     Skills: logging:0.20, farming:0.60
+[V2] Pos:(40,28) | Hunger:40.00 Tired:21.00 Mood:75.00 Cold:14.00
+     Action:idle | Job:None | Routine:WORKING | Sleep:No
+     Inv: {}
+     Skills: logging:0.10, farming:0.10, trapping:0.10, fishing:0.10
+
+[D0 06:00] V1 | AI: Routine meal time, hunger=35.0
+[D0 06:00] V1 | AI: Food search -> found food_wheat on stockpile at (41,31), dist=2
+[D0 06:00] V2 | AI: Routine meal time, hunger=40.0
+[D0 06:00] V2 | AI: Food search -> found food_wheat on stockpile at (40,31), dist=3
+[D0 06:00] V0 | AI: Food search -> found food_wheat on stockpile at (39,31), dist=2
+[D0 06:00] V0 | Action: idle -> move
+[D0 06:00] V0 | Routine: WORKING -> EATING
+[D0 06:00] V1 | Action: idle -> move
+[D0 06:00] V1 | Routine: WORKING -> EATING
+[D0 06:00] V2 | Action: idle -> move
+[D0 06:00] V2 | Routine: WORKING -> EATING
+[D0 06:21] V0 | AI: Routine meal time, hunger=31.0
+[D0 06:21] V0 | Ate food_wheat (value=30)
+[D0 06:21] V0 | Hunger: 31.0 -> 1.0 | Mood: 65.2 -> 80.2
+[D0 06:21] V1 | Ate food_wheat (value=30)
+[D0 06:21] V1 | Hunger: 36.0 -> 6.0 | Mood: 70.2 -> 85.2
+[D0 06:21] V0 | Hunger crossed threshold -> low(<30) (1.0)
+[D0 06:21] V0 | Mood crossed threshold -> good(>70) (80.2)
+[D0 06:21] V1 | Hunger crossed threshold -> low(<30) (6.0)
+[D0 06:22] V0 | AI: Assigned job #b6d04857-260a-4544-8e88-16b86e462fc2: haul at (40, 32), skills: {logging:0.60, farming:0.20}
+[D0 06:22] V1 | AI: Assigned job #0c5538f3-7933-4f6a-abc8-32a274697118: plant at (41, 40), skills: {logging:0.20, farming:0.60}
+[D0 06:22] V0 | Job assigned: haul (id: b6d04857-260a-4544-8e88-16b86e462fc2)
+[D0 06:22] V1 | Job assigned: plant (id: 0c5538f3-7933-4f6a-abc8-32a274697118)
+[D0 06:31] V2 | Ate food_wheat (value=30)
+[D0 06:31] V2 | Hunger: 41.5 -> 11.5 | Mood: 75.3 -> 90.3
+[D0 06:31] V2 | Hunger crossed threshold -> low(<30) (11.5)
+[D0 06:32] V2 | AI: Assigned job #a09287f0-45ea-45f9-8b6a-aa877ddb5a8b: plant at (42, 39), skills: {logging:0.10, farming:0.10, trapping:0.10, fishing:0.10}
+[D0 06:32] V2 | Job assigned: plant (id: a09287f0-45ea-45f9-8b6a-aa877ddb5a8b)
+[D0 06:33] V0 | Inventory: +3 food_wheat (now: {'food_wheat': 3})
+[D0 06:54] V0 | Job ended: haul
+[D0 06:55] V0 | AI: Assigned job #a3085201-9d5f-4532-96ce-7187b0b32fe8: chop at (18, 17), skills: {logging:0.60, farming:0.20}
+[D0 06:55] V0 | Job assigned: chop (id: a3085201-9d5f-4532-96ce-7187b0b32fe8)
+
+════ Day 0, 07:00 (spring) (Tick 61) SNAPSHOT ════
+[V0] Pos:(40,31) | Hunger:2.96 Tired:17.50 Mood:80.50 Cold:9.91
+     Action:move | Job:chop(id:a3085201-9d5f-4532-96ce-7187b0b32fe8) | Routine:EATING | Sleep:No
+     Inv: {}
+     Skills: logging:0.60, farming:0.20
+[V1] Pos:(41,34) | Hunger:7.86 Tired:20.74 Mood:85.50 Cold:11.91
+     Action:move | Job:plant(id:0c5538f3-7933-4f6a-abc8-32a274697118) | Routine:EATING | Sleep:No
+     Inv: {}
+     Skills: logging:0.20, farming:0.60
+[V2] Pos:(40,33) | Hunger:12.86 Tired:23.74 Mood:90.50 Cold:13.91
+     Action:move | Job:plant(id:a09287f0-45ea-45f9-8b6a-aa877ddb5a8b) | Routine:EATING | Sleep:No
+     Inv: {}
+     Skills: logging:0.10, farming:0.10, trapping:0.10, fishing:0.10
+
+[D0 07:53] V1 | Inventory: +3 seed_wheat (now: {'seed_wheat': 3})
+
+════ Day 0, 08:00 (spring) (Tick 121) SNAPSHOT ════
+[V0] Pos:(34,31) | Hunger:5.76 Tired:20.38 Mood:81.00 Cold:9.82
+     Action:move | Job:chop(id:a3085201-9d5f-4532-96ce-7187b0b32fe8) | Routine:WORKING | Sleep:No
+     Inv: {}
+     Skills: logging:0.60, farming:0.20
+[V1] Pos:(39,38) | Hunger:10.68 Tired:23.57 Mood:86.00 Cold:11.82
+     Action:move | Job:plant(id:0c5538f3-7933-4f6a-abc8-32a274697118) | Routine:WORKING | Sleep:No
+     Inv: {'seed_wheat': 3}
+     Skills: logging:0.20, farming:0.60
+[V2] Pos:(39,38) | Hunger:15.68 Tired:26.57 Mood:91.00 Cold:13.82
+     Action:move | Job:plant(id:a09287f0-45ea-45f9-8b6a-aa877ddb5a8b) | Routine:WORKING | Sleep:No
+     Inv: {}
+     Skills: logging:0.10, farming:0.10, trapping:0.10, fishing:0.10
+
+[D0 08:00] V0 | Routine: EATING -> WORKING
+[D0 08:00] V1 | Routine: EATING -> WORKING
+[D0 08:00] V2 | Routine: EATING -> WORKING
+[D0 08:04] V2 | Inventory: +3 seed_wheat (now: {'seed_wheat': 3})
+[D0 08:25] V1 | Job ended: plant
+[D0 08:25] V1 | Inventory: -1 seed_wheat (now: {'seed_wheat': 2})
+[D0 08:26] V1 | Job assigned: plant (id: 2f1c6a8a-cee9-4409-b69e-155c0edb6f4d)
+[D0 08:26] V2 | Job ended: plant
+
+════ Day 0, 09:00 (spring) (Tick 180) SNAPSHOT ════
+[V0] Pos:(30,29) | Hunger:10.68 Tired:23.21 Mood:81.49 Cold:9.73
+     Action:move | Job:chop(id:a3085201-9d5f-4532-96ce-7187b0b32fe8) | Routine:WORKING | Sleep:No
+     Inv: {}
+     Skills: logging:0.60, farming:0.20
+[V1] Pos:(43,40) | Hunger:15.60 Tired:26.90 Mood:86.49 Cold:11.73
+     Action:move | Job:plant(id:f68718c5-64ba-450d-a9b5-d340bc17ba2a) | Routine:WORKING | Sleep:No
+     Inv: {'seed_wheat': 1}
+     Skills: logging:0.20, farming:0.60
+[V2] Pos:(42,41) | Hunger:20.60 Tired:29.76 Mood:91.49 Cold:13.73
+     Action:move | Job:plant(id:39863b2c-77bf-4440-8ed3-985f7ff27f50) | Routine:WORKING | Sleep:No
+     Inv: {'seed_wheat': 2}
+     Skills: logging:0.10, farming:0.10, trapping:0.10, fishing:0.10
+
+[D0 09:18] V2 | Inventory: -1 seed_wheat (now: {'seed_wheat': 1})
+[D0 09:19] V1 | Inventory: -1 seed_wheat (now: {})
+[D0 09:19] V2 | Job assigned: plant (id: 380cd6da-2975-4547-b220-d980da41a21a)
+[D0 09:50] V2 | Inventory: -1 seed_wheat (now: {})
+
+════ Day 0, 10:00 (spring) (Tick 240) SNAPSHOT ════
+[V0] Pos:(27,26) | Hunger:15.68 Tired:26.09 Mood:81.99 Cold:9.64
+     Action:move | Job:chop(id:a3085201-9d5f-4532-96ce-7187b0b32fe8) | Routine:WORKING | Sleep:No
+     Inv: {}
+     Skills: logging:0.60, farming:0.20
+[V1] Pos:(40,43) | Hunger:20.60 Tired:30.00 Mood:86.99 Cold:11.64
+     Action:move | Job:plant(id:8db493b0-014b-4f1b-b364-85b926f2ab85) | Routine:WORKING | Sleep:No
+     Inv: {}
+     Skills: logging:0.20, farming:0.60
+[V2] Pos:(41,41) | Hunger:25.60 Tired:33.00 Mood:91.99 Cold:13.64
+     Action:move | Job:plant(id:cd4df205-849e-446b-9715-ca892fb71b14) | Routine:WORKING | Sleep:No
+     Inv: {}
+     Skills: logging:0.10, farming:0.10, trapping:0.10, fishing:0.10
+
+[D0 10:42] V2 | Inventory: +3 seed_wheat (now: {'seed_wheat': 3})
+[D0 10:43] V1 | AI: Assigned job #9b38352d-e827-4e47-a98a-9360e2280a74: harvest at (38, 41), skills: {logging:0.20, farming:0.60}
+[D0 10:43] V1 | Job assigned: harvest (id: 9b38352d-e827-4e47-a98a-9360e2280a74)
+[D0 10:44] V1 | Harvested wheat -> food_wheat x2, 2 seeds
+[D0 10:53] V2 | Hunger crossed threshold -> moderate(30-50) (30.0)
+
+════ Day 0, 11:00 (spring) (Tick 300) SNAPSHOT ════
+[V0] Pos:(24,23) | Hunger:20.68 Tired:28.97 Mood:82.49 Cold:9.55
+     Action:move | Job:chop(id:a3085201-9d5f-4532-96ce-7187b0b32fe8) | Routine:WORKING | Sleep:No
+     Inv: {}
+     Skills: logging:0.60, farming:0.20
+[V1] Pos:(38,40) | Hunger:25.60 Tired:33.38 Mood:87.49 Cold:11.55
+     Action:move | Job:harvest(id:c1f25026-d8d2-4939-b49e-aaee546ec441) | Routine:WORKING | Sleep:No
+     Inv: {}
+     Skills: logging:0.20, farming:0.60
+[V2] Pos:(37,39) | Hunger:30.60 Tired:36.10 Mood:92.49 Cold:13.55
+     Action:move | Job:plant(id:cd4df205-849e-446b-9715-ca892fb71b14) | Routine:WORKING | Sleep:No
+     Inv: {'seed_wheat': 3}
+     Skills: logging:0.10, farming:0.10, trapping:0.10, fishing:0.10
+
+[D0 11:17] V1 | Action: move -> idle
+[D0 11:33] V2 | Action: move -> idle
+[D0 11:34] V2 | AI: Assigned job #62fcd1c3-f752-48aa-8638-e32c1e5c90ae: haul at (39, 41), skills: {logging:0.10, farming:0.10, trapping:0.10, fishing:0.10}
+[D0 11:34] V2 | Job assigned: haul (id: 62fcd1c3-f752-48aa-8638-e32c1e5c90ae)
+[D0 11:53] V1 | Hunger crossed threshold -> moderate(30-50) (30.0)
+[D0 11:59] V1 | AI: Assigned job #9a549eab-1b35-451c-ab77-bc02c76eef16: haul at (38, 41), skills: {logging:0.20, farming:0.60}
+[D0 11:59] V1 | Job assigned: haul (id: 9a549eab-1b35-451c-ab77-bc02c76eef16)
+[D0 12:00] V1 | AI: Routine meal time, hunger=30.6
+[D0 12:00] V1 | AI: Food search -> found food_wheat on ground at (39,41), dist=0
+[D0 12:00] V2 | AI: Routine meal time, hunger=35.6
+[D0 12:00] V2 | AI: Food search -> found food_wheat on ground at (40,41), dist=3
+[D0 12:00] V1 | Ate food_wheat (value=30)
+[D0 12:00] V1 | Hunger: 30.6 -> 0.6 | Mood: 88.0 -> 100.0
+
+════ Day 0, 12:00 (spring) (Tick 360) SNAPSHOT ════
+[V0] Pos:(21,20) | Hunger:25.68 Tired:31.85 Mood:82.99 Cold:9.46
+     Action:move | Job:chop(id:a3085201-9d5f-4532-96ce-7187b0b32fe8) | Routine:EATING | Sleep:No
+     Inv: {}
+     Skills: logging:0.60, farming:0.20
+[V1] Pos:(39,41) | Hunger:0.60 Tired:36.48 Mood:100.00 Cold:11.46
+     Action:idle | Job:None | Routine:EATING | Sleep:No
+     Inv: {}
+     Skills: logging:0.20, farming:0.60
+[V2] Pos:(41,39) | Hunger:35.60 Tired:39.19 Mood:92.99 Cold:13.46
+     Action:move | Job:None | Routine:EATING | Sleep:No
+     Inv: {'seed_wheat': 3}
+     Skills: logging:0.10, farming:0.10, trapping:0.10, fishing:0.10
+
+[D0 12:00] V0 | Routine: WORKING -> EATING
+[D0 12:00] V1 | Routine: WORKING -> EATING
+[D0 12:00] V1 | Hunger crossed threshold -> low(<30) (0.6)
+[D0 12:00] V2 | Routine: WORKING -> EATING
+[D0 12:02] V1 | Inventory: +1 food_wheat (now: {'food_wheat': 1})
+[D0 12:25] V2 | Ate food_wheat (value=30)
+[D0 12:25] V2 | Hunger: 36.8 -> 6.8 | Mood: 93.2 -> 100.0
+[D0 12:25] V2 | Hunger crossed threshold -> low(<30) (6.8)
+[D0 12:27] V2 | Inventory: +2 food_wheat (now: {'seed_wheat': 3, 'food_wheat': 2})
+[D0 12:46] V0 | Action: move -> idle
+[D0 12:47] V0 | Action: idle -> chop
+
+════ Day 0, 13:00 (spring) (Tick 420) SNAPSHOT ════
+[V0] Pos:(19,17) | Hunger:28.97 Tired:35.62 Mood:83.49 Cold:9.37
+     Action:chop | Job:chop(id:a3085201-9d5f-4532-96ce-7187b0b32fe8) | Routine:EATING | Sleep:No
+     Inv: {}
+     Skills: logging:0.60, farming:0.20
+[V1] Pos:(39,36) | Hunger:3.46 Tired:39.22 Mood:100.00 Cold:11.37
+     Action:move | Job:haul(id:62fcd1c3-f752-48aa-8638-e32c1e5c90ae) | Routine:EATING | Sleep:No
+     Inv: {'food_wheat': 1}
+     Skills: logging:0.20, farming:0.60
+[V2] Pos:(40,38) | Hunger:8.48 Tired:41.88 Mood:100.00 Cold:13.37
+     Action:move | Job:haul(id:5efa8957-71b6-4dee-b6e3-af476a5b80dc) | Routine:EATING | Sleep:No
+     Inv: {'seed_wheat': 3, 'food_wheat': 2}
+     Skills: logging:0.10, farming:0.10, trapping:0.10, fishing:0.10
+
+[D0 13:05] V0 | Tree chopped (entity#12) -> dropped 1 log at (18,17)
+[D0 13:05] V0 | Skill: logging 0.60 -> 0.61
+[D0 13:05] V0 | Action: chop -> idle
+[D0 13:06] V0 | Job completed: chop (tree destroyed)
+[D0 13:06] V0 | Auto-pickup: 1 log
+[D0 13:06] V0 | Job ended: chop
+[D0 13:06] V0 | Inventory: +1 log (now: {'log': 1})
+[D0 13:18] V0 | AI: Routine meal time, hunger=30.0
+[D0 13:18] V0 | AI: Food search -> found food_wheat on stockpile at (39,31), dist=33
+[D0 13:18] V0 | Hunger crossed threshold -> moderate(30-50) (30.0)
+[D0 13:43] V1 | Job ended: haul
+[D0 13:43] V1 | Inventory: -1 food_wheat (now: {})
+
+════ Day 0, 14:00 (spring) (Tick 480) SNAPSHOT ════
+[V0] Pos:(24,17) | Hunger:31.98 Tired:38.81 Mood:83.99 Cold:9.28
+     Action:move | Job:None | Routine:WORKING | Sleep:No
+     Inv: {'log': 1}
+     Skills: logging:0.61, farming:0.20
+[V1] Pos:(39,32) | Hunger:6.32 Tired:41.95 Mood:100.00 Cold:11.28
+     Action:move | Job:haul(id:9a549eab-1b35-451c-ab77-bc02c76eef16) | Routine:WORKING | Sleep:No
+     Inv: {}
+     Skills: logging:0.20, farming:0.60
+[V2] Pos:(40,32) | Hunger:11.28 Tired:44.76 Mood:100.00 Cold:13.28
+     Action:move | Job:haul(id:5efa8957-71b6-4dee-b6e3-af476a5b80dc) | Routine:WORKING | Sleep:No
+     Inv: {'seed_wheat': 3, 'food_wheat': 2}
+     Skills: logging:0.10, farming:0.10, trapping:0.10, fishing:0.10
+
+[D0 14:00] V0 | Routine: EATING -> WORKING
+[D0 14:00] V1 | Routine: EATING -> WORKING
+[D0 14:00] V2 | Routine: EATING -> WORKING
+[D0 14:08] V2 | Job ended: haul
+[D0 14:08] V2 | Inventory: -3 seed_wheat (now: {'food_wheat': 2})
+[D0 14:09] V2 | Job assigned: haul (id: 69b0f3f2-a4cf-4495-8f86-41b2f57e3a62)
+[D0 14:11] V2 | AI: Assigned job #7710def9-644a-4ae4-9a7b-19d7ece3a920: plant at (41, 40), skills: {logging:0.10, farming:0.10, trapping:0.10, fishing:0.10}
+[D0 14:11] V2 | Job assigned: plant (id: 7710def9-644a-4ae4-9a7b-19d7ece3a920)
+
+════ Day 0, 15:00 (spring) (Tick 540) SNAPSHOT ════
+[V0] Pos:(27,20) | Hunger:36.98 Tired:41.69 Mood:84.49 Cold:9.19
+     Action:move | Job:None | Routine:WORKING | Sleep:No
+     Inv: {'log': 1}
+     Skills: logging:0.61, farming:0.20
+[V1] Pos:(39,38) | Hunger:11.32 Tired:44.83 Mood:100.00 Cold:11.19
+     Action:move | Job:haul(id:9a549eab-1b35-451c-ab77-bc02c76eef16) | Routine:WORKING | Sleep:No
+     Inv: {}
+     Skills: logging:0.20, farming:0.60
+[V2] Pos:(40,35) | Hunger:16.28 Tired:48.07 Mood:100.00 Cold:13.19
+     Action:move | Job:plant(id:7710def9-644a-4ae4-9a7b-19d7ece3a920) | Routine:WORKING | Sleep:No
+     Inv: {'seed_wheat': 3}
+     Skills: logging:0.10, farming:0.10, trapping:0.10, fishing:0.10
+
+[D0 15:25] V1 | Inventory: +4 food_wheat (now: {'food_wheat': 4})
+[D0 15:41] V2 | Tiredness crossed threshold -> moderate(50-90) (50.0)
+
+════ Day 0, 16:00 (spring) (Tick 600) SNAPSHOT ════
+[V0] Pos:(30,23) | Hunger:41.98 Tired:44.57 Mood:84.99 Cold:9.10
+     Action:move | Job:None | Routine:WORKING | Sleep:No
+     Inv: {'log': 1}
+     Skills: logging:0.61, farming:0.20
+[V1] Pos:(38,39) | Hunger:16.32 Tired:47.86 Mood:100.00 Cold:11.10
+     Action:move | Job:haul(id:9a549eab-1b35-451c-ab77-bc02c76eef16) | Routine:WORKING | Sleep:No
+     Inv: {'food_wheat': 4}
+     Skills: logging:0.20, farming:0.60
+[V2] Pos:(41,40) | Hunger:21.28 Tired:51.17 Mood:100.00 Cold:13.10
+     Action:move | Job:haul(id:4c7037fa-a830-4f92-8926-58b3afb859e9) | Routine:WORKING | Sleep:No
+     Inv: {'seed_wheat': 3}
+     Skills: logging:0.10, farming:0.10, trapping:0.10, fishing:0.10
+
+[D0 16:35] V2 | Action: move -> idle
+[D0 16:35] V2 | Inventory: +3 food_wheat (now: {'seed_wheat': 3, 'food_wheat': 3})
+[D0 16:45] V1 | Tiredness crossed threshold -> moderate(50-90) (50.0)
+
+════ Day 0, 17:00 (spring) (Tick 660) SNAPSHOT ════
+[V0] Pos:(33,26) | Hunger:46.98 Tired:47.45 Mood:85.49 Cold:9.01
+     Action:move | Job:None | Routine:WORKING | Sleep:No
+     Inv: {'log': 1}
+     Skills: logging:0.61, farming:0.20
+[V1] Pos:(38,33) | Hunger:21.32 Tired:50.74 Mood:100.00 Cold:11.01
+     Action:move | Job:haul(id:9a549eab-1b35-451c-ab77-bc02c76eef16) | Routine:WORKING | Sleep:No
+     Inv: {'food_wheat': 4}
+     Skills: logging:0.20, farming:0.60
+[V2] Pos:(37,40) | Hunger:26.28 Tired:54.19 Mood:100.00 Cold:13.01
+     Action:move | Job:haul(id:4c7037fa-a830-4f92-8926-58b3afb859e9) | Routine:WORKING | Sleep:No
+     Inv: {'seed_wheat': 3, 'food_wheat': 3}
+     Skills: logging:0.10, farming:0.10, trapping:0.10, fishing:0.10
+
+[D0 17:15] V1 | Action: move -> idle
+[D0 17:16] V1 | Inventory: -4 food_wheat (now: {})
+[D0 17:17] V1 | AI: Assigned job #9fee5e1c-33e4-49ad-8faf-2e677c6ec62e: plant at (42, 39), skills: {logging:0.20, farming:0.60}
+[D0 17:17] V1 | Job assigned: plant (id: 9fee5e1c-33e4-49ad-8faf-2e677c6ec62e)
+[D0 17:37] V0 | Hunger crossed threshold -> HIGH(50-80) (50.1)
+[D0 17:45] V2 | Hunger crossed threshold -> moderate(30-50) (30.0)
+[D0 17:54] V0 | Tiredness crossed threshold -> moderate(50-90) (50.0)
+[D0 18:00] V2 | AI: Routine meal time, hunger=31.3
+[D0 18:00] V2 | AI: Food search -> found food_wheat x3 in inventory
+[D0 18:00] V2 | Ate food_wheat (value=30)
+[D0 18:00] V2 | Hunger: 31.3 -> 1.3 | Mood: 100.0 -> 100.0
+
+════ Day 0, 18:00 (spring) (Tick 720) SNAPSHOT ════
+[V0] Pos:(36,29) | Hunger:51.98 Tired:50.33 Mood:85.99 Cold:8.92
+     Action:move | Job:None | Routine:EATING | Sleep:No
+     Inv: {'log': 1}
+     Skills: logging:0.61, farming:0.20
+[V1] Pos:(38,35) | Hunger:26.32 Tired:53.83 Mood:100.00 Cold:10.92
+     Action:move | Job:plant(id:9fee5e1c-33e4-49ad-8faf-2e677c6ec62e) | Routine:EATING | Sleep:No
+     Inv: {}
+     Skills: logging:0.20, farming:0.60
+[V2] Pos:(37,34) | Hunger:1.28 Tired:57.07 Mood:100.00 Cold:12.92
+     Action:idle | Job:None | Routine:EATING | Sleep:No
+     Inv: {'seed_wheat': 3, 'food_wheat': 2}
+     Skills: logging:0.10, farming:0.10, trapping:0.10, fishing:0.10
+
+[D0 18:00] V0 | Routine: WORKING -> EATING
+[D0 18:00] V1 | Routine: WORKING -> EATING
+[D0 18:00] V2 | Routine: WORKING -> EATING
+[D0 18:00] V2 | Hunger crossed threshold -> low(<30) (1.3)
+[D0 18:00] V2 | Inventory: -1 food_wheat (now: {'seed_wheat': 3, 'food_wheat': 2})
+[D0 18:01] V2 | AI: Assigned job #4c7037fa-a830-4f92-8926-58b3afb859e9: haul at (37, 41), skills: {logging:0.10, farming:0.10, trapping:0.10, fishing:0.10}
+[D0 18:01] V2 | Job assigned: haul (id: 4c7037fa-a830-4f92-8926-58b3afb859e9)
+[D0 18:38] V2 | Inventory: -3 seed_wheat (now: {'food_wheat': 2})
+[D0 18:39] V2 | Job assigned: plant (id: 57f60d28-ed67-482d-8355-3698710e5644)
+[D0 18:45] V0 | Action: move -> idle
+[D0 18:46] V0 | AI: Urgent hunger=54.1, interrupting idle
+[D0 18:46] V0 | AI: Food search -> found food_wheat on stockpile at (39,31), dist=0
+[D0 18:46] V0 | Ate food_wheat (value=30)
+[D0 18:46] V0 | Hunger: 54.1 -> 24.1 | Mood: 86.4 -> 100.0
+[D0 18:46] V0 | Hunger crossed threshold -> low(<30) (24.1)
+[D0 18:48] V0 | Deposited 1 log at stockpile
+[D0 18:48] V0 | Inventory: -1 log (now: {})
+[D0 18:48] V1 | Inventory: +2 seed_wheat (now: {'seed_wheat': 2})
+[D0 18:49] V0 | AI: Assigned job #6e78a932-44cd-48cb-b586-b1bdd6db66c9: chop at (15, 17), skills: {logging:0.61, farming:0.20}
+[D0 18:49] V0 | Job assigned: chop (id: 6e78a932-44cd-48cb-b586-b1bdd6db66c9)
+
+════ Day 0, 19:00 (spring) (Tick 780) SNAPSHOT ════
+[V0] Pos:(38,31) | Hunger:0.67 Tired:52.97 Mood:100.00 Cold:8.83
+     Action:move | Job:chop(id:6e78a932-44cd-48cb-b586-b1bdd6db66c9) | Routine:SOCIALIZING | Sleep:No
+     Inv: {}
+     Skills: logging:0.61, farming:0.20
+[V1] Pos:(38,41) | Hunger:29.16 Tired:56.62 Mood:100.00 Cold:10.83
+     Action:move | Job:plant(id:9fee5e1c-33e4-49ad-8faf-2e677c6ec62e) | Routine:SOCIALIZING | Sleep:No
+     Inv: {'seed_wheat': 2}
+     Skills: logging:0.20, farming:0.60
+[V2] Pos:(38,33) | Hunger:4.20 Tired:59.66 Mood:100.00 Cold:12.83
+     Action:move | Job:plant(id:57f60d28-ed67-482d-8355-3698710e5644) | Routine:SOCIALIZING | Sleep:No
+     Inv: {'food_wheat': 2, 'seed_wheat': 3}
+     Skills: logging:0.10, farming:0.10, trapping:0.10, fishing:0.10
+
+[D0 19:00] V0 | Routine: EATING -> SOCIALIZING
+[D0 19:00] V1 | Routine: EATING -> SOCIALIZING
+[D0 19:00] V2 | Routine: EATING -> SOCIALIZING
+[D0 19:19] V1 | Hunger crossed threshold -> moderate(30-50) (30.0)
+[D0 19:49] V1 | Job ended: plant
+[D0 19:50] V1 | Deposited 2 seed_wheat (off-duty)
+[D0 19:50] V1 | Inventory: -2 seed_wheat (now: {})
+
+════ Day 0, 20:00 (spring) (Tick 840) SNAPSHOT ════
+[V0] Pos:(32,31) | Hunger:3.47 Tired:55.87 Mood:100.00 Cold:8.75
+     Action:move | Job:chop(id:6e78a932-44cd-48cb-b586-b1bdd6db66c9) | Routine:SOCIALIZING | Sleep:No
+     Inv: {}
+     Skills: logging:0.61, farming:0.20
+[V1] Pos:(41,39) | Hunger:32.18 Tired:58.97 Mood:100.00 Cold:10.75
+     Action:idle | Job:None | Routine:SOCIALIZING | Sleep:No
+     Inv: {}
+     Skills: logging:0.20, farming:0.60
+[V2] Pos:(39,38) | Hunger:7.00 Tired:62.57 Mood:100.00 Cold:12.75
+     Action:move | Job:plant(id:57f60d28-ed67-482d-8355-3698710e5644) | Routine:SOCIALIZING | Sleep:No
+     Inv: {'food_wheat': 2, 'seed_wheat': 3}
+     Skills: logging:0.10, farming:0.10, trapping:0.10, fishing:0.10
+
+[D0 20:31] V2 | Job ended: plant
+[D0 20:32] V2 | Deposited 2 food_wheat (off-duty)
+[D0 20:32] V2 | Deposited 3 seed_wheat (off-duty)
+[D0 20:32] V2 | Inventory: -2 food_wheat, -3 seed_wheat (now: {})
+
+════ Day 0, 21:00 (spring) (Tick 900) SNAPSHOT ════
+[V0] Pos:(28,29) | Hunger:6.27 Tired:60.19 Mood:100.00 Cold:9.11
+     Action:move | Job:chop(id:6e78a932-44cd-48cb-b586-b1bdd6db66c9) | Routine:SOCIALIZING | Sleep:No
+     Inv: {}
+     Skills: logging:0.61, farming:0.20
+[V1] Pos:(41,39) | Hunger:36.18 Tired:58.97 Mood:100.00 Cold:11.11
+     Action:idle | Job:None | Routine:SOCIALIZING | Sleep:No
+     Inv: {}
+     Skills: logging:0.20, farming:0.60
+[V2] Pos:(40,40) | Hunger:10.38 Tired:64.80 Mood:100.00 Cold:13.11
+     Action:idle | Job:None | Routine:SOCIALIZING | Sleep:No
+     Inv: {}
+     Skills: logging:0.10, farming:0.10, trapping:0.10, fishing:0.10
+
+[D0 22:00] V0 | AI: Released job for sleep time
+
+════ Day 0, 22:00 (spring) (Tick 960) SNAPSHOT ════
+[V0] Pos:(25,26) | Hunger:9.07 Tired:64.51 Mood:100.00 Cold:9.47
+     Action:move | Job:None | Routine:SLEEPING | Sleep:No
+     Inv: {}
+     Skills: logging:0.61, farming:0.20
+[V1] Pos:(41,39) | Hunger:40.18 Tired:58.97 Mood:100.00 Cold:11.47
+     Action:move | Job:None | Routine:SLEEPING | Sleep:No
+     Inv: {}
+     Skills: logging:0.20, farming:0.60
+[V2] Pos:(40,40) | Hunger:14.38 Tired:64.80 Mood:100.00 Cold:13.47
+     Action:move | Job:None | Routine:SLEEPING | Sleep:No
+     Inv: {}
+     Skills: logging:0.10, farming:0.10, trapping:0.10, fishing:0.10
+
+[D0 22:00] V0 | Routine: SOCIALIZING -> SLEEPING
+[D0 22:00] V0 | Job ended: chop
+[D0 22:00] V1 | Routine: SOCIALIZING -> SLEEPING
+[D0 22:00] V2 | Action: idle -> move
+[D0 22:00] V2 | Routine: SOCIALIZING -> SLEEPING
+
+════ Day 0, 23:00 (spring) (Tick 1021) SNAPSHOT ════
+[V0] Pos:(31,26) | Hunger:11.91 Tired:68.90 Mood:100.00 Cold:9.83
+     Action:move | Job:None | Routine:SLEEPING | Sleep:No
+     Inv: {}
+     Skills: logging:0.61, farming:0.20
+[V1] Pos:(42,34) | Hunger:43.02 Tired:63.15 Mood:100.00 Cold:11.83
+     Action:move | Job:None | Routine:SLEEPING | Sleep:No
+     Inv: {}
+     Skills: logging:0.20, farming:0.60
+[V2] Pos:(41,35) | Hunger:17.22 Tired:68.98 Mood:100.00 Cold:13.83
+     Action:move | Job:None | Routine:SLEEPING | Sleep:No
+     Inv: {}
+     Skills: logging:0.10, farming:0.10, trapping:0.10, fishing:0.10
+
+
+════ Day 1, 00:00 (spring) (Tick 1081) SNAPSHOT ════
+[V0] Pos:(37,26) | Hunger:14.71 Tired:73.22 Mood:100.00 Cold:10.20
+     Action:move | Job:None | Routine:SLEEPING | Sleep:No
+     Inv: {}
+     Skills: logging:0.61, farming:0.20
+[V1] Pos:(42,28) | Hunger:45.82 Tired:67.47 Mood:100.00 Cold:12.20
+     Action:move | Job:None | Routine:SLEEPING | Sleep:No
+     Inv: {}
+     Skills: logging:0.20, farming:0.60
+[V2] Pos:(41,29) | Hunger:20.02 Tired:73.30 Mood:100.00 Cold:14.20
+     Action:move | Job:None | Routine:SLEEPING | Sleep:No
+     Inv: {}
+     Skills: logging:0.10, farming:0.10, trapping:0.10, fishing:0.10
+
+[D1 00:08] V0 | Action: move -> idle
+[D1 00:09] V0 | Action: idle -> sleep
+[D1 00:09] V0 | fell asleep
+[D1 00:18] V1 | Action: move -> idle
+[D1 00:19] V1 | Action: idle -> sleep
+[D1 00:19] V1 | fell asleep
+[D1 00:29] V2 | Action: idle -> sleep
+[D1 00:29] V2 | fell asleep
+
+════ Day 1, 01:00 (spring) (Tick 1141) SNAPSHOT ════
+[V0] Pos:(38,26) | Hunger:17.51 Tired:59.64 Mood:100.00 Cold:10.56
+     Action:sleep | Job:None | Routine:SLEEPING | Sleep:Yes
+     Inv: {}
+     Skills: logging:0.61, farming:0.20
+[V1] Pos:(42,26) | Hunger:48.62 Tired:57.35 Mood:100.00 Cold:12.56
+     Action:sleep | Job:None | Routine:SLEEPING | Sleep:Yes
+     Inv: {}
+     Skills: logging:0.20, farming:0.60
+[V2] Pos:(41,26) | Hunger:22.82 Tired:66.66 Mood:100.00 Cold:14.56
+     Action:sleep | Job:None | Routine:SLEEPING | Sleep:Yes
+     Inv: {}
+     Skills: logging:0.10, farming:0.10, trapping:0.10, fishing:0.10
+
+[D1 01:27] V1 | Tiredness crossed threshold -> low(<50) (49.9)
+[D1 01:30] V1 | Hunger crossed threshold -> HIGH(50-80) (50.0)
+[D1 01:36] V0 | Tiredness crossed threshold -> low(<50) (49.7)
+
+════ Day 1, 02:00 (spring) (Tick 1201) SNAPSHOT ════
+[V0] Pos:(38,26) | Hunger:20.31 Tired:43.14 Mood:100.00 Cold:10.92
+     Action:sleep | Job:None | Routine:SLEEPING | Sleep:Yes
+     Inv: {}
+     Skills: logging:0.61, farming:0.20
+[V1] Pos:(42,26) | Hunger:51.42 Tired:40.85 Mood:100.00 Cold:12.92
+     Action:sleep | Job:None | Routine:SLEEPING | Sleep:Yes
+     Inv: {}
+     Skills: logging:0.20, farming:0.60
+[V2] Pos:(41,26) | Hunger:25.62 Tired:50.16 Mood:100.00 Cold:14.92
+     Action:sleep | Job:None | Routine:SLEEPING | Sleep:Yes
+     Inv: {}
+     Skills: logging:0.10, farming:0.10, trapping:0.10, fishing:0.10
+
+[D1 02:01] V2 | Tiredness crossed threshold -> low(<50) (49.9)
+
+════ Day 1, 03:00 (spring) (Tick 1261) SNAPSHOT ════
+[V0] Pos:(38,26) | Hunger:23.11 Tired:26.64 Mood:100.00 Cold:11.28
+     Action:sleep | Job:None | Routine:SLEEPING | Sleep:Yes
+     Inv: {}
+     Skills: logging:0.61, farming:0.20
+[V1] Pos:(42,26) | Hunger:54.22 Tired:24.35 Mood:100.00 Cold:13.28
+     Action:sleep | Job:None | Routine:SLEEPING | Sleep:Yes
+     Inv: {}
+     Skills: logging:0.20, farming:0.60
+[V2] Pos:(41,26) | Hunger:28.42 Tired:33.66 Mood:100.00 Cold:15.28
+     Action:sleep | Job:None | Routine:SLEEPING | Sleep:Yes
+     Inv: {}
+     Skills: logging:0.10, farming:0.10, trapping:0.10, fishing:0.10
+
+[D1 03:34] V2 | Hunger crossed threshold -> moderate(30-50) (30.0)
+
+════ Day 1, 04:00 (spring) (Tick 1321) SNAPSHOT ════
+[V0] Pos:(38,26) | Hunger:25.91 Tired:10.14 Mood:100.00 Cold:11.64
+     Action:sleep | Job:None | Routine:SLEEPING | Sleep:Yes
+     Inv: {}
+     Skills: logging:0.61, farming:0.20
+[V1] Pos:(42,26) | Hunger:57.02 Tired:7.85 Mood:100.00 Cold:13.64
+     Action:sleep | Job:None | Routine:SLEEPING | Sleep:Yes
+     Inv: {}
+     Skills: logging:0.20, farming:0.60
+[V2] Pos:(41,26) | Hunger:31.22 Tired:17.16 Mood:100.00 Cold:15.64
+     Action:sleep | Job:None | Routine:SLEEPING | Sleep:Yes
+     Inv: {}
+     Skills: logging:0.10, farming:0.10, trapping:0.10, fishing:0.10
+
+[D1 04:11] V1 | Action: sleep -> idle
+[D1 04:11] V1 | woke up
+[D1 04:12] V1 | AI: Urgent hunger=57.6, interrupting idle
+[D1 04:12] V1 | AI: Food search -> found food_wheat on stockpile at (41,31), dist=6
+[D1 04:19] V0 | Action: sleep -> idle
+[D1 04:19] V0 | woke up
+[D1 04:45] V2 | Action: sleep -> idle
+[D1 04:45] V2 | woke up
+
+════ Day 1, 05:00 (spring) (Tick 1381) SNAPSHOT ════
+[V0] Pos:(38,26) | Hunger:28.71 Tired:0.00 Mood:100.00 Cold:12.00
+     Action:idle | Job:None | Routine:SLEEPING | Sleep:No
+     Inv: {}
+     Skills: logging:0.61, farming:0.20
+[V1] Pos:(42,30) | Hunger:59.82 Tired:8.15 Mood:100.00 Cold:14.00
+     Action:move | Job:None | Routine:SLEEPING | Sleep:No
+     Inv: {}
+     Skills: logging:0.20, farming:0.60
+[V2] Pos:(41,26) | Hunger:34.02 Tired:2.72 Mood:100.00 Cold:16.00
+     Action:idle | Job:None | Routine:SLEEPING | Sleep:No
+     Inv: {}
+     Skills: logging:0.10, farming:0.10, trapping:0.10, fishing:0.10
+
+[D1 05:12] V1 | Ate food_wheat (value=30)
+[D1 05:12] V1 | Hunger: 60.4 -> 30.4 | Mood: 100.0 -> 100.0
+[D1 05:12] V1 | Hunger crossed threshold -> moderate(30-50) (30.4)
+[D1 05:28] V0 | Hunger crossed threshold -> moderate(30-50) (30.0)
+[D1 06:00] V0 | AI: Routine meal time, hunger=31.5
+[D1 06:00] V0 | AI: Food search -> found food_wheat on stockpile at (38,31), dist=5
+[D1 06:00] V1 | AI: Routine meal time, hunger=32.6
+[D1 06:00] V2 | AI: Routine meal time, hunger=36.8
+[D1 06:00] V2 | AI: Food search -> found food_wheat on stockpile at (41,31), dist=5
+
+════ Day 1, 06:00 (spring) (Tick 1441) SNAPSHOT ════
+[V0] Pos:(38,26) | Hunger:31.51 Tired:0.00 Mood:100.00 Cold:12.35
+     Action:move | Job:None | Routine:EATING | Sleep:No
+     Inv: {}
+     Skills: logging:0.61, farming:0.20
+[V1] Pos:(41,31) | Hunger:2.62 Tired:2.20 Mood:100.00 Cold:14.35
+     Action:idle | Job:None | Routine:EATING | Sleep:No
+     Inv: {}
+     Skills: logging:0.20, farming:0.60
+[V2] Pos:(41,26) | Hunger:36.82 Tired:0.00 Mood:100.00 Cold:16.35
+     Action:move | Job:None | Routine:EATING | Sleep:No
+     Inv: {}
+     Skills: logging:0.10, farming:0.10, trapping:0.10, fishing:0.10
+
+[D1 06:00] V0 | Action: idle -> move
+[D1 06:00] V0 | Routine: SLEEPING -> EATING
+[D1 06:00] V1 | Routine: SLEEPING -> EATING
+[D1 06:00] V1 | Hunger crossed threshold -> low(<30) (2.6)
+[D1 06:00] V2 | Action: idle -> move
+[D1 06:00] V2 | Routine: SLEEPING -> EATING
+[D1 06:01] V1 | AI: Assigned job #fd8b5ac7-0865-4c51-91f4-7e763871973d: haul at (40, 40), skills: {logging:0.20, farming:0.60}
+[D1 06:01] V1 | Job assigned: haul (id: fd8b5ac7-0865-4c51-91f4-7e763871973d)
+[D1 06:02] V1 | Action: idle -> move
+[D1 06:50] V0 | Ate food_wheat (value=30)
+[D1 06:50] V0 | Hunger: 33.9 -> 3.9 | Mood: 100.0 -> 100.0
+[D1 06:50] V0 | Hunger crossed threshold -> low(<30) (3.9)
+[D1 06:51] V0 | AI: Assigned job #6e78a932-44cd-48cb-b586-b1bdd6db66c9: chop at (15, 17), skills: {logging:0.61, farming:0.20}
+[D1 06:51] V0 | Job assigned: chop (id: 6e78a932-44cd-48cb-b586-b1bdd6db66c9)
+[D1 07:00] V2 | Ate food_wheat (value=30)
+[D1 07:00] V2 | Hunger: 39.6 -> 9.6 | Mood: 100.0 -> 100.0
+
+════ Day 1, 07:00 (spring) (Tick 1501) SNAPSHOT ════
+[V0] Pos:(38,31) | Hunger:4.37 Tired:2.74 Mood:100.00 Cold:12.26
+     Action:move | Job:chop(id:6e78a932-44cd-48cb-b586-b1bdd6db66c9) | Routine:EATING | Sleep:No
+     Inv: {}
+     Skills: logging:0.61, farming:0.20
+[V1] Pos:(41,36) | Hunger:5.46 Tired:4.99 Mood:100.00 Cold:14.26
+     Action:move | Job:haul(id:fd8b5ac7-0865-4c51-91f4-7e763871973d) | Routine:EATING | Sleep:No
+     Inv: {}
+     Skills: logging:0.20, farming:0.60
+[V2] Pos:(40,31) | Hunger:9.64 Tired:2.83 Mood:100.00 Cold:16.26
+     Action:idle | Job:None | Routine:EATING | Sleep:No
+     Inv: {}
+     Skills: logging:0.10, farming:0.10, trapping:0.10, fishing:0.10
+
+[D1 07:00] V2 | Hunger crossed threshold -> low(<30) (9.6)
+[D1 07:01] V2 | AI: Assigned job #feb5ea80-f2e4-4daa-b4d4-6f9f4e66930f: plant at (42, 39), skills: {logging:0.10, farming:0.10, trapping:0.10, fishing:0.10}
+[D1 07:01] V2 | Job assigned: plant (id: feb5ea80-f2e4-4daa-b4d4-6f9f4e66930f)
+[D1 07:32] V1 | Inventory: +2 food_wheat (now: {'food_wheat': 2})
+
+════ Day 1, 08:00 (spring) (Tick 1561) SNAPSHOT ════
+[V0] Pos:(32,31) | Hunger:7.17 Tired:5.62 Mood:100.00 Cold:12.17
+     Action:move | Job:chop(id:6e78a932-44cd-48cb-b586-b1bdd6db66c9) | Routine:WORKING | Sleep:No
+     Inv: {}
+     Skills: logging:0.61, farming:0.20
+[V1] Pos:(40,39) | Hunger:8.30 Tired:7.77 Mood:100.00 Cold:14.17
+     Action:move | Job:haul(id:fd8b5ac7-0865-4c51-91f4-7e763871973d) | Routine:WORKING | Sleep:No
+     Inv: {'food_wheat': 2}
+     Skills: logging:0.20, farming:0.60
+[V2] Pos:(40,36) | Hunger:12.48 Tired:5.62 Mood:100.00 Cold:16.17
+     Action:move | Job:plant(id:feb5ea80-f2e4-4daa-b4d4-6f9f4e66930f) | Routine:WORKING | Sleep:No
+     Inv: {}
+     Skills: logging:0.10, farming:0.10, trapping:0.10, fishing:0.10
+
+[D1 08:00] V0 | Routine: EATING -> WORKING
+[D1 08:00] V1 | Routine: EATING -> WORKING
+[D1 08:00] V2 | Routine: EATING -> WORKING
+[D1 08:22] V2 | Inventory: +2 seed_wheat (now: {'seed_wheat': 2})
+[D1 08:33] V2 | Job ended: plant
+
+════ Day 1, 09:00 (spring) (Tick 1621) SNAPSHOT ════
+[V0] Pos:(28,29) | Hunger:12.17 Tired:8.50 Mood:100.00 Cold:12.08
+     Action:move | Job:chop(id:6e78a932-44cd-48cb-b586-b1bdd6db66c9) | Routine:WORKING | Sleep:No
+     Inv: {}
+     Skills: logging:0.61, farming:0.20
+[V1] Pos:(40,33) | Hunger:13.30 Tired:10.65 Mood:100.00 Cold:14.08
+     Action:move | Job:haul(id:fd8b5ac7-0865-4c51-91f4-7e763871973d) | Routine:WORKING | Sleep:No
+     Inv: {'food_wheat': 2}
+     Skills: logging:0.20, farming:0.60
+[V2] Pos:(42,40) | Hunger:17.48 Tired:9.14 Mood:100.00 Cold:16.08
+     Action:idle | Job:plant(id:b43d35ac-c7c5-4a71-8652-36487dd123e9) | Routine:WORKING | Sleep:No
+     Inv: {'seed_wheat': 2}
+     Skills: logging:0.10, farming:0.10, trapping:0.10, fishing:0.10
+
+[D1 09:02] V2 | Job assigned: plant (id: bab72e0e-99e0-4578-b203-7a796d53c48b)
+[D1 09:13] V1 | Job ended: haul
+[D1 09:13] V1 | Inventory: -2 food_wheat (now: {})
+[D1 09:14] V1 | AI: Assigned job #f0ac503c-b21b-43c1-ab3e-96540289d31d: plant at (43, 43), skills: {logging:0.20, farming:0.60}
+[D1 09:14] V1 | Job assigned: plant (id: f0ac503c-b21b-43c1-ab3e-96540289d31d)
+
+════ Day 1, 10:00 (spring) (Tick 1680) SNAPSHOT ════
+[V0] Pos:(25,26) | Hunger:17.09 Tired:11.33 Mood:100.00 Cold:11.99
+     Action:move | Job:chop(id:6e78a932-44cd-48cb-b586-b1bdd6db66c9) | Routine:WORKING | Sleep:No
+     Inv: {}
+     Skills: logging:0.61, farming:0.20
+[V1] Pos:(40,35) | Hunger:18.22 Tired:13.70 Mood:100.00 Cold:13.99
+     Action:move | Job:plant(id:f0ac503c-b21b-43c1-ab3e-96540289d31d) | Routine:WORKING | Sleep:No
+     Inv: {}
+     Skills: logging:0.20, farming:0.60
+[V2] Pos:(41,42) | Hunger:22.40 Tired:12.55 Mood:100.00 Cold:15.99
+     Action:move | Job:plant(id:29dcf2e2-f8ae-4f11-b732-cf9cad58a5f9) | Routine:WORKING | Sleep:No
+     Inv: {'seed_wheat': 2}
+     Skills: logging:0.10, farming:0.10, trapping:0.10, fishing:0.10
+
+[D1 10:36] V1 | Inventory: +3 seed_wheat (now: {'seed_wheat': 3})
+
+════ Day 1, 11:00 (spring) (Tick 1740) SNAPSHOT ════
+[V0] Pos:(22,23) | Hunger:22.09 Tired:14.21 Mood:100.00 Cold:11.90
+     Action:move | Job:chop(id:6e78a932-44cd-48cb-b586-b1bdd6db66c9) | Routine:WORKING | Sleep:No
+     Inv: {}
+     Skills: logging:0.61, farming:0.20
+[V1] Pos:(40,41) | Hunger:23.22 Tired:16.72 Mood:100.00 Cold:13.90
+     Action:move | Job:plant(id:f0ac503c-b21b-43c1-ab3e-96540289d31d) | Routine:WORKING | Sleep:No
+     Inv: {'seed_wheat': 3}
+     Skills: logging:0.20, farming:0.60
+[V2] Pos:(41,42) | Hunger:27.40 Tired:15.72 Mood:100.00 Cold:15.90
+     Action:idle | Job:None | Routine:WORKING | Sleep:No
+     Inv: {'seed_wheat': 2}
+     Skills: logging:0.10, farming:0.10, trapping:0.10, fishing:0.10
+
+[D1 11:02] V2 | Action: idle -> move
+[D1 11:32] V2 | Hunger crossed threshold -> moderate(30-50) (30.1)
+[D1 11:37] V1 | Action: move -> idle
+[D1 11:37] V1 | Inventory: -1 seed_wheat (now: {'seed_wheat': 2})
+[D1 11:38] V1 | Job assigned: plant (id: 810cc2c3-6c3c-4b6e-888d-69bf9ebe2e63)
+[D1 11:53] V2 | Job assigned: plant (id: d5367c57-62f7-477d-a60d-97d211670661)
+[D1 11:55] V2 | AI: Assigned job #b4c3d830-50ac-4aa2-a9f7-1137e18bd5af: haul at (41, 39), skills: {logging:0.10, farming:0.10, trapping:0.10, fishing:0.10}
+[D1 11:55] V2 | Job assigned: haul (id: b4c3d830-50ac-4aa2-a9f7-1137e18bd5af)
+[D1 12:00] V2 | AI: Routine meal time, hunger=32.4
+[D1 12:00] V2 | AI: Food search -> found food_wheat on stockpile at (40,31), dist=9
+
+════ Day 1, 12:00 (spring) (Tick 1800) SNAPSHOT ════
+[V0] Pos:(19,20) | Hunger:27.09 Tired:17.09 Mood:100.00 Cold:11.81
+     Action:move | Job:chop(id:6e78a932-44cd-48cb-b586-b1bdd6db66c9) | Routine:EATING | Sleep:No
+     Inv: {}
+     Skills: logging:0.61, farming:0.20
+[V1] Pos:(43,42) | Hunger:28.22 Tired:19.82 Mood:100.00 Cold:13.81
+     Action:move | Job:plant(id:810cc2c3-6c3c-4b6e-888d-69bf9ebe2e63) | Routine:EATING | Sleep:No
+     Inv: {'seed_wheat': 2}
+     Skills: logging:0.20, farming:0.60
+[V2] Pos:(41,39) | Hunger:32.40 Tired:19.10 Mood:100.00 Cold:15.81
+     Action:move | Job:None | Routine:EATING | Sleep:No
+     Inv: {'seed_wheat': 2}
+     Skills: logging:0.10, farming:0.10, trapping:0.10, fishing:0.10
+
+[D1 12:00] V0 | Routine: WORKING -> EATING
+[D1 12:00] V1 | Routine: WORKING -> EATING
+[D1 12:00] V2 | Routine: WORKING -> EATING
+[D1 12:09] V1 | Inventory: -1 seed_wheat (now: {'seed_wheat': 1})
+[D1 12:10] V1 | AI: Food search -> found food_wheat on stockpile at (40,31), dist=13
+[D1 12:38] V1 | Hunger crossed threshold -> moderate(30-50) (30.0)
+[D1 12:52] V0 | Action: move -> idle
+[D1 12:53] V0 | Action: idle -> chop
+[D1 12:58] V0 | AI: Routine meal time, hunger=30.0
+[D1 12:58] V0 | AI: Food search -> found food_wheat on stockpile at (38,31), dist=36
+[D1 12:58] V0 | Action: chop -> move
+[D1 12:58] V0 | Job ended: chop
+[D1 12:58] V0 | Hunger crossed threshold -> moderate(30-50) (30.0)
+
+════ Day 1, 13:00 (spring) (Tick 1860) SNAPSHOT ════
+[V0] Pos:(16,17) | Hunger:30.09 Tired:20.28 Mood:100.00 Cold:11.72
+     Action:move | Job:None | Routine:EATING | Sleep:No
+     Inv: {}
+     Skills: logging:0.61, farming:0.20
+[V1] Pos:(43,36) | Hunger:31.06 Tired:22.60 Mood:100.00 Cold:13.72
+     Action:move | Job:None | Routine:EATING | Sleep:No
+     Inv: {'seed_wheat': 1}
+     Skills: logging:0.20, farming:0.60
+[V2] Pos:(41,33) | Hunger:35.20 Tired:21.98 Mood:100.00 Cold:15.72
+     Action:move | Job:None | Routine:EATING | Sleep:No
+     Inv: {'seed_wheat': 2}
+     Skills: logging:0.10, farming:0.10, trapping:0.10, fishing:0.10
+
+[D1 13:26] V2 | Ate food_wheat (value=30)
+[D1 13:26] V2 | Hunger: 36.4 -> 6.4 | Mood: 100.0 -> 100.0
+[D1 13:26] V2 | Hunger crossed threshold -> low(<30) (6.4)
+[D1 13:27] V1 | AI: Routine meal time, hunger=32.3
+[D1 13:27] V2 | AI: Assigned job #6b75a80b-4453-408b-be76-d6ece1686237: plant at (41, 40), skills: {logging:0.10, farming:0.10, trapping:0.10, fishing:0.10}
+
+════ Day 1, 14:00 (spring) (Tick 1920) SNAPSHOT ════
+[V0] Pos:(22,17) | Hunger:32.89 Tired:23.16 Mood:100.00 Cold:11.63
+     Action:move | Job:None | Routine:WORKING | Sleep:No
+     Inv: {}
+     Skills: logging:0.61, farming:0.20
+[V1] Pos:(41,32) | Hunger:33.86 Tired:25.48 Mood:100.00 Cold:13.63
+     Action:move | Job:None | Routine:WORKING | Sleep:No
+     Inv: {'seed_wheat': 1}
+     Skills: logging:0.20, farming:0.60
+[V2] Pos:(40,34) | Hunger:8.06 Tired:24.72 Mood:100.00 Cold:15.63
+     Action:move | Job:plant(id:6b75a80b-4453-408b-be76-d6ece1686237) | Routine:WORKING | Sleep:No
+     Inv: {'seed_wheat': 2}
+     Skills: logging:0.10, farming:0.10, trapping:0.10, fishing:0.10
+
+[D1 14:00] V0 | Routine: EATING -> WORKING
+[D1 14:00] V1 | Routine: EATING -> WORKING
+[D1 14:00] V2 | Routine: EATING -> WORKING
+[D1 14:20] V1 | Ate food_wheat (value=30)
+[D1 14:20] V1 | Hunger: 35.5 -> 5.5 | Mood: 100.0 -> 100.0
+[D1 14:20] V1 | Hunger crossed threshold -> low(<30) (5.5)
+[D1 14:21] V1 | AI: Assigned job #239b09eb-7559-42b8-8852-4bd292681e4d: plant at (42, 39), skills: {logging:0.20, farming:0.60}
+[D1 14:21] V1 | Job assigned: plant (id: 239b09eb-7559-42b8-8852-4bd292681e4d)
+[D1 14:58] V2 | Job ended: plant
+[D1 14:59] V2 | AI: Assigned job #278a93c6-c850-4e9f-8d6d-b1a61b9f813b: harvest at (40, 40), skills: {logging:0.10, farming:0.10, trapping:0.10, fishing:0.10}
+[D1 14:59] V2 | Job assigned: harvest (id: 278a93c6-c850-4e9f-8d6d-b1a61b9f813b)
+[D1 15:00] V2 | Harvested wheat -> food_wheat x3, 1 seeds
+
+════ Day 1, 15:00 (spring) (Tick 1980) SNAPSHOT ════
+[V0] Pos:(26,19) | Hunger:37.89 Tired:26.04 Mood:100.00 Cold:11.54
+     Action:move | Job:None | Routine:WORKING | Sleep:No
+     Inv: {}
+     Skills: logging:0.61, farming:0.20
+[V1] Pos:(40,34) | Hunger:8.86 Tired:28.58 Mood:100.00 Cold:13.54
+     Action:move | Job:plant(id:239b09eb-7559-42b8-8852-4bd292681e4d) | Routine:WORKING | Sleep:No
+     Inv: {'seed_wheat': 1}
+     Skills: logging:0.20, farming:0.60
+[V2] Pos:(40,40) | Hunger:13.06 Tired:27.74 Mood:100.00 Cold:15.54
+     Action:idle | Job:None | Routine:WORKING | Sleep:No
+     Inv: {'seed_wheat': 2}
+     Skills: logging:0.10, farming:0.10, trapping:0.10, fishing:0.10
+
+[D1 15:15] V2 | Job assigned: haul (id: b32da854-124c-4dc1-80f2-6281150dca8c)
+[D1 15:16] V2 | Inventory: +3 food_wheat (now: {'seed_wheat': 2, 'food_wheat': 3})
+[D1 15:52] V1 | Job ended: plant
+[D1 15:52] V1 | Inventory: -1 seed_wheat (now: {})
+[D1 15:53] V1 | AI: Assigned job #fe125cf3-99c8-4b3e-bf3a-2bef87f014f0: harvest at (41, 41), skills: {logging:0.20, farming:0.60}
+[D1 15:53] V1 | Job assigned: harvest (id: fe125cf3-99c8-4b3e-bf3a-2bef87f014f0)
+
+════ Day 1, 16:00 (spring) (Tick 2040) SNAPSHOT ════
+[V0] Pos:(29,22) | Hunger:42.89 Tired:28.92 Mood:100.00 Cold:11.45
+     Action:move | Job:None | Routine:WORKING | Sleep:No
+     Inv: {}
+     Skills: logging:0.61, farming:0.20
+[V1] Pos:(41,39) | Hunger:13.86 Tired:31.60 Mood:100.00 Cold:13.45
+     Action:move | Job:harvest(id:fe125cf3-99c8-4b3e-bf3a-2bef87f014f0) | Routine:WORKING | Sleep:No
+     Inv: {}
+     Skills: logging:0.20, farming:0.60
+[V2] Pos:(41,36) | Hunger:18.06 Tired:31.20 Mood:100.00 Cold:15.45
+     Action:move | Job:haul(id:b32da854-124c-4dc1-80f2-6281150dca8c) | Routine:WORKING | Sleep:No
+     Inv: {'seed_wheat': 2, 'food_wheat': 3}
+     Skills: logging:0.10, farming:0.10, trapping:0.10, fishing:0.10
+
+[D1 16:24] V1 | Harvested wheat -> food_wheat x3, 2 seeds
+[D1 16:38] V1 | Action: idle -> move
+[D1 16:46] V2 | Action: move -> idle
+[D1 16:47] V2 | Inventory: -2 seed_wheat (now: {'food_wheat': 3})
+[D1 16:59] V1 | AI: Assigned job #f3a9d2af-74e1-4980-9344-976c061f3c2b: haul at (41, 42), skills: {logging:0.20, farming:0.60}
+[D1 16:59] V1 | Job assigned: haul (id: f3a9d2af-74e1-4980-9344-976c061f3c2b)
+
+════ Day 1, 17:00 (spring) (Tick 2100) SNAPSHOT ════
+[V0] Pos:(32,25) | Hunger:47.89 Tired:31.80 Mood:100.00 Cold:11.36
+     Action:move | Job:None | Routine:WORKING | Sleep:No
+     Inv: {}
+     Skills: logging:0.61, farming:0.20
+[V1] Pos:(42,42) | Hunger:18.86 Tired:35.06 Mood:100.00 Cold:13.36
+     Action:idle | Job:haul(id:f3a9d2af-74e1-4980-9344-976c061f3c2b) | Routine:WORKING | Sleep:No
+     Inv: {'food_wheat': 2}
+     Skills: logging:0.20, farming:0.60
+[V2] Pos:(41,32) | Hunger:23.06 Tired:34.44 Mood:100.00 Cold:15.36
+     Action:move | Job:haul(id:f4a03953-081b-414a-84fb-801fb33f6bd0) | Routine:WORKING | Sleep:No
+     Inv: {}
+     Skills: logging:0.10, farming:0.10, trapping:0.10, fishing:0.10
+
+[D1 17:00] V1 | Inventory: +2 food_wheat (now: {'food_wheat': 2})
+[D1 17:26] V0 | Hunger crossed threshold -> HIGH(50-80) (50.1)
+
+════ Day 1, 18:00 (spring) (Tick 2160) SNAPSHOT ════
+[V0] Pos:(35,28) | Hunger:52.89 Tired:34.68 Mood:100.00 Cold:11.27
+     Action:move | Job:None | Routine:EATING | Sleep:No
+     Inv: {}
+     Skills: logging:0.61, farming:0.20
+[V1] Pos:(43,37) | Hunger:23.86 Tired:38.08 Mood:100.00 Cold:13.27
+     Action:move | Job:haul(id:f3a9d2af-74e1-4980-9344-976c061f3c2b) | Routine:EATING | Sleep:No
+     Inv: {'food_wheat': 2}
+     Skills: logging:0.20, farming:0.60
+[V2] Pos:(41,38) | Hunger:28.06 Tired:37.32 Mood:100.00 Cold:15.27
+     Action:move | Job:haul(id:f4a03953-081b-414a-84fb-801fb33f6bd0) | Routine:EATING | Sleep:No
+     Inv: {}
+     Skills: logging:0.10, farming:0.10, trapping:0.10, fishing:0.10
+
+[D1 18:00] V0 | Routine: WORKING -> EATING
+[D1 18:00] V1 | Routine: WORKING -> EATING
+[D1 18:00] V2 | Routine: WORKING -> EATING
+[D1 18:01] V2 | Inventory: +3 food_wheat (now: {'food_wheat': 3})
+[D1 18:41] V2 | AI: Routine meal time, hunger=30.0
+[D1 18:41] V2 | AI: Food search -> found food_wheat x3 in inventory
+[D1 18:41] V2 | Ate food_wheat (value=30)
+[D1 18:41] V2 | Hunger: 30.0 -> 0.0 | Mood: 100.0 -> 100.0
+[D1 18:41] V2 | Inventory: -1 food_wheat (now: {'food_wheat': 2})
+[D1 18:42] V2 | AI: Assigned job #f4a03953-081b-414a-84fb-801fb33f6bd0: haul at (41, 39), skills: {logging:0.10, farming:0.10, trapping:0.10, fishing:0.10}
+[D1 18:42] V2 | Job assigned: haul (id: f4a03953-081b-414a-84fb-801fb33f6bd0)
+[D1 18:57] V0 | Action: move -> idle
+[D1 18:58] V0 | AI: Urgent hunger=55.6, interrupting idle
+[D1 18:58] V0 | AI: Food search -> found food_wheat on stockpile at (38,31), dist=0
+[D1 18:58] V0 | Ate food_wheat (value=30)
+[D1 18:58] V0 | Hunger: 55.6 -> 25.6 | Mood: 100.0 -> 100.0
+[D1 18:58] V0 | Hunger crossed threshold -> low(<30) (25.6)
+
+════ Day 1, 19:00 (spring) (Tick 2220) SNAPSHOT ════
+[V0] Pos:(38,31) | Hunger:0.07 Tired:37.42 Mood:100.00 Cold:11.18
+     Action:idle | Job:None | Routine:SOCIALIZING | Sleep:No
+     Inv: {}
+     Skills: logging:0.61, farming:0.20
+[V1] Pos:(42,32) | Hunger:26.66 Tired:40.96 Mood:100.00 Cold:13.18
+     Action:move | Job:haul(id:f3a9d2af-74e1-4980-9344-976c061f3c2b) | Routine:SOCIALIZING | Sleep:No
+     Inv: {'food_wheat': 2}
+     Skills: logging:0.20, farming:0.60
+[V2] Pos:(41,35) | Hunger:0.94 Tired:40.01 Mood:100.00 Cold:15.18
+     Action:move | Job:haul(id:f4a03953-081b-414a-84fb-801fb33f6bd0) | Routine:SOCIALIZING | Sleep:No
+     Inv: {'food_wheat': 2}
+     Skills: logging:0.10, farming:0.10, trapping:0.10, fishing:0.10
+
+[D1 19:00] V0 | Routine: EATING -> SOCIALIZING
+[D1 19:00] V1 | Routine: EATING -> SOCIALIZING
+[D1 19:00] V2 | Routine: EATING -> SOCIALIZING
+[D1 19:21] V1 | Inventory: -2 food_wheat (now: {})
+[D1 19:34] V2 | Inventory: -2 food_wheat (now: {})
+[D1 19:57] V1 | Hunger crossed threshold -> moderate(30-50) (30.1)
+
+════ Day 1, 20:00 (spring) (Tick 2280) SNAPSHOT ════
+[V0] Pos:(38,31) | Hunger:4.07 Tired:37.42 Mood:100.00 Cold:11.10
+     Action:idle | Job:None | Routine:SOCIALIZING | Sleep:No
+     Inv: {}
+     Skills: logging:0.61, farming:0.20
+[V1] Pos:(41,31) | Hunger:30.26 Tired:41.92 Mood:100.00 Cold:13.10
+     Action:idle | Job:None | Routine:SOCIALIZING | Sleep:No
+     Inv: {}
+     Skills: logging:0.20, farming:0.60
+[V2] Pos:(41,31) | Hunger:4.28 Tired:41.59 Mood:100.00 Cold:15.10
+     Action:idle | Job:None | Routine:SOCIALIZING | Sleep:No
+     Inv: {}
+     Skills: logging:0.10, farming:0.10, trapping:0.10, fishing:0.10
+
+
+════ Day 1, 21:00 (spring) (Tick 2340) SNAPSHOT ════
+[V0] Pos:(38,31) | Hunger:8.07 Tired:37.42 Mood:100.00 Cold:11.46
+     Action:idle | Job:None | Routine:SOCIALIZING | Sleep:No
+     Inv: {}
+     Skills: logging:0.61, farming:0.20
+[V1] Pos:(41,31) | Hunger:34.26 Tired:41.92 Mood:100.00 Cold:13.46
+     Action:idle | Job:None | Routine:SOCIALIZING | Sleep:No
+     Inv: {}
+     Skills: logging:0.20, farming:0.60
+[V2] Pos:(41,31) | Hunger:8.28 Tired:41.59 Mood:100.00 Cold:15.46
+     Action:idle | Job:None | Routine:SOCIALIZING | Sleep:No
+     Inv: {}
+     Skills: logging:0.10, farming:0.10, trapping:0.10, fishing:0.10
+
+
+════ Day 1, 22:00 (spring) (Tick 2401) SNAPSHOT ════
+[V0] Pos:(38,31) | Hunger:12.13 Tired:37.42 Mood:100.00 Cold:11.82
+     Action:move | Job:None | Routine:SLEEPING | Sleep:No
+     Inv: {}
+     Skills: logging:0.61, farming:0.20
+[V1] Pos:(41,31) | Hunger:38.33 Tired:41.92 Mood:100.00 Cold:13.82
+     Action:move | Job:None | Routine:SLEEPING | Sleep:No
+     Inv: {}
+     Skills: logging:0.20, farming:0.60
+[V2] Pos:(41,31) | Hunger:12.35 Tired:41.59 Mood:100.00 Cold:15.82
+     Action:move | Job:None | Routine:SLEEPING | Sleep:No
+     Inv: {}
+     Skills: logging:0.10, farming:0.10, trapping:0.10, fishing:0.10
+
+[D1 22:00] V0 | Routine: SOCIALIZING -> SLEEPING
+[D1 22:00] V1 | Action: idle -> move
+[D1 22:00] V1 | Routine: SOCIALIZING -> SLEEPING
+[D1 22:00] V2 | Action: idle -> move
+[D1 22:00] V2 | Routine: SOCIALIZING -> SLEEPING
+[D1 22:50] V0 | Action: idle -> sleep
+[D1 22:50] V0 | fell asleep
+[D1 22:50] V1 | Action: idle -> sleep
+[D1 22:50] V1 | fell asleep
+[D1 22:50] V2 | Action: idle -> sleep
+[D1 22:50] V2 | fell asleep
+
+════ Day 1, 23:00 (spring) (Tick 2461) SNAPSHOT ════
+[V0] Pos:(38,26) | Hunger:14.93 Tired:38.06 Mood:100.00 Cold:12.18
+     Action:sleep | Job:None | Routine:SLEEPING | Sleep:Yes
+     Inv: {}
+     Skills: logging:0.61, farming:0.20
+[V1] Pos:(41,26) | Hunger:41.13 Tired:42.56 Mood:100.00 Cold:14.18
+     Action:sleep | Job:None | Routine:SLEEPING | Sleep:Yes
+     Inv: {}
+     Skills: logging:0.20, farming:0.60
+[V2] Pos:(41,26) | Hunger:15.15 Tired:42.23 Mood:100.00 Cold:16.18
+     Action:sleep | Job:None | Routine:SLEEPING | Sleep:Yes
+     Inv: {}
+     Skills: logging:0.10, farming:0.10, trapping:0.10, fishing:0.10
+
+
+════ Day 2, 00:00 (spring) (Tick 2521) SNAPSHOT ════
+[V0] Pos:(38,26) | Hunger:17.73 Tired:21.56 Mood:100.00 Cold:12.54
+     Action:sleep | Job:None | Routine:SLEEPING | Sleep:Yes
+     Inv: {}
+     Skills: logging:0.61, farming:0.20
+[V1] Pos:(41,26) | Hunger:43.93 Tired:26.06 Mood:100.00 Cold:14.54
+     Action:sleep | Job:None | Routine:SLEEPING | Sleep:Yes
+     Inv: {}
+     Skills: logging:0.20, farming:0.60
+[V2] Pos:(41,26) | Hunger:17.95 Tired:25.73 Mood:100.00 Cold:16.54
+     Action:sleep | Job:None | Routine:SLEEPING | Sleep:Yes
+     Inv: {}
+     Skills: logging:0.10, farming:0.10, trapping:0.10, fishing:0.10
+
+
+=== LOG END: 2026-02-16 10:13:08 ===

@@ -7,7 +7,7 @@
     "title": "Project Medieval: Society"
   },
   "simulation": {
-    "day_length_seconds": 10,
+    "day_length_seconds": 24,
     "season_length_days": 90,
     "starting_season": "spring"
   },
@@ -23,21 +23,23 @@
         "crop_growth_multiplier": 1.2,
         "tree_growth_multiplier": 1.1,
         "temperature": 15.0,
-        "work_efficiency": 1.0
+        "work_efficiency": 1.0,
+        "cold_gain_multiplier": 0.3
       },
       "summer": {
         "crop_growth_multiplier": 1.3,
         "tree_growth_multiplier": 1.0,
         "temperature": 25.0,
         "work_efficiency": 0.9,
-        "midday_rest_hours": [12.0, 14.0],
+        "midday_rest_hours": [13.0, 15.0],
         "cold_gain_multiplier": 0.5
       },
       "autumn": {
         "crop_growth_multiplier": 1.1,
         "tree_growth_multiplier": 1.0,
         "temperature": 15.0,
-        "work_efficiency": 1.1
+        "work_efficiency": 1.1,
+        "cold_gain_multiplier": 0.7
       },
       "winter": {
         "crop_growth_multiplier": 0.0,
@@ -52,26 +54,30 @@
   },
   "entities": {
     "villager": {
-      "move_speed": 50.0,
+      "move_speed": 200.0,
       "max_health": 100,
       "sight_range": 10,
       "default_skills": {"logging": 0.1, "farming": 0.1, "trapping": 0.1, "fishing": 0.1},
-      "chop_speed": 5.0,
+      "chop_speed": 40.0,
       "needs": {
-        "hunger_per_hour": 2.0,
-        "tiredness_per_hour_working": 5.0,
-        "tiredness_per_hour_resting": -10.0,
-        "sleep_hours_per_day": 8.0,
-        "cold_gain_per_hour_day": 0.5,
-        "cold_gain_per_hour_night": 2.0,
-        "cold_damage_probability_base": 0.05,
-        "cold_damage_amount": 1.0
+        "hunger_per_hour": 3.0,
+        "tiredness_per_hour_working": 6.0,
+        "tiredness_per_hour_resting": -15.0,
+        "sleep_hours_per_day": 9.0,
+        "cold_gain_per_hour_day": 0.3,
+        "cold_gain_per_hour_night": 1.2,
+        "cold_damage_probability_base": 0.08,
+        "cold_damage_amount": 2.0,
+        "hunger_work_multiplier": 1.25,
+        "hunger_rest_multiplier": 0.7,
+        "tiredness_work_multiplier": 1.2,
+        "tiredness_rest_multiplier": 1.1
       },
       "daily_schedule": {
         "wake_up": 6.0,
         "breakfast": [6.0, 8.0],
         "work_morning": [8.0, 12.0],
-        "lunch": [12.0, 13.0],
+        "lunch": [12.0, 14.0],
         "work_afternoon": [13.0, 18.0],
         "dinner": [18.0, 19.0],
         "leisure": [19.0, 22.0],
@@ -80,7 +86,7 @@
     },
     "tree_oak": {
       "hp": 20,
-      "growth_days": 5,
+      "growth_days": 15,
       "drops": {"log": [3, 5], "sapling": [0, 2]}
     },
     "tools": {
@@ -92,8 +98,8 @@
     },
     "crops": {
       "wheat": {
-        "growth_days": 3.0,
-        "yield": {"food_wheat": [2, 4]},
+        "growth_days": 1.0,
+        "yield": {"food_wheat": [3, 5]},
         "seed_item": "seed_wheat"
       }
     },
@@ -108,7 +114,7 @@
       "fishing_catch_probability_base": 0.2,
       "fishing_catch_probability_per_skill": 0.5,
       "fishing_time_per_attempt_seconds": 30.0,
-      "fishing_best_hours": [5.0, 7.0, 18.0, 20.0],
+      "fishing_best_hours": [4.0, 8.0, 17.0, 21.0],
       "fishing_best_hours_bonus": 0.3
     },
     "fire": {

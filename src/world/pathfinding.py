@@ -1,6 +1,6 @@
 import heapq
 import math
-from typing import List, Tuple, Optional, Set
+from typing import List, Tuple
 from src.world.grid import Grid, LAYER_MOVE_COST
 
 def heuristic(a: Tuple[int, int], b: Tuple[int, int]) -> float:
@@ -12,6 +12,13 @@ def find_path(grid: Grid, start: Tuple[int, int], end: Tuple[int, int]) -> List[
     Returns a list of (x, y) tuples from start to end.
     Returns empty list if no path found.
     """
+    # Validate both start and end positions are within bounds and walkable
+    if not (0 <= start[0] < grid.width and 0 <= start[1] < grid.height):
+        return []
+    if not (0 <= end[0] < grid.width and 0 <= end[1] < grid.height):
+        return []
+    if not grid.is_walkable(start[0], start[1]):
+        return []
     if not grid.is_walkable(end[0], end[1]):
         return []
 

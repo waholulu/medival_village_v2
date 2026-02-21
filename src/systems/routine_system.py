@@ -2,7 +2,7 @@ from src.core.ecs import System, EntityManager
 from src.components.data_components import RoutineComponent, ActionComponent, HungerComponent, TirednessComponent
 from src.core.time_manager import TimeManager
 from src.core.config_manager import ConfigManager
-from typing import Optional
+from typing import Optional, List
 
 class RoutineSystem(System):
     """Manages daily routine schedules for villagers."""
@@ -19,6 +19,7 @@ class RoutineSystem(System):
         
         # Get schedule config
         schedule_config = self.config_manager.get("entities.villager.daily_schedule", {})
+        season_config = self.config_manager.get(f"time.seasons.{current_season}", {})
         wake_up = schedule_config.get("wake_up", 6.0)
         breakfast = schedule_config.get("breakfast", [6.0, 8.0])
         work_morning = schedule_config.get("work_morning", [8.0, 12.0])
@@ -27,38 +28,27 @@ class RoutineSystem(System):
         dinner = schedule_config.get("dinner", [18.0, 19.0])
         leisure = schedule_config.get("leisure", [19.0, 22.0])
         sleep_time = schedule_config.get("sleep", [22.0, 6.0])
+        rest_ranges = []
+        midday_rest = season_config.get("midday_rest_hours")
+        if isinstance(midday_rest, list) and len(midday_rest) == 2:
+            rest_ranges.append(midday_rest)
         
         # Adjust schedule based on season
         if current_season == "winter":
             # Winter: shorter work hours, earlier sleep
-            work_afternoon = [work_afternoon[0], work_afternoon[1] - 2.0]  # End work 2 hours earlier
-            sleep_time = [sleep_time[0] - 1.0, sleep_time[1]]  # Sleep 1 hour earlier
-        elif current_season == "summer":
-            # Summer: midday rest
-            midday_rest = [12.0, 14.0]
-            if midday_rest[0] <= current_hour < midday_rest[1]:
-                # Suggest rest during midday
-                pass
+            adjusted_end = max(work_afternoon[0], work_afternoon[1] - 2.0)
+            work_afternoon = [work_afternoon[0], adjusted_end]
+            sleep_start = (sleep_time[0] - 1.0) % 24.0
+            sleep_time = [sleep_start, sleep_time[1]]
         
         for entity, routine_comp, action_comp in self.entity_manager.get_entities_with(
             RoutineComponent, ActionComponent
         ):
-            # Check urgent needs first (these override schedule)
-            hunger_comp = self.entity_manager.get_component(entity, HungerComponent)
-            tiredness_comp = self.entity_manager.get_component(entity, TirednessComponent)
-            
-            if hunger_comp and hunger_comp.hunger > 80.0:
-                # Urgent hunger - should eat (handled by AISystem)
-                continue
-            
-            if tiredness_comp and tiredness_comp.tiredness > 90.0:
-                # Urgent tiredness - should sleep (handled by AISystem)
-                continue
-            
+            # Always update routine state based on schedule (AI handles urgent overrides)
             # Determine current activity based on schedule
             suggested_activity = self._get_suggested_activity(
                 current_hour, wake_up, breakfast, work_morning, lunch, 
-                work_afternoon, dinner, leisure, sleep_time
+                work_afternoon, dinner, leisure, sleep_time, rest_ranges
             )
             
             routine_comp.current_state = suggested_activity
@@ -69,7 +59,8 @@ class RoutineSystem(System):
     
     def _get_suggested_activity(self, hour: float, wake_up: float, breakfast: list, 
                                 work_morning: list, lunch: list, work_afternoon: list,
-                                dinner: list, leisure: list, sleep_time: list) -> str:
+                                dinner: list, leisure: list, sleep_time: list,
+                                rest_ranges: Optional[List[list[float]]] = None) -> str:
         """Get suggested activity based on current time."""
         # Handle sleep time (can span midnight)
         if sleep_time[0] > sleep_time[1]:  # e.g., [22.0, 6.0]
@@ -79,19 +70,29 @@ class RoutineSystem(System):
             if sleep_time[0] <= hour < sleep_time[1]:
                 return "SLEEPING"
         
-        # Check other time slots
+        # Check meal times
         if self._in_time_range(hour, breakfast):
             return "EATING"
-        elif self._in_time_range(hour, lunch):
+        if self._in_time_range(hour, lunch):
             return "EATING"
-        elif self._in_time_range(hour, dinner):
+        if self._in_time_range(hour, dinner):
             return "EATING"
-        elif self._in_time_range(hour, work_morning) or self._in_time_range(hour, work_afternoon):
+        
+        # Check seasonal rest periods (e.g. midday rest in summer)
+        if rest_ranges:
+            for rest_range in rest_ranges:
+                if self._in_time_range(hour, rest_range):
+                    return "RESTING"
+        
+        # Check work hours
+        if self._in_time_range(hour, work_morning) or self._in_time_range(hour, work_afternoon):
             return "WORKING"
-        elif self._in_time_range(hour, leisure):
+        
+        # Check leisure time
+        if self._in_time_range(hour, leisure):
             return "SOCIALIZING"
-        else:
-            return "WORKING"  # Default to working
+        
+        return "WORKING"  # Default to working
     
     def _get_next_activity(self, hour: float, wake_up: float, breakfast: list,
                            work_morning: list, lunch: list, work_afternoon: list,
@@ -114,10 +115,16 @@ class RoutineSystem(System):
             return "SLEEPING"  # Sleep
     
     def _in_time_range(self, hour: float, time_range: list) -> bool:
-        """Check if hour is within time range."""
+        """Check if hour is within time range. Supports overnight ranges (e.g. [22.0, 6.0])."""
         if len(time_range) < 2:
             return False
-        return time_range[0] <= hour < time_range[1]
+        start, end = time_range[0], time_range[1]
+        if start <= end:
+            # Normal range (e.g. [8.0, 12.0])
+            return start <= hour < end
+        else:
+            # Overnight range (e.g. [22.0, 6.0])
+            return hour >= start or hour < end
     
     def should_eat(self, entity: int) -> bool:
         """Check if entity should eat based on schedule."""

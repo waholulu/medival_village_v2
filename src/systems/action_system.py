@@ -1,18 +1,22 @@
 from typing import Optional, Tuple
 import math
+import random
 from src.core.ecs import System, EntityManager
 from src.components.data_components import ActionComponent, MovementComponent, PositionComponent, ResourceComponent, InventoryComponent, ItemComponent, DurabilityComponent, HungerComponent, MoodComponent, TirednessComponent, SleepStateComponent, CropComponent, ColdComponent, TrapComponent, FireComponent
 from src.components.skill_component import SkillComponent
 from src.core.config_manager import ConfigManager
+from src.core.time_manager import TimeManager
 from src.world.grid import Grid
 from src.world.pathfinding import find_path
 from src.utils.logger import Logger, LogCategory
+from src.utils.diagnostic_logger import DiagnosticLogger, DiagLevel
 
 class ActionSystem(System):
-    def __init__(self, entity_manager: EntityManager, grid: Grid, config_manager: ConfigManager):
+    def __init__(self, entity_manager: EntityManager, grid: Grid, config_manager: ConfigManager, time_manager: TimeManager):
         self.entity_manager = entity_manager
         self.grid = grid
         self.config_manager = config_manager
+        self.time_manager = time_manager
         self._fishing_progress = {}  # Track fishing progress per entity
 
     def update(self, dt: float):
@@ -209,10 +213,23 @@ class ActionSystem(System):
                 self.entity_manager.add_component(log_entity, PositionComponent(x=target_pos.x, y=target_pos.y))
                 self.entity_manager.add_component(log_entity, ItemComponent(item_type="log", amount=1))
                 
+                old_skill = 0.0
                 if skill_comp:
-                    current_skill = skill_comp.skills.get("logging", 0.0)
+                    old_skill = skill_comp.skills.get("logging", 0.0)
+                    current_skill = old_skill
                     if current_skill < 1.0:
                         skill_comp.skills["logging"] = min(1.0, current_skill + 0.01)
+
+                # Diagnostic: tree chopped result
+                diag = DiagnosticLogger.get_instance()
+                if diag:
+                    diag.log_summary(entity, f"Tree chopped (entity#{target_id}) -> dropped 1 log at ({target_pos.x},{target_pos.y})")
+                    diag.record_tree_chopped()
+                    diag.record_resource_gathered("log", 1)
+                    if skill_comp:
+                        new_skill = skill_comp.skills.get("logging", 0.0)
+                        if new_skill != old_skill:
+                            diag.log_detail(entity, f"Skill: logging {old_skill:.2f} -> {new_skill:.2f}")
 
                 self.entity_manager.destroy_entity(target_id)
                 action_comp.current_action = "idle"
@@ -247,18 +264,14 @@ class ActionSystem(System):
             action_comp.current_action = "idle"
             return
 
-        # Drop everything? Or what is specified?
-        # For now, drop the first thing in inventory as a simple test
-        if inv_comp.items:
-            item_type, amount = list(inv_comp.items.items())[0]
-            if amount > 0:
-                # Create item entity
-                item_entity = self.entity_manager.create_entity()
-                self.entity_manager.add_component(item_entity, PositionComponent(x=pos_comp.x, y=pos_comp.y))
-                self.entity_manager.add_component(item_entity, ItemComponent(item_type=item_type, amount=amount))
-                
-                del inv_comp.items[item_type]
-                Logger.log(LogCategory.GAMEPLAY, f"Entity {entity} dropped {amount} {item_type}")
+        # Drop all items in inventory
+        items_to_drop = [(t, a) for t, a in inv_comp.items.items() if a > 0]
+        for item_type, amount in items_to_drop:
+            item_entity = self.entity_manager.create_entity()
+            self.entity_manager.add_component(item_entity, PositionComponent(x=pos_comp.x, y=pos_comp.y))
+            self.entity_manager.add_component(item_entity, ItemComponent(item_type=item_type, amount=amount))
+            del inv_comp.items[item_type]
+            Logger.log(LogCategory.GAMEPLAY, f"Entity {entity} dropped {amount} {item_type}")
                 
         action_comp.current_action = "idle"
     
@@ -288,26 +301,46 @@ class ActionSystem(System):
                         best_food = item_type
                         best_food_value = food_value
         
-        # If no food in inventory, check if we're trying to eat from ground
+        # If no food in inventory, try eating directly from ground (1 unit only)
         if best_food_value == 0.0 and action_comp.target_entity_id:
             target_item = self.entity_manager.get_component(action_comp.target_entity_id, ItemComponent)
             if target_item:
                 item_config = self.config_manager.get(f"entities.items.{target_item.item_type}", {})
                 best_food_value = item_config.get("food_value", 0.0)
                 if best_food_value > 0.0:
-                    # Pick up and eat
-                    self._handle_pickup(entity, action_comp)
-                    # After pickup, food should be in inventory, so retry
-                    inv_comp = self.entity_manager.get_component(entity, InventoryComponent)
-                    if inv_comp and target_item.item_type in inv_comp.items:
-                        best_food = target_item.item_type
-                    else:
-                        action_comp.current_action = "idle"
-                        return
+                    # Consume 1 unit directly from the ground stack (don't hoard
+                    # the entire pile so other villagers can also eat from it)
+                    food_name = target_item.item_type
+                    target_item.amount -= 1
+                    if target_item.amount <= 0:
+                        self.entity_manager.destroy_entity(action_comp.target_entity_id)
+
+                    old_hunger = hunger_comp.hunger
+                    old_mood = mood_comp.mood if mood_comp else 0
+                    hunger_comp.hunger = max(0.0, hunger_comp.hunger - best_food_value)
+                    if mood_comp:
+                        mood_comp.mood = min(100.0, mood_comp.mood + best_food_value * 0.5)
+
+                    Logger.log(LogCategory.GAMEPLAY, f"Entity {entity} ate {food_name} (hunger: {hunger_comp.hunger:.1f})")
+                    diag = DiagnosticLogger.get_instance()
+                    if diag:
+                        diag.log_summary(entity, f"Ate {food_name} (value={best_food_value})")
+                        if mood_comp:
+                            diag.log_detail(entity, f"Hunger: {old_hunger:.1f} -> {hunger_comp.hunger:.1f} | Mood: {old_mood:.1f} -> {mood_comp.mood:.1f}")
+                        else:
+                            diag.log_detail(entity, f"Hunger: {old_hunger:.1f} -> {hunger_comp.hunger:.1f}")
+                        diag.record_food_consumed()
+
+                    action_comp.current_action = "idle"
+                    action_comp.target_entity_id = None
+                    return
         
         if best_food and best_food_value > 0.0 and inv_comp:
             # Consume food
             if inv_comp.items.get(best_food, 0) > 0:
+                old_hunger = hunger_comp.hunger
+                old_mood = mood_comp.mood if mood_comp else 0
+
                 inv_comp.items[best_food] -= 1
                 if inv_comp.items[best_food] <= 0:
                     del inv_comp.items[best_food]
@@ -320,12 +353,23 @@ class ActionSystem(System):
                     mood_comp.mood = min(100.0, mood_comp.mood + best_food_value * 0.5)
                 
                 Logger.log(LogCategory.GAMEPLAY, f"Entity {entity} ate {best_food} (hunger: {hunger_comp.hunger:.1f})")
+
+                # Diagnostic: food consumed
+                diag = DiagnosticLogger.get_instance()
+                if diag:
+                    diag.log_summary(entity, f"Ate {best_food} (value={best_food_value})")
+                    diag.log_detail(entity, f"Hunger: {old_hunger:.1f} -> {hunger_comp.hunger:.1f} | Mood: {old_mood:.1f} -> {mood_comp.mood:.1f}" if mood_comp else f"Hunger: {old_hunger:.1f} -> {hunger_comp.hunger:.1f}")
+                    diag.record_food_consumed()
         
         action_comp.current_action = "idle"
         action_comp.target_entity_id = None
     
     def _handle_sleep(self, entity: int, action_comp: ActionComponent, dt: float):
-        """Handle sleep action - reduce tiredness while in residential zone."""
+        """Handle sleep action - manage sleep state while in residential zone.
+        
+        Tiredness reduction is handled by NeedsSystem (not here) to avoid
+        double-counting. This method only manages sleep state and wake-up.
+        """
         from src.world.grid import ZONE_RESIDENTIAL
         
         pos_comp = self.entity_manager.get_component(entity, PositionComponent)
@@ -339,12 +383,11 @@ class ActionSystem(System):
         # Check if in residential zone
         current_zone = self.grid.get_zone(pos_comp.x, pos_comp.y)
         if current_zone != ZONE_RESIDENTIAL:
-            # Not in residential zone, try to move there
-            # For now, just set to idle and let AISystem handle finding residential zone
+            # Not in residential zone, set to idle and let AISystem handle navigation
             action_comp.current_action = "idle"
             return
         
-        # In residential zone, sleep
+        # In residential zone, set sleep state
         if not sleep_state:
             sleep_state = SleepStateComponent(is_sleeping=True, sleep_location=(pos_comp.x, pos_comp.y))
             self.entity_manager.add_component(entity, sleep_state)
@@ -352,16 +395,9 @@ class ActionSystem(System):
             sleep_state.is_sleeping = True
             sleep_state.sleep_location = (pos_comp.x, pos_comp.y)
         
-        # Reduce tiredness (handled by NeedsSystem, but we can also do it here)
-        day_length = self.config_manager.get("simulation.day_length_seconds", 600.0)
-        hours_per_second = 24.0 / day_length
-        hours_passed = dt * hours_per_second
-        tiredness_per_hour_resting = self.config_manager.get("entities.villager.needs.tiredness_per_hour_resting", -10.0)
-        tiredness_change = tiredness_per_hour_resting * hours_passed
-        tiredness_comp.tiredness = max(0.0, tiredness_comp.tiredness + tiredness_change)
-        
-        # Wake up if tiredness is low enough
-        if tiredness_comp.tiredness <= 10.0:
+        # Wake up if tiredness is low enough (threshold 5.0 for hysteresis;
+        # AI sends to sleep at tiredness > 10, we wake at <= 5 to avoid oscillation)
+        if tiredness_comp.tiredness <= 5.0:
             if sleep_state:
                 sleep_state.is_sleeping = False
             action_comp.current_action = "idle"
@@ -440,9 +476,9 @@ class ActionSystem(System):
         # Get crop config
         crop_config = self.config_manager.get(f"entities.crops.{crop_comp.crop_type}", {})
         yield_config = crop_config.get("yield", {"food_wheat": [2, 4]})
+        seed_item = crop_config.get("seed_item", "seed_wheat")
         
         # Generate food items
-        import random
         for food_type, amount_range in yield_config.items():
             amount = random.randint(amount_range[0], amount_range[1])
             if amount > 0:
@@ -455,17 +491,34 @@ class ActionSystem(System):
                     food_value=self.config_manager.get(f"entities.items.{food_type}.food_value", 0.0)
                 ))
         
+        # Generate seeds (1-2 seeds per harvest to ensure sustainable farming)
+        seed_amount = random.randint(1, 2)
+        if seed_amount > 0:
+            seed_entity = self.entity_manager.create_entity()
+            self.entity_manager.add_component(seed_entity, PositionComponent(x=crop_pos.x, y=crop_pos.y))
+            self.entity_manager.add_component(seed_entity, ItemComponent(
+                item_type=seed_item,
+                amount=seed_amount
+            ))
+        
         # Remove crop
         self.entity_manager.destroy_entity(target_id)
-        Logger.log(LogCategory.GAMEPLAY, f"Entity {entity} harvested {crop_comp.crop_type} at ({crop_pos.x}, {crop_pos.y})")
+        Logger.log(LogCategory.GAMEPLAY, f"Entity {entity} harvested {crop_comp.crop_type} at ({crop_pos.x}, {crop_pos.y}), got {seed_amount} seeds")
+
+        # Diagnostic: harvest result
+        diag = DiagnosticLogger.get_instance()
+        if diag:
+            yield_str = ", ".join([f"{ft} x{random.randint(ar[0], ar[1])}" for ft, ar in yield_config.items()])
+            diag.log_summary(entity, f"Harvested {crop_comp.crop_type} -> {yield_str}, {seed_amount} seeds")
+            diag.record_crop_harvested()
+            for ft in yield_config:
+                diag.record_resource_gathered(ft, 1)
         
         action_comp.current_action = "idle"
         action_comp.target_entity_id = None
     
     def _handle_trap(self, entity: int, action_comp: ActionComponent, dt: float):
         """Handle trap action - check trap or place new trap."""
-        from src.core.time_manager import TimeManager
-        import random
         
         pos_comp = self.entity_manager.get_component(entity, PositionComponent)
         inv_comp = self.entity_manager.get_component(entity, InventoryComponent)
@@ -492,9 +545,12 @@ class ActionSystem(System):
                 action_comp.current_action = "idle"
                 return
             
-            # Check if enough time has passed since last check
-            # For now, we'll allow checking traps immediately (simplified)
-            # In a full system, we'd track last_check_time properly
+            trap_interval = self.config_manager.get("entities.trapping.trap_check_interval_hours", 6.0)
+            current_hours = self._get_total_game_hours()
+            hours_since_last = current_hours - trap_comp.last_check_time
+            if hours_since_last < trap_interval:
+                action_comp.current_action = "idle"
+                return
             
             # Calculate catch probability
             base_prob = self.config_manager.get("entities.trapping.trap_catch_probability_base", 0.15)
@@ -517,6 +573,12 @@ class ActionSystem(System):
                     food_value=self.config_manager.get("entities.items.meat.food_value", 40.0)
                 ))
                 Logger.log(LogCategory.GAMEPLAY, f"Entity {entity} caught meat in trap at ({trap_pos.x}, {trap_pos.y})")
+
+                diag = DiagnosticLogger.get_instance()
+                if diag:
+                    diag.log_summary(entity, f"Trap catch! meat x1 at ({trap_pos.x},{trap_pos.y}), prob={catch_prob:.2f}")
+                    diag.record_trap_caught()
+                    diag.record_resource_gathered("meat", 1)
                 
                 # Reduce trap durability
                 trap_comp.durability -= 1.0
@@ -525,7 +587,7 @@ class ActionSystem(System):
                     self.entity_manager.destroy_entity(trap_entity)
                     Logger.log(LogCategory.GAMEPLAY, f"Trap at ({trap_pos.x}, {trap_pos.y}) broke!")
                 else:
-                    trap_comp.last_check_time = 0.0  # Reset check time
+                    trap_comp.last_check_time = current_hours  # Cooldown before next check
                 
                 # Increase skill
                 if skill_comp:
@@ -538,7 +600,7 @@ class ActionSystem(System):
                 if trap_comp.durability <= 0:
                     self.entity_manager.destroy_entity(trap_entity)
                     Logger.log(LogCategory.GAMEPLAY, f"Trap at ({trap_pos.x}, {trap_pos.y}) broke!")
-                trap_comp.last_check_time = 0.0
+                trap_comp.last_check_time = current_hours
         
         else:
             # Placing new trap
@@ -565,7 +627,8 @@ class ActionSystem(System):
                 trap_type="basic_trap",
                 durability=trap_config.get("trap_durability", 10.0),
                 max_durability=trap_config.get("trap_durability", 10.0),
-                catch_probability=trap_config.get("trap_catch_probability_base", 0.15)
+                catch_probability=trap_config.get("trap_catch_probability_base", 0.15),
+                last_check_time=self._get_total_game_hours()
             ))
             
             Logger.log(LogCategory.GAMEPLAY, f"Entity {entity} placed trap at ({pos_comp.x}, {pos_comp.y})")
@@ -576,7 +639,6 @@ class ActionSystem(System):
     def _handle_fish(self, entity: int, action_comp: ActionComponent, dt: float):
         """Handle fishing action - fish at water location."""
         from src.world.grid import TERRAIN_WATER
-        import random
         
         pos_comp = self.entity_manager.get_component(entity, PositionComponent)
         skill_comp = self.entity_manager.get_component(entity, SkillComponent)
@@ -606,23 +668,26 @@ class ActionSystem(System):
         # Check if we have a fishing progress tracker (simplified: use action_comp.target_pos as progress)
         # For now, we'll use a simple time-based approach
         fishing_time = self.config_manager.get("entities.fishing.fishing_time_per_attempt_seconds", 30.0)
-        day_length = self.config_manager.get("simulation.day_length_seconds", 10.0)
-        fishing_time_game = fishing_time / day_length  # Convert to game time
-        
-        # Use target_pos to track if we've started fishing
+        best_hours = self.config_manager.get("entities.fishing.fishing_best_hours", [])
+        best_hours_bonus = self.config_manager.get("entities.fishing.fishing_best_hours_bonus", 0.3)
+        current_hour = self.time_manager.time_of_day
+
+        if best_hours and not self._is_within_time_ranges(current_hour, best_hours):
+            # Outside of fishing window, cancel action
+            action_comp.current_action = "idle"
+            action_comp.target_pos = None
+            self._fishing_progress.pop(entity, None)
+            return
+
         if action_comp.target_pos is None:
-            # Start fishing
-            action_comp.target_pos = (pos_comp.x, pos_comp.y)  # Mark that we started
+            action_comp.target_pos = (pos_comp.x, pos_comp.y)
             self._fishing_progress[entity] = 0.0
             return
-        
-        # Accumulate time
-        if entity not in self._fishing_progress:
-            self._fishing_progress[entity] = 0.0
-        
-        self._fishing_progress[entity] += dt
-        
-        if self._fishing_progress[entity] >= fishing_time_game:
+
+        progress = self._fishing_progress.get(entity, 0.0) + dt
+        self._fishing_progress[entity] = progress
+
+        if progress >= fishing_time:
             # Time to try catching
             base_prob = self.config_manager.get("entities.fishing.fishing_catch_probability_base", 0.2)
             skill_bonus = 0.0
@@ -631,13 +696,7 @@ class ActionSystem(System):
                 skill_multiplier = self.config_manager.get("entities.fishing.fishing_catch_probability_per_skill", 0.5)
                 skill_bonus = fishing_skill * skill_multiplier
             
-            # Check if it's a good time to fish
-            time_bonus = 0.0
-            # We'd need time_manager here, simplified for now
-            best_hours = self.config_manager.get("entities.fishing.fishing_best_hours", [5.0, 7.0, 18.0, 20.0])
-            best_hours_bonus = self.config_manager.get("entities.fishing.fishing_best_hours_bonus", 0.3)
-            # For now, assume random time bonus
-            
+            time_bonus = best_hours_bonus if best_hours else 0.0
             catch_prob = base_prob * (1.0 + skill_bonus + time_bonus)
             
             if random.random() < catch_prob:
@@ -650,12 +709,22 @@ class ActionSystem(System):
                     food_value=self.config_manager.get("entities.items.fish.food_value", 35.0)
                 ))
                 Logger.log(LogCategory.GAMEPLAY, f"Entity {entity} caught fish at ({pos_comp.x}, {pos_comp.y})")
+
+                diag = DiagnosticLogger.get_instance()
+                if diag:
+                    diag.log_summary(entity, f"Fish caught at ({pos_comp.x},{pos_comp.y}), prob={catch_prob:.2f}")
+                    diag.record_fish_caught()
+                    diag.record_resource_gathered("fish", 1)
                 
                 # Increase skill
                 if skill_comp:
-                    current_skill = skill_comp.skills.get("fishing", 0.0)
+                    old_fish_skill = skill_comp.skills.get("fishing", 0.0)
+                    current_skill = old_fish_skill
                     if current_skill < 1.0:
                         skill_comp.skills["fishing"] = min(1.0, current_skill + 0.01)
+                    diag2 = DiagnosticLogger.get_instance()
+                    if diag2 and skill_comp.skills.get("fishing", 0.0) != old_fish_skill:
+                        diag2.log_detail(entity, f"Skill: fishing {old_fish_skill:.2f} -> {skill_comp.skills['fishing']:.2f}")
             
             # Reset progress
             if entity in self._fishing_progress:
@@ -740,3 +809,25 @@ class ActionSystem(System):
         Logger.log(LogCategory.GAMEPLAY, f"Entity {entity} added fuel to fire at ({pos_comp.x}, {pos_comp.y})")
         
         action_comp.current_action = "idle"
+    
+    def _get_total_game_hours(self) -> float:
+        """Return cumulative game hours for cooldown calculations."""
+        if not self.time_manager:
+            return 0.0
+        return self.time_manager.day * 24.0 + self.time_manager.time_of_day
+
+    def _is_within_time_ranges(self, hour: float, ranges: list) -> bool:
+        """Check if current hour falls within any configured [start, end) pairs."""
+        if not ranges or len(ranges) < 2:
+            return True
+        for i in range(0, len(ranges) - 1, 2):
+            start = ranges[i]
+            end = ranges[i + 1]
+            if start <= end:
+                if start <= hour < end:
+                    return True
+            else:
+                # Overnight window (e.g., 22 -> 4)
+                if hour >= start or hour < end:
+                    return True
+        return False

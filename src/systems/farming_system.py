@@ -58,16 +58,67 @@ class FarmingSystem(System):
 
     def _generate_plant_jobs(self):
         """Generate plant jobs for empty farm tiles that need crops."""
-        # Scan farm zone for empty tiles
-        # For simplicity, we'll check a few farm tiles (in a real system, we'd cache these)
-        # For now, we'll just check if there are any farm zones and create jobs for them
+        # Only generate plant jobs occasionally to avoid spam
+        current_tick = self.time_manager.total_ticks if self.time_manager else 0
+        if not hasattr(self, '_last_plant_job_tick'):
+            self._last_plant_job_tick = 0
         
-        # This is a simplified version - in production, we'd maintain a list of farm tiles
-        # and check which ones don't have crops
+        # Generate jobs every 20 ticks
+        if current_tick - self._last_plant_job_tick < 20:
+            return
+        self._last_plant_job_tick = current_tick
         
-        # For now, we'll skip automatic plant job generation
-        # Instead, we'll let the player or other systems create plant jobs manually
-        pass
+        # Count total available seeds (on ground / in stockpile)
+        total_seeds = 0
+        for entity, item_comp, pos_comp in self.entity_manager.get_entities_with(ItemComponent, PositionComponent):
+            if item_comp.item_type == "seed_wheat" and item_comp.amount > 0:
+                total_seeds += item_comp.amount
+        
+        if total_seeds <= 0:
+            # No seeds available, can't plant
+            return
+        
+        # Get farm zone tiles from zone_manager cache
+        if ZONE_FARM not in self.zone_manager.zone_cache:
+            return
+        
+        # Limit number of plant jobs to available seeds and max cap
+        existing_plant_jobs = sum(1 for job in self.job_system.jobs if job.job_type == "plant")
+        max_plant_jobs = min(5, total_seeds)  # Don't create more jobs than seeds
+        
+        if existing_plant_jobs >= max_plant_jobs:
+            return
+        
+        # Find empty farm tiles (tiles without crops)
+        farm_tiles = list(self.zone_manager.zone_cache[ZONE_FARM])
+        
+        # Get all crop positions
+        crop_positions = set()
+        for crop_entity, crop_comp, crop_pos in self.entity_manager.get_entities_with(CropComponent, PositionComponent):
+            crop_positions.add((crop_pos.x, crop_pos.y))
+        
+        # Find empty farm tiles (no crop and no existing plant job)
+        # Collect existing plant job target positions for fast lookup
+        plant_job_positions = set()
+        for job in self.job_system.jobs:
+            if job.job_type == "plant":
+                plant_job_positions.add(job.target_pos)
+        
+        empty_farm_tiles = []
+        for fx, fy in farm_tiles:
+            if (fx, fy) not in crop_positions and (fx, fy) not in plant_job_positions:
+                empty_farm_tiles.append((fx, fy))
+        
+        # Create plant jobs for empty tiles (limit to max_plant_jobs)
+        for fx, fy in empty_farm_tiles[:max_plant_jobs - existing_plant_jobs]:
+            self.job_system.add_job(Job(
+                job_type="plant",
+                target_pos=(fx, fy),
+                target_entity_id=None,
+                required_skill="farming",
+                priority=3  # Medium priority
+            ))
+            Logger.log(LogCategory.AI, f"Created Plant job for empty farm tile at {fx},{fy}")
 
     def _generate_harvest_jobs(self):
         """Generate harvest jobs for ripe crops."""
@@ -75,14 +126,8 @@ class FarmingSystem(System):
             if crop_comp.state != "ripe":
                 continue
             
-            # Check if already has a job
-            has_job = False
-            for job in self.job_system.jobs:
-                if job.target_entity_id == entity and job.job_type == "harvest":
-                    has_job = True
-                    break
-            
-            if has_job:
+            # Check if already has a harvest job (O(1) lookup via index)
+            if self.job_system.has_job_for_entity(entity, "harvest"):
                 continue
             
             # Create harvest job (high priority)
