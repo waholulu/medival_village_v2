@@ -21,6 +21,10 @@ class InputManager:
         self.zone_placement_mode: Optional[int] = None  # None, or zone_type ID
         self.zone_placement_pos: Optional[Tuple[int, int]] = None  # Tile position to place zone
 
+        # Blueprint placement mode
+        self.blueprint_placement_mode: Optional[str] = None  # "house", "storage", etc
+        self.blueprint_placement_pos: Optional[Tuple[int, int]] = None
+
         # Key mappings
         self.key_map = {
             pygame.K_w: (0, -1),
@@ -92,11 +96,29 @@ class InputManager:
                         Logger.log(LogCategory.INPUT, "Zone placement: OFF")
                     else:
                         self.zone_placement_mode = ZONE_RESIDENTIAL
+                        self.blueprint_placement_mode = None
                         Logger.log(LogCategory.INPUT, "Zone placement: RESIDENTIAL (Right-click to place)")
+                elif event.key == pygame.K_F8:
+                    if self.blueprint_placement_mode == "house":
+                        self.blueprint_placement_mode = None
+                        Logger.log(LogCategory.INPUT, "Blueprint placement: OFF")
+                    else:
+                        self.blueprint_placement_mode = "house"
+                        self.zone_placement_mode = None
+                        Logger.log(LogCategory.INPUT, "Blueprint placement: HOUSE (Right-click to place)")
+                elif event.key == pygame.K_F9:
+                    if self.blueprint_placement_mode == "storage":
+                        self.blueprint_placement_mode = None
+                        Logger.log(LogCategory.INPUT, "Blueprint placement: OFF")
+                    else:
+                        self.blueprint_placement_mode = "storage"
+                        self.zone_placement_mode = None
+                        Logger.log(LogCategory.INPUT, "Blueprint placement: STORAGE (Right-click to place)")
                 elif event.key == pygame.K_x:
-                    # Cancel zone placement mode
+                    # Cancel all placement modes
                     self.zone_placement_mode = None
-                    Logger.log(LogCategory.INPUT, "Zone placement: OFF")
+                    self.blueprint_placement_mode = None
+                    Logger.log(LogCategory.INPUT, "Placement mode: OFF")
             
             elif event.type == pygame.MOUSEWHEEL:
                 self.zoom_change = event.y # +1 or -1 typically
@@ -117,8 +139,12 @@ class InputManager:
                 elif event.button == 3: # Right Click
                      if screen_to_world_callback:
                          wx, wy = screen_to_world_callback(event.pos[0], event.pos[1])
+                         # Prioritize blueprint placement
+                         if self.blueprint_placement_mode is not None:
+                             self.blueprint_placement_pos = (wx, wy)
+                             self.last_command = {'type': 'PLACE_BLUEPRINT', 'world_pos': (wx, wy), 'blueprint_type': self.blueprint_placement_mode}
                          # If in zone placement mode, set zone instead of move command
-                         if self.zone_placement_mode is not None:
+                         elif self.zone_placement_mode is not None:
                              # Convert world pos to tile pos (assuming pixels_per_unit)
                              # We'll pass world pos and let main.py handle conversion
                              self.zone_placement_pos = (wx, wy)

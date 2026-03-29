@@ -209,7 +209,8 @@ class UISystem(System):
         # Get color definitions from render system
         from src.systems.render_system import (
             COLOR_GRASS, COLOR_DIRT, COLOR_WATER, COLOR_STONE,
-            COLOR_ENTITY_PLAYER, COLOR_ENTITY_TREE, COLOR_ENTITY_DEFAULT,
+            COLOR_ENTITY_PLAYER, COLOR_ENTITY_DEFAULT,
+            COLOR_ENTITY_TREE_LEAVES_1, COLOR_ENTITY_BUILDING_ROOF,
             COLOR_ZONE_STOCKPILE, COLOR_ZONE_FARM, COLOR_ZONE_RESIDENTIAL,
             COLOR_SELECTION, COLOR_PATH
         )
@@ -230,7 +231,8 @@ class UISystem(System):
         html_content += f'<font color="{rgb_to_hex(COLOR_ZONE_RESIDENTIAL)}">■</font> Residential<br>'
         html_content += "<br><b>ENTITIES:</b><br>"
         html_content += f'<font color="{rgb_to_hex(COLOR_ENTITY_PLAYER)}">■</font> Villager<br>'
-        html_content += f'<font color="{rgb_to_hex(COLOR_ENTITY_TREE)}">■</font> Tree<br>'
+        html_content += f'<font color="{rgb_to_hex(COLOR_ENTITY_TREE_LEAVES_1)}">■</font> Tree<br>'
+        html_content += f'<font color="{rgb_to_hex(COLOR_ENTITY_BUILDING_ROOF)}">■</font> Building<br>'
         html_content += f'<font color="{rgb_to_hex(COLOR_ENTITY_DEFAULT)}">■</font> Item/Crop<br>'
         html_content += "<br><b>UI:</b><br>"
         html_content += f'<font color="{rgb_to_hex(COLOR_SELECTION)}">■</font> Selection<br>'

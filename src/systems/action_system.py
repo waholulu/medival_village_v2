@@ -58,8 +58,20 @@ class ActionSystem(System):
             elif action_comp.current_action == "create_fire":
                 self._handle_create_fire(entity, action_comp)
             
+            elif action_comp.current_action == "build_drop":
+                self._handle_build_drop(entity, action_comp)
+                
+            elif action_comp.current_action == "build":
+                self._handle_build(entity, action_comp, dt)
+            
             elif action_comp.current_action == "tend_fire":
                 self._handle_tend_fire(entity, action_comp)
+                
+            elif action_comp.current_action == "build_drop":
+                self._handle_build_drop(entity, action_comp)
+                
+            elif action_comp.current_action == "build":
+                self._handle_build(entity, action_comp, dt)
 
     def _handle_move(self, entity: int, action_comp: ActionComponent, dt: float):
         move_comp = self.entity_manager.get_component(entity, MovementComponent)
@@ -86,6 +98,7 @@ class ActionSystem(System):
                 # Path not found
                 action_comp.current_action = "idle"
                 move_comp.target = None
+                move_comp.path_failed = True
                 Logger.log(LogCategory.AI, f"Entity {entity}: No path to {end}")
                 return
 
@@ -809,6 +822,112 @@ class ActionSystem(System):
         Logger.log(LogCategory.GAMEPLAY, f"Entity {entity} added fuel to fire at ({pos_comp.x}, {pos_comp.y})")
         
         action_comp.current_action = "idle"
+
+    def _handle_build_drop(self, entity: int, action_comp: ActionComponent):
+        """Handle dropping a material into a blueprint."""
+        from src.components.building_components import BlueprintComponent
+        
+        target_id = action_comp.target_entity_id
+        if target_id is None:
+            action_comp.current_action = "idle"
+            return
+            
+        blueprint = self.entity_manager.get_component(target_id, BlueprintComponent)
+        inv_comp = self.entity_manager.get_component(entity, InventoryComponent)
+        
+        if not blueprint or not inv_comp:
+            action_comp.current_action = "idle"
+            return
+            
+        # Find which material we should drop
+        # (The AI system queued this job because a specific material was needed)
+        # We just look at what's still needed and what we have
+        material_to_drop = None
+        amount_to_drop = 0
+        
+        for mat_type, count_needed in blueprint.required_materials.items():
+            current = blueprint.current_materials.get(mat_type, 0)
+            if current < count_needed:
+                # We need this material. Do we have it?
+                if inv_comp.items.get(mat_type, 0) > 0:
+                    material_to_drop = mat_type
+                    # Drop whatever we have, or up to what's needed
+                    amount_to_drop = min(inv_comp.items[mat_type], count_needed - current)
+                    break
+                    
+        if material_to_drop and amount_to_drop > 0:
+            # Transfer item
+            inv_comp.items[material_to_drop] -= amount_to_drop
+            if inv_comp.items[material_to_drop] <= 0:
+                del inv_comp.items[material_to_drop]
+                
+            blueprint.current_materials[material_to_drop] = blueprint.current_materials.get(material_to_drop, 0) + amount_to_drop
+            
+            Logger.log(LogCategory.GAMEPLAY, f"Entity {entity} dropped {amount_to_drop} {material_to_drop} into blueprint for {blueprint.building_type}")
+            
+            # The AI system's job complete logic is not directly called here since ActionSystem doesn't know the job ID.
+            # But AI System will detect job is no longer valid (or action is idle) and will clean it up.
+            # However, for haul jobs we usually want to explicitly complete them so we don't have dangling jobs.
+            # Since AISystem does the job cleanup when job is missing from entity, we should clear the JobComponent.
+            # The AI system handles completing haul_to_blueprint jobs automatically if the material need is fulfilled,
+            # but to be safe we just clear the current action and the AI system will re-evaluate.
+            
+        action_comp.current_action = "idle"
+        action_comp.target_entity_id = None
+        
+        # Clear the job so the AI knows we finished this specific haul task
+        from src.components.data_components import JobComponent
+        from src.systems.job_system import JobSystem
+        job_comp = self.entity_manager.get_component(entity, JobComponent)
+        if job_comp:
+            # Ideally we'd have access to job_system here to call complete_job, but we don't.
+            # Removing the component makes the AI system realize the job is dead and clean it up next tick.
+            self.entity_manager.remove_component(entity, JobComponent)
+            
+    def _handle_build(self, entity: int, action_comp: ActionComponent, dt: float):
+        """Handle adding work points to a blueprint."""
+        from src.components.building_components import BlueprintComponent
+        
+        target_id = action_comp.target_entity_id
+        if target_id is None:
+            action_comp.current_action = "idle"
+            return
+            
+        blueprint = self.entity_manager.get_component(target_id, BlueprintComponent)
+        if not blueprint:
+            action_comp.current_action = "idle"
+            return
+            
+        # Calculate build speed (base + skill)
+        base_speed = self.config_manager.get("entities.villager.build_speed", 10.0)
+        skill_comp = self.entity_manager.get_component(entity, SkillComponent)
+        multiplier = 1.0
+        
+        if skill_comp:
+             # Use logging skill as proxy for building stuff for now
+             multiplier = 1.0 + skill_comp.skills.get("logging", 0.0)
+             
+        build_speed = base_speed * multiplier
+        blueprint.work_completed += build_speed * dt
+        
+        # Skill gain
+        if skill_comp:
+            current_skill = skill_comp.skills.get("logging", 0.0)
+            if current_skill < 1.0:
+                 # Slow skill gain
+                 skill_comp.skills["logging"] = min(1.0, current_skill + 0.05 * dt)
+                 
+        # If complete, the BuildingSystem will handle the transformation to a BuildingComponent.
+        # We just keep working until it is done or removed.
+        if blueprint.work_completed >= blueprint.work_required:
+            action_comp.current_action = "idle"
+            action_comp.target_entity_id = None
+            
+            # Remove job component to force clean up
+            from src.components.data_components import JobComponent
+            job_comp = self.entity_manager.get_component(entity, JobComponent)
+            if job_comp:
+                self.entity_manager.remove_component(entity, JobComponent)
     
     def _get_total_game_hours(self) -> float:
         """Return cumulative game hours for cooldown calculations."""
@@ -831,3 +950,64 @@ class ActionSystem(System):
                 if hour >= start or hour < end:
                     return True
         return False
+
+    def _handle_build_drop(self, entity: int, action_comp: ActionComponent):
+        from src.components.building_components import BlueprintComponent
+        from src.components.data_components import JobComponent
+        
+        target_entity = action_comp.target_entity_id
+        if target_entity is None:
+            action_comp.current_action = "idle"
+            return
+            
+        blueprint = self.entity_manager.get_component(target_entity, BlueprintComponent)
+        inv_comp = self.entity_manager.get_component(entity, InventoryComponent)
+        job_comp = self.entity_manager.get_component(entity, JobComponent)
+        
+        if not blueprint or not inv_comp or not job_comp:
+            action_comp.current_action = "idle"
+            return
+            
+        placed_any = False
+        for mat_type, needed in blueprint.required_materials.items():
+            current = blueprint.current_materials.get(mat_type, 0)
+            if current < needed and inv_comp.items.get(mat_type, 0) > 0:
+                amount_to_give = min(needed - current, inv_comp.items[mat_type])
+                blueprint.current_materials[mat_type] = current + amount_to_give
+                inv_comp.items[mat_type] -= amount_to_give
+                if inv_comp.items[mat_type] <= 0:
+                    del inv_comp.items[mat_type]
+                placed_any = True
+                Logger.log(LogCategory.GAMEPLAY, f"Entity {entity} added {amount_to_give} {mat_type} to blueprint at {target_entity}")
+                break
+                
+        if placed_any:
+            pass # Job is completed naturally when entity becomes idle
+            
+        action_comp.current_action = "idle"
+        action_comp.target_entity_id = None
+        
+    def _handle_build(self, entity: int, action_comp: ActionComponent, dt: float):
+        from src.components.building_components import BlueprintComponent
+        
+        target_entity = action_comp.target_entity_id
+        if target_entity is None:
+            action_comp.current_action = "idle"
+            return
+            
+        blueprint = self.entity_manager.get_component(target_entity, BlueprintComponent)
+        if not blueprint:
+            action_comp.current_action = "idle"
+            return
+            
+        skill_comp = self.entity_manager.get_component(entity, SkillComponent)
+        build_speed = 10.0 # base speed
+        if skill_comp:
+            build_speed += skill_comp.skills.get("logging", 0.1) * 20.0
+            
+        work_done = build_speed * dt
+        blueprint.work_completed += work_done
+        
+        if blueprint.work_completed >= blueprint.work_required:
+            action_comp.current_action = "idle"
+            action_comp.target_entity_id = None

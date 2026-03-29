@@ -19,11 +19,13 @@ from src.systems.needs_system import NeedsSystem
 from src.systems.farming_system import FarmingSystem
 from src.systems.routine_system import RoutineSystem
 from src.systems.survival_system import SurvivalSystem
+from src.systems.building_system import BuildingSystem
 from src.components.data_components import (
     PositionComponent, MovementComponent, ActionComponent, InventoryComponent,
     HungerComponent, TirednessComponent, MoodComponent, ColdComponent,
-    ItemComponent, CropComponent, ResourceComponent, SleepStateComponent, JobComponent
+    ItemComponent, CropComponent, ResourceComponent, SleepStateComponent, JobComponent,
 )
+from src.components.building_components import BlueprintComponent, BuildingComponent
 from src.components.skill_component import SkillComponent
 from src.components.tags import IsSelectable, IsTree, IsPlayer, IsVillager
 from src.utils.logger import Logger, LogCategory
@@ -70,7 +72,8 @@ def create_logic_systems(entity_manager, job_system, grid, zone_manager, config_
     farming_system = FarmingSystem(entity_manager, job_system, grid, zone_manager, time_manager, config_manager)
     routine_system = RoutineSystem(entity_manager, time_manager, config_manager)
     survival_system = SurvivalSystem(entity_manager, time_manager, config_manager, grid)
-    return action_system, ai_system, needs_system, farming_system, routine_system, survival_system
+    building_system = BuildingSystem(entity_manager, job_system, grid, config_manager)
+    return action_system, ai_system, needs_system, farming_system, routine_system, survival_system, building_system
 
 
 def create_graphics_systems(config_manager, grid, entity_manager, zone_manager, time_manager):
@@ -193,19 +196,46 @@ def _handle_mouse_click(event, input_manager, render_system, entity_manager, pix
 
 # ========================= Command Processing =========================
 
-def process_commands(input_manager, render_system, entity_manager, zone_manager, grid, pixels_per_unit):
+def process_commands(input_manager, render_system, entity_manager, zone_manager, grid, pixels_per_unit, config_manager):
     """Process queued commands from input."""
     if not input_manager.last_command:
         return
 
     cmd = input_manager.last_command
-    if cmd['type'] == 'SET_ZONE':
+    
+    if cmd['type'] == 'PLACE_BLUEPRINT':
         wx, wy = cmd['world_pos']
         tx = int(wx / pixels_per_unit)
         ty = int(wy / pixels_per_unit)
-        zone_type = cmd['zone_type']
-
-        zone_manager.mark_zone(tx, ty, zone_type)
+        blueprint_type = cmd['blueprint_type']
+        
+        b_config = config_manager.get(f"entities.buildings.{blueprint_type}", {})
+        if not b_config:
+            Logger.log(LogCategory.GAMEPLAY, f"Cannot place blueprint: unknown type {blueprint_type}")
+            return
+            
+        cost = b_config.get("cost", {})
+        work = b_config.get("work_required", 100.0)
+        
+        # Check if something is already here
+        can_place = True
+        for e, pos in entity_manager.get_entities_with(PositionComponent):
+            if pos.x == tx and pos.y == ty:
+                if entity_manager.has_component(e, BlueprintComponent) or entity_manager.has_component(e, BuildingComponent):
+                    can_place = False
+                    break
+                    
+        if can_place:
+            blueprint_entity = entity_manager.create_entity()
+            entity_manager.add_component(blueprint_entity, PositionComponent(x=tx, y=ty))
+            entity_manager.add_component(blueprint_entity, BlueprintComponent(
+                building_type=blueprint_type,
+                required_materials=cost,
+                work_required=work
+            ))
+            Logger.log(LogCategory.GAMEPLAY, f"Placed {blueprint_type} blueprint at ({tx}, {ty})")
+        else:
+            Logger.log(LogCategory.GAMEPLAY, f"Cannot place blueprint here.")
         zone_names = {ZONE_STOCKPILE: "Stockpile", ZONE_FARM: "Farm", ZONE_RESIDENTIAL: "Residential"}
         zone_name = zone_names.get(zone_type, "Unknown")
         Logger.gameplay(f"Placed {zone_name} zone at ({tx}, {ty})")
@@ -239,6 +269,17 @@ def process_commands(input_manager, render_system, entity_manager, zone_manager,
                     action_comp.target_entity_id = None
                     move_comp.target = (tx, ty)
                     move_comp.path = []
+
+    elif cmd['type'] == 'SET_ZONE':
+        wx, wy = cmd['world_pos']
+        tx = int(wx / pixels_per_unit)
+        ty = int(wy / pixels_per_unit)
+        zone_type = cmd['zone_type']
+
+        zone_manager.mark_zone(tx, ty, zone_type)
+        zone_names = {ZONE_STOCKPILE: "Stockpile", ZONE_FARM: "Farm", ZONE_RESIDENTIAL: "Residential"}
+        zone_name = zone_names.get(zone_type, "Unknown")
+        Logger.gameplay(f"Placed {zone_name} zone at ({tx}, {ty})")
 
 
 # ========================= Inspector Panel =========================
@@ -299,6 +340,10 @@ def _build_entity_info(entity_id: int, em: EntityManager) -> str:
         entity_type = "Item"
     elif em.has_component(entity_id, CropComponent):
         entity_type = "Crop"
+    elif em.has_component(entity_id, BlueprintComponent):
+        entity_type = "Blueprint"
+    elif em.has_component(entity_id, BuildingComponent):
+        entity_type = "Building"
     elif em.has_component(entity_id, ResourceComponent):
         entity_type = "Resource"
     info += f"Type: {entity_type}\n"
@@ -343,6 +388,21 @@ def _build_entity_info(entity_id: int, em: EntityManager) -> str:
         elif crop.state == "growing":
             remaining = (1.0 - crop.growth_progress) * 100
             info += f"Status: Growing ({remaining:.1f}% remaining)\n"
+            
+    # Blueprint info
+    blueprint = em.get_component(entity_id, BlueprintComponent)
+    if blueprint:
+        info += f"\n<b>--- Blueprint: {blueprint.building_type} ---</b>\n"
+        info += f"Work: {blueprint.work_completed:.1f}/{blueprint.work_required:.1f}\n"
+        for mat, req in blueprint.required_materials.items():
+             curr = blueprint.current_materials.get(mat, 0)
+             info += f"  • {mat}: {curr}/{req}\n"
+
+    # Building info
+    building = em.get_component(entity_id, BuildingComponent)
+    if building:
+        info += f"\n<b>--- Building: {building.building_type} ---</b>\n"
+        info += "Status: Completed\n"
 
     return info
 
@@ -673,7 +733,7 @@ def main():
 
     # Logic systems
     (action_system, ai_system, needs_system,
-     farming_system, routine_system, survival_system) = create_logic_systems(
+     farming_system, routine_system, survival_system, building_system) = create_logic_systems(
         entity_manager, job_system, grid, zone_manager, config_manager, time_manager
     )
 
@@ -739,7 +799,7 @@ def main():
             ui_system.update_villager_panel()
 
             # Commands
-            process_commands(input_manager, render_system, entity_manager, zone_manager, grid, pixels_per_unit)
+            process_commands(input_manager, render_system, entity_manager, zone_manager, grid, pixels_per_unit, config_manager)
 
             # Inspector
             info = build_inspector_info(render_system, entity_manager, grid, input_manager, pixels_per_unit)
@@ -751,6 +811,7 @@ def main():
             routine_system.update(dt)
             farming_system.update(dt)
             survival_system.update(dt)
+            building_system.update(dt)
             ai_system.update(dt)
             action_system.update(dt)
 
@@ -779,6 +840,7 @@ def main():
             routine_system.update(dt)
             farming_system.update(dt)
             survival_system.update(dt)
+            building_system.update(dt)
             ai_system.update(dt)
             action_system.update(dt)
 

@@ -123,6 +123,20 @@
       "fire_creation_cost_logs": 3,
       "fire_cold_reduction_per_hour": 10.0
     },
+    "buildings": {
+      "house": {
+        "cost": {"log": 10},
+        "work_required": 50.0,
+        "size": [2, 2],
+        "provides_shelter": true
+      },
+      "storage": {
+        "cost": {"log": 5},
+        "work_required": 25.0,
+        "size": [3, 3],
+        "provides_shelter": false
+      }
+    },
     "items": {
       "food_wheat": {
         "food_value": 30,

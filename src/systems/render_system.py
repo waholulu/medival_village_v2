@@ -2,6 +2,7 @@ import pygame
 import math
 from src.core.ecs import System, EntityManager
 from src.components.data_components import PositionComponent, MovementComponent
+from src.components.building_components import BlueprintComponent, BuildingComponent
 from src.components.tags import IsTree, IsPlayer, IsVillager
 from src.world.grid import Grid, TERRAIN_GRASS, TERRAIN_DIRT, TERRAIN_WATER, TERRAIN_STONE, ZONE_STOCKPILE, ZONE_FARM, ZONE_RESIDENTIAL, ZONE_NONE
 from src.utils.logger import Logger, LogCategory
@@ -15,9 +16,18 @@ COLOR_UNKNOWN = (255, 0, 255)
 COLOR_GRID_LINE = (50, 50, 50)
 COLOR_SELECTION = (255, 255, 0)
 COLOR_PATH = (200, 200, 0)
-COLOR_ENTITY_PLAYER = (0, 0, 255)
-COLOR_ENTITY_TREE = (0, 100, 0)
-COLOR_ENTITY_DEFAULT = (255, 0, 0)
+
+# Entity colors
+COLOR_ENTITY_PLAYER = (240, 190, 150) # Skin tone base
+COLOR_ENTITY_SHIRT = (50, 120, 200) # Blue shirt
+COLOR_ENTITY_TREE_TRUNK = (100, 60, 30) # Dark brown
+COLOR_ENTITY_TREE_LEAVES_1 = (34, 139, 34)  # Green 1
+COLOR_ENTITY_TREE_LEAVES_2 = (40, 150, 40)  # Green 2
+COLOR_ENTITY_BUILDING_WALL = (210, 190, 160) # Beige wall
+COLOR_ENTITY_BUILDING_ROOF = (180, 60, 50) # Red roof
+COLOR_ENTITY_BLUEPRINT = (0, 255, 255)  # Cyan
+COLOR_ENTITY_DEFAULT = (200, 200, 200)
+COLOR_SHADOW = (0, 0, 0, 80) # Semi-transparent black
 
 # Zone colors (semi-transparent overlays) - RGB only, alpha handled separately
 COLOR_ZONE_STOCKPILE = (255, 200, 0)  # Orange-yellow
@@ -141,7 +151,7 @@ class RenderSystem(System):
                 rect = (screen_x, screen_y, size, size)
                 
                 terrain_id = self.grid.get_terrain(x, y)
-                color = self.terrain_colors.get(terrain_id, COLOR_UNKNOWN)
+                color = self._get_terrain_color(x, y, terrain_id)
                 
                 pygame.draw.rect(self.screen, color, rect)
                 
@@ -171,66 +181,8 @@ class RenderSystem(System):
              if not (start_col <= pos_comp.x < end_col and start_row <= pos_comp.y < end_row):
                  continue
 
-             # Determine Color based on Tags
-             color = COLOR_ENTITY_DEFAULT
-             if self.entity_manager.has_component(entity, IsPlayer) or self.entity_manager.has_component(entity, IsVillager):
-                 color = COLOR_ENTITY_PLAYER
-             elif self.entity_manager.has_component(entity, IsTree):
-                 color = COLOR_ENTITY_TREE
-             
-             world_x = pos_comp.x * self.base_pixels_per_unit
-             world_y = pos_comp.y * self.base_pixels_per_unit
-             
-             # Add smooth movement offset if available
-             move_comp = self.entity_manager.get_component(entity, MovementComponent)
-             if move_comp and move_comp.path:
-                 # Calculate offset based on progress towards next tile
-                 # next tile is move_comp.path[0]
-                 # current tile is pos_comp.x, pos_comp.y
-                 next_x, next_y = move_comp.path[0]
-                 dx = next_x - pos_comp.x
-                 dy = next_y - pos_comp.y
-                 
-                 offset_x = dx * move_comp.progress * self.base_pixels_per_unit
-                 offset_y = dy * move_comp.progress * self.base_pixels_per_unit
-                 
-                 world_x += offset_x
-                 world_y += offset_y
-
-             screen_x, screen_y = self.world_to_screen(world_x, world_y)
-             size = math.ceil(ppu * 0.8) # Slightly smaller than tile
-             offset = (math.ceil(ppu) - size) // 2
-             
-             rect = (screen_x + offset, screen_y + offset, size, size)
-             pygame.draw.rect(self.screen, color, rect)
-             
-             # Highlight if selected
-             if entity == self.selected_entity_id:
-                 pygame.draw.rect(self.screen, COLOR_SELECTION, rect, 2)
-                 
-                 # Draw Path
-                 if move_comp and move_comp.path:
-                     # Draw line from center of entity to center of next tile, etc.
-                     center_x = screen_x + offset + size // 2
-                     center_y = screen_y + offset + size // 2
-                     
-                     points = [(center_x, center_y)]
-                     
-                     # We need to map path nodes to screen coords relative to camera
-                     # Path nodes are absolute grid coords
-                     
-                     # Next tile (the one we are moving to)
-                     # We already calculated world_x/y for the entity which includes interpolation
-                     # But path nodes are static
-                     
-                     for px, py in move_comp.path:
-                         p_wx = px * self.base_pixels_per_unit + self.base_pixels_per_unit / 2
-                         p_wy = py * self.base_pixels_per_unit + self.base_pixels_per_unit / 2
-                         p_sx, p_sy = self.world_to_screen(p_wx, p_wy)
-                         points.append((p_sx, p_sy))
-                     
-                     if len(points) > 1:
-                         pygame.draw.lines(self.screen, COLOR_PATH, False, points, 2)
+             # Draw entity with procedural shapes and animations
+             self._draw_entity(entity, pos_comp, start_col, end_col, start_row, end_row, ppu)
 
         # 5. Draw Selection Box (Tile Selection)
         if self.selected_tile:
@@ -250,6 +202,166 @@ class RenderSystem(System):
         if self.time_manager:
             self._draw_day_night_lighting()
     
+    def _get_terrain_color(self, x: int, y: int, terrain_id: int) -> tuple[int, int, int]:
+        base_color = self.terrain_colors.get(terrain_id, COLOR_UNKNOWN)
+        if base_color == COLOR_UNKNOWN:
+            return base_color
+            
+        r, g, b = base_color
+        
+        if terrain_id == TERRAIN_WATER:
+            if self.time_manager:
+                t = self.time_manager.real_time_elapsed
+                # simple wave based on coordinates and time
+                wave = math.sin(x * 0.5 + y * 0.5 + t * 2.0)
+                variation = int(wave * 15)
+                r = max(0, min(255, r + variation))
+                g = max(0, min(255, g + variation))
+                b = max(0, min(255, b + variation + 10)) # Boost blue slightly
+        else:
+            # Pseudo-random noise for grass, dirt, stone
+            noise = (math.sin(x * 12.9898 + y * 78.233) * 43758.5453) % 1.0
+            variation = int((noise - 0.5) * 20)
+            r = max(0, min(255, r + variation))
+            g = max(0, min(255, g + variation))
+            b = max(0, min(255, b + variation))
+            
+        return (r, g, b)
+
+    def _draw_entity(self, entity: int, pos_comp: PositionComponent, start_col: int, end_col: int, start_row: int, end_row: int, ppu: float):
+        world_x = pos_comp.x * self.base_pixels_per_unit
+        world_y = pos_comp.y * self.base_pixels_per_unit
+        
+        move_comp = self.entity_manager.get_component(entity, MovementComponent)
+        is_moving = False
+        if move_comp and move_comp.path:
+            is_moving = True
+            next_x, next_y = move_comp.path[0]
+            dx = next_x - pos_comp.x
+            dy = next_y - pos_comp.y
+            
+            offset_x = dx * move_comp.progress * self.base_pixels_per_unit
+            offset_y = dy * move_comp.progress * self.base_pixels_per_unit
+            
+            world_x += offset_x
+            world_y += offset_y
+            
+        screen_x, screen_y = self.world_to_screen(world_x, world_y)
+        tile_size = math.ceil(ppu)
+        center_x = screen_x + tile_size // 2
+        center_y = screen_y + tile_size // 2
+        
+        # Determine entity type
+        is_player = self.entity_manager.has_component(entity, IsPlayer) or self.entity_manager.has_component(entity, IsVillager)
+        is_tree = self.entity_manager.has_component(entity, IsTree)
+        is_building = self.entity_manager.has_component(entity, BuildingComponent)
+        blueprint_comp = self.entity_manager.get_component(entity, BlueprintComponent)
+        is_blueprint = blueprint_comp is not None
+
+        # Draw drop shadow
+        if not is_blueprint:
+            shadow_w = int(tile_size * 0.7)
+            shadow_h = int(tile_size * 0.3)
+            shadow_y = center_y + int(tile_size * 0.3)
+            # Create a per-frame surface for shadow to support alpha. Can be optimized if slow.
+            shadow_surface = pygame.Surface((shadow_w, shadow_h), pygame.SRCALPHA)
+            pygame.draw.ellipse(shadow_surface, COLOR_SHADOW, (0, 0, shadow_w, shadow_h))
+            self.screen.blit(shadow_surface, (center_x - shadow_w // 2, shadow_y - shadow_h // 2))
+
+        # Base shapes drawing
+        if is_player:
+            # Movement bobbing
+            bobbing_y = 0
+            if is_moving and self.time_manager:
+                bobbing_y = int(abs(math.sin(move_comp.progress * math.pi * 2)) * tile_size * 0.15)
+                
+            head_radius = int(tile_size * 0.2)
+            body_w = int(tile_size * 0.4)
+            body_h = int(tile_size * 0.4)
+            
+            # Shirt/Body
+            body_rect = (center_x - body_w // 2, center_y - bobbing_y, body_w, body_h)
+            pygame.draw.rect(self.screen, COLOR_ENTITY_SHIRT, body_rect, border_radius=int(tile_size*0.1))
+            
+            # Head
+            head_center = (center_x, center_y - head_radius - bobbing_y)
+            pygame.draw.circle(self.screen, COLOR_ENTITY_PLAYER, head_center, head_radius)
+            
+        elif is_tree:
+            trunk_w = int(tile_size * 0.2)
+            trunk_h = int(tile_size * 0.4)
+            trunk_rect = (center_x - trunk_w // 2, center_y, trunk_w, trunk_h)
+            pygame.draw.rect(self.screen, COLOR_ENTITY_TREE_TRUNK, trunk_rect)
+            
+            # Crown (3 overlapping circles)
+            radius = int(tile_size * 0.35)
+            pygame.draw.circle(self.screen, COLOR_ENTITY_TREE_LEAVES_1, (center_x, center_y - int(tile_size * 0.1)), radius)
+            pygame.draw.circle(self.screen, COLOR_ENTITY_TREE_LEAVES_2, (center_x - int(tile_size * 0.15), center_y - int(tile_size * 0.3)), int(radius * 0.8))
+            pygame.draw.circle(self.screen, COLOR_ENTITY_TREE_LEAVES_1, (center_x + int(tile_size * 0.15), center_y - int(tile_size * 0.3)), int(radius * 0.8))
+            
+        elif is_building:
+            wall_w = int(tile_size * 0.8)
+            wall_h = int(tile_size * 0.6)
+            wall_rect = (center_x - wall_w // 2, center_y - int(tile_size * 0.1), wall_w, wall_h)
+            pygame.draw.rect(self.screen, COLOR_ENTITY_BUILDING_WALL, wall_rect)
+            
+            # Roof (polygon)
+            roof_points = [
+                (center_x - wall_w // 2 - int(tile_size * 0.1), center_y - int(tile_size * 0.1)),
+                (center_x + wall_w // 2 + int(tile_size * 0.1), center_y - int(tile_size * 0.1)),
+                (center_x, center_y - int(tile_size * 0.6))
+            ]
+            pygame.draw.polygon(self.screen, COLOR_ENTITY_BUILDING_ROOF, roof_points)
+            
+        elif is_blueprint:
+            # Blueprint breathing effect
+            alpha = 255
+            if self.time_manager:
+                alpha = int(155 + 100 * math.sin(self.time_manager.real_time_elapsed * 3.0))
+            
+            bp_surface = pygame.Surface((tile_size, tile_size), pygame.SRCALPHA)
+            bp_color = (*COLOR_ENTITY_BLUEPRINT, alpha)
+            bp_rect = (int(tile_size*0.1), int(tile_size*0.1), int(tile_size*0.8), int(tile_size*0.8))
+            pygame.draw.rect(bp_surface, bp_color, bp_rect, 3, border_radius=4)
+            
+            # Progress fill
+            if blueprint_comp.work_required > 0:
+                progress = blueprint_comp.work_completed / blueprint_comp.work_required
+                if progress > 0:
+                    inner_h = int(tile_size * 0.8 * progress)
+                    inner_rect = (int(tile_size*0.1), int(tile_size*0.9) - inner_h, int(tile_size*0.8), inner_h)
+                    pygame.draw.rect(bp_surface, (*COLOR_ENTITY_BLUEPRINT, int(alpha * 0.5)), inner_rect, border_radius=2)
+                    
+            self.screen.blit(bp_surface, (screen_x, screen_y))
+            
+        else:
+            # Default fallback
+            rect = (screen_x + int(tile_size*0.1), screen_y + int(tile_size*0.1), int(tile_size*0.8), int(tile_size*0.8))
+            pygame.draw.rect(self.screen, COLOR_ENTITY_DEFAULT, rect)
+
+        # Highlight if selected
+        if entity == self.selected_entity_id:
+            # Breathing selection
+            alpha = 255
+            if self.time_manager:
+                alpha = int(155 + 100 * math.sin(self.time_manager.real_time_elapsed * 5.0))
+            
+            sel_surface = pygame.Surface((tile_size, tile_size), pygame.SRCALPHA)
+            pygame.draw.rect(sel_surface, (*COLOR_SELECTION, alpha), (0, 0, tile_size, tile_size), 3, border_radius=4)
+            self.screen.blit(sel_surface, (screen_x, screen_y))
+            
+            # Draw Path
+            if move_comp and move_comp.path:
+                points = [(center_x, center_y)]
+                for px, py in move_comp.path:
+                    p_wx = px * self.base_pixels_per_unit + self.base_pixels_per_unit / 2
+                    p_wy = py * self.base_pixels_per_unit + self.base_pixels_per_unit / 2
+                    p_sx, p_sy = self.world_to_screen(p_wx, p_wy)
+                    points.append((p_sx, p_sy))
+                
+                if len(points) > 1:
+                    pygame.draw.lines(self.screen, COLOR_PATH, False, points, 2)
+
     def _draw_seasonal_tint(self):
         """Draw seasonal color tint overlay."""
         season = self.time_manager.get_season()

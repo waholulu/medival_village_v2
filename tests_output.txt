@@ -1,0 +1,495 @@
+============================= test session starts =============================
+platform win32 -- Python 3.10.6, pytest-7.3.1, pluggy-1.0.0
+benchmark: 4.0.0 (defaults: timer=time.perf_counter disable_gc=False min_rounds=5 min_time=0.000005 max_time=1.0 calibration_precision=10 warmup=False warmup_iterations=100000)
+rootdir: D:\github\medival_village_v2
+plugins: anyio-3.6.2, asyncio-0.21.0, benchmark-4.0.0, cov-4.0.0, integration-0.2.3, mock-3.10.0, recording-0.12.2, xdist-3.3.0
+asyncio: mode=strict
+collected 0 items
+
+============================== warnings summary ===============================
+tests\test_framework.py:21
+  D:\github\medival_village_v2\tests\test_framework.py:21: PytestCollectionWarning: cannot collect test class 'TestStatus' because it has a __new__ constructor (from: tests/test_framework.py)
+    class TestStatus(Enum):
+
+tests\test_framework.py:31
+  D:\github\medival_village_v2\tests\test_framework.py:31: PytestCollectionWarning: cannot collect test class 'TestResult' because it has a __init__ constructor (from: tests/test_framework.py)
+    @dataclass
+
+tests\test_framework.py:42
+  D:\github\medival_village_v2\tests\test_framework.py:42: PytestCollectionWarning: cannot collect test class 'TestSuiteResult' because it has a __init__ constructor (from: tests/test_framework.py)
+    @dataclass
+
+tests\test_framework.py:55
+  D:\github\medival_village_v2\tests\test_framework.py:55: PytestCollectionWarning: cannot collect test class 'TestBase' because it has a __init__ constructor (from: tests/test_framework.py)
+    class TestBase:
+
+tests\test_framework.py:300
+  D:\github\medival_village_v2\tests\test_framework.py:300: PytestCollectionWarning: cannot collect test class 'TestReporter' because it has a __init__ constructor (from: tests/test_framework.py)
+    class TestReporter:
+
+tests\test_framework.py:392
+  D:\github\medival_village_v2\tests\test_framework.py:392: PytestCollectionWarning: cannot collect test class 'TestRunner' because it has a __init__ constructor (from: tests/test_framework.py)
+    class TestRunner:
+
+tests\test_helpers.py:41
+  D:\github\medival_village_v2\tests\test_helpers.py:41: PytestCollectionWarning: cannot collect test class 'TestWorld' because it has a __init__ constructor (from: tests/test_helpers.py)
+    class TestWorld:
+
+tests\test_framework.py:55
+  D:\github\medival_village_v2\tests\test_framework.py:55: PytestCollectionWarning: cannot collect test class 'TestBase' because it has a __init__ constructor (from: tests/integration/test_farming_workflow.py)
+    class TestBase:
+
+tests\test_helpers.py:41
+  D:\github\medival_village_v2\tests\test_helpers.py:41: PytestCollectionWarning: cannot collect test class 'TestWorld' because it has a __init__ constructor (from: tests/integration/test_farming_workflow.py)
+    class TestWorld:
+
+tests\integration\test_farming_workflow.py:14
+  D:\github\medival_village_v2\tests\integration\test_farming_workflow.py:14: PytestCollectionWarning: cannot collect test class 'TestFarmingWorkflow' because it has a __init__ constructor (from: tests/integration/test_farming_workflow.py)
+    class TestFarmingWorkflow(TestBase):
+
+tests\test_framework.py:55
+  D:\github\medival_village_v2\tests\test_framework.py:55: PytestCollectionWarning: cannot collect test class 'TestBase' because it has a __init__ constructor (from: tests/integration/test_resource_management.py)
+    class TestBase:
+
+tests\test_helpers.py:41
+  D:\github\medival_village_v2\tests\test_helpers.py:41: PytestCollectionWarning: cannot collect test class 'TestWorld' because it has a __init__ constructor (from: tests/integration/test_resource_management.py)
+    class TestWorld:
+
+tests\integration\test_resource_management.py:14
+  D:\github\medival_village_v2\tests\integration\test_resource_management.py:14: PytestCollectionWarning: cannot collect test class 'TestResourceManagement' because it has a __init__ constructor (from: tests/integration/test_resource_management.py)
+    class TestResourceManagement(TestBase):
+
+tests\test_framework.py:55
+  D:\github\medival_village_v2\tests\test_framework.py:55: PytestCollectionWarning: cannot collect test class 'TestBase' because it has a __init__ constructor (from: tests/integration/test_survival_mechanics.py)
+    class TestBase:
+
+tests\test_helpers.py:41
+  D:\github\medival_village_v2\tests\test_helpers.py:41: PytestCollectionWarning: cannot collect test class 'TestWorld' because it has a __init__ constructor (from: tests/integration/test_survival_mechanics.py)
+    class TestWorld:
+
+tests\integration\test_survival_mechanics.py:17
+  D:\github\medival_village_v2\tests\integration\test_survival_mechanics.py:17: PytestCollectionWarning: cannot collect test class 'TestSurvivalMechanics' because it has a __init__ constructor (from: tests/integration/test_survival_mechanics.py)
+    class TestSurvivalMechanics(TestBase):
+
+tests\test_framework.py:55
+  D:\github\medival_village_v2\tests\test_framework.py:55: PytestCollectionWarning: cannot collect test class 'TestBase' because it has a __init__ constructor (from: tests/integration/test_time_systems.py)
+    class TestBase:
+
+tests\test_helpers.py:41
+  D:\github\medival_village_v2\tests\test_helpers.py:41: PytestCollectionWarning: cannot collect test class 'TestWorld' because it has a __init__ constructor (from: tests/integration/test_time_systems.py)
+    class TestWorld:
+
+tests\integration\test_time_systems.py:12
+  D:\github\medival_village_v2\tests\integration\test_time_systems.py:12: PytestCollectionWarning: cannot collect test class 'TestTimeSystems' because it has a __init__ constructor (from: tests/integration/test_time_systems.py)
+    class TestTimeSystems(TestBase):
+
+tests\test_framework.py:55
+  D:\github\medival_village_v2\tests\test_framework.py:55: PytestCollectionWarning: cannot collect test class 'TestBase' because it has a __init__ constructor (from: tests/integration/test_villager_lifecycle.py)
+    class TestBase:
+
+tests\test_helpers.py:41
+  D:\github\medival_village_v2\tests\test_helpers.py:41: PytestCollectionWarning: cannot collect test class 'TestWorld' because it has a __init__ constructor (from: tests/integration/test_villager_lifecycle.py)
+    class TestWorld:
+
+tests\integration\test_villager_lifecycle.py:13
+  D:\github\medival_village_v2\tests\integration\test_villager_lifecycle.py:13: PytestCollectionWarning: cannot collect test class 'TestVillagerLifecycle' because it has a __init__ constructor (from: tests/integration/test_villager_lifecycle.py)
+    class TestVillagerLifecycle(TestBase):
+
+tests\test_framework.py:55
+  D:\github\medival_village_v2\tests\test_framework.py:55: PytestCollectionWarning: cannot collect test class 'TestBase' because it has a __init__ constructor (from: tests/unit/test_action_system.py)
+    class TestBase:
+
+tests\test_helpers.py:41
+  D:\github\medival_village_v2\tests\test_helpers.py:41: PytestCollectionWarning: cannot collect test class 'TestWorld' because it has a __init__ constructor (from: tests/unit/test_action_system.py)
+    class TestWorld:
+
+tests\unit\test_action_system.py:16
+  D:\github\medival_village_v2\tests\unit\test_action_system.py:16: PytestCollectionWarning: cannot collect test class 'TestActionSystem' because it has a __init__ constructor (from: tests/unit/test_action_system.py)
+    class TestActionSystem(TestBase):
+
+tests\test_framework.py:55
+  D:\github\medival_village_v2\tests\test_framework.py:55: PytestCollectionWarning: cannot collect test class 'TestBase' because it has a __init__ constructor (from: tests/unit/test_ai_building_regressions.py)
+    class TestBase:
+
+tests\test_helpers.py:41
+  D:\github\medival_village_v2\tests\test_helpers.py:41: PytestCollectionWarning: cannot collect test class 'TestWorld' because it has a __init__ constructor (from: tests/unit/test_ai_building_regressions.py)
+    class TestWorld:
+
+tests\unit\test_ai_building_regressions.py:19
+  D:\github\medival_village_v2\tests\unit\test_ai_building_regressions.py:19: PytestCollectionWarning: cannot collect test class 'TestAIBuildingRegressions' because it has a __init__ constructor (from: tests/unit/test_ai_building_regressions.py)
+    class TestAIBuildingRegressions(TestBase):
+
+tests\test_framework.py:55
+  D:\github\medival_village_v2\tests\test_framework.py:55: PytestCollectionWarning: cannot collect test class 'TestBase' because it has a __init__ constructor (from: tests/unit/test_ai_system.py)
+    class TestBase:
+
+tests\test_helpers.py:41
+  D:\github\medival_village_v2\tests\test_helpers.py:41: PytestCollectionWarning: cannot collect test class 'TestWorld' because it has a __init__ constructor (from: tests/unit/test_ai_system.py)
+    class TestWorld:
+
+tests\unit\test_ai_system.py:14
+  D:\github\medival_village_v2\tests\unit\test_ai_system.py:14: PytestCollectionWarning: cannot collect test class 'TestAISystem' because it has a __init__ constructor (from: tests/unit/test_ai_system.py)
+    class TestAISystem(TestBase):
+
+tests\test_framework.py:55
+  D:\github\medival_village_v2\tests\test_framework.py:55: PytestCollectionWarning: cannot collect test class 'TestBase' because it has a __init__ constructor (from: tests/unit/test_behavior_fixes.py)
+    class TestBase:
+
+tests\test_helpers.py:41
+  D:\github\medival_village_v2\tests\test_helpers.py:41: PytestCollectionWarning: cannot collect test class 'TestWorld' because it has a __init__ constructor (from: tests/unit/test_behavior_fixes.py)
+    class TestWorld:
+
+tests\unit\test_behavior_fixes.py:24
+  D:\github\medival_village_v2\tests\unit\test_behavior_fixes.py:24: PytestCollectionWarning: cannot collect test class 'TestHarvestPriority' because it has a __init__ constructor (from: tests/unit/test_behavior_fixes.py)
+    class TestHarvestPriority(TestBase):
+
+tests\unit\test_behavior_fixes.py:93
+  D:\github\medival_village_v2\tests\unit\test_behavior_fixes.py:93: PytestCollectionWarning: cannot collect test class 'TestTirednessMovingBug' because it has a __init__ constructor (from: tests/unit/test_behavior_fixes.py)
+    class TestTirednessMovingBug(TestBase):
+
+tests\unit\test_behavior_fixes.py:160
+  D:\github\medival_village_v2\tests\unit\test_behavior_fixes.py:160: PytestCollectionWarning: cannot collect test class 'TestFoodSeekingPersistence' because it has a __init__ constructor (from: tests/unit/test_behavior_fixes.py)
+    class TestFoodSeekingPersistence(TestBase):
+
+tests\unit\test_behavior_fixes.py:198
+  D:\github\medival_village_v2\tests\unit\test_behavior_fixes.py:198: PytestCollectionWarning: cannot collect test class 'TestItemDroppingOnNonWorkRoutine' because it has a __init__ constructor (from: tests/unit/test_behavior_fixes.py)
+    class TestItemDroppingOnNonWorkRoutine(TestBase):
+
+tests\unit\test_behavior_fixes.py:265
+  D:\github\medival_village_v2\tests\unit\test_behavior_fixes.py:265: PytestCollectionWarning: cannot collect test class 'TestHungryDistantJobRefusal' because it has a __init__ constructor (from: tests/unit/test_behavior_fixes.py)
+    class TestHungryDistantJobRefusal(TestBase):
+
+tests\unit\test_behavior_fixes.py:360
+  D:\github\medival_village_v2\tests\unit\test_behavior_fixes.py:360: PytestCollectionWarning: cannot collect test class 'TestAntiOscillation' because it has a __init__ constructor (from: tests/unit/test_behavior_fixes.py)
+    class TestAntiOscillation(TestBase):
+
+tests\test_framework.py:55
+  D:\github\medival_village_v2\tests\test_framework.py:55: PytestCollectionWarning: cannot collect test class 'TestBase' because it has a __init__ constructor (from: tests/unit/test_behavior_regression.py)
+    class TestBase:
+
+tests\test_helpers.py:41
+  D:\github\medival_village_v2\tests\test_helpers.py:41: PytestCollectionWarning: cannot collect test class 'TestWorld' because it has a __init__ constructor (from: tests/unit/test_behavior_regression.py)
+    class TestWorld:
+
+tests\unit\test_behavior_regression.py:21
+  D:\github\medival_village_v2\tests\unit\test_behavior_regression.py:21: PytestCollectionWarning: cannot collect test class 'TestRoutineEating' because it has a __init__ constructor (from: tests/unit/test_behavior_regression.py)
+    class TestRoutineEating(TestBase):
+
+tests\unit\test_behavior_regression.py:101
+  D:\github\medival_village_v2\tests\unit\test_behavior_regression.py:101: PytestCollectionWarning: cannot collect test class 'TestInventoryDeposit' because it has a __init__ constructor (from: tests/unit/test_behavior_regression.py)
+    class TestInventoryDeposit(TestBase):
+
+tests\unit\test_behavior_regression.py:186
+  D:\github\medival_village_v2\tests\unit\test_behavior_regression.py:186: PytestCollectionWarning: cannot collect test class 'TestAutoPickupAfterChop' because it has a __init__ constructor (from: tests/unit/test_behavior_regression.py)
+    class TestAutoPickupAfterChop(TestBase):
+
+tests\unit\test_behavior_regression.py:266
+  D:\github\medival_village_v2\tests\unit\test_behavior_regression.py:266: PytestCollectionWarning: cannot collect test class 'TestStockpileDeposit' because it has a __init__ constructor (from: tests/unit/test_behavior_regression.py)
+    class TestStockpileDeposit(TestBase):
+
+tests\unit\test_behavior_regression.py:321
+  D:\github\medival_village_v2\tests\unit\test_behavior_regression.py:321: PytestCollectionWarning: cannot collect test class 'TestPlantJobSeedCheck' because it has a __init__ constructor (from: tests/unit/test_behavior_regression.py)
+    class TestPlantJobSeedCheck(TestBase):
+
+tests\test_framework.py:55
+  D:\github\medival_village_v2\tests\test_framework.py:55: PytestCollectionWarning: cannot collect test class 'TestBase' because it has a __init__ constructor (from: tests/unit/test_bug_regressions.py)
+    class TestBase:
+
+tests\test_helpers.py:41
+  D:\github\medival_village_v2\tests\test_helpers.py:41: PytestCollectionWarning: cannot collect test class 'TestWorld' because it has a __init__ constructor (from: tests/unit/test_bug_regressions.py)
+    class TestWorld:
+
+tests\unit\test_bug_regressions.py:29
+  D:\github\medival_village_v2\tests\unit\test_bug_regressions.py:29: PytestCollectionWarning: cannot collect test class 'TestEatingInterruptsMove' because it has a __init__ constructor (from: tests/unit/test_bug_regressions.py)
+    class TestEatingInterruptsMove(TestBase):
+
+tests\unit\test_bug_regressions.py:121
+  D:\github\medival_village_v2\tests\unit\test_bug_regressions.py:121: PytestCollectionWarning: cannot collect test class 'TestSleepingInterruptsMove' because it has a __init__ constructor (from: tests/unit/test_bug_regressions.py)
+    class TestSleepingInterruptsMove(TestBase):
+
+tests\unit\test_bug_regressions.py:176
+  D:\github\medival_village_v2\tests\unit\test_bug_regressions.py:176: PytestCollectionWarning: cannot collect test class 'TestEatFromGroundNoHoarding' because it has a __init__ constructor (from: tests/unit/test_bug_regressions.py)
+    class TestEatFromGroundNoHoarding(TestBase):
+
+tests\unit\test_bug_regressions.py:271
+  D:\github\medival_village_v2\tests\unit\test_bug_regressions.py:271: PytestCollectionWarning: cannot collect test class 'TestFindAndSleepZoneCheck' because it has a __init__ constructor (from: tests/unit/test_bug_regressions.py)
+    class TestFindAndSleepZoneCheck(TestBase):
+
+tests\unit\test_bug_regressions.py:320
+  D:\github\medival_village_v2\tests\unit\test_bug_regressions.py:320: PytestCollectionWarning: cannot collect test class 'TestMovementClearedOnInterrupt' because it has a __init__ constructor (from: tests/unit/test_bug_regressions.py)
+    class TestMovementClearedOnInterrupt(TestBase):
+
+tests\test_framework.py:55
+  D:\github\medival_village_v2\tests\test_framework.py:55: PytestCollectionWarning: cannot collect test class 'TestBase' because it has a __init__ constructor (from: tests/unit/test_building_system.py)
+    class TestBase:
+
+tests\test_helpers.py:41
+  D:\github\medival_village_v2\tests\test_helpers.py:41: PytestCollectionWarning: cannot collect test class 'TestWorld' because it has a __init__ constructor (from: tests/unit/test_building_system.py)
+    class TestWorld:
+
+tests\unit\test_building_system.py:18
+  D:\github\medival_village_v2\tests\unit\test_building_system.py:18: PytestCollectionWarning: cannot collect test class 'TestBuildingSystem' because it has a __init__ constructor (from: tests/unit/test_building_system.py)
+    class TestBuildingSystem(TestBase):
+
+tests\test_framework.py:55
+  D:\github\medival_village_v2\tests\test_framework.py:55: PytestCollectionWarning: cannot collect test class 'TestBase' because it has a __init__ constructor (from: tests/unit/test_ecs.py)
+    class TestBase:
+
+tests\unit\test_ecs.py:12
+  D:\github\medival_village_v2\tests\unit\test_ecs.py:12: PytestCollectionWarning: cannot collect test class 'TestECS' because it has a __init__ constructor (from: tests/unit/test_ecs.py)
+    class TestECS(TestBase):
+
+tests\test_framework.py:55
+  D:\github\medival_village_v2\tests\test_framework.py:55: PytestCollectionWarning: cannot collect test class 'TestBase' because it has a __init__ constructor (from: tests/unit/test_farming_system.py)
+    class TestBase:
+
+tests\test_helpers.py:41
+  D:\github\medival_village_v2\tests\test_helpers.py:41: PytestCollectionWarning: cannot collect test class 'TestWorld' because it has a __init__ constructor (from: tests/unit/test_farming_system.py)
+    class TestWorld:
+
+tests\unit\test_farming_system.py:13
+  D:\github\medival_village_v2\tests\unit\test_farming_system.py:13: PytestCollectionWarning: cannot collect test class 'TestFarmingSystem' because it has a __init__ constructor (from: tests/unit/test_farming_system.py)
+    class TestFarmingSystem(TestBase):
+
+tests\test_framework.py:55
+  D:\github\medival_village_v2\tests\test_framework.py:55: PytestCollectionWarning: cannot collect test class 'TestBase' because it has a __init__ constructor (from: tests/unit/test_grid.py)
+    class TestBase:
+
+tests\unit\test_grid.py:14
+  D:\github\medival_village_v2\tests\unit\test_grid.py:14: PytestCollectionWarning: cannot collect test class 'TestGrid' because it has a __init__ constructor (from: tests/unit/test_grid.py)
+    class TestGrid(TestBase):
+
+tests\unit\test_grid.py:64
+  D:\github\medival_village_v2\tests\unit\test_grid.py:64: PytestCollectionWarning: cannot collect test class 'TestGridBoundary' because it has a __init__ constructor (from: tests/unit/test_grid.py)
+    class TestGridBoundary(TestBase):
+
+tests\unit\test_grid.py:106
+  D:\github\medival_village_v2\tests\unit\test_grid.py:106: PytestCollectionWarning: cannot collect test class 'TestGridZone' because it has a __init__ constructor (from: tests/unit/test_grid.py)
+    class TestGridZone(TestBase):
+
+tests\test_framework.py:55
+  D:\github\medival_village_v2\tests\test_framework.py:55: PytestCollectionWarning: cannot collect test class 'TestBase' because it has a __init__ constructor (from: tests/unit/test_issue_regressions.py)
+    class TestBase:
+
+tests\test_helpers.py:41
+  D:\github\medival_village_v2\tests\test_helpers.py:41: PytestCollectionWarning: cannot collect test class 'TestWorld' because it has a __init__ constructor (from: tests/unit/test_issue_regressions.py)
+    class TestWorld:
+
+tests\unit\test_issue_regressions.py:42
+  D:\github\medival_village_v2\tests\unit\test_issue_regressions.py:42: PytestCollectionWarning: cannot collect test class 'TestRoutineEnforcement' because it has a __init__ constructor (from: tests/unit/test_issue_regressions.py)
+    class TestRoutineEnforcement(TestBase):
+
+tests\unit\test_issue_regressions.py:216
+  D:\github\medival_village_v2\tests\unit\test_issue_regressions.py:216: PytestCollectionWarning: cannot collect test class 'TestChopJobCompletion' because it has a __init__ constructor (from: tests/unit/test_issue_regressions.py)
+    class TestChopJobCompletion(TestBase):
+
+tests\unit\test_issue_regressions.py:328
+  D:\github\medival_village_v2\tests\unit\test_issue_regressions.py:328: PytestCollectionWarning: cannot collect test class 'TestOverDistanceJobCancellation' because it has a __init__ constructor (from: tests/unit/test_issue_regressions.py)
+    class TestOverDistanceJobCancellation(TestBase):
+
+tests\unit\test_issue_regressions.py:433
+  D:\github\medival_village_v2\tests\unit\test_issue_regressions.py:433: PytestCollectionWarning: cannot collect test class 'TestSleepStateClearing' because it has a __init__ constructor (from: tests/unit/test_issue_regressions.py)
+    class TestSleepStateClearing(TestBase):
+
+tests\unit\test_issue_regressions.py:511
+  D:\github\medival_village_v2\tests\unit\test_issue_regressions.py:511: PytestCollectionWarning: cannot collect test class 'TestDropAllItems' because it has a __init__ constructor (from: tests/unit/test_issue_regressions.py)
+    class TestDropAllItems(TestBase):
+
+tests\unit\test_issue_regressions.py:556
+  D:\github\medival_village_v2\tests\unit\test_issue_regressions.py:556: PytestCollectionWarning: cannot collect test class 'TestNeedLockDuration' because it has a __init__ constructor (from: tests/unit/test_issue_regressions.py)
+    class TestNeedLockDuration(TestBase):
+
+tests\unit\test_issue_regressions.py:596
+  D:\github\medival_village_v2\tests\unit\test_issue_regressions.py:596: PytestCollectionWarning: cannot collect test class 'TestCropGrowth' because it has a __init__ constructor (from: tests/unit/test_issue_regressions.py)
+    class TestCropGrowth(TestBase):
+
+tests\unit\test_issue_regressions.py:653
+  D:\github\medival_village_v2\tests\unit\test_issue_regressions.py:653: PytestCollectionWarning: cannot collect test class 'TestColdDecay' because it has a __init__ constructor (from: tests/unit/test_issue_regressions.py)
+    class TestColdDecay(TestBase):
+
+tests\unit\test_issue_regressions.py:724
+  D:\github\medival_village_v2\tests\unit\test_issue_regressions.py:724: PytestCollectionWarning: cannot collect test class 'TestFoodEconomy' because it has a __init__ constructor (from: tests/unit/test_issue_regressions.py)
+    class TestFoodEconomy(TestBase):
+
+tests\unit\test_issue_regressions.py:766
+  D:\github\medival_village_v2\tests\unit\test_issue_regressions.py:766: PytestCollectionWarning: cannot collect test class 'TestHeadlessLogDedup' because it has a __init__ constructor (from: tests/unit/test_issue_regressions.py)
+    class TestHeadlessLogDedup(TestBase):
+
+tests\test_framework.py:55
+  D:\github\medival_village_v2\tests\test_framework.py:55: PytestCollectionWarning: cannot collect test class 'TestBase' because it has a __init__ constructor (from: tests/unit/test_job_system.py)
+    class TestBase:
+
+tests\unit\test_job_system.py:11
+  D:\github\medival_village_v2\tests\unit\test_job_system.py:11: PytestCollectionWarning: cannot collect test class 'TestJobSystem' because it has a __init__ constructor (from: tests/unit/test_job_system.py)
+    class TestJobSystem(TestBase):
+
+tests\test_framework.py:55
+  D:\github\medival_village_v2\tests\test_framework.py:55: PytestCollectionWarning: cannot collect test class 'TestBase' because it has a __init__ constructor (from: tests/unit/test_needs_system.py)
+    class TestBase:
+
+tests\test_helpers.py:41
+  D:\github\medival_village_v2\tests\test_helpers.py:41: PytestCollectionWarning: cannot collect test class 'TestWorld' because it has a __init__ constructor (from: tests/unit/test_needs_system.py)
+    class TestWorld:
+
+tests\unit\test_needs_system.py:12
+  D:\github\medival_village_v2\tests\unit\test_needs_system.py:12: PytestCollectionWarning: cannot collect test class 'TestNeedsSystem' because it has a __init__ constructor (from: tests/unit/test_needs_system.py)
+    class TestNeedsSystem(TestBase):
+
+tests\test_framework.py:55
+  D:\github\medival_village_v2\tests\test_framework.py:55: PytestCollectionWarning: cannot collect test class 'TestBase' because it has a __init__ constructor (from: tests/unit/test_pathfinding.py)
+    class TestBase:
+
+tests\unit\test_pathfinding.py:12
+  D:\github\medival_village_v2\tests\unit\test_pathfinding.py:12: PytestCollectionWarning: cannot collect test class 'TestPathfindingBasic' because it has a __init__ constructor (from: tests/unit/test_pathfinding.py)
+    class TestPathfindingBasic(TestBase):
+
+tests\unit\test_pathfinding.py:57
+  D:\github\medival_village_v2\tests\unit\test_pathfinding.py:57: PytestCollectionWarning: cannot collect test class 'TestPathfindingObstacles' because it has a __init__ constructor (from: tests/unit/test_pathfinding.py)
+    class TestPathfindingObstacles(TestBase):
+
+tests\unit\test_pathfinding.py:101
+  D:\github\medival_village_v2\tests\unit\test_pathfinding.py:101: PytestCollectionWarning: cannot collect test class 'TestPathfindingBoundary' because it has a __init__ constructor (from: tests/unit/test_pathfinding.py)
+    class TestPathfindingBoundary(TestBase):
+
+tests\unit\test_pathfinding.py:132
+  D:\github\medival_village_v2\tests\unit\test_pathfinding.py:132: PytestCollectionWarning: cannot collect test class 'TestHeuristic' because it has a __init__ constructor (from: tests/unit/test_pathfinding.py)
+    class TestHeuristic(TestBase):
+
+tests\test_framework.py:55
+  D:\github\medival_village_v2\tests\test_framework.py:55: PytestCollectionWarning: cannot collect test class 'TestBase' because it has a __init__ constructor (from: tests/unit/test_quick_run_regressions.py)
+    class TestBase:
+
+tests\test_helpers.py:41
+  D:\github\medival_village_v2\tests\test_helpers.py:41: PytestCollectionWarning: cannot collect test class 'TestWorld' because it has a __init__ constructor (from: tests/unit/test_quick_run_regressions.py)
+    class TestWorld:
+
+tests\unit\test_quick_run_regressions.py:25
+  D:\github\medival_village_v2\tests\unit\test_quick_run_regressions.py:25: PytestCollectionWarning: cannot collect test class 'TestMovementSpeed' because it has a __init__ constructor (from: tests/unit/test_quick_run_regressions.py)
+    class TestMovementSpeed(TestBase):
+
+tests\unit\test_quick_run_regressions.py:84
+  D:\github\medival_village_v2\tests\unit\test_quick_run_regressions.py:84: PytestCollectionWarning: cannot collect test class 'TestChopJobGenerationLimit' because it has a __init__ constructor (from: tests/unit/test_quick_run_regressions.py)
+    class TestChopJobGenerationLimit(TestBase):
+
+tests\unit\test_quick_run_regressions.py:151
+  D:\github\medival_village_v2\tests\unit\test_quick_run_regressions.py:151: PytestCollectionWarning: cannot collect test class 'TestFoodHaulPriority' because it has a __init__ constructor (from: tests/unit/test_quick_run_regressions.py)
+    class TestFoodHaulPriority(TestBase):
+
+tests\unit\test_quick_run_regressions.py:228
+  D:\github\medival_village_v2\tests\unit\test_quick_run_regressions.py:228: PytestCollectionWarning: cannot collect test class 'TestJobCompletedCounter' because it has a __init__ constructor (from: tests/unit/test_quick_run_regressions.py)
+    class TestJobCompletedCounter(TestBase):
+
+tests\unit\test_quick_run_regressions.py:297
+  D:\github\medival_village_v2\tests\unit\test_quick_run_regressions.py:297: PytestCollectionWarning: cannot collect test class 'TestTreeChoppingSpeed' because it has a __init__ constructor (from: tests/unit/test_quick_run_regressions.py)
+    class TestTreeChoppingSpeed(TestBase):
+
+tests\unit\test_quick_run_regressions.py:365
+  D:\github\medival_village_v2\tests\unit\test_quick_run_regressions.py:365: PytestCollectionWarning: cannot collect test class 'TestSleepBehavior' because it has a __init__ constructor (from: tests/unit/test_quick_run_regressions.py)
+    class TestSleepBehavior(TestBase):
+
+tests\unit\test_quick_run_regressions.py:461
+  D:\github\medival_village_v2\tests\unit\test_quick_run_regressions.py:461: PytestCollectionWarning: cannot collect test class 'TestHaulDropsOnStockpile' because it has a __init__ constructor (from: tests/unit/test_quick_run_regressions.py)
+    class TestHaulDropsOnStockpile(TestBase):
+
+tests\test_framework.py:55
+  D:\github\medival_village_v2\tests\test_framework.py:55: PytestCollectionWarning: cannot collect test class 'TestBase' because it has a __init__ constructor (from: tests/unit/test_routine_system.py)
+    class TestBase:
+
+tests\test_helpers.py:41
+  D:\github\medival_village_v2\tests\test_helpers.py:41: PytestCollectionWarning: cannot collect test class 'TestWorld' because it has a __init__ constructor (from: tests/unit/test_routine_system.py)
+    class TestWorld:
+
+tests\unit\test_routine_system.py:12
+  D:\github\medival_village_v2\tests\unit\test_routine_system.py:12: PytestCollectionWarning: cannot collect test class 'TestRoutineStateTransitions' because it has a __init__ constructor (from: tests/unit/test_routine_system.py)
+    class TestRoutineStateTransitions(TestBase):
+
+tests\unit\test_routine_system.py:79
+  D:\github\medival_village_v2\tests\unit\test_routine_system.py:79: PytestCollectionWarning: cannot collect test class 'TestRoutineSeasonalAdjustment' because it has a __init__ constructor (from: tests/unit/test_routine_system.py)
+    class TestRoutineSeasonalAdjustment(TestBase):
+
+tests\unit\test_routine_system.py:117
+  D:\github\medival_village_v2\tests\unit\test_routine_system.py:117: PytestCollectionWarning: cannot collect test class 'TestRoutineHelperMethods' because it has a __init__ constructor (from: tests/unit/test_routine_system.py)
+    class TestRoutineHelperMethods(TestBase):
+
+tests\test_framework.py:55
+  D:\github\medival_village_v2\tests\test_framework.py:55: PytestCollectionWarning: cannot collect test class 'TestBase' because it has a __init__ constructor (from: tests/unit/test_sleep_and_job_fixes.py)
+    class TestBase:
+
+tests\test_helpers.py:41
+  D:\github\medival_village_v2\tests\test_helpers.py:41: PytestCollectionWarning: cannot collect test class 'TestWorld' because it has a __init__ constructor (from: tests/unit/test_sleep_and_job_fixes.py)
+    class TestWorld:
+
+tests\unit\test_sleep_and_job_fixes.py:36
+  D:\github\medival_village_v2\tests\unit\test_sleep_and_job_fixes.py:36: PytestCollectionWarning: cannot collect test class 'TestJobReleasedDuringSleeping' because it has a __init__ constructor (from: tests/unit/test_sleep_and_job_fixes.py)
+    class TestJobReleasedDuringSleeping(TestBase):
+
+tests\unit\test_sleep_and_job_fixes.py:81
+  D:\github\medival_village_v2\tests\unit\test_sleep_and_job_fixes.py:81: PytestCollectionWarning: cannot collect test class 'TestStopOnResidentialDuringSleeping' because it has a __init__ constructor (from: tests/unit/test_sleep_and_job_fixes.py)
+    class TestStopOnResidentialDuringSleeping(TestBase):
+
+tests\unit\test_sleep_and_job_fixes.py:136
+  D:\github\medival_village_v2\tests\unit\test_sleep_and_job_fixes.py:136: PytestCollectionWarning: cannot collect test class 'TestSleepWakeHysteresis' because it has a __init__ constructor (from: tests/unit/test_sleep_and_job_fixes.py)
+    class TestSleepWakeHysteresis(TestBase):
+
+tests\unit\test_sleep_and_job_fixes.py:184
+  D:\github\medival_village_v2\tests\unit\test_sleep_and_job_fixes.py:184: PytestCollectionWarning: cannot collect test class 'TestNoDoubleTirednessReduction' because it has a __init__ constructor (from: tests/unit/test_sleep_and_job_fixes.py)
+    class TestNoDoubleTirednessReduction(TestBase):
+
+tests\unit\test_sleep_and_job_fixes.py:218
+  D:\github\medival_village_v2\tests\unit\test_sleep_and_job_fixes.py:218: PytestCollectionWarning: cannot collect test class 'TestRoutineEatingJobProtection' because it has a __init__ constructor (from: tests/unit/test_sleep_and_job_fixes.py)
+    class TestRoutineEatingJobProtection(TestBase):
+
+tests\unit\test_sleep_and_job_fixes.py:287
+  D:\github\medival_village_v2\tests\unit\test_sleep_and_job_fixes.py:287: PytestCollectionWarning: cannot collect test class 'TestHungerDuringSleeping' because it has a __init__ constructor (from: tests/unit/test_sleep_and_job_fixes.py)
+    class TestHungerDuringSleeping(TestBase):
+
+tests\unit\test_sleep_and_job_fixes.py:378
+  D:\github\medival_village_v2\tests\unit\test_sleep_and_job_fixes.py:378: PytestCollectionWarning: cannot collect test class 'TestPlantJobSeedPreference' because it has a __init__ constructor (from: tests/unit/test_sleep_and_job_fixes.py)
+    class TestPlantJobSeedPreference(TestBase):
+
+tests\test_framework.py:55
+  D:\github\medival_village_v2\tests\test_framework.py:55: PytestCollectionWarning: cannot collect test class 'TestBase' because it has a __init__ constructor (from: tests/unit/test_survival_system.py)
+    class TestBase:
+
+tests\test_helpers.py:41
+  D:\github\medival_village_v2\tests\test_helpers.py:41: PytestCollectionWarning: cannot collect test class 'TestWorld' because it has a __init__ constructor (from: tests/unit/test_survival_system.py)
+    class TestWorld:
+
+tests\unit\test_survival_system.py:12
+  D:\github\medival_village_v2\tests\unit\test_survival_system.py:12: PytestCollectionWarning: cannot collect test class 'TestSurvivalSystem' because it has a __init__ constructor (from: tests/unit/test_survival_system.py)
+    class TestSurvivalSystem(TestBase):
+
+tests\test_framework.py:55
+  D:\github\medival_village_v2\tests\test_framework.py:55: PytestCollectionWarning: cannot collect test class 'TestBase' because it has a __init__ constructor (from: tests/unit/test_time_manager.py)
+    class TestBase:
+
+tests\unit\test_time_manager.py:11
+  D:\github\medival_village_v2\tests\unit\test_time_manager.py:11: PytestCollectionWarning: cannot collect test class 'TestTimeManagerBasic' because it has a __init__ constructor (from: tests/unit/test_time_manager.py)
+    class TestTimeManagerBasic(TestBase):
+
+tests\unit\test_time_manager.py:33
+  D:\github\medival_village_v2\tests\unit\test_time_manager.py:33: PytestCollectionWarning: cannot collect test class 'TestTimeManagerDayNight' because it has a __init__ constructor (from: tests/unit/test_time_manager.py)
+    class TestTimeManagerDayNight(TestBase):
+
+tests\unit\test_time_manager.py:98
+  D:\github\medival_village_v2\tests\unit\test_time_manager.py:98: PytestCollectionWarning: cannot collect test class 'TestTimeManagerSeason' because it has a __init__ constructor (from: tests/unit/test_time_manager.py)
+    class TestTimeManagerSeason(TestBase):
+
+tests\unit\test_time_manager.py:144
+  D:\github\medival_village_v2\tests\unit\test_time_manager.py:144: PytestCollectionWarning: cannot collect test class 'TestTimeManagerPauseAndScale' because it has a __init__ constructor (from: tests/unit/test_time_manager.py)
+    class TestTimeManagerPauseAndScale(TestBase):
+
+tests\test_framework.py:55
+  D:\github\medival_village_v2\tests\test_framework.py:55: PytestCollectionWarning: cannot collect test class 'TestBase' because it has a __init__ constructor (from: tests/unit/test_zone_manager.py)
+    class TestBase:
+
+tests\test_helpers.py:41
+  D:\github\medival_village_v2\tests\test_helpers.py:41: PytestCollectionWarning: cannot collect test class 'TestWorld' because it has a __init__ constructor (from: tests/unit/test_zone_manager.py)
+    class TestWorld:
+
+tests\unit\test_zone_manager.py:12
+  D:\github\medival_village_v2\tests\unit\test_zone_manager.py:12: PytestCollectionWarning: cannot collect test class 'TestZoneManager' because it has a __init__ constructor (from: tests/unit/test_zone_manager.py)
+    class TestZoneManager(TestBase):
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+============================ 121 warnings in 0.64s ============================

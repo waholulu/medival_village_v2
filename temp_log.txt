@@ -1,0 +1,1244 @@
+pygame-ce 2.5.6 (SDL 2.32.10, Python 3.10.6)
+[07:51:32][Tick:0][SYSTEM] Config loaded successfully
+[07:51:32][Tick:0][SYSTEM] ConfigManager watching: config/balance.json
+[07:51:32][Tick:0][SYSTEM] Generated terrain: 80x60 tiles
+[07:51:32][Tick:0][SYSTEM] Created Stockpile zone at 38-42, 28-32
+[07:51:32][Tick:0][SYSTEM] Created Farm zone at 36-44, 38-44
+[07:51:32][Tick:0][SYSTEM] Created Residential zone at 38-43, 22-27
+[07:51:32][Tick:0][SYSTEM] Created Villager 1 at (38, 30) with skills: {'logging': 0.6, 'farming': 0.2}
+[07:51:32][Tick:0][SYSTEM] Created Villager 2 at (42, 30) with skills: {'logging': 0.2, 'farming': 0.6}
+[07:51:32][Tick:0][SYSTEM] Created Villager 3 at (40, 28) with skills: {'logging': 0.1, 'farming': 0.1, 'trapping': 0.1, 'fishing': 0.1}
+[07:51:32][Tick:0][SYSTEM] Created 45 trees in forest area
+[07:51:32][Tick:0][SYSTEM] Created 4 food piles and 3 seed piles
+[07:51:32][Tick:0][SYSTEM] Created 4 growing crops in farm zone
+[07:51:32][Tick:0][SYSTEM] === Initial Map Setup Complete ===
+[07:51:32][Tick:0][SYSTEM] Map Size: 80x60
+[07:51:32][Tick:0][SYSTEM] Villagers: 3
+[07:51:32][Tick:0][SYSTEM] Trees: 45
+[07:51:32][Tick:0][SYSTEM] Zones: Stockpile, Farm, Residential
+[07:51:32][Tick:0][SYSTEM] Diagnostic logging enabled -> logs/villager_summary.txt, logs/villager_detail.txt
+[07:51:32][Tick:0][SYSTEM] Running in Headless Mode (uncapped speed, fixed time step)
+[07:51:32][Tick:0][SYSTEM] Core systems initialized
+[07:51:32][Tick:0][SYSTEM] Game Loop Started
+[07:51:32][Tick:0][SYSTEM] Quick-check mode: will run for 15.0 wall-clock seconds (uncapped speed)
+[07:51:32][Tick:10][AI] Created Haul job for food_wheat at 40,32
+[07:51:32][Tick:10][AI] Created Haul job for seed_wheat at 37,39
+[07:51:32][Tick:10][AI] Created Haul job for seed_wheat at 38,39
+[07:51:32][Tick:10][AI] Created Haul job for seed_wheat at 39,39
+[07:51:32][Tick:10][AI] Created Chop job for tree at 18,5
+[07:51:32][Tick:10][AI] Created Chop job for tree at 18,8
+[07:51:32][Tick:10][AI] Created Chop job for tree at 18,11
+[07:51:32][Tick:10][AI] Created Chop job for tree at 18,14
+[07:51:32][Tick:10][AI] Created Chop job for tree at 18,17
+[07:51:32][Tick:20][AI] Created Plant job for empty farm tile at 41,40
+[07:51:32][Tick:20][AI] Created Plant job for empty farm tile at 42,39
+[07:51:32][Tick:20][AI] Created Plant job for empty farm tile at 41,43
+[07:51:32][Tick:20][AI] Created Plant job for empty farm tile at 43,40
+[07:51:32][Tick:20][AI] Created Plant job for empty farm tile at 43,43
+[07:51:32][Tick:22][GAMEPLAY] Entity 0 ate food_wheat (hunger: 0.8)
+[07:51:32][Tick:22][GAMEPLAY] Entity 1 ate food_wheat (hunger: 5.7)
+[07:51:32][Tick:32][GAMEPLAY] Entity 2 ate food_wheat (hunger: 11.1)
+[07:51:32][Tick:33][GAMEPLAY] Entity 2 ate food_wheat (hunger: 0.0)
+[07:51:32][Tick:108][GAMEPLAY] Entity 1 ate food_wheat (hunger: 0.0)
+[07:51:32][Tick:121][AI] Entity 0 took job haul
+[07:51:32][Tick:121][AI] Entity 1 took job plant
+[07:51:32][Tick:121][AI] Entity 2 took job plant
+[07:51:32][Tick:132][GAMEPLAY] Entity 0 picked up 3 food_wheat
+[07:51:32][Tick:153][GAMEPLAY] Entity 0 dropped 3 food_wheat
+[07:51:32][Tick:154][AI] Entity 0 took job chop
+[07:51:32][Tick:181][GAMEPLAY] Crop 55 (wheat) is now ripe!
+[07:51:32][Tick:181][GAMEPLAY] Crop 56 (wheat) is now ripe!
+[07:51:32][Tick:181][GAMEPLAY] Crop 57 (wheat) is now ripe!
+[07:51:32][Tick:181][GAMEPLAY] Crop 58 (wheat) is now ripe!
+[07:51:32][Tick:181][AI] Created Harvest job for wheat at 37,41
+[07:51:32][Tick:181][AI] Created Harvest job for wheat at 38,41
+[07:51:32][Tick:181][AI] Created Harvest job for wheat at 39,41
+[07:51:32][Tick:181][AI] Created Harvest job for wheat at 40,41
+[07:51:32][Tick:202][GAMEPLAY] Entity 2 picked up 3 seed_wheat
+[07:51:32][Tick:222][GAMEPLAY] Entity 1 picked up 3 seed_wheat
+[07:51:32][Tick:233][GAMEPLAY] Entity 2 planted wheat at (41, 39)
+[07:51:32][Tick:234][AI] Entity 2 took job harvest
+[07:51:32][Tick:243][GAMEPLAY] Entity 1 planted wheat at (40, 40)
+[07:51:32][Tick:244][AI] Entity 1 took job harvest
+[07:51:32][Tick:275][GAMEPLAY] Entity 1 harvested wheat at (39, 41), got 1 seeds
+[07:51:32][Tick:275][GAMEPLAY] Entity 2 harvested wheat at (40, 41), got 2 seeds
+[07:51:32][Tick:276][AI] Entity 1 took job harvest
+[07:51:32][Tick:276][AI] Entity 2 took job harvest
+[07:51:32][Tick:280][AI] Created Plant job for empty farm tile at 41,40
+[07:51:32][Tick:280][AI] Created Plant job for empty farm tile at 42,39
+[07:51:32][Tick:280][AI] Created Haul job for food_wheat at 39,41
+[07:51:32][Tick:280][AI] Created Haul job for seed_wheat at 39,41
+[07:51:32][Tick:280][AI] Created Haul job for food_wheat at 40,41
+[07:51:32][Tick:280][AI] Created Haul job for seed_wheat at 40,41
+[07:51:32][Tick:287][GAMEPLAY] Entity 1 harvested wheat at (38, 41), got 1 seeds
+[07:51:32][Tick:288][AI] Entity 1 took job haul
+[07:51:32][Tick:289][GAMEPLAY] Entity 1 picked up 5 food_wheat
+[07:51:32][Tick:290][AI] Created Haul job for food_wheat at 38,41
+[07:51:32][Tick:290][AI] Created Haul job for seed_wheat at 38,41
+[07:51:32][Tick:300][SYSTEM] [DEBUG _plan_buildings] Running at tick 300. Villagers: 4
+[07:51:32][Tick:300][SYSTEM] [DEBUG _plan_buildings] tick: 300 villagers: 4 houses: 0 storage: 0
+[07:51:32][Tick:300][SYSTEM] AI autonomously placed house blueprint at (41, 26)
+[07:51:32][Tick:300][SYSTEM] [DEBUG _plan_buildings] placed house!
+[07:51:32][Tick:307][GAMEPLAY] Entity 2 harvested wheat at (37, 41), got 1 seeds
+[07:51:32][Tick:308][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:309][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:310][AI] Created Haul job for food_wheat at 37,41
+[07:51:32][Tick:310][AI] Created Haul job for seed_wheat at 37,41
+[07:51:32][Tick:310][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:311][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:312][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:313][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:314][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:315][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:316][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:317][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:318][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:319][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:320][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:321][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:322][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:323][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:324][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:325][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:326][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:327][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:328][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:329][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:330][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:331][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:332][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:333][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:334][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:335][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:336][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:337][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:338][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:339][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:340][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:341][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:342][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:343][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:344][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:345][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:346][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:347][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:348][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:349][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:350][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:351][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:352][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:353][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:354][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:355][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:356][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:357][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:358][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:359][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:360][GAMEPLAY] Entity 2 ate food_wheat (hunger: 0.0)
+[07:51:32][Tick:360][SYSTEM] [Headless] Game Time: Day 0 12:00 | Season: spring | Tick: 360
+[07:51:32][Tick:360][SYSTEM] [Villager 1] Pos:(26,25) | Hunger:20.6 Tired:27.9 Mood:83.0 Cold:9.5 | Job:chop | Routine:EATING | Act:move | Inv:{} | Skills:logging:0.60,farming:0.20
+[07:51:32][Tick:360][SYSTEM] [Villager 2] Pos:(39,34) | Hunger:15.6 Tired:31.3 Mood:100.0 Cold:11.5 | Job:haul | Routine:EATING | Act:move | Inv:{'seed_wheat': 2, 'food_wheat': 5} | Skills:logging:0.20,farming:0.60
+[07:51:32][Tick:360][SYSTEM] [Villager 3] Pos:(38,41) | Hunger:0.0 Tired:38.4 Mood:100.0 Cold:13.5 | Job:None | Routine:EATING | Act:idle | Inv:{'seed_wheat': 2} | Skills:logging:0.10,farming:0.10,trapping:0.10,fishing:0.10
+[07:51:32][Tick:360][SYSTEM] [JobSystem] Available jobs: 25 | Types: ['haul_to_blueprint', 'haul', 'haul', 'haul', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'plant', 'plant', 'plant', 'plant', 'plant', 'haul', 'haul', 'haul', 'haul', 'haul', 'haul', 'haul']
+[07:51:32][Tick:360][SYSTEM] [Stockpile] Items: {'food_wheat': 7}
+[07:51:32][Tick:360][SYSTEM] [Resources] Trees remaining: 45
+[07:51:32][Tick:360][SYSTEM] [Farming] Crops: 2 total, 0 ripe
+[07:51:32][Tick:390][GAMEPLAY] Entity 1 dropped 2 seed_wheat
+[07:51:32][Tick:390][GAMEPLAY] Entity 1 dropped 5 food_wheat
+[07:51:32][Tick:391][GAMEPLAY] Entity 1 ate food_wheat (hunger: 0.0)
+[07:51:32][Tick:480][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:480][AI] Entity 2 took job haul
+[07:51:32][Tick:481][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:481][GAMEPLAY] Entity 2 picked up 2 food_wheat
+[07:51:32][Tick:482][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:483][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:484][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:485][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:486][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:487][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:488][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:489][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:490][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:491][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:492][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:493][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:494][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:495][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:496][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:497][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:498][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:499][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:500][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:501][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:502][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:503][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:504][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:505][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:506][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:507][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:508][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:509][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:510][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:511][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:512][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:513][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:514][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:515][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:516][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:517][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:518][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:519][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:520][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:521][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:522][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:523][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:523][GAMEPLAY] Entity 0 chopped tree 12!
+[07:51:32][Tick:524][GAMEPLAY] Entity 0 picked up 1 log
+[07:51:32][Tick:524][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:525][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:526][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:527][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:528][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:529][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:530][AI] Created Chop job for tree at 21,5
+[07:51:32][Tick:530][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:531][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:532][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:533][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:534][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:535][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:536][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:537][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:538][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:539][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:540][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:541][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:542][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:543][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:544][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:545][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:546][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:547][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:548][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:549][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:550][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:551][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:552][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:553][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:554][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:555][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:556][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:557][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:558][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:559][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:560][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:561][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:562][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:563][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:564][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:565][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:566][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:567][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:568][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:569][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:570][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:571][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:572][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:573][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:574][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:575][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:576][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:577][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:578][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:579][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:580][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:581][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:582][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:583][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:584][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:585][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:586][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:587][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:588][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:589][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:590][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:591][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:592][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:593][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:594][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:595][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:596][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:597][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:598][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:599][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:600][SYSTEM] [DEBUG _plan_buildings] Running at tick 600. Villagers: 4
+[07:51:32][Tick:600][SYSTEM] [DEBUG _plan_buildings] tick: 600 villagers: 4 houses: 1 storage: 0
+[07:51:32][Tick:600][SYSTEM] AI autonomously placed house blueprint at (41, 24)
+[07:51:32][Tick:600][SYSTEM] [DEBUG _plan_buildings] placed house!
+[07:51:32][Tick:600][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:601][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:602][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:602][GAMEPLAY] Entity 2 dropped 2 seed_wheat
+[07:51:32][Tick:602][GAMEPLAY] Entity 2 dropped 2 food_wheat
+[07:51:32][Tick:603][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:603][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:604][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:604][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:605][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:605][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:606][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:606][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:607][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:607][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:608][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:608][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:609][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:609][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:610][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:610][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:611][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:611][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:612][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:612][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:613][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:613][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:614][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:614][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:615][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:615][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:616][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:616][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:617][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:617][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:618][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:618][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:619][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:619][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:620][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:620][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:621][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:621][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:622][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:622][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:623][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:623][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:624][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:624][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:625][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:625][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:626][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:626][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:627][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:627][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:628][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:628][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:629][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:629][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:630][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:630][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:631][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:631][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:632][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:632][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:633][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:633][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:634][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:634][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:635][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:635][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:636][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:636][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:637][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:637][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:638][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:638][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:639][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:639][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:640][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:640][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:641][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:641][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:642][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:642][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:643][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:643][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:644][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:644][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:645][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:645][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:646][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:646][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:647][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:647][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:648][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:648][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:649][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:649][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:650][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:650][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:651][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:651][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:652][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:652][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:653][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:653][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:654][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:654][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:655][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:655][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:656][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:656][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:657][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:657][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:658][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:658][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:659][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:659][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:660][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:660][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:661][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:661][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:662][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:662][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:663][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:663][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:664][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:664][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:665][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:665][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:666][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:666][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:667][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:667][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:668][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:668][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:669][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:669][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:670][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:670][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:671][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:671][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:672][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:672][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:673][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:673][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:674][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:674][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:675][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:675][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:676][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:676][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:677][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:677][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:678][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:678][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:679][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:679][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:680][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:680][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:681][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:681][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:682][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:682][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:683][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:683][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:684][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:684][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:685][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:685][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:686][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:686][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:687][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:687][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:688][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:688][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:689][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:689][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:690][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:690][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:691][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:691][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:692][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:692][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:693][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:693][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:694][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:694][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:695][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:695][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:696][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:696][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:697][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:697][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:698][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:698][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:699][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:699][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:700][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:700][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:701][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:701][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:702][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:702][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:703][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:703][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:704][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:704][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:705][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:705][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:706][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:706][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:707][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:707][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:708][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:708][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:709][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:709][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:710][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:710][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:711][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:711][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:712][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:712][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:713][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:713][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:714][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:714][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:715][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:715][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:716][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:716][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:717][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:717][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:718][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:718][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:719][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:719][AI] Entity 2 took job haul_to_blueprint
+[07:51:32][Tick:720][GAMEPLAY] Entity 1 ate food_wheat (hunger: 0.0)
+[07:51:32][Tick:720][GAMEPLAY] Entity 2 ate food_wheat (hunger: 0.0)
+[07:51:32][Tick:720][SYSTEM] [Headless] Game Time: Day 0 18:00 | Season: spring | Tick: 720
+[07:51:32][Tick:720][SYSTEM] [Villager 1] Pos:(32,23) | Hunger:39.8 Tired:46.6 Mood:86.0 Cold:8.9 | Job:None | Routine:EATING | Act:move | Inv:{'log': 1} | Skills:logging:0.61,farming:0.20
+[07:51:32][Tick:720][SYSTEM] [Villager 2] Pos:(39,31) | Hunger:0.0 Tired:61.5 Mood:100.0 Cold:10.9 | Job:None | Routine:EATING | Act:idle | Inv:{} | Skills:logging:0.20,farming:0.60
+[07:51:32][Tick:720][SYSTEM] [Villager 3] Pos:(38,31) | Hunger:0.0 Tired:58.7 Mood:100.0 Cold:12.9 | Job:None | Routine:EATING | Act:idle | Inv:{} | Skills:logging:0.10,farming:0.10,trapping:0.10,fishing:0.10
+[07:51:32][Tick:720][SYSTEM] [JobSystem] Available jobs: 26 | Types: ['haul_to_blueprint', 'haul_to_blueprint', 'haul', 'haul', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'plant', 'plant', 'plant', 'plant', 'plant', 'haul', 'haul', 'haul', 'haul', 'haul', 'haul', 'haul']
+[07:51:32][Tick:720][SYSTEM] [Stockpile] Items: {'food_wheat': 11, 'seed_wheat': 4}
+[07:51:32][Tick:720][SYSTEM] [Resources] Trees remaining: 44
+[07:51:32][Tick:720][SYSTEM] [Farming] Crops: 2 total, 0 ripe
+[07:51:32][Tick:854][GAMEPLAY] Entity 0 ate food_wheat (hunger: 14.5)
+[07:51:32][Tick:900][SYSTEM] [DEBUG _plan_buildings] Running at tick 900. Villagers: 4
+[07:51:32][Tick:900][SYSTEM] [DEBUG _plan_buildings] tick: 900 villagers: 4 houses: 2 storage: 0
+[07:51:32][Tick:1080][SYSTEM] [Headless] Game Time: Day 0 23:59 | Season: spring | Tick: 1080
+[07:51:32][Tick:1080][SYSTEM] [Villager 1] Pos:(38,26) | Hunger:24.0 Tired:37.4 Mood:100.0 Cold:3.8 | Job:None | Routine:SLEEPING | Act:sleep | Inv:{} | Skills:logging:0.61,farming:0.20
+[07:51:32][Tick:1080][SYSTEM] [Villager 2] Pos:(39,26) | Hunger:16.2 Tired:45.6 Mood:100.0 Cold:5.8 | Job:None | Routine:SLEEPING | Act:sleep | Inv:{} | Skills:logging:0.20,farming:0.60
+[07:51:32][Tick:1080][SYSTEM] [Villager 3] Pos:(38,26) | Hunger:16.2 Tired:42.8 Mood:100.0 Cold:7.8 | Job:None | Routine:SLEEPING | Act:sleep | Inv:{} | Skills:logging:0.10,farming:0.10,trapping:0.10,fishing:0.10
+[07:51:32][Tick:1080][SYSTEM] [JobSystem] Available jobs: 26 | Types: ['haul_to_blueprint', 'haul_to_blueprint', 'haul', 'haul', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'plant', 'plant', 'plant', 'plant', 'plant', 'haul', 'haul', 'haul', 'haul', 'haul', 'haul', 'haul']
+[07:51:32][Tick:1080][SYSTEM] [Stockpile] Items: {'food_wheat': 10, 'seed_wheat': 4, 'log': 1}
+[07:51:32][Tick:1080][SYSTEM] [Resources] Trees remaining: 44
+[07:51:32][Tick:1080][SYSTEM] [Farming] Crops: 2 total, 0 ripe
+[07:51:32][Tick:1198][GAMEPLAY] Entity 0 woke up (tiredness: 5.0)
+[07:51:32][Tick:1199][GAMEPLAY] Entity 0 woke up (tiredness: 4.9)
+[07:51:32][Tick:1200][SYSTEM] [DEBUG _plan_buildings] Running at tick 1200. Villagers: 4
+[07:51:32][Tick:1200][SYSTEM] [DEBUG _plan_buildings] tick: 1200 villagers: 4 houses: 2 storage: 0
+[07:51:32][Tick:1200][GAMEPLAY] Entity 0 woke up (tiredness: 4.7)
+[07:51:32][Tick:1201][GAMEPLAY] Entity 0 woke up (tiredness: 4.6)
+[07:51:32][Tick:1202][GAMEPLAY] Entity 0 woke up (tiredness: 4.4)
+[07:51:32][Tick:1203][GAMEPLAY] Entity 0 woke up (tiredness: 4.3)
+[07:51:32][Tick:1204][GAMEPLAY] Entity 0 woke up (tiredness: 4.2)
+[07:51:32][Tick:1205][GAMEPLAY] Entity 0 woke up (tiredness: 4.0)
+[07:51:32][Tick:1206][GAMEPLAY] Entity 0 woke up (tiredness: 3.9)
+[07:51:32][Tick:1207][GAMEPLAY] Entity 0 woke up (tiredness: 3.8)
+[07:51:32][Tick:1208][GAMEPLAY] Entity 0 woke up (tiredness: 3.6)
+[07:51:32][Tick:1209][GAMEPLAY] Entity 0 woke up (tiredness: 3.5)
+[07:51:32][Tick:1210][GAMEPLAY] Entity 0 woke up (tiredness: 3.3)
+[07:51:32][Tick:1211][GAMEPLAY] Entity 0 woke up (tiredness: 3.2)
+[07:51:32][Tick:1212][GAMEPLAY] Entity 0 woke up (tiredness: 3.1)
+[07:51:32][Tick:1213][GAMEPLAY] Entity 0 woke up (tiredness: 2.9)
+[07:51:32][Tick:1214][GAMEPLAY] Entity 0 woke up (tiredness: 2.8)
+[07:51:32][Tick:1215][GAMEPLAY] Entity 0 woke up (tiredness: 2.7)
+[07:51:32][Tick:1216][GAMEPLAY] Entity 0 woke up (tiredness: 2.5)
+[07:51:32][Tick:1217][GAMEPLAY] Entity 0 woke up (tiredness: 2.4)
+[07:51:32][Tick:1218][GAMEPLAY] Entity 0 woke up (tiredness: 2.2)
+[07:51:32][Tick:1218][GAMEPLAY] Entity 2 woke up (tiredness: 4.9)
+[07:51:32][Tick:1219][GAMEPLAY] Entity 0 woke up (tiredness: 2.1)
+[07:51:32][Tick:1219][GAMEPLAY] Entity 2 woke up (tiredness: 4.7)
+[07:51:32][Tick:1220][GAMEPLAY] Entity 0 woke up (tiredness: 2.0)
+[07:51:32][Tick:1220][GAMEPLAY] Entity 2 woke up (tiredness: 4.6)
+[07:51:32][Tick:1221][GAMEPLAY] Entity 0 woke up (tiredness: 1.8)
+[07:51:32][Tick:1221][GAMEPLAY] Entity 2 woke up (tiredness: 4.5)
+[07:51:32][Tick:1222][GAMEPLAY] Entity 0 woke up (tiredness: 1.7)
+[07:51:32][Tick:1222][GAMEPLAY] Entity 2 woke up (tiredness: 4.3)
+[07:51:32][Tick:1223][GAMEPLAY] Entity 0 woke up (tiredness: 1.6)
+[07:51:32][Tick:1223][GAMEPLAY] Entity 2 woke up (tiredness: 4.2)
+[07:51:32][Tick:1224][GAMEPLAY] Entity 0 woke up (tiredness: 1.4)
+[07:51:32][Tick:1224][GAMEPLAY] Entity 2 woke up (tiredness: 4.0)
+[07:51:32][Tick:1225][GAMEPLAY] Entity 0 woke up (tiredness: 1.3)
+[07:51:32][Tick:1225][GAMEPLAY] Entity 2 woke up (tiredness: 3.9)
+[07:51:32][Tick:1226][GAMEPLAY] Entity 0 woke up (tiredness: 1.1)
+[07:51:32][Tick:1226][GAMEPLAY] Entity 2 woke up (tiredness: 3.8)
+[07:51:32][Tick:1227][GAMEPLAY] Entity 0 woke up (tiredness: 1.0)
+[07:51:32][Tick:1227][GAMEPLAY] Entity 2 woke up (tiredness: 3.6)
+[07:51:32][Tick:1228][GAMEPLAY] Entity 0 woke up (tiredness: 0.9)
+[07:51:32][Tick:1228][GAMEPLAY] Entity 1 woke up (tiredness: 4.9)
+[07:51:32][Tick:1228][GAMEPLAY] Entity 2 woke up (tiredness: 3.5)
+[07:51:32][Tick:1229][GAMEPLAY] Entity 0 woke up (tiredness: 0.7)
+[07:51:32][Tick:1229][GAMEPLAY] Entity 1 woke up (tiredness: 4.8)
+[07:51:32][Tick:1229][GAMEPLAY] Entity 2 woke up (tiredness: 3.4)
+[07:51:32][Tick:1230][GAMEPLAY] Entity 0 woke up (tiredness: 0.6)
+[07:51:32][Tick:1230][GAMEPLAY] Entity 1 woke up (tiredness: 4.7)
+[07:51:32][Tick:1230][GAMEPLAY] Entity 2 woke up (tiredness: 3.2)
+[07:51:32][Tick:1231][GAMEPLAY] Entity 0 woke up (tiredness: 0.5)
+[07:51:32][Tick:1231][GAMEPLAY] Entity 1 woke up (tiredness: 4.5)
+[07:51:32][Tick:1231][GAMEPLAY] Entity 2 woke up (tiredness: 3.1)
+[07:51:32][Tick:1232][GAMEPLAY] Entity 0 woke up (tiredness: 0.3)
+[07:51:32][Tick:1232][GAMEPLAY] Entity 1 woke up (tiredness: 4.4)
+[07:51:32][Tick:1232][GAMEPLAY] Entity 2 woke up (tiredness: 2.9)
+[07:51:32][Tick:1233][GAMEPLAY] Entity 0 woke up (tiredness: 0.2)
+[07:51:32][Tick:1233][GAMEPLAY] Entity 1 woke up (tiredness: 4.2)
+[07:51:32][Tick:1233][GAMEPLAY] Entity 2 woke up (tiredness: 2.8)
+[07:51:32][Tick:1234][GAMEPLAY] Entity 0 woke up (tiredness: 0.0)
+[07:51:32][Tick:1234][GAMEPLAY] Entity 1 woke up (tiredness: 4.1)
+[07:51:32][Tick:1234][GAMEPLAY] Entity 2 woke up (tiredness: 2.7)
+[07:51:32][Tick:1235][GAMEPLAY] Entity 1 woke up (tiredness: 4.0)
+[07:51:32][Tick:1235][GAMEPLAY] Entity 2 woke up (tiredness: 2.5)
+[07:51:32][Tick:1236][GAMEPLAY] Entity 1 woke up (tiredness: 3.8)
+[07:51:32][Tick:1236][GAMEPLAY] Entity 2 woke up (tiredness: 2.4)
+[07:51:32][Tick:1237][GAMEPLAY] Entity 1 woke up (tiredness: 3.7)
+[07:51:32][Tick:1237][GAMEPLAY] Entity 2 woke up (tiredness: 2.3)
+[07:51:32][Tick:1238][GAMEPLAY] Entity 1 woke up (tiredness: 3.6)
+[07:51:32][Tick:1238][GAMEPLAY] Entity 2 woke up (tiredness: 2.1)
+[07:51:32][Tick:1239][GAMEPLAY] Entity 1 woke up (tiredness: 3.4)
+[07:51:32][Tick:1239][GAMEPLAY] Entity 2 woke up (tiredness: 2.0)
+[07:51:32][Tick:1240][GAMEPLAY] Entity 1 woke up (tiredness: 3.3)
+[07:51:32][Tick:1240][GAMEPLAY] Entity 2 woke up (tiredness: 1.8)
+[07:51:32][Tick:1241][GAMEPLAY] Entity 1 woke up (tiredness: 3.1)
+[07:51:32][Tick:1241][GAMEPLAY] Entity 2 woke up (tiredness: 1.7)
+[07:51:32][Tick:1242][GAMEPLAY] Entity 1 woke up (tiredness: 3.0)
+[07:51:32][Tick:1242][GAMEPLAY] Entity 2 woke up (tiredness: 1.6)
+[07:51:32][Tick:1243][GAMEPLAY] Entity 1 woke up (tiredness: 2.9)
+[07:51:32][Tick:1243][GAMEPLAY] Entity 2 woke up (tiredness: 1.4)
+[07:51:32][Tick:1244][GAMEPLAY] Entity 1 woke up (tiredness: 2.7)
+[07:51:32][Tick:1244][GAMEPLAY] Entity 2 woke up (tiredness: 1.3)
+[07:51:32][Tick:1245][GAMEPLAY] Entity 1 woke up (tiredness: 2.6)
+[07:51:32][Tick:1245][GAMEPLAY] Entity 2 woke up (tiredness: 1.2)
+[07:51:32][Tick:1246][GAMEPLAY] Entity 1 woke up (tiredness: 2.5)
+[07:51:32][Tick:1246][GAMEPLAY] Entity 2 woke up (tiredness: 1.0)
+[07:51:32][Tick:1247][GAMEPLAY] Entity 1 woke up (tiredness: 2.3)
+[07:51:32][Tick:1247][GAMEPLAY] Entity 2 woke up (tiredness: 0.9)
+[07:51:32][Tick:1248][GAMEPLAY] Entity 1 woke up (tiredness: 2.2)
+[07:51:32][Tick:1248][GAMEPLAY] Entity 2 woke up (tiredness: 0.7)
+[07:51:32][Tick:1249][GAMEPLAY] Entity 1 woke up (tiredness: 2.0)
+[07:51:32][Tick:1249][GAMEPLAY] Entity 2 woke up (tiredness: 0.6)
+[07:51:32][Tick:1250][GAMEPLAY] Entity 1 woke up (tiredness: 1.9)
+[07:51:32][Tick:1250][GAMEPLAY] Entity 2 woke up (tiredness: 0.5)
+[07:51:32][Tick:1251][GAMEPLAY] Entity 1 woke up (tiredness: 1.8)
+[07:51:32][Tick:1251][GAMEPLAY] Entity 2 woke up (tiredness: 0.3)
+[07:51:32][Tick:1252][GAMEPLAY] Entity 1 woke up (tiredness: 1.6)
+[07:51:32][Tick:1252][GAMEPLAY] Entity 2 woke up (tiredness: 0.2)
+[07:51:32][Tick:1253][GAMEPLAY] Entity 1 woke up (tiredness: 1.5)
+[07:51:32][Tick:1253][GAMEPLAY] Entity 2 woke up (tiredness: 0.1)
+[07:51:32][Tick:1254][GAMEPLAY] Entity 1 woke up (tiredness: 1.4)
+[07:51:32][Tick:1255][GAMEPLAY] Entity 1 woke up (tiredness: 1.2)
+[07:51:32][Tick:1256][GAMEPLAY] Entity 1 woke up (tiredness: 1.1)
+[07:51:32][Tick:1257][GAMEPLAY] Entity 1 woke up (tiredness: 0.9)
+[07:51:32][Tick:1258][GAMEPLAY] Entity 1 woke up (tiredness: 0.8)
+[07:51:32][Tick:1259][GAMEPLAY] Entity 1 woke up (tiredness: 0.7)
+[07:51:32][Tick:1260][GAMEPLAY] Entity 1 woke up (tiredness: 0.5)
+[07:51:32][Tick:1261][GAMEPLAY] Entity 1 woke up (tiredness: 0.4)
+[07:51:32][Tick:1262][GAMEPLAY] Entity 1 woke up (tiredness: 0.3)
+[07:51:32][Tick:1263][GAMEPLAY] Entity 1 woke up (tiredness: 0.1)
+[07:51:32][Tick:1433][GAMEPLAY] Crop 60 (wheat) is now ripe!
+[07:51:32][Tick:1433][AI] Created Harvest job for wheat at 41,39
+[07:51:32][Tick:1440][SYSTEM] [Headless] Game Time: Day 1 05:59 | Season: spring | Tick: 1440
+[07:51:32][Tick:1440][SYSTEM] [Villager 1] Pos:(38,26) | Hunger:36.6 Tired:0.0 Mood:100.0 Cold:0.0 | Job:None | Routine:SLEEPING | Act:idle | Inv:{} | Skills:logging:0.61,farming:0.20
+[07:51:32][Tick:1440][SYSTEM] [Villager 2] Pos:(39,26) | Hunger:28.8 Tired:0.0 Mood:100.0 Cold:0.0 | Job:None | Routine:SLEEPING | Act:idle | Inv:{} | Skills:logging:0.20,farming:0.60
+[07:51:32][Tick:1440][SYSTEM] [Villager 3] Pos:(38,26) | Hunger:28.8 Tired:0.0 Mood:100.0 Cold:0.0 | Job:None | Routine:SLEEPING | Act:idle | Inv:{} | Skills:logging:0.10,farming:0.10,trapping:0.10,fishing:0.10
+[07:51:32][Tick:1440][SYSTEM] [JobSystem] Available jobs: 27 | Types: ['haul_to_blueprint', 'haul_to_blueprint', 'haul', 'haul', 'harvest', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'plant', 'plant', 'plant', 'plant', 'plant', 'haul', 'haul', 'haul', 'haul', 'haul', 'haul', 'haul']
+[07:51:32][Tick:1440][SYSTEM] [Stockpile] Items: {'food_wheat': 10, 'seed_wheat': 4, 'log': 1}
+[07:51:32][Tick:1440][SYSTEM] [Resources] Trees remaining: 44
+[07:51:32][Tick:1440][SYSTEM] [Farming] Crops: 2 total, 1 ripe
+[07:51:32][Tick:1443][GAMEPLAY] Crop 61 (wheat) is now ripe!
+[07:51:32][Tick:1443][AI] Created Harvest job for wheat at 40,40
+[07:51:32][Tick:1491][GAMEPLAY] Entity 1 ate food_wheat (hunger: 0.6)
+[07:51:32][Tick:1500][SYSTEM] [DEBUG _plan_buildings] Running at tick 1500. Villagers: 4
+[07:51:32][Tick:1500][SYSTEM] [DEBUG _plan_buildings] tick: 1500 villagers: 4 houses: 2 storage: 0
+[07:51:32][Tick:1501][GAMEPLAY] Entity 0 ate food_wheat (hunger: 8.8)
+[07:51:32][Tick:1501][GAMEPLAY] Entity 2 ate food_wheat (hunger: 1.0)
+[07:51:32][Tick:1526][GAMEPLAY] Entity 0 ate food_wheat (hunger: 0.0)
+[07:51:32][Tick:1561][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1561][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:1561][AI] Entity 2 took job harvest
+[07:51:32][Tick:1562][GAMEPLAY] Entity 0 picked up 1 log
+[07:51:32][Tick:1563][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:1564][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:1565][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:1566][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:1567][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:1568][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:1569][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:1570][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:1571][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:1572][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:1573][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:1574][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:1575][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:1576][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:1577][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:1578][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:1579][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:1580][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:1581][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:1582][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:1583][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:1584][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:1585][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:1586][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:1587][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:1588][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:1589][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:1590][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:1591][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:1592][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:1593][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:1594][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:1595][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:1596][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:1597][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:1598][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:1599][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:1600][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:1601][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:1602][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:1603][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:1604][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:1605][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:1606][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:1607][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:1608][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:1609][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:1610][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:1611][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:1612][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:1613][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:1614][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:1615][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:1616][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:1617][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:1618][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:1619][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:1620][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:1621][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:1622][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:1623][AI] Entity 1 took job haul_to_blueprint
+[07:51:32][Tick:1623][GAMEPLAY] Entity 0 dropped 1 log into blueprint for house
+[07:51:32][Tick:1624][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1624][AI] Entity 1 took job harvest
+[07:51:32][Tick:1625][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1626][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1627][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1628][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1629][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1630][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1631][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1632][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1633][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1634][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1635][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1636][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1637][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1638][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1639][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1640][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1641][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1642][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1643][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1644][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1645][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1646][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1647][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1648][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1649][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1650][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1651][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1652][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1652][GAMEPLAY] Entity 2 harvested wheat at (41, 39), got 2 seeds
+[07:51:32][Tick:1653][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1653][AI] Entity 2 took job haul
+[07:51:32][Tick:1654][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1655][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1656][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1657][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1658][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1659][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1660][AI] Created Haul job for food_wheat at 41,39
+[07:51:32][Tick:1660][AI] Created Haul job for seed_wheat at 41,39
+[07:51:32][Tick:1660][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1661][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1662][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1663][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1664][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1665][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1666][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1667][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1668][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1669][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1670][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1671][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1672][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1673][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1674][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1675][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1676][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1677][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1678][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1679][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1680][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1681][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1682][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1683][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1684][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1684][GAMEPLAY] Entity 2 picked up 4 food_wheat
+[07:51:32][Tick:1685][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1686][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1687][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1688][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1689][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1690][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1691][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1692][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1693][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1694][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1695][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1696][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1697][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1698][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1699][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1700][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1701][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1702][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1703][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1704][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1705][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1706][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1707][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1708][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1709][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1710][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1711][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1712][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1713][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1714][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1715][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1715][GAMEPLAY] Entity 1 harvested wheat at (40, 40), got 1 seeds
+[07:51:32][Tick:1716][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1716][AI] Entity 1 took job haul
+[07:51:32][Tick:1717][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1718][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1719][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1720][AI] Created Haul job for food_wheat at 40,40
+[07:51:32][Tick:1720][AI] Created Haul job for seed_wheat at 40,40
+[07:51:32][Tick:1720][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1721][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1722][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1723][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1724][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1725][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1726][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1727][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1728][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1729][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1730][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1731][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1732][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1733][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1734][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1735][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1736][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1737][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1738][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1739][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1740][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1741][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1742][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1743][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1744][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1745][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1746][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1747][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1748][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1749][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1750][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1751][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1752][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1753][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1754][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1755][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1756][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1757][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1757][GAMEPLAY] Entity 1 picked up 5 food_wheat
+[07:51:32][Tick:1758][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1759][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1760][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1761][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1762][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1763][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1764][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1765][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1766][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1767][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1768][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1769][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1770][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1771][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1772][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1773][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1774][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1775][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1776][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1777][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1778][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1779][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1780][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1781][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1782][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1783][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1784][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1785][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1786][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1787][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1788][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1789][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1790][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1791][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1792][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1793][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1794][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1795][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1795][GAMEPLAY] Entity 2 dropped 4 food_wheat
+[07:51:32][Tick:1796][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1796][AI] Entity 2 took job haul
+[07:51:32][Tick:1797][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1798][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1799][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1800][SYSTEM] [DEBUG _plan_buildings] Running at tick 1800. Villagers: 4
+[07:51:32][Tick:1800][SYSTEM] [DEBUG _plan_buildings] tick: 1800 villagers: 4 houses: 2 storage: 0
+[07:51:32][Tick:1800][SYSTEM] [Headless] Game Time: Day 1 12:00 | Season: spring | Tick: 1800
+[07:51:32][Tick:1800][SYSTEM] [Villager 1] Pos:(40,26) | Hunger:16.7 Tired:27.2 Mood:100.0 Cold:0.0 | Job:None | Routine:EATING | Act:move | Inv:{} | Skills:logging:0.61,farming:0.20
+[07:51:32][Tick:1800][SYSTEM] [Villager 2] Pos:(37,38) | Hunger:19.0 Tired:18.8 Mood:100.0 Cold:0.0 | Job:haul | Routine:EATING | Act:move | Inv:{'food_wheat': 5} | Skills:logging:0.20,farming:0.60
+[07:51:32][Tick:1800][SYSTEM] [Villager 3] Pos:(40,31) | Hunger:18.9 Tired:15.0 Mood:100.0 Cold:0.0 | Job:haul | Routine:EATING | Act:move | Inv:{} | Skills:logging:0.10,farming:0.10,trapping:0.10,fishing:0.10
+[07:51:32][Tick:1800][SYSTEM] [JobSystem] Available jobs: 26 | Types: ['haul_to_blueprint', 'haul', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'plant', 'plant', 'plant', 'plant', 'plant', 'haul', 'haul', 'haul', 'haul', 'haul', 'haul', 'haul', 'haul', 'haul']
+[07:51:32][Tick:1800][SYSTEM] [Stockpile] Items: {'food_wheat': 10, 'seed_wheat': 4}
+[07:51:32][Tick:1800][SYSTEM] [Resources] Trees remaining: 44
+[07:51:32][Tick:1860][GAMEPLAY] Entity 0 ate food_wheat (hunger: 0.0)
+[07:51:32][Tick:1877][GAMEPLAY] Entity 2 picked up 5 food_wheat
+[07:51:32][Tick:1878][GAMEPLAY] Entity 1 dropped 5 food_wheat
+[07:51:32][Tick:1879][GAMEPLAY] Entity 1 ate food_wheat (hunger: 0.0)
+[07:51:32][Tick:1920][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1920][AI] Entity 1 took job haul
+[07:51:32][Tick:1921][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1922][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1923][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1924][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1925][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1926][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1927][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1928][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1929][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1930][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1931][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1932][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1933][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1934][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1935][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1936][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1937][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1938][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1939][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1940][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1941][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1942][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1943][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1944][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1945][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1946][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1947][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1948][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1949][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1950][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1951][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1952][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1953][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1954][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1955][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1956][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1957][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1958][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1959][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1960][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1961][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1962][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1963][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1964][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1965][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1966][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1967][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1968][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1968][GAMEPLAY] Entity 2 dropped 5 food_wheat
+[07:51:32][Tick:1969][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1969][AI] Entity 2 took job plant
+[07:51:32][Tick:1970][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1971][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1972][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1973][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1974][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1975][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1976][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1977][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1978][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1979][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1980][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1980][GAMEPLAY] Entity 2 picked up 2 seed_wheat
+[07:51:32][Tick:1981][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1982][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1983][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1984][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1985][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1986][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1987][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1988][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1989][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1990][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1991][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1992][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1993][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1994][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1995][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1996][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1997][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1998][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:1999][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2000][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2001][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2002][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2003][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2004][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2005][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2006][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2007][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2008][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2009][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2010][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2011][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2012][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2013][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2014][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2015][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2016][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2017][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2018][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2019][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2020][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2021][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2021][GAMEPLAY] Entity 1 picked up 3 food_wheat
+[07:51:32][Tick:2022][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2023][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2024][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2025][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2026][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2027][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2028][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2029][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2030][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2031][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2032][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2033][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2034][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2035][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2036][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2037][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2038][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2039][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2040][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2041][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2042][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2043][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2044][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2045][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2046][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2047][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2048][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2049][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2050][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2051][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2052][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2053][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2054][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2055][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2056][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2057][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2058][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2059][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2060][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2061][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2062][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2063][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2064][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2065][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2066][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2067][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2068][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2069][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2070][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2071][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2072][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2073][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2074][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2075][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2076][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2077][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2078][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2079][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2080][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2081][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2082][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2083][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2084][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2085][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2086][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2087][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2088][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2089][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2090][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2091][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2091][GAMEPLAY] Entity 2 planted wheat at (40, 40)
+[07:51:32][Tick:2092][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2092][AI] Entity 2 took job plant
+[07:51:32][Tick:2093][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2094][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2095][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2096][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2097][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2098][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2099][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2100][AI] Created Plant job for empty farm tile at 41,40
+[07:51:32][Tick:2100][SYSTEM] [DEBUG _plan_buildings] Running at tick 2100. Villagers: 4
+[07:51:32][Tick:2100][SYSTEM] [DEBUG _plan_buildings] tick: 2100 villagers: 4 houses: 2 storage: 0
+[07:51:32][Tick:2100][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2101][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2102][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2103][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2104][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2105][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2106][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2107][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2108][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2109][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2110][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2111][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2112][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2113][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2113][GAMEPLAY] Entity 2 planted wheat at (42, 40)
+[07:51:32][Tick:2114][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2114][AI] Entity 2 took job plant
+[07:51:32][Tick:2115][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2116][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2117][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2118][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2119][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2120][AI] Created Plant job for empty farm tile at 43,40
+[07:51:32][Tick:2120][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2121][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2122][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2122][GAMEPLAY] Entity 1 dropped 3 food_wheat
+[07:51:32][Tick:2123][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2123][AI] Entity 1 took job plant
+[07:51:32][Tick:2124][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2125][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2126][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2127][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2128][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2129][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2130][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2131][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2132][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2133][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2134][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2134][GAMEPLAY] Entity 1 picked up 2 seed_wheat
+[07:51:32][Tick:2135][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2136][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2137][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2138][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2139][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2140][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2141][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2142][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2143][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2144][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2145][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2145][GAMEPLAY] Entity 2 picked up 2 seed_wheat
+[07:51:32][Tick:2146][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2147][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2148][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2149][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2150][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2151][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2152][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2153][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2154][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2155][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2156][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2156][GAMEPLAY] Entity 2 planted wheat at (41, 39)
+[07:51:32][Tick:2157][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2157][AI] Entity 2 took job plant
+[07:51:32][Tick:2158][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2159][AI] Entity 0 took job haul_to_blueprint
+[07:51:32][Tick:2160][AI] Created Plant job for empty farm tile at 42,39
+[07:51:32][Tick:2160][GAMEPLAY] Entity 0 ate food_wheat (hunger: 0.0)
+[07:51:32][Tick:2160][SYSTEM] [Headless] Game Time: Day 1 18:00 | Season: spring | Tick: 2160
+[07:51:32][Tick:2160][SYSTEM] [Villager 1] Pos:(41,31) | Hunger:0.0 Tired:58.8 Mood:100.0 Cold:0.0 | Job:None | Routine:EATING | Act:idle | Inv:{} | Skills:logging:0.61,farming:0.20
+[07:51:32][Tick:2160][SYSTEM] [Villager 2] Pos:(38,32) | Hunger:17.1 Tired:34.6 Mood:100.0 Cold:0.0 | Job:plant | Routine:EATING | Act:move | Inv:{'seed_wheat': 2} | Skills:logging:0.20,farming:0.60
+[07:51:32][Tick:2160][SYSTEM] [Villager 3] Pos:(41,39) | Hunger:38.1 Tired:33.2 Mood:100.0 Cold:0.0 | Job:None | Routine:EATING | Act:move | Inv:{'seed_wheat': 1} | Skills:logging:0.10,farming:0.10,trapping:0.10,fishing:0.10
+[07:51:32][Tick:2160][SYSTEM] [JobSystem] Available jobs: 24 | Types: ['haul_to_blueprint', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'plant', 'plant', 'plant', 'plant', 'haul', 'haul', 'haul', 'haul', 'haul', 'haul', 'haul', 'haul', 'haul']
+[07:51:32][Tick:2160][SYSTEM] [Stockpile] Items: {'food_wheat': 20}
+[07:51:32][Tick:2160][SYSTEM] [Resources] Trees remaining: 44
+[07:51:32][Tick:2160][SYSTEM] [Farming] Crops: 3 total, 0 ripe
+[07:51:32][Tick:2238][GAMEPLAY] Entity 2 ate food_wheat (hunger: 10.9)
+[07:51:32][Tick:2260][AI] Created Plant job for empty farm tile at 41,40
+[07:51:32][Tick:2260][AI] Created Haul job for seed_wheat at 40,40
+[07:51:32][Tick:2400][SYSTEM] [DEBUG _plan_buildings] Running at tick 2400. Villagers: 4
+[07:51:32][Tick:2400][SYSTEM] [DEBUG _plan_buildings] tick: 2400 villagers: 4 houses: 2 storage: 0
+[07:51:32][Tick:2520][SYSTEM] [Headless] Game Time: Day 1 23:59 | Season: spring | Tick: 2520
+[07:51:32][Tick:2520][SYSTEM] [Villager 1] Pos:(41,26) | Hunger:16.2 Tired:43.2 Mood:100.0 Cold:0.0 | Job:None | Routine:SLEEPING | Act:sleep | Inv:{} | Skills:logging:0.61,farming:0.20
+[07:51:32][Tick:2520][SYSTEM] [Villager 2] Pos:(41,29) | Hunger:31.8 Tired:47.5 Mood:100.0 Cold:1.4 | Job:None | Routine:SLEEPING | Act:move | Inv:{} | Skills:logging:0.20,farming:0.60
+[07:51:32][Tick:2520][SYSTEM] [Villager 3] Pos:(41,26) | Hunger:23.2 Tired:21.3 Mood:100.0 Cold:0.0 | Job:None | Routine:SLEEPING | Act:sleep | Inv:{} | Skills:logging:0.10,farming:0.10,trapping:0.10,fishing:0.10
+[07:51:32][Tick:2520][SYSTEM] [JobSystem] Available jobs: 26 | Types: ['haul_to_blueprint', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'chop', 'plant', 'plant', 'plant', 'plant', 'plant', 'haul', 'haul', 'haul', 'haul', 'haul', 'haul', 'haul', 'haul', 'haul', 'haul']
+[07:51:32][Tick:2520][SYSTEM] [Stockpile] Items: {'food_wheat': 19, 'seed_wheat': 1}
+[07:51:32][Tick:2520][SYSTEM] [Resources] Trees remaining: 44
+[07:51:32][Tick:2520][SYSTEM] [Farming] Crops: 3 total, 0 ripe
+[07:51:32][Tick:2521][SYSTEM] Headless simulation completed: 2 days elapsed
+[07:51:32][Tick:2521][SYSTEM] Final game time: Day 2 00:00
+[07:51:32][Tick:2521][SYSTEM] Diagnostic logs written to logs/villager_summary.txt and logs/villager_detail.txt
+[07:51:32][Tick:2521][SYSTEM] Game Terminated
+
+============================================================
+  QUICK-CHECK REPORT
+============================================================
+
+  [OK] No errors or warnings detected!
+
+  INFO:
+    - Action changes: 10 significant, 158 total
+    - Routine transitions: 108
+    - Job events: 11
+    - Last snapshot (final state):
+    -   V0 | Hunger: 16 Tired: 43 Mood:100 Cold:  0 | sleep      | Routine:SLEEPING
+    -   V1 | Hunger: 32 Tired: 48 Mood:100 Cold:  1 | move       | Routine:SLEEPING
+    -   V2 | Hunger: 23 Tired: 21 Mood:100 Cold:  0 | sleep      | Routine:SLEEPING
+    - Total snapshots: 22
+
+  Log sizes: summary=249 lines, detail=896 lines
+  Full logs: D:\github\medival_village_v2\logs\villager_summary.txt
+             D:\github\medival_village_v2\logs\villager_detail.txt
+============================================================
+  VERDICT: ALL CLEAR
+============================================================
+

@@ -13,6 +13,7 @@ class MovementComponent(Component):
     speed: float = 1.0
     target: Optional[Tuple[int, int]] = None
     progress: float = 0.0  # Progress to next tile (0.0 to 1.0)
+    path_failed: bool = False
 
 @dataclass(slots=True)
 class ResourceComponent(Component):
@@ -56,6 +57,11 @@ class TirednessComponent(Component):
 @dataclass(slots=True)
 class MoodComponent(Component):
     mood: float = 50.0  # 0-100, affects work efficiency, influenced by food/rest/social
+
+@dataclass(slots=True)
+class NeedLockComponent(Component):
+    lock_type: str  # "eat" or "sleep"
+    expiry_tick: int
 
 @dataclass(slots=True)
 class DurabilityComponent(Component):

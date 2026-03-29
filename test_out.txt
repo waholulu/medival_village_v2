@@ -1,0 +1,1842 @@
+============================= test session starts =============================
+platform win32 -- Python 3.10.6, pytest-7.3.1, pluggy-1.0.0
+benchmark: 4.0.0 (defaults: timer=time.perf_counter disable_gc=False min_rounds=5 min_time=0.000005 max_time=1.0 calibration_precision=10 warmup=False warmup_iterations=100000)
+rootdir: D:\github\medival_village_v2
+plugins: anyio-3.6.2, asyncio-0.21.0, benchmark-4.0.0, cov-4.0.0, integration-0.2.3, mock-3.10.0, recording-0.12.2, xdist-3.3.0
+asyncio: mode=strict
+collected 243 items
+
+tests\integration\test_farming_workflow.py ..                            [  0%]
+tests\integration\test_resource_management.py ..                         [  1%]
+tests\integration\test_survival_mechanics.py ...                         [  2%]
+tests\integration\test_time_systems.py ..                                [  3%]
+tests\integration\test_villager_lifecycle.py ...                         [  4%]
+tests\unit\test_action_system.py ........                                [  8%]
+tests\unit\test_ai_building_regressions.py .                             [  8%]
+tests\unit\test_ai_system.py .....                                       [ 10%]
+tests\unit\test_behavior_fixes.py ...............                        [ 16%]
+tests\unit\test_behavior_regression.py ............                      [ 21%]
+tests\unit\test_bug_regressions.py ............                          [ 26%]
+tests\unit\test_building_system.py ...                                   [ 27%]
+tests\unit\test_ecs.py .............                                     [ 33%]
+tests\unit\test_farming_system.py .....                                  [ 35%]
+tests\unit\test_grid.py ..................                               [ 42%]
+tests\unit\test_issue_regressions.py ....................                [ 51%]
+tests\unit\test_job_system.py ............                               [ 55%]
+tests\unit\test_needs_system.py ...........                              [ 60%]
+tests\unit\test_pathfinding.py ..................                        [ 67%]
+tests\unit\test_quick_run_regressions.py ..............                  [ 73%]
+tests\unit\test_routine_system.py .................                      [ 80%]
+tests\unit\test_sleep_and_job_fixes.py ...............                   [ 86%]
+tests\unit\test_survival_system.py .......                               [ 89%]
+tests\unit\test_time_manager.py .................                        [ 96%]
+tests\unit\test_zone_manager.py ........                                 [100%]
+
+============================== warnings summary ===============================
+tests\test_framework.py:21
+  D:\github\medival_village_v2\tests\test_framework.py:21: PytestCollectionWarning: cannot collect test class 'TestStatus' because it has a __new__ constructor (from: tests/test_framework.py)
+    class TestStatus(Enum):
+
+tests\test_framework.py:31
+  D:\github\medival_village_v2\tests\test_framework.py:31: PytestCollectionWarning: cannot collect test class 'TestResult' because it has a __init__ constructor (from: tests/test_framework.py)
+    @dataclass
+
+tests\test_framework.py:42
+  D:\github\medival_village_v2\tests\test_framework.py:42: PytestCollectionWarning: cannot collect test class 'TestSuiteResult' because it has a __init__ constructor (from: tests/test_framework.py)
+    @dataclass
+
+tests\test_framework.py:320
+  D:\github\medival_village_v2\tests\test_framework.py:320: PytestCollectionWarning: cannot collect test class 'TestReporter' because it has a __init__ constructor (from: tests/test_framework.py)
+    class TestReporter:
+
+tests\test_framework.py:412
+  D:\github\medival_village_v2\tests\test_framework.py:412: PytestCollectionWarning: cannot collect test class 'TestRunner' because it has a __init__ constructor (from: tests/test_framework.py)
+    class TestRunner:
+
+tests\test_helpers.py:41
+  D:\github\medival_village_v2\tests\test_helpers.py:41: PytestCollectionWarning: cannot collect test class 'TestWorld' because it has a __init__ constructor (from: tests/test_helpers.py)
+    class TestWorld:
+
+tests\test_helpers.py:41
+  D:\github\medival_village_v2\tests\test_helpers.py:41: PytestCollectionWarning: cannot collect test class 'TestWorld' because it has a __init__ constructor (from: tests/integration/test_farming_workflow.py)
+    class TestWorld:
+
+tests\test_helpers.py:41
+  D:\github\medival_village_v2\tests\test_helpers.py:41: PytestCollectionWarning: cannot collect test class 'TestWorld' because it has a __init__ constructor (from: tests/integration/test_resource_management.py)
+    class TestWorld:
+
+tests\test_helpers.py:41
+  D:\github\medival_village_v2\tests\test_helpers.py:41: PytestCollectionWarning: cannot collect test class 'TestWorld' because it has a __init__ constructor (from: tests/integration/test_survival_mechanics.py)
+    class TestWorld:
+
+tests\test_helpers.py:41
+  D:\github\medival_village_v2\tests\test_helpers.py:41: PytestCollectionWarning: cannot collect test class 'TestWorld' because it has a __init__ constructor (from: tests/integration/test_time_systems.py)
+    class TestWorld:
+
+tests\test_helpers.py:41
+  D:\github\medival_village_v2\tests\test_helpers.py:41: PytestCollectionWarning: cannot collect test class 'TestWorld' because it has a __init__ constructor (from: tests/integration/test_villager_lifecycle.py)
+    class TestWorld:
+
+tests\test_helpers.py:41
+  D:\github\medival_village_v2\tests\test_helpers.py:41: PytestCollectionWarning: cannot collect test class 'TestWorld' because it has a __init__ constructor (from: tests/unit/test_action_system.py)
+    class TestWorld:
+
+tests\test_helpers.py:41
+  D:\github\medival_village_v2\tests\test_helpers.py:41: PytestCollectionWarning: cannot collect test class 'TestWorld' because it has a __init__ constructor (from: tests/unit/test_ai_building_regressions.py)
+    class TestWorld:
+
+tests\test_helpers.py:41
+  D:\github\medival_village_v2\tests\test_helpers.py:41: PytestCollectionWarning: cannot collect test class 'TestWorld' because it has a __init__ constructor (from: tests/unit/test_ai_system.py)
+    class TestWorld:
+
+tests\test_helpers.py:41
+  D:\github\medival_village_v2\tests\test_helpers.py:41: PytestCollectionWarning: cannot collect test class 'TestWorld' because it has a __init__ constructor (from: tests/unit/test_behavior_fixes.py)
+    class TestWorld:
+
+tests\test_helpers.py:41
+  D:\github\medival_village_v2\tests\test_helpers.py:41: PytestCollectionWarning: cannot collect test class 'TestWorld' because it has a __init__ constructor (from: tests/unit/test_behavior_regression.py)
+    class TestWorld:
+
+tests\test_helpers.py:41
+  D:\github\medival_village_v2\tests\test_helpers.py:41: PytestCollectionWarning: cannot collect test class 'TestWorld' because it has a __init__ constructor (from: tests/unit/test_bug_regressions.py)
+    class TestWorld:
+
+tests\test_helpers.py:41
+  D:\github\medival_village_v2\tests\test_helpers.py:41: PytestCollectionWarning: cannot collect test class 'TestWorld' because it has a __init__ constructor (from: tests/unit/test_building_system.py)
+    class TestWorld:
+
+tests\test_helpers.py:41
+  D:\github\medival_village_v2\tests\test_helpers.py:41: PytestCollectionWarning: cannot collect test class 'TestWorld' because it has a __init__ constructor (from: tests/unit/test_farming_system.py)
+    class TestWorld:
+
+tests\test_helpers.py:41
+  D:\github\medival_village_v2\tests\test_helpers.py:41: PytestCollectionWarning: cannot collect test class 'TestWorld' because it has a __init__ constructor (from: tests/unit/test_issue_regressions.py)
+    class TestWorld:
+
+tests\test_helpers.py:41
+  D:\github\medival_village_v2\tests\test_helpers.py:41: PytestCollectionWarning: cannot collect test class 'TestWorld' because it has a __init__ constructor (from: tests/unit/test_needs_system.py)
+    class TestWorld:
+
+tests\test_helpers.py:41
+  D:\github\medival_village_v2\tests\test_helpers.py:41: PytestCollectionWarning: cannot collect test class 'TestWorld' because it has a __init__ constructor (from: tests/unit/test_quick_run_regressions.py)
+    class TestWorld:
+
+tests\test_helpers.py:41
+  D:\github\medival_village_v2\tests\test_helpers.py:41: PytestCollectionWarning: cannot collect test class 'TestWorld' because it has a __init__ constructor (from: tests/unit/test_routine_system.py)
+    class TestWorld:
+
+tests\test_helpers.py:41
+  D:\github\medival_village_v2\tests\test_helpers.py:41: PytestCollectionWarning: cannot collect test class 'TestWorld' because it has a __init__ constructor (from: tests/unit/test_sleep_and_job_fixes.py)
+    class TestWorld:
+
+tests\test_helpers.py:41
+  D:\github\medival_village_v2\tests\test_helpers.py:41: PytestCollectionWarning: cannot collect test class 'TestWorld' because it has a __init__ constructor (from: tests/unit/test_survival_system.py)
+    class TestWorld:
+
+tests\test_helpers.py:41
+  D:\github\medival_village_v2\tests\test_helpers.py:41: PytestCollectionWarning: cannot collect test class 'TestWorld' because it has a __init__ constructor (from: tests/unit/test_zone_manager.py)
+    class TestWorld:
+
+tests/integration/test_farming_workflow.py::TestFarmingWorkflow::test_complete_farming_cycle
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/integration/test_farming_workflow.py::TestFarmingWorkflow::test_complete_farming_cycle is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/integration/test_farming_workflow.py::TestFarmingWorkflow::test_harvest_generates_food
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/integration/test_farming_workflow.py::TestFarmingWorkflow::test_harvest_generates_food is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/integration/test_resource_management.py::TestResourceManagement::test_chop_tree_creates_log
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/integration/test_resource_management.py::TestResourceManagement::test_chop_tree_creates_log is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/integration/test_resource_management.py::TestResourceManagement::test_log_hauled_to_stockpile
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/integration/test_resource_management.py::TestResourceManagement::test_log_hauled_to_stockpile is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/integration/test_survival_mechanics.py::TestSurvivalMechanics::test_winter_cold_increases_faster_than_spring
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/integration/test_survival_mechanics.py::TestSurvivalMechanics::test_winter_cold_increases_faster_than_spring is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/integration/test_survival_mechanics.py::TestSurvivalMechanics::test_villager_builds_fire_with_logs
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/integration/test_survival_mechanics.py::TestSurvivalMechanics::test_villager_builds_fire_with_logs is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/integration/test_survival_mechanics.py::TestSurvivalMechanics::test_fire_warms_multiple_villagers
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/integration/test_survival_mechanics.py::TestSurvivalMechanics::test_fire_warms_multiple_villagers is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/integration/test_time_systems.py::TestTimeSystems::test_season_affects_crop_growth
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/integration/test_time_systems.py::TestTimeSystems::test_season_affects_crop_growth is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/integration/test_time_systems.py::TestTimeSystems::test_day_night_cycle_affects_tiredness
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/integration/test_time_systems.py::TestTimeSystems::test_day_night_cycle_affects_tiredness is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/integration/test_villager_lifecycle.py::TestVillagerLifecycle::test_villager_works_then_eats
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/integration/test_villager_lifecycle.py::TestVillagerLifecycle::test_villager_works_then_eats is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/integration/test_villager_lifecycle.py::TestVillagerLifecycle::test_villager_sleeps_when_tired
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/integration/test_villager_lifecycle.py::TestVillagerLifecycle::test_villager_sleeps_when_tired is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/integration/test_villager_lifecycle.py::TestVillagerLifecycle::test_villager_complete_cycle
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/integration/test_villager_lifecycle.py::TestVillagerLifecycle::test_villager_complete_cycle is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_action_system.py::TestActionSystem::test_move_action
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_action_system.py::TestActionSystem::test_move_action is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_action_system.py::TestActionSystem::test_chop_action
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_action_system.py::TestActionSystem::test_chop_action is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_action_system.py::TestActionSystem::test_pickup_action
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_action_system.py::TestActionSystem::test_pickup_action is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_action_system.py::TestActionSystem::test_drop_action
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_action_system.py::TestActionSystem::test_drop_action is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_action_system.py::TestActionSystem::test_eat_action
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_action_system.py::TestActionSystem::test_eat_action is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_action_system.py::TestActionSystem::test_sleep_action
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_action_system.py::TestActionSystem::test_sleep_action is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_action_system.py::TestActionSystem::test_trap_check_respects_interval
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_action_system.py::TestActionSystem::test_trap_check_respects_interval is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_action_system.py::TestActionSystem::test_fishing_respects_duration_and_time_window
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_action_system.py::TestActionSystem::test_fishing_respects_duration_and_time_window is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_ai_building_regressions.py::TestAIBuildingRegressions::test_haul_to_blueprint_cooldown_when_no_materials
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_ai_building_regressions.py::TestAIBuildingRegressions::test_haul_to_blueprint_cooldown_when_no_materials is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_ai_system.py::TestAISystem::test_ai_takes_available_job
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_ai_system.py::TestAISystem::test_ai_takes_available_job is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_ai_system.py::TestAISystem::test_ai_handles_urgent_hunger
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_ai_system.py::TestAISystem::test_ai_handles_urgent_hunger is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_ai_system.py::TestAISystem::test_ai_interrupts_job_for_urgent_hunger
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_ai_system.py::TestAISystem::test_ai_interrupts_job_for_urgent_hunger is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_ai_system.py::TestAISystem::test_ai_generates_haul_jobs
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_ai_system.py::TestAISystem::test_ai_generates_haul_jobs is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_ai_system.py::TestAISystem::test_ai_generates_chop_jobs
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_ai_system.py::TestAISystem::test_ai_generates_chop_jobs is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_behavior_fixes.py::TestHarvestPriority::test_harvest_preferred_over_plant_with_seeds
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_behavior_fixes.py::TestHarvestPriority::test_harvest_preferred_over_plant_with_seeds is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_behavior_fixes.py::TestHarvestPriority::test_harvest_score_beats_plant_score
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_behavior_fixes.py::TestHarvestPriority::test_harvest_score_beats_plant_score is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_behavior_fixes.py::TestTirednessMovingBug::test_walking_during_sleep_routine_does_not_recover_tiredness
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_behavior_fixes.py::TestTirednessMovingBug::test_walking_during_sleep_routine_does_not_recover_tiredness is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_behavior_fixes.py::TestTirednessMovingBug::test_idle_during_rest_routine_does_recover_tiredness
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_behavior_fixes.py::TestTirednessMovingBug::test_idle_during_rest_routine_does_recover_tiredness is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_behavior_fixes.py::TestTirednessMovingBug::test_sleeping_action_recovers_tiredness
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_behavior_fixes.py::TestTirednessMovingBug::test_sleeping_action_recovers_tiredness is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_behavior_fixes.py::TestFoodSeekingPersistence::test_eat_when_adjacent_to_food_target
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_behavior_fixes.py::TestFoodSeekingPersistence::test_eat_when_adjacent_to_food_target is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_behavior_fixes.py::TestItemDroppingOnNonWorkRoutine::test_seeds_dropped_during_socializing
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_behavior_fixes.py::TestItemDroppingOnNonWorkRoutine::test_seeds_dropped_during_socializing is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_behavior_fixes.py::TestItemDroppingOnNonWorkRoutine::test_food_deposited_during_socializing
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_behavior_fixes.py::TestItemDroppingOnNonWorkRoutine::test_food_deposited_during_socializing is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_behavior_fixes.py::TestItemDroppingOnNonWorkRoutine::test_seeds_dropped_during_sleeping
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_behavior_fixes.py::TestItemDroppingOnNonWorkRoutine::test_seeds_dropped_during_sleeping is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_behavior_fixes.py::TestHungryDistantJobRefusal::test_refuse_distant_job_when_moderately_hungry
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_behavior_fixes.py::TestHungryDistantJobRefusal::test_refuse_distant_job_when_moderately_hungry is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_behavior_fixes.py::TestHungryDistantJobRefusal::test_accept_close_job_when_moderately_hungry
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_behavior_fixes.py::TestHungryDistantJobRefusal::test_accept_close_job_when_moderately_hungry is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_behavior_fixes.py::TestHungryDistantJobRefusal::test_max_dist_scales_with_hunger
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_behavior_fixes.py::TestHungryDistantJobRefusal::test_max_dist_scales_with_hunger is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_behavior_fixes.py::TestAntiOscillation::test_no_oscillation_when_both_critical
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_behavior_fixes.py::TestAntiOscillation::test_no_oscillation_when_both_critical is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_behavior_fixes.py::TestAntiOscillation::test_sleep_lock_suppresses_hunger
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_behavior_fixes.py::TestAntiOscillation::test_sleep_lock_suppresses_hunger is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_behavior_fixes.py::TestAntiOscillation::test_eat_lock_suppresses_tiredness
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_behavior_fixes.py::TestAntiOscillation::test_eat_lock_suppresses_tiredness is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_behavior_regression.py::TestRoutineEating::test_routine_eating_interrupts_active_job
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_behavior_regression.py::TestRoutineEating::test_routine_eating_interrupts_active_job is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_behavior_regression.py::TestRoutineEating::test_routine_eating_does_not_trigger_when_not_hungry
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_behavior_regression.py::TestRoutineEating::test_routine_eating_does_not_trigger_when_not_hungry is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_behavior_regression.py::TestInventoryDeposit::test_deposit_all_items_before_sleep
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_behavior_regression.py::TestInventoryDeposit::test_deposit_all_items_before_sleep is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_behavior_regression.py::TestInventoryDeposit::test_deposit_all_items_before_socializing
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_behavior_regression.py::TestInventoryDeposit::test_deposit_all_items_before_socializing is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_behavior_regression.py::TestInventoryDeposit::test_deposited_items_create_ground_entities
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_behavior_regression.py::TestInventoryDeposit::test_deposited_items_create_ground_entities is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_behavior_regression.py::TestAutoPickupAfterChop::test_auto_pickup_items_at_chop_location
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_behavior_regression.py::TestAutoPickupAfterChop::test_auto_pickup_items_at_chop_location is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_behavior_regression.py::TestAutoPickupAfterChop::test_auto_pickup_triggers_move_to_stockpile
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_behavior_regression.py::TestAutoPickupAfterChop::test_auto_pickup_triggers_move_to_stockpile is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_behavior_regression.py::TestStockpileDeposit::test_idle_deposit_logs_at_stockpile
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_behavior_regression.py::TestStockpileDeposit::test_idle_deposit_logs_at_stockpile is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_behavior_regression.py::TestStockpileDeposit::test_seeds_not_deposited_at_stockpile
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_behavior_regression.py::TestStockpileDeposit::test_seeds_not_deposited_at_stockpile is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_behavior_regression.py::TestPlantJobSeedCheck::test_no_plant_job_without_seeds
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_behavior_regression.py::TestPlantJobSeedCheck::test_no_plant_job_without_seeds is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_behavior_regression.py::TestPlantJobSeedCheck::test_plant_job_with_seeds_in_inventory
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_behavior_regression.py::TestPlantJobSeedCheck::test_plant_job_with_seeds_in_inventory is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_behavior_regression.py::TestPlantJobSeedCheck::test_plant_job_with_seeds_on_ground
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_behavior_regression.py::TestPlantJobSeedCheck::test_plant_job_with_seeds_on_ground is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_bug_regressions.py::TestEatingInterruptsMove::test_urgent_hunger_interrupts_move_to_job
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_bug_regressions.py::TestEatingInterruptsMove::test_urgent_hunger_interrupts_move_to_job is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_bug_regressions.py::TestEatingInterruptsMove::test_routine_eating_interrupts_active_job
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_bug_regressions.py::TestEatingInterruptsMove::test_routine_eating_interrupts_active_job is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_bug_regressions.py::TestEatingInterruptsMove::test_no_re_interrupt_when_already_heading_to_food
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_bug_regressions.py::TestEatingInterruptsMove::test_no_re_interrupt_when_already_heading_to_food is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_bug_regressions.py::TestSleepingInterruptsMove::test_urgent_tiredness_interrupts_move_to_job
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_bug_regressions.py::TestSleepingInterruptsMove::test_urgent_tiredness_interrupts_move_to_job is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_bug_regressions.py::TestSleepingInterruptsMove::test_no_re_interrupt_when_heading_to_residential
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_bug_regressions.py::TestSleepingInterruptsMove::test_no_re_interrupt_when_heading_to_residential is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_bug_regressions.py::TestEatFromGroundNoHoarding::test_eat_ground_food_takes_only_one
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_bug_regressions.py::TestEatFromGroundNoHoarding::test_eat_ground_food_takes_only_one is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_bug_regressions.py::TestEatFromGroundNoHoarding::test_eat_ground_food_last_unit_destroys_entity
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_bug_regressions.py::TestEatFromGroundNoHoarding::test_eat_ground_food_last_unit_destroys_entity is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_bug_regressions.py::TestEatFromGroundNoHoarding::test_two_villagers_share_ground_food
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_bug_regressions.py::TestEatFromGroundNoHoarding::test_two_villagers_share_ground_food is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_bug_regressions.py::TestFindAndSleepZoneCheck::test_sleep_when_on_residential_tile
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_bug_regressions.py::TestFindAndSleepZoneCheck::test_sleep_when_on_residential_tile is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_bug_regressions.py::TestFindAndSleepZoneCheck::test_move_when_adjacent_to_residential
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_bug_regressions.py::TestFindAndSleepZoneCheck::test_move_when_adjacent_to_residential is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_bug_regressions.py::TestMovementClearedOnInterrupt::test_path_cleared_on_hunger_interrupt
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_bug_regressions.py::TestMovementClearedOnInterrupt::test_path_cleared_on_hunger_interrupt is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_bug_regressions.py::TestMovementClearedOnInterrupt::test_path_cleared_on_tiredness_interrupt
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_bug_regressions.py::TestMovementClearedOnInterrupt::test_path_cleared_on_tiredness_interrupt is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_building_system.py::TestBuildingSystem::test_blueprint_generates_hauling_jobs
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_building_system.py::TestBuildingSystem::test_blueprint_generates_hauling_jobs is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_building_system.py::TestBuildingSystem::test_blueprint_generates_build_job
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_building_system.py::TestBuildingSystem::test_blueprint_generates_build_job is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_building_system.py::TestBuildingSystem::test_blueprint_transform
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_building_system.py::TestBuildingSystem::test_blueprint_transform is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_ecs.py::TestECS::test_create_entity
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_ecs.py::TestECS::test_create_entity is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_ecs.py::TestECS::test_destroy_entity
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_ecs.py::TestECS::test_destroy_entity is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_ecs.py::TestECS::test_add_component
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_ecs.py::TestECS::test_add_component is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_ecs.py::TestECS::test_remove_component
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_ecs.py::TestECS::test_remove_component is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_ecs.py::TestECS::test_has_component
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_ecs.py::TestECS::test_has_component is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_ecs.py::TestECS::test_get_entities_with
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_ecs.py::TestECS::test_get_entities_with is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_ecs.py::TestECS::test_get_entities_with_multiple_components
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_ecs.py::TestECS::test_get_entities_with_multiple_components is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_ecs.py::TestECS::test_component_isolation
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_ecs.py::TestECS::test_component_isolation is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_ecs.py::TestECS::test_destroy_entity_removes_components
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_ecs.py::TestECS::test_destroy_entity_removes_components is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_ecs.py::TestECS::test_entity_ids_are_unique
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_ecs.py::TestECS::test_entity_ids_are_unique is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_ecs.py::TestECS::test_get_component_nonexistent_entity
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_ecs.py::TestECS::test_get_component_nonexistent_entity is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_ecs.py::TestECS::test_get_entities_with_no_matching
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_ecs.py::TestECS::test_get_entities_with_no_matching is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_ecs.py::TestECS::test_destroy_already_destroyed_entity
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_ecs.py::TestECS::test_destroy_already_destroyed_entity is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_farming_system.py::TestFarmingSystem::test_crop_grows_over_time
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_farming_system.py::TestFarmingSystem::test_crop_grows_over_time is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_farming_system.py::TestFarmingSystem::test_crop_becomes_ripe
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_farming_system.py::TestFarmingSystem::test_crop_becomes_ripe is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_farming_system.py::TestFarmingSystem::test_harvest_job_generated_for_ripe_crop
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_farming_system.py::TestFarmingSystem::test_harvest_job_generated_for_ripe_crop is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_farming_system.py::TestFarmingSystem::test_plant_job_generated_for_empty_farm_tile
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_farming_system.py::TestFarmingSystem::test_plant_job_generated_for_empty_farm_tile is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_farming_system.py::TestFarmingSystem::test_crop_growth_affected_by_season
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_farming_system.py::TestFarmingSystem::test_crop_growth_affected_by_season is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_grid.py::TestGrid::test_grid_dimensions
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_grid.py::TestGrid::test_grid_dimensions is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_grid.py::TestGrid::test_default_terrain_is_grass
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_grid.py::TestGrid::test_default_terrain_is_grass is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_grid.py::TestGrid::test_set_and_get_terrain
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_grid.py::TestGrid::test_set_and_get_terrain is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_grid.py::TestGrid::test_water_terrain_is_impassable
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_grid.py::TestGrid::test_water_terrain_is_impassable is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_grid.py::TestGrid::test_grass_terrain_is_walkable
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_grid.py::TestGrid::test_grass_terrain_is_walkable is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_grid.py::TestGrid::test_dirt_terrain_is_walkable
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_grid.py::TestGrid::test_dirt_terrain_is_walkable is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_grid.py::TestGrid::test_stone_terrain_is_walkable
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_grid.py::TestGrid::test_stone_terrain_is_walkable is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_grid.py::TestGridBoundary::test_out_of_bounds_terrain_returns_negative
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_grid.py::TestGridBoundary::test_out_of_bounds_terrain_returns_negative is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_grid.py::TestGridBoundary::test_out_of_bounds_not_walkable
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_grid.py::TestGridBoundary::test_out_of_bounds_not_walkable is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_grid.py::TestGridBoundary::test_boundary_tiles_are_valid
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_grid.py::TestGridBoundary::test_boundary_tiles_are_valid is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_grid.py::TestGridBoundary::test_set_terrain_out_of_bounds_is_safe
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_grid.py::TestGridBoundary::test_set_terrain_out_of_bounds_is_safe is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_grid.py::TestGridBoundary::test_out_of_bounds_zone_returns_zero
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_grid.py::TestGridBoundary::test_out_of_bounds_zone_returns_zero is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_grid.py::TestGridZone::test_default_zone_is_none
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_grid.py::TestGridZone::test_default_zone_is_none is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_grid.py::TestGridZone::test_set_and_get_zone
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_grid.py::TestGridZone::test_set_and_get_zone is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_grid.py::TestGridZone::test_zone_does_not_affect_walkability
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_grid.py::TestGridZone::test_zone_does_not_affect_walkability is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_grid.py::TestGridZone::test_zone_does_not_affect_terrain
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_grid.py::TestGridZone::test_zone_does_not_affect_terrain is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_grid.py::TestGridZone::test_terrain_change_preserves_zone
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_grid.py::TestGridZone::test_terrain_change_preserves_zone is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_grid.py::TestGridZone::test_overwrite_zone
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_grid.py::TestGridZone::test_overwrite_zone is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_issue_regressions.py::TestRoutineEnforcement::test_sleeping_routine_blocks_job_assignment
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_issue_regressions.py::TestRoutineEnforcement::test_sleeping_routine_blocks_job_assignment is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_issue_regressions.py::TestRoutineEnforcement::test_sleeping_routine_resleep_after_wake
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_issue_regressions.py::TestRoutineEnforcement::test_sleeping_routine_resleep_after_wake is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_issue_regressions.py::TestRoutineEnforcement::test_eating_routine_keeps_eating
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_issue_regressions.py::TestRoutineEnforcement::test_eating_routine_keeps_eating is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_issue_regressions.py::TestRoutineEnforcement::test_eating_routine_no_work_even_if_satisfied
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_issue_regressions.py::TestRoutineEnforcement::test_eating_routine_no_work_even_if_satisfied is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_issue_regressions.py::TestRoutineEnforcement::test_socializing_routine_no_jobs
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_issue_regressions.py::TestRoutineEnforcement::test_socializing_routine_no_jobs is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_issue_regressions.py::TestChopJobCompletion::test_chop_requires_multiple_ticks
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_issue_regressions.py::TestChopJobCompletion::test_chop_requires_multiple_ticks is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_issue_regressions.py::TestChopJobCompletion::test_chop_not_interrupted_by_moderate_hunger
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_issue_regressions.py::TestChopJobCompletion::test_chop_not_interrupted_by_moderate_hunger is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_issue_regressions.py::TestChopJobCompletion::test_chop_interrupted_by_extreme_hunger
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_issue_regressions.py::TestChopJobCompletion::test_chop_interrupted_by_extreme_hunger is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_issue_regressions.py::TestOverDistanceJobCancellation::test_cancel_distant_job_when_hunger_rises
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_issue_regressions.py::TestOverDistanceJobCancellation::test_cancel_distant_job_when_hunger_rises is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_issue_regressions.py::TestOverDistanceJobCancellation::test_keep_close_job_when_hunger_rises
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_issue_regressions.py::TestOverDistanceJobCancellation::test_keep_close_job_when_hunger_rises is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_issue_regressions.py::TestSleepStateClearing::test_sleep_state_cleared_on_action_change
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_issue_regressions.py::TestSleepStateClearing::test_sleep_state_cleared_on_action_change is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_issue_regressions.py::TestSleepStateClearing::test_sleep_state_cleared_on_urgent_interrupt
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_issue_regressions.py::TestSleepStateClearing::test_sleep_state_cleared_on_urgent_interrupt is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_issue_regressions.py::TestDropAllItems::test_drop_action_drops_all_items
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_issue_regressions.py::TestDropAllItems::test_drop_action_drops_all_items is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_issue_regressions.py::TestNeedLockDuration::test_eat_lock_lasts_600_ticks
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_issue_regressions.py::TestNeedLockDuration::test_eat_lock_lasts_600_ticks is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_issue_regressions.py::TestNeedLockDuration::test_sleep_lock_lasts_600_ticks
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_issue_regressions.py::TestNeedLockDuration::test_sleep_lock_lasts_600_ticks is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_issue_regressions.py::TestCropGrowth::test_crop_matures_within_expected_time
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_issue_regressions.py::TestCropGrowth::test_crop_matures_within_expected_time is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_issue_regressions.py::TestColdDecay::test_cold_decreases_in_residential_zone
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_issue_regressions.py::TestColdDecay::test_cold_decreases_in_residential_zone is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_issue_regressions.py::TestColdDecay::test_cold_increases_at_night_outdoors
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_issue_regressions.py::TestColdDecay::test_cold_increases_at_night_outdoors is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_issue_regressions.py::TestFoodEconomy::test_hunger_rate_matches_config
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_issue_regressions.py::TestFoodEconomy::test_hunger_rate_matches_config is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_issue_regressions.py::TestHeadlessLogDedup::test_no_duplicate_log_calls
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_issue_regressions.py::TestHeadlessLogDedup::test_no_duplicate_log_calls is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_job_system.py::TestJobSystem::test_add_job
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_job_system.py::TestJobSystem::test_add_job is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_job_system.py::TestJobSystem::test_job_priority_sorting
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_job_system.py::TestJobSystem::test_job_priority_sorting is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_job_system.py::TestJobSystem::test_assign_job
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_job_system.py::TestJobSystem::test_assign_job is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_job_system.py::TestJobSystem::test_complete_job
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_job_system.py::TestJobSystem::test_complete_job is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_job_system.py::TestJobSystem::test_get_job_by_id
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_job_system.py::TestJobSystem::test_get_job_by_id is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_job_system.py::TestJobSystem::test_get_available_jobs
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_job_system.py::TestJobSystem::test_get_available_jobs is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_job_system.py::TestJobSystem::test_multiple_jobs_same_type
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_job_system.py::TestJobSystem::test_multiple_jobs_same_type is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_job_system.py::TestJobSystem::test_job_with_required_skill
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_job_system.py::TestJobSystem::test_job_with_required_skill is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_job_system.py::TestJobSystem::test_job_with_target_entity
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_job_system.py::TestJobSystem::test_job_with_target_entity is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_job_system.py::TestJobSystem::test_complete_nonexistent_job
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_job_system.py::TestJobSystem::test_complete_nonexistent_job is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_job_system.py::TestJobSystem::test_get_nonexistent_job_by_id
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_job_system.py::TestJobSystem::test_get_nonexistent_job_by_id is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_job_system.py::TestJobSystem::test_job_ids_are_unique
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_job_system.py::TestJobSystem::test_job_ids_are_unique is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_needs_system.py::TestNeedsSystem::test_hunger_increases_over_time
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_needs_system.py::TestNeedsSystem::test_hunger_increases_over_time is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_needs_system.py::TestNeedsSystem::test_tiredness_increases_when_working
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_needs_system.py::TestNeedsSystem::test_tiredness_increases_when_working is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_needs_system.py::TestNeedsSystem::test_tiredness_decreases_when_sleeping
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_needs_system.py::TestNeedsSystem::test_tiredness_decreases_when_sleeping is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_needs_system.py::TestNeedsSystem::test_mood_decreases_with_high_hunger
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_needs_system.py::TestNeedsSystem::test_mood_decreases_with_high_hunger is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_needs_system.py::TestNeedsSystem::test_mood_decreases_with_high_tiredness
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_needs_system.py::TestNeedsSystem::test_mood_decreases_with_high_tiredness is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_needs_system.py::TestNeedsSystem::test_mood_recovers_when_needs_met
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_needs_system.py::TestNeedsSystem::test_mood_recovers_when_needs_met is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_needs_system.py::TestNeedsSystem::test_hunger_capped_at_100
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_needs_system.py::TestNeedsSystem::test_hunger_capped_at_100 is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_needs_system.py::TestNeedsSystem::test_tiredness_capped_at_100
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_needs_system.py::TestNeedsSystem::test_tiredness_capped_at_100 is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_needs_system.py::TestNeedsSystem::test_work_schedule_increases_hunger_faster
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_needs_system.py::TestNeedsSystem::test_work_schedule_increases_hunger_faster is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_needs_system.py::TestNeedsSystem::test_schedule_rest_reduces_tiredness
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_needs_system.py::TestNeedsSystem::test_schedule_rest_reduces_tiredness is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_needs_system.py::TestNeedsSystem::test_tiredness_capped_at_0
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_needs_system.py::TestNeedsSystem::test_tiredness_capped_at_0 is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_pathfinding.py::TestPathfindingBasic::test_straight_line_path
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_pathfinding.py::TestPathfindingBasic::test_straight_line_path is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_pathfinding.py::TestPathfindingBasic::test_path_excludes_start
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_pathfinding.py::TestPathfindingBasic::test_path_excludes_start is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_pathfinding.py::TestPathfindingBasic::test_path_includes_end
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_pathfinding.py::TestPathfindingBasic::test_path_includes_end is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_pathfinding.py::TestPathfindingBasic::test_adjacent_target
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_pathfinding.py::TestPathfindingBasic::test_adjacent_target is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_pathfinding.py::TestPathfindingBasic::test_same_start_and_end
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_pathfinding.py::TestPathfindingBasic::test_same_start_and_end is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_pathfinding.py::TestPathfindingBasic::test_diagonal_movement_not_allowed
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_pathfinding.py::TestPathfindingBasic::test_diagonal_movement_not_allowed is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_pathfinding.py::TestPathfindingObstacles::test_path_around_water
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_pathfinding.py::TestPathfindingObstacles::test_path_around_water is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_pathfinding.py::TestPathfindingObstacles::test_no_path_when_blocked
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_pathfinding.py::TestPathfindingObstacles::test_no_path_when_blocked is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_pathfinding.py::TestPathfindingObstacles::test_path_to_impassable_target_returns_empty
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_pathfinding.py::TestPathfindingObstacles::test_path_to_impassable_target_returns_empty is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_pathfinding.py::TestPathfindingObstacles::test_path_from_impassable_start_returns_empty
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_pathfinding.py::TestPathfindingObstacles::test_path_from_impassable_start_returns_empty is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_pathfinding.py::TestPathfindingBoundary::test_out_of_bounds_start
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_pathfinding.py::TestPathfindingBoundary::test_out_of_bounds_start is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_pathfinding.py::TestPathfindingBoundary::test_out_of_bounds_end
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_pathfinding.py::TestPathfindingBoundary::test_out_of_bounds_end is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_pathfinding.py::TestPathfindingBoundary::test_corner_to_corner
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_pathfinding.py::TestPathfindingBoundary::test_corner_to_corner is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_pathfinding.py::TestPathfindingBoundary::test_path_along_border
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_pathfinding.py::TestPathfindingBoundary::test_path_along_border is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_pathfinding.py::TestHeuristic::test_zero_distance
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_pathfinding.py::TestHeuristic::test_zero_distance is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_pathfinding.py::TestHeuristic::test_horizontal_distance
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_pathfinding.py::TestHeuristic::test_horizontal_distance is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_pathfinding.py::TestHeuristic::test_vertical_distance
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_pathfinding.py::TestHeuristic::test_vertical_distance is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_pathfinding.py::TestHeuristic::test_diagonal_distance
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_pathfinding.py::TestHeuristic::test_diagonal_distance is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_quick_run_regressions.py::TestMovementSpeed::test_villager_moves_one_tile_within_15_ticks
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_quick_run_regressions.py::TestMovementSpeed::test_villager_moves_one_tile_within_15_ticks is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_quick_run_regressions.py::TestMovementSpeed::test_villager_traverses_10_tiles_within_150_ticks
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_quick_run_regressions.py::TestMovementSpeed::test_villager_traverses_10_tiles_within_150_ticks is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_quick_run_regressions.py::TestChopJobGenerationLimit::test_chop_jobs_capped_at_max
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_quick_run_regressions.py::TestChopJobGenerationLimit::test_chop_jobs_capped_at_max is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_quick_run_regressions.py::TestChopJobGenerationLimit::test_chop_jobs_incremental_generation
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_quick_run_regressions.py::TestChopJobGenerationLimit::test_chop_jobs_incremental_generation is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_quick_run_regressions.py::TestFoodHaulPriority::test_food_haul_has_higher_priority_than_seed_haul
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_quick_run_regressions.py::TestFoodHaulPriority::test_food_haul_has_higher_priority_than_seed_haul is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_quick_run_regressions.py::TestFoodHaulPriority::test_villager_prefers_food_haul_over_chop
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_quick_run_regressions.py::TestFoodHaulPriority::test_villager_prefers_food_haul_over_chop is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_quick_run_regressions.py::TestJobCompletedCounter::test_complete_job_increments_counter
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_quick_run_regressions.py::TestJobCompletedCounter::test_complete_job_increments_counter is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_quick_run_regressions.py::TestJobCompletedCounter::test_complete_nonexistent_job_no_crash
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_quick_run_regressions.py::TestJobCompletedCounter::test_complete_nonexistent_job_no_crash is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_quick_run_regressions.py::TestTreeChoppingSpeed::test_skilled_villager_chops_tree_under_30_ticks
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_quick_run_regressions.py::TestTreeChoppingSpeed::test_skilled_villager_chops_tree_under_30_ticks is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_quick_run_regressions.py::TestTreeChoppingSpeed::test_unskilled_villager_chops_tree_under_50_ticks
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_quick_run_regressions.py::TestTreeChoppingSpeed::test_unskilled_villager_chops_tree_under_50_ticks is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_quick_run_regressions.py::TestSleepBehavior::test_villager_starts_sleep_on_residential_tile
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_quick_run_regressions.py::TestSleepBehavior::test_villager_starts_sleep_on_residential_tile is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_quick_run_regressions.py::TestSleepBehavior::test_villager_navigates_to_residential_for_sleep
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_quick_run_regressions.py::TestSleepBehavior::test_villager_navigates_to_residential_for_sleep is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_quick_run_regressions.py::TestSleepBehavior::test_villager_enters_sleep_after_reaching_residential
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_quick_run_regressions.py::TestSleepBehavior::test_villager_enters_sleep_after_reaching_residential is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_quick_run_regressions.py::TestHaulDropsOnStockpile::test_haul_drops_item_inside_stockpile_zone
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_quick_run_regressions.py::TestHaulDropsOnStockpile::test_haul_drops_item_inside_stockpile_zone is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_routine_system.py::TestRoutineStateTransitions::test_sleeping_at_midnight
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_routine_system.py::TestRoutineStateTransitions::test_sleeping_at_midnight is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_routine_system.py::TestRoutineStateTransitions::test_sleeping_at_23
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_routine_system.py::TestRoutineStateTransitions::test_sleeping_at_23 is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_routine_system.py::TestRoutineStateTransitions::test_eating_at_breakfast
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_routine_system.py::TestRoutineStateTransitions::test_eating_at_breakfast is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_routine_system.py::TestRoutineStateTransitions::test_eating_at_lunch
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_routine_system.py::TestRoutineStateTransitions::test_eating_at_lunch is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_routine_system.py::TestRoutineStateTransitions::test_eating_at_dinner
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_routine_system.py::TestRoutineStateTransitions::test_eating_at_dinner is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_routine_system.py::TestRoutineStateTransitions::test_working_at_morning
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_routine_system.py::TestRoutineStateTransitions::test_working_at_morning is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_routine_system.py::TestRoutineStateTransitions::test_working_at_afternoon
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_routine_system.py::TestRoutineStateTransitions::test_working_at_afternoon is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_routine_system.py::TestRoutineStateTransitions::test_socializing_at_leisure
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_routine_system.py::TestRoutineStateTransitions::test_socializing_at_leisure is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_routine_system.py::TestRoutineSeasonalAdjustment::test_summer_midday_rest
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_routine_system.py::TestRoutineSeasonalAdjustment::test_summer_midday_rest is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_routine_system.py::TestRoutineSeasonalAdjustment::test_spring_no_midday_rest
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_routine_system.py::TestRoutineSeasonalAdjustment::test_spring_no_midday_rest is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_routine_system.py::TestRoutineSeasonalAdjustment::test_winter_earlier_sleep
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_routine_system.py::TestRoutineSeasonalAdjustment::test_winter_earlier_sleep is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_routine_system.py::TestRoutineHelperMethods::test_should_eat
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_routine_system.py::TestRoutineHelperMethods::test_should_eat is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_routine_system.py::TestRoutineHelperMethods::test_should_not_eat_when_working
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_routine_system.py::TestRoutineHelperMethods::test_should_not_eat_when_working is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_routine_system.py::TestRoutineHelperMethods::test_should_sleep
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_routine_system.py::TestRoutineHelperMethods::test_should_sleep is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_routine_system.py::TestRoutineHelperMethods::test_should_work
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_routine_system.py::TestRoutineHelperMethods::test_should_work is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_routine_system.py::TestRoutineHelperMethods::test_should_eat_nonexistent_entity
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_routine_system.py::TestRoutineHelperMethods::test_should_eat_nonexistent_entity is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_routine_system.py::TestRoutineHelperMethods::test_next_scheduled_activity_set
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_routine_system.py::TestRoutineHelperMethods::test_next_scheduled_activity_set is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_sleep_and_job_fixes.py::TestJobReleasedDuringSleeping::test_active_job_released_during_sleeping
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_sleep_and_job_fixes.py::TestJobReleasedDuringSleeping::test_active_job_released_during_sleeping is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_sleep_and_job_fixes.py::TestJobReleasedDuringSleeping::test_idle_villager_during_sleeping_seeks_sleep
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_sleep_and_job_fixes.py::TestJobReleasedDuringSleeping::test_idle_villager_during_sleeping_seeks_sleep is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_sleep_and_job_fixes.py::TestStopOnResidentialDuringSleeping::test_moving_villager_stops_on_residential_during_sleeping
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_sleep_and_job_fixes.py::TestStopOnResidentialDuringSleeping::test_moving_villager_stops_on_residential_during_sleeping is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_sleep_and_job_fixes.py::TestStopOnResidentialDuringSleeping::test_moving_toward_food_not_intercepted_on_residential
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_sleep_and_job_fixes.py::TestStopOnResidentialDuringSleeping::test_moving_toward_food_not_intercepted_on_residential is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_sleep_and_job_fixes.py::TestSleepWakeHysteresis::test_does_not_wake_at_tiredness_8
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_sleep_and_job_fixes.py::TestSleepWakeHysteresis::test_does_not_wake_at_tiredness_8 is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_sleep_and_job_fixes.py::TestSleepWakeHysteresis::test_wakes_at_tiredness_4
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_sleep_and_job_fixes.py::TestSleepWakeHysteresis::test_wakes_at_tiredness_4 is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_sleep_and_job_fixes.py::TestNoDoubleTirednessReduction::test_action_system_does_not_reduce_tiredness
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_sleep_and_job_fixes.py::TestNoDoubleTirednessReduction::test_action_system_does_not_reduce_tiredness is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_sleep_and_job_fixes.py::TestRoutineEatingJobProtection::test_routine_eating_releases_active_job
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_sleep_and_job_fixes.py::TestRoutineEatingJobProtection::test_routine_eating_releases_active_job is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_sleep_and_job_fixes.py::TestRoutineEatingJobProtection::test_urgent_hunger_interrupts_active_job
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_sleep_and_job_fixes.py::TestRoutineEatingJobProtection::test_urgent_hunger_interrupts_active_job is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_sleep_and_job_fixes.py::TestRoutineEatingJobProtection::test_routine_eating_works_for_idle_villagers
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_sleep_and_job_fixes.py::TestRoutineEatingJobProtection::test_routine_eating_works_for_idle_villagers is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_sleep_and_job_fixes.py::TestHungerDuringSleeping::test_urgent_hunger_works_during_sleeping_routine
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_sleep_and_job_fixes.py::TestHungerDuringSleeping::test_urgent_hunger_works_during_sleeping_routine is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_sleep_and_job_fixes.py::TestHungerDuringSleeping::test_routine_eating_suppressed_during_sleeping
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_sleep_and_job_fixes.py::TestHungerDuringSleeping::test_routine_eating_suppressed_during_sleeping is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_sleep_and_job_fixes.py::TestHungerDuringSleeping::test_moving_toward_sleep_suppresses_moderate_hunger
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_sleep_and_job_fixes.py::TestHungerDuringSleeping::test_moving_toward_sleep_suppresses_moderate_hunger is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_sleep_and_job_fixes.py::TestHungerDuringSleeping::test_moving_toward_sleep_not_suppressed_for_critical_hunger
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_sleep_and_job_fixes.py::TestHungerDuringSleeping::test_moving_toward_sleep_not_suppressed_for_critical_hunger is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_sleep_and_job_fixes.py::TestPlantJobSeedPreference::test_villager_with_seeds_prefers_plant_over_equal_priority
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_sleep_and_job_fixes.py::TestPlantJobSeedPreference::test_villager_with_seeds_prefers_plant_over_equal_priority is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_survival_system.py::TestSurvivalSystem::test_cold_increases_over_time
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_survival_system.py::TestSurvivalSystem::test_cold_increases_over_time is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_survival_system.py::TestSurvivalSystem::test_cold_increases_faster_at_night
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_survival_system.py::TestSurvivalSystem::test_cold_increases_faster_at_night is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_survival_system.py::TestSurvivalSystem::test_fire_reduces_cold
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_survival_system.py::TestSurvivalSystem::test_fire_reduces_cold is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_survival_system.py::TestSurvivalSystem::test_fire_consumes_fuel
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_survival_system.py::TestSurvivalSystem::test_fire_consumes_fuel is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_survival_system.py::TestSurvivalSystem::test_fire_extinguishes_when_fuel_runs_out
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_survival_system.py::TestSurvivalSystem::test_fire_extinguishes_when_fuel_runs_out is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_survival_system.py::TestSurvivalSystem::test_cold_capped_at_100
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_survival_system.py::TestSurvivalSystem::test_cold_capped_at_100 is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_survival_system.py::TestSurvivalSystem::test_cold_capped_at_0
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_survival_system.py::TestSurvivalSystem::test_cold_capped_at_0 is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_time_manager.py::TestTimeManagerBasic::test_initial_state
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_time_manager.py::TestTimeManagerBasic::test_initial_state is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_time_manager.py::TestTimeManagerBasic::test_get_season
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_time_manager.py::TestTimeManagerBasic::test_get_season is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_time_manager.py::TestTimeManagerDayNight::test_is_daytime_at_noon
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_time_manager.py::TestTimeManagerDayNight::test_is_daytime_at_noon is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_time_manager.py::TestTimeManagerDayNight::test_is_nighttime_at_midnight
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_time_manager.py::TestTimeManagerDayNight::test_is_nighttime_at_midnight is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_time_manager.py::TestTimeManagerDayNight::test_is_daytime_at_boundary
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_time_manager.py::TestTimeManagerDayNight::test_is_daytime_at_boundary is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_time_manager.py::TestTimeManagerDayNight::test_is_nighttime_at_boundary
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_time_manager.py::TestTimeManagerDayNight::test_is_nighttime_at_boundary is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_time_manager.py::TestTimeManagerDayNight::test_day_night_state_dawn
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_time_manager.py::TestTimeManagerDayNight::test_day_night_state_dawn is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_time_manager.py::TestTimeManagerDayNight::test_day_night_state_dusk
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_time_manager.py::TestTimeManagerDayNight::test_day_night_state_dusk is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_time_manager.py::TestTimeManagerDayNight::test_day_night_state_day
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_time_manager.py::TestTimeManagerDayNight::test_day_night_state_day is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_time_manager.py::TestTimeManagerDayNight::test_day_night_state_night
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_time_manager.py::TestTimeManagerDayNight::test_day_night_state_night is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_time_manager.py::TestTimeManagerSeason::test_season_changes_at_boundary
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_time_manager.py::TestTimeManagerSeason::test_season_changes_at_boundary is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_time_manager.py::TestTimeManagerSeason::test_full_year_cycle
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_time_manager.py::TestTimeManagerSeason::test_full_year_cycle is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_time_manager.py::TestTimeManagerSeason::test_season_wraps_after_year
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_time_manager.py::TestTimeManagerSeason::test_season_wraps_after_year is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_time_manager.py::TestTimeManagerPauseAndScale::test_toggle_pause
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_time_manager.py::TestTimeManagerPauseAndScale::test_toggle_pause is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_time_manager.py::TestTimeManagerPauseAndScale::test_paused_delta_time_is_zero
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_time_manager.py::TestTimeManagerPauseAndScale::test_paused_delta_time_is_zero is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_time_manager.py::TestTimeManagerPauseAndScale::test_time_scale_clamped
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_time_manager.py::TestTimeManagerPauseAndScale::test_time_scale_clamped is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_time_manager.py::TestTimeManagerPauseAndScale::test_fixed_dt_mode
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_time_manager.py::TestTimeManagerPauseAndScale::test_fixed_dt_mode is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_zone_manager.py::TestZoneManager::test_mark_zone
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_zone_manager.py::TestZoneManager::test_mark_zone is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_zone_manager.py::TestZoneManager::test_get_nearest_zone_tile
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_zone_manager.py::TestZoneManager::test_get_nearest_zone_tile is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_zone_manager.py::TestZoneManager::test_get_nearest_zone_tile_returns_none_for_nonexistent_zone
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_zone_manager.py::TestZoneManager::test_get_nearest_zone_tile_returns_none_for_nonexistent_zone is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_zone_manager.py::TestZoneManager::test_get_nearest_zone_tile_finds_existing_farm
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_zone_manager.py::TestZoneManager::test_get_nearest_zone_tile_finds_existing_farm is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_zone_manager.py::TestZoneManager::test_zone_cache
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_zone_manager.py::TestZoneManager::test_zone_cache is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_zone_manager.py::TestZoneManager::test_change_zone
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_zone_manager.py::TestZoneManager::test_change_zone is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_zone_manager.py::TestZoneManager::test_multiple_zones
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_zone_manager.py::TestZoneManager::test_multiple_zones is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+tests/unit/test_zone_manager.py::TestZoneManager::test_get_nearest_zone_finds_closest
+  C:\Users\wahol\AppData\Local\Programs\Python\Python310\lib\site-packages\_pytest\fixtures.py:918: PytestRemovedIn8Warning: Support for nose tests is deprecated and will be removed in a future release.
+  tests/unit/test_zone_manager.py::TestZoneManager::test_get_nearest_zone_finds_closest is using nose-specific method: `teardown(self)`
+  To remove this warning, rename it to `teardown_method(self)`
+  See docs: https://docs.pytest.org/en/stable/deprecations.html#support-for-tests-written-for-nose
+    next(it)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+====================== 243 passed, 269 warnings in 0.92s ======================

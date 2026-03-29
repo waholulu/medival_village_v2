@@ -1,13 +1,13 @@
 from typing import Optional, Tuple
 from src.core.ecs import System, EntityManager
-from src.components.data_components import ActionComponent, PositionComponent, JobComponent, InventoryComponent, ResourceComponent, ItemComponent, HungerComponent, TirednessComponent, MovementComponent, CropComponent, TrapComponent, FireComponent, RoutineComponent, SleepStateComponent
+from src.components.data_components import ActionComponent, PositionComponent, JobComponent, InventoryComponent, ResourceComponent, ItemComponent, HungerComponent, TirednessComponent, MovementComponent, CropComponent, TrapComponent, FireComponent, RoutineComponent, SleepStateComponent, NeedLockComponent
 from src.components.skill_component import SkillComponent
 from src.systems.job_system import JobSystem, Job
-from src.world.grid import Grid, ZONE_STOCKPILE, ZONE_FARM, ZONE_RESIDENTIAL, TERRAIN_WATER
+from src.world.grid import Grid, ZONE_STOCKPILE, ZONE_FARM, ZONE_RESIDENTIAL, TERRAIN_WATER, ZONE_NONE
 from src.world.zone_manager import ZoneManager
 from src.utils.logger import Logger, LogCategory
 from src.utils.diagnostic_logger import DiagnosticLogger, DiagLevel
-from src.components.tags import IsTree
+from src.components.tags import IsTree, IsVillager, IsPlayer
 from src.core.config_manager import ConfigManager
 from src.core.time_manager import TimeManager
 
@@ -19,9 +19,11 @@ class AISystem(System):
         self.zone_manager = zone_manager
         self.config_manager = config_manager
         self.time_manager = time_manager
+        
+        self._failed_jobs_cooldown: Dict[str, float] = {}
+        
         self._last_job_gen_tick = 0
         self._no_food_cooldown = {}  # entity -> tick when "no food" was last logged
-        self._need_lock = {}  # entity -> (lock_type, expiry_tick) — prevents eat/sleep oscillation
 
     def _has_food_available(self, entity: int, pos_comp) -> bool:
         """Quick check: is there any food the entity could eat (in inventory or nearby)?"""
@@ -89,20 +91,26 @@ class AISystem(System):
 
     def _get_need_lock(self, entity: int, current_tick: int):
         """Return active need-lock type ('eat'/'sleep') or None if expired/absent."""
-        if entity in self._need_lock:
-            lock_type, expiry = self._need_lock[entity]
-            if current_tick < expiry:
-                return lock_type
-            del self._need_lock[entity]
+        lock_comp = self.entity_manager.get_component(entity, NeedLockComponent)
+        if lock_comp:
+            if current_tick < lock_comp.expiry_tick:
+                return lock_comp.lock_type
+            else:
+                self.entity_manager.remove_component(entity, NeedLockComponent)
         return None
 
     def _set_need_lock(self, entity: int, lock_type: str, current_tick: int, duration: int = 600):
         """Lock entity to a need-driven behaviour for *duration* ticks to prevent oscillation."""
-        self._need_lock[entity] = (lock_type, current_tick + duration)
+        lock_comp = self.entity_manager.get_component(entity, NeedLockComponent)
+        if lock_comp:
+            lock_comp.lock_type = lock_type
+            lock_comp.expiry_tick = current_tick + duration
+        else:
+            self.entity_manager.add_component(entity, NeedLockComponent(lock_type=lock_type, expiry_tick=current_tick + duration))
 
     def _clear_need_lock(self, entity: int):
         """Remove any active need lock."""
-        self._need_lock.pop(entity, None)
+        self.entity_manager.remove_component(entity, NeedLockComponent)
 
     def _nearest_food_distance(self, entity: int, pos_comp) -> float:
         """Return Manhattan distance to nearest reachable food, or None if none."""
@@ -125,47 +133,49 @@ class AISystem(System):
     def update(self, dt: float):
         # 0. Generate jobs from world state
         self._generate_jobs()
+        self._plan_buildings()
 
         current_tick = self.time_manager.total_ticks if self.time_manager else 0
 
-        # 0.1 Blanket SleepState clearing: any entity NOT sleeping must have is_sleeping=False
+        # 1. Unified Entity Processing (SleepState, Sleep Schedule, Urgent Needs)
         for entity, action_comp in self.entity_manager.get_entities_with(ActionComponent):
+            # 0.1 Blanket SleepState clearing: any entity NOT sleeping must have is_sleeping=False
             if action_comp.current_action != "sleep":
                 self._clear_sleep_state(entity)
 
-        # 0.5. Enforce sleep schedule: release jobs and redirect to sleep during SLEEPING routine
-        for entity, action_comp, pos_comp in self.entity_manager.get_entities_with(ActionComponent, PositionComponent):
-            routine_comp = self.entity_manager.get_component(entity, RoutineComponent)
-            if not routine_comp or routine_comp.current_state != "SLEEPING":
+            pos_comp = self.entity_manager.get_component(entity, PositionComponent)
+            if not pos_comp:
                 continue
 
-            # If moving and already on a residential tile, stop and sleep immediately
-            # BUT don't intercept if the villager is urgently seeking food
-            if action_comp.current_action == "move":
-                current_zone = self.grid.get_zone(pos_comp.x, pos_comp.y)
-                if current_zone == ZONE_RESIDENTIAL and not self._is_moving_toward_food(entity, action_comp):
+            routine_comp = self.entity_manager.get_component(entity, RoutineComponent)
+
+            # 0.5. Enforce sleep schedule: release jobs and redirect to sleep during SLEEPING routine
+            if routine_comp and routine_comp.current_state == "SLEEPING":
+                # If moving and already on a residential tile, stop and sleep immediately
+                # BUT don't intercept if the villager is urgently seeking food
+                if action_comp.current_action == "move":
+                    current_zone = self.grid.get_zone(pos_comp.x, pos_comp.y)
+                    if current_zone == ZONE_RESIDENTIAL and not self._is_moving_toward_food(entity, action_comp):
+                        self._release_current_job(entity)
+                        self._clear_movement(entity)
+                        action_comp.current_action = "sleep"
+                        diag = DiagnosticLogger.get_instance()
+                        if diag:
+                            diag.log_detail(entity, "AI: Arrived at residential zone during SLEEPING, starting sleep")
+                        continue
+
+                # If has an active job during sleep time, release it so villager can sleep
+                if self.entity_manager.has_component(entity, JobComponent):
                     self._release_current_job(entity)
                     self._clear_movement(entity)
-                    action_comp.current_action = "sleep"
+                    action_comp.current_action = "idle"
                     diag = DiagnosticLogger.get_instance()
                     if diag:
-                        diag.log_detail(entity, "AI: Arrived at residential zone during SLEEPING, starting sleep")
-                    continue
+                        diag.log_detail(entity, "AI: Released job for sleep time")
 
-            # If has an active job during sleep time, release it so villager can sleep
-            if self.entity_manager.has_component(entity, JobComponent):
-                self._release_current_job(entity)
-                self._clear_movement(entity)
-                action_comp.current_action = "idle"
-                diag = DiagnosticLogger.get_instance()
-                if diag:
-                    diag.log_detail(entity, "AI: Released job for sleep time")
-
-        # 1. Check for urgent needs (hunger, tiredness) - these interrupt jobs
-        for entity, action_comp, pos_comp in self.entity_manager.get_entities_with(ActionComponent, PositionComponent):
+            # 1. Check for urgent needs (hunger, tiredness) - these interrupt jobs
             hunger_comp = self.entity_manager.get_component(entity, HungerComponent)
             tiredness_comp = self.entity_manager.get_component(entity, TirednessComponent)
-            routine_comp = self.entity_manager.get_component(entity, RoutineComponent)
 
             # --- Need lock: prevent eat/sleep oscillation ---
             active_lock = self._get_need_lock(entity, current_tick)
@@ -264,10 +274,31 @@ class AISystem(System):
 
         # 2. Handle entities with jobs
         for entity, job_comp, action_comp, pos_comp in self.entity_manager.get_entities_with(JobComponent, ActionComponent, PositionComponent):
+            move_comp = self.entity_manager.get_component(entity, MovementComponent)
+            if move_comp and move_comp.path_failed:
+                move_comp.path_failed = False
+                diag = DiagnosticLogger.get_instance()
+                if diag:
+                    diag.log_detail(entity, f"AI: Job #{job_comp.job_id} failed - path unreachable")
+                
+                # Add to failed cooldown
+                self._failed_jobs_cooldown[job_comp.job_id] = current_tick + 600
+                self._release_current_job(entity)
+                self._clear_movement(entity)
+                action_comp.current_action = "idle"
+                continue
+
             self._process_job(entity, job_comp, action_comp, pos_comp)
 
         # 3. Handle idle entities (find jobs, respecting routine state)
         for entity, action_comp, skill_comp, pos_comp in self.entity_manager.get_entities_with(ActionComponent, SkillComponent, PositionComponent):
+            move_comp = self.entity_manager.get_component(entity, MovementComponent)
+            if move_comp and move_comp.path_failed:
+                move_comp.path_failed = False
+                diag = DiagnosticLogger.get_instance()
+                if diag:
+                    diag.log_detail(entity, "AI: Navigation to non-job target failed.")
+
             # Clear stale sleep state: if not sleeping but flag is still set
             if action_comp.current_action != "sleep":
                 self._clear_sleep_state(entity)
@@ -390,6 +421,115 @@ class AISystem(System):
                 if existing_chop_jobs >= max_chop_jobs:
                     break  # Stop creating more jobs
 
+    def _plan_buildings(self):
+        """Autonomously plan buildings if there is a need."""
+        current_tick = self.time_manager.total_ticks if self.time_manager else 0
+        if not hasattr(self, '_last_blueprint_gen_tick'):
+            self._last_blueprint_gen_tick = 0
+            
+        if current_tick - self._last_blueprint_gen_tick < 300: # Check every 300 ticks (5 seconds)
+            return
+        self._last_blueprint_gen_tick = current_tick
+
+        villager_count = sum(1 for e, _ in self.entity_manager.get_entities_with(IsVillager)) + \
+                         sum(1 for e, _ in self.entity_manager.get_entities_with(IsPlayer))
+        
+        Logger.info(f"[DEBUG _plan_buildings] Running at tick {current_tick}. Villagers: {villager_count}")
+
+        from src.components.building_components import BlueprintComponent, BuildingComponent
+        house_count = 0
+        storage_count = 0
+        
+        for e, pos in self.entity_manager.get_entities_with(PositionComponent):
+            b_type = None
+            if self.entity_manager.has_component(e, BlueprintComponent):
+                b_type = self.entity_manager.get_component(e, BlueprintComponent).building_type
+            elif self.entity_manager.has_component(e, BuildingComponent):
+                b_type = self.entity_manager.get_component(e, BuildingComponent).building_type
+                
+            if b_type == "house":
+                house_count += 1
+            elif b_type == "storage":
+                storage_count += 1
+
+        # We assume 1 house sleeps 2 villagers.
+        Logger.info(f"[DEBUG _plan_buildings] tick: {current_tick} villagers: {villager_count} houses: {house_count} storage: {storage_count}")
+        if house_count * 2 < villager_count:
+            if self._try_place_blueprint("house", ZONE_RESIDENTIAL):
+                Logger.info("[DEBUG _plan_buildings] placed house!")
+                return # Only place one per cycle
+
+        # Check for storage need: if there are many items on the ground not in stockpile/storage
+        items_on_ground = 0
+        for e, item, pos in self.entity_manager.get_entities_with(ItemComponent, PositionComponent):
+            zone = self.grid.get_zone(pos.x, pos.y)
+            if zone != ZONE_STOCKPILE:
+                items_on_ground += 1
+                
+        if items_on_ground > 15 and storage_count == 0:
+            # If there's a lot of mess, build at least one storage
+            if self._try_place_blueprint("storage", ZONE_STOCKPILE):
+                Logger.info("[DEBUG _plan_buildings] placed storage!")
+                return
+
+    def _try_place_blueprint(self, blueprint_type: str, preferred_zone: int) -> bool:
+        b_config = self.config_manager.get(f"entities.buildings.{blueprint_type}", {})
+        if not b_config:
+            Logger.info(f"Failed to find config for {blueprint_type}")
+            return False
+            
+        # Find all tiles of preferred zone
+        valid_tiles = []
+        for x in range(self.grid.width):
+            for y in range(self.grid.height):
+                if self.grid.get_zone(x, y) == preferred_zone and self.grid.is_walkable(x, y):
+                    valid_tiles.append((x, y))
+                    
+        # If no preferred zone, find grassy area near center
+        if not valid_tiles:
+             center_x, center_y = self.grid.width // 2, self.grid.height // 2
+             for r in range(3, 20):
+                 for dx in range(-r, r+1):
+                     for dy in range(-r, r+1):
+                         x, y = center_x + dx, center_y + dy
+                         if 0 <= x < self.grid.width and 0 <= y < self.grid.height:
+                             if self.grid.get_terrain(x, y) == 0 and self.grid.is_walkable(x, y): # 0 is Grass
+                                 if self.grid.get_zone(x, y) == ZONE_NONE:
+                                     valid_tiles.append((x, y))
+                 if valid_tiles:
+                     break
+                     
+        if not valid_tiles:
+            return False
+
+        import random
+        random.shuffle(valid_tiles)
+        
+        from src.components.building_components import BlueprintComponent, BuildingComponent
+        for tx, ty in valid_tiles:
+             # Check if occupied by another blueprint/building or tree
+             occupied = False
+             for e, pos in self.entity_manager.get_entities_with(PositionComponent):
+                 if pos.x == tx and pos.y == ty:
+                     if self.entity_manager.has_component(e, BlueprintComponent) or self.entity_manager.has_component(e, BuildingComponent) or self.entity_manager.has_component(e, IsTree):
+                         occupied = True
+                         break
+             if not occupied:
+                 # Place it
+                 blueprint_entity = self.entity_manager.create_entity()
+                 self.entity_manager.add_component(blueprint_entity, PositionComponent(x=tx, y=ty))
+                 cost = b_config.get("cost", {})
+                 work = b_config.get("work_required", 100.0)
+                 self.entity_manager.add_component(blueprint_entity, BlueprintComponent(
+                     building_type=blueprint_type,
+                     required_materials=cost,
+                     work_required=work
+                 ))
+                 Logger.info(f"AI autonomously placed {blueprint_type} blueprint at ({tx}, {ty})")
+                 return True
+                 
+        return False
+
     def _find_job(self, entity: int, skill_comp: SkillComponent, pos_comp: PositionComponent):
         available_jobs = self.job_system.get_available_jobs()
         
@@ -421,6 +561,13 @@ class AISystem(System):
             if job.job_type == "plant" and not seeds_available:
                 continue
             
+            # Check if job is on cooldown due to recent failure
+            if job.id in self._failed_jobs_cooldown:
+                if self.time_manager.total_ticks < self._failed_jobs_cooldown[job.id]:
+                    continue
+                else:
+                    del self._failed_jobs_cooldown[job.id]
+                    
             # Calculate distance to job target
             dist = abs(pos_comp.x - job.target_pos[0]) + abs(pos_comp.y - job.target_pos[1])
             
@@ -507,6 +654,10 @@ class AISystem(System):
             self._handle_fish_job(entity, job, action_comp, pos_comp)
         elif job.job_type == "tend_fire":
             self._handle_tend_fire_job(entity, job, action_comp, pos_comp)
+        elif job.job_type == "haul_to_blueprint":
+            self._handle_haul_to_blueprint_job(entity, job, action_comp, pos_comp)
+        elif job.job_type == "build":
+            self._handle_build_job(entity, job, action_comp, pos_comp)
 
     def _auto_pickup_nearby_items(self, entity: int, target_pos, pos_comp):
         """Auto-pickup items at a position if the villager is within 1 tile."""
@@ -1058,5 +1209,101 @@ class AISystem(System):
             move_comp = self.entity_manager.get_component(entity, MovementComponent)
             if move_comp:
                 move_comp.target = target_pos
+                action_comp.current_action = "move"
+
+    def _handle_tend_fire_job(self, entity: int, job: Job, action_comp: ActionComponent, pos_comp: PositionComponent):
+        # Already handled placeholder (or logic exists elsewhere)
+        pass
+
+    def _handle_haul_to_blueprint_job(self, entity: int, job: Job, action_comp: ActionComponent, pos_comp: PositionComponent):
+        inv_comp = self.entity_manager.get_component(entity, InventoryComponent)
+        if not inv_comp:
+            return
+            
+        material_type = job.metadata.get("material_type") if job.metadata else None
+        if not material_type:
+            self.job_system.complete_job(job.id)
+            return
+            
+        has_material = inv_comp.items.get(material_type, 0) > 0
+
+        # If we don't have the material, we need to go to stockpile and pick it up
+        if not has_material:
+            # Target is stockpile containing the item
+            stockpile_pos = None
+            stockpile_item_entity = None
+            
+            # Find item in stockpile
+            for item_entity, item_comp, item_pos in self.entity_manager.get_entities_with(ItemComponent, PositionComponent):
+                if item_comp.item_type == material_type and item_comp.amount > 0:
+                    zone = self.grid.get_zone(item_pos.x, item_pos.y)
+                    if zone == ZONE_STOCKPILE:
+                        stockpile_pos = (item_pos.x, item_pos.y)
+                        stockpile_item_entity = item_entity
+                        break
+                        
+            if not stockpile_pos:
+                # No material available, release job
+                self.job_system.release_job(job.id)
+                self.entity_manager.remove_component(entity, JobComponent)
+                action_comp.current_action = "idle"
+                self._failed_jobs_cooldown[job.id] = self.time_manager.total_ticks + 120 # Cooldown for 2 seconds
+                return
+                
+            dist_to_stockpile = abs(pos_comp.x - stockpile_pos[0]) + abs(pos_comp.y - stockpile_pos[1])
+            if dist_to_stockpile <= 1:
+                action_comp.current_action = "pickup"
+                action_comp.target_entity_id = stockpile_item_entity
+            else:
+                move_comp = self.entity_manager.get_component(entity, MovementComponent)
+                if move_comp:
+                    move_comp.target = stockpile_pos
+                    action_comp.current_action = "move"
+        else:
+            # We have the material, move to blueprint
+            from src.components.building_components import BlueprintComponent
+            blueprint = self.entity_manager.get_component(job.target_entity_id, BlueprintComponent)
+            
+            if not blueprint:
+                # Blueprint gone, drop item or go idle
+                self.job_system.complete_job(job.id)
+                self.entity_manager.remove_component(entity, JobComponent)
+                action_comp.current_action = "idle"
+                return
+                
+            # Move to blueprint
+            dist_to_blueprint = abs(pos_comp.x - job.target_pos[0]) + abs(pos_comp.y - job.target_pos[1])
+            if dist_to_blueprint <= 1:
+                # Arrived, drop material into blueprint
+                action_comp.current_action = "build_drop"
+                action_comp.target_entity_id = job.target_entity_id
+                
+                # NOTE: The actual transferring of items happens in ActionSystem.
+                # Here we just set the action state.
+                # Once item is placed, Job is completed in ActionSystem.
+            else:
+                move_comp = self.entity_manager.get_component(entity, MovementComponent)
+                if move_comp:
+                    move_comp.target = job.target_pos
+                    action_comp.current_action = "move"
+                    
+    def _handle_build_job(self, entity: int, job: Job, action_comp: ActionComponent, pos_comp: PositionComponent):
+        from src.components.building_components import BlueprintComponent
+        blueprint = self.entity_manager.get_component(job.target_entity_id, BlueprintComponent)
+            
+        if not blueprint:
+            self.job_system.complete_job(job.id)
+            self.entity_manager.remove_component(entity, JobComponent)
+            action_comp.current_action = "idle"
+            return
+            
+        dist = abs(pos_comp.x - job.target_pos[0]) + abs(pos_comp.y - job.target_pos[1])
+        if dist <= 1:
+            action_comp.current_action = "build"
+            action_comp.target_entity_id = job.target_entity_id
+        else:
+            move_comp = self.entity_manager.get_component(entity, MovementComponent)
+            if move_comp:
+                move_comp.target = job.target_pos
                 action_comp.current_action = "move"
 

@@ -55,10 +55,30 @@ class TestSuiteResult:
 class TestBase:
     """测试基类,提供通用的setup/teardown和断言方法"""
     
-    def __init__(self):
-        self.assertions: List[str] = []
-        self._test_name: str = ""
-    
+    @property
+    def assertions(self) -> List[str]:
+        if not hasattr(self, '_assertions'):
+            self._assertions = []
+        return self._assertions
+        
+    @assertions.setter
+    def assertions(self, value):
+        self._assertions = value
+
+    @property
+    def _test_name(self) -> str:
+        return getattr(self, '__test_name', "")
+        
+    @_test_name.setter
+    def _test_name(self, value):
+        self.__test_name = value
+        
+    def setup_method(self, method=None):
+        """测试前的设置, pytest自动调用"""
+        self.assertions = []
+        self._test_name = method.__name__ if method else ""
+        self.setup()
+        
     def setup(self):
         """测试前的设置,子类可以重写"""
         pass

@@ -5,7 +5,7 @@ import heapq
 
 @dataclass
 class Job:
-    job_type: str  # "chop", "haul", "plant", "harvest", "trap", "fish", "tend_fire"
+    job_type: str  # "chop", "haul", "plant", "harvest", "trap", "fish", "tend_fire", "haul_to_blueprint", "build"
     target_pos: Tuple[int, int]
     target_entity_id: Optional[int] = None
     required_skill: Optional[str] = None  # e.g., "logging"
@@ -13,6 +13,7 @@ class Job:
     id: str = field(default_factory=lambda: str(uuid.uuid4()))
     assignee: Optional[int] = None
     required_item: Optional[str] = None  # For hauling: "log"
+    metadata: Optional[Dict] = None # For extra data like "material_type"
 
 class JobSystem:
     def __init__(self):
@@ -88,4 +89,16 @@ class JobSystem:
             for jid in job_ids 
             if jid in self._jobs_by_id
         )
+
+    def has_job_for_entity_with_metadata(self, target_entity_id: int, job_type: str, metadata_key: str, metadata_value: any) -> bool:
+        """Check if a job exists for a target entity with specific metadata. O(1) average case."""
+        job_ids = self._jobs_by_target.get(target_entity_id, [])
+        if not job_ids:
+            return False
+        
+        for jid in job_ids:
+            job = self._jobs_by_id.get(jid)
+            if job and job.job_type == job_type and job.metadata and job.metadata.get(metadata_key) == metadata_value:
+                return True
+        return False
 
